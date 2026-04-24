@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 资讯快报 · 2026年4月24日</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        /* Hero Section */
+        .hero {
+            background: var(--dark);
+            color: white;
+            padding: 80px 20px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(236,72,153,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 600px; margin: 0 auto 32px; }
+        .hero-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 0.9rem; color: #64748b; }
+        .hero-meta span { display: flex; align-items: center; gap: 6px; }
+        .scroll-indicator {
+            position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+
+        /* Navigation */
+        .nav-bar {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 20px;
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; padding: 12px 0; scrollbar-width: none; }
+        .nav-inner::-webkit-scrollbar { display: none; }
+        .nav-item {
+            white-space: nowrap; padding: 8px 16px;
+            border-radius: 8px; font-size: 0.85rem; font-weight: 500;
+            color: var(--gray); cursor: pointer; transition: all 0.2s;
+            text-decoration: none;
+        }
+        .nav-item:hover, .nav-item.active { background: var(--primary); color: white; }
+
+        /* Container */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* Section Styles */
+        .section { padding: 60px 0; border-bottom: 1px solid #e2e8f0; }
+        .section-header { margin-bottom: 40px; }
+        .section-label {
+            display: inline-block; padding: 4px 12px;
+            background: var(--gradient-1); color: white;
+            border-radius: 6px; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
+        }
+        .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .section-desc { color: var(--gray); font-size: 1rem; }
+
+        /* Trend Cards */
+        .trend-grid { display: grid; gap: 24px; }
+        .trend-card {
+            background: white; border-radius: 16px;
+            padding: 32px; box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            position: relative; overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .trend-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .trend-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: var(--gradient-1);
+        }
+        .trend-card:nth-child(2)::before { background: var(--gradient-2); }
+        .trend-card:nth-child(3)::before { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
+        .trend-number {
+            font-size: 3rem; font-weight: 900; line-height: 1;
+            background: var(--gradient-1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; opacity: 0.3;
+            position: absolute; top: 16px; right: 24px;
+        }
+        .trend-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; padding-right: 60px; }
+        .trend-card p { color: #475569; margin-bottom: 16px; }
+        .insight-box {
+            background: #f1f5f9; border-left: 4px solid var(--primary);
+            padding: 16px; border-radius: 0 8px 8px 0; font-size: 0.95rem;
+        }
+        .insight-box strong { color: var(--primary-dark); }
+
+        /* Headline Cards */
+        .headline-card {
+            background: white; border-radius: 16px;
+            padding: 32px; margin-bottom: 24px;
+            box-shadow: var(--shadow); border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .headline-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
+        }
+        .headline-badge.hot { background: #fef2f2; color: var(--danger); }
+        .headline-badge.tech { background: #eff6ff; color: #2563eb; }
+        .headline-badge.biz { background: #f0fdf4; color: var(--success); }
+        .headline-card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; }
+        .headline-summary { color: #475569; margin-bottom: 20px; }
+        .keypoints { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .keypoint {
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 12px 16px; background: #f8fafc;
+            border-radius: 10px; font-size: 0.95rem;
+        }
+        .keypoint::before {
+            content: ''; width: 8px; height: 8px;
+            background: var(--primary); border-radius: 50%;
+            margin-top: 8px; flex-shrink: 0;
+        }
+        .headline-meta {
+            display: flex; flex-wrap: wrap; gap: 16px;
+            padding-top: 16px; border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem; color: var(--gray);
+        }
+        .headline-meta a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .headline-meta a:hover { text-decoration: underline; }
+        .impact-box {
+            margin-top: 16px; padding: 16px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 10px; font-size: 0.95rem;
+        }
+        .impact-box strong { color: #0369a1; }
+
+        /* Category Grid */
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .cat-card {
+            background: white; border-radius: 14px;
+            padding: 24px; box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        .cat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .cat-card-header {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 16px; padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .cat-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .cat-card h4 { font-size: 1rem; font-weight: 700; }
+        .cat-card p { font-size: 0.9rem; color: #475569; margin-bottom: 12px; }
+        .cat-tag {
+            display: inline-block; padding: 3px 10px;
+            background: #f1f5f9; color: var(--gray);
+            border-radius: 6px; font-size: 0.75rem; font-weight: 500;
+            margin-top: 8px;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: white; border-radius: 16px;
+            padding: 28px; margin-bottom: 20px;
+            box-shadow: var(--shadow); border: 1px solid #e2e8f0;
+            display: grid; grid-template-columns: auto 1fr;
+            gap: 24px; align-items: start;
+        }
+        .product-rank {
+            width: 56px; height: 56px; border-radius: 16px;
+            background: var(--gradient-1); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: 900; flex-shrink: 0;
+        }
+        .product-card:nth-child(2) .product-rank { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); }
+        .product-card:nth-child(3) .product-rank { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); }
+        .product-card:nth-child(4) .product-rank { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
+        .product-card:nth-child(5) .product-rank { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); }
+        .product-info h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+        .product-meta { display: flex; gap: 16px; font-size: 0.85rem; color: var(--gray); margin-bottom: 10px; flex-wrap: wrap; }
+        .product-desc { color: #475569; margin-bottom: 12px; font-size: 0.95rem; }
+        .product-kp { display: flex; flex-direction: column; gap: 6px; }
+        .product-kp-item {
+            display: flex; gap: 8px; font-size: 0.9rem;
+            padding: 6px 0; border-bottom: 1px dashed #e2e8f0;
+        }
+        .product-kp-item:last-child { border-bottom: none; }
+        .product-scene {
+            margin-top: 12px; padding: 10px 14px;
+            background: #f0fdf4; border-radius: 8px;
+            font-size: 0.85rem; color: #166534;
+        }
+        .product-users {
+            margin-top: 8px; padding: 10px 14px;
+            background: #eff6ff; border-radius: 8px;
+            font-size: 0.85rem; color: #1e40af;
+        }
+
+        /* Charts Section */
+        .charts-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+        .chart-card {
+            background: white; border-radius: 16px;
+            padding: 24px; box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+        }
+        .chart-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; text-align: center; }
+
+        /* Insight Section */
+        .insight-section { background: var(--dark); color: white; padding: 80px 20px; margin-top: 40px; }
+        .insight-section .section-title { color: white; }
+        .insight-section .section-desc { color: #94a3b8; }
+        .insight-grid { display: grid; gap: 24px; margin-top: 40px; }
+        .insight-card {
+            background: var(--dark-light); border-radius: 16px;
+            padding: 32px; border: 1px solid #334155;
+            position: relative;
+        }
+        .insight-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 4px; height: 100%; border-radius: 4px 0 0 4px;
+            background: var(--gradient-1);
+        }
+        .insight-card:nth-child(2)::before { background: var(--gradient-2); }
+        .insight-card:nth-child(3)::before { background: linear-gradient(180deg, #10b981 0%, #06b6d4 100%); }
+        .insight-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: #f1f5f9; }
+        .insight-card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.8; }
+
+        /* Footer */
+        .footer {
+            background: var(--dark); color: #64748b;
+            padding: 40px 20px; text-align: center;
+            font-size: 0.85rem; border-top: 1px solid #1e293b;
+        }
+        .footer a { color: #94a3b8; }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 0.6s ease forwards; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 60px 20px 80px; }
+            .section { padding: 40px 0; }
+            .section-title { font-size: 1.5rem; }
+            .product-card { grid-template-columns: 1fr; }
+            .product-rank { width: 48px; height: 48px; font-size: 1.2rem; }
+            .cat-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Weekly AI Intelligence Report</div>
+        <h1>AI 资讯快报</h1>
+        <p class="hero-subtitle">追踪全球人工智能前沿动态，解码技术、商业与政策的深层博弈</p>
+        <div class="hero-meta">
+            <span>📅 2026年4月24日</span>
+            <span>📊 覆盖 48 小时全球资讯</span>
+            <span>🌍 12 大核心板块</span>
+            <span>🔥 50+ 条精选资讯</span>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+    </div>
+</section>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="#trends" class="nav-item">核心趋势</a>
+        <a href="#headlines" class="nav-item">今日头条</a>
+        <a href="#tech" class="nav-item">技术前沿</a>
+        <a href="#industry" class="nav-item">行业竞争</a>
+        <a href="#ethics" class="nav-item">伦理安全</a>
+        <a href="#mededu" class="nav-item">医疗教育</a>
+        <a href="#robotics" class="nav-item">机器人</a>
+        <a href="#security" class="nav-item">数据安全</a>
+        <a href="#policy" class="nav-item">政策标准</a>
+        <a href="#productivity" class="nav-item">智能办公</a>
+        <a href="#products" class="nav-item">热门产品</a>
+        <a href="#insights" class="nav-item">深度洞察</a>
+    </div>
+</nav>
+
+<!-- Data Dashboard -->
+<section class="section" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Data Dashboard</div>
+            <h2 class="section-title">本期关键数据一览</h2>
+        </div>
+        <div class="charts-row">
+            <div class="chart-card fade-in">
+                <h4>巨头投资规模对比（亿美元）</h4>
+                <canvas id="investChart"></canvas>
+            </div>
+            <div class="chart-card fade-in delay-1">
+                <h4>DeepSeek V4 vs 竞品定价（$/百万token）</h4>
+                <canvas id="priceChart"></canvas>
+            </div>
+            <div class="chart-card fade-in delay-2">
+                <h4>AI 对职业覆盖率（Anthropic 研究）</h4>
+                <canvas id="coverageChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Trends -->
+<section class="section" id="trends">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Core Trends</div>
+            <h2 class="section-title">今日核心趋势</h2>
+            <p class="section-desc">三条正在重塑 AI 产业格局的深层趋势</p>
+        </div>
+        <div class="trend-grid">
+            <div class="trend-card fade-in">
+                <div class="trend-number">01</div>
+                <h3>巨头资本军备竞赛白热化——Google 400亿美元加注 Anthropic</h3>
+                <p>Google 宣布向 Anthropic 投资最高达 400 亿美元（含现金与算力），其中 100 亿美元即时到账，剩余 300 亿美元与业绩里程碑挂钩。几乎同一时间，Amazon 也追加了 50 亿美元投资，并承诺未来可能再投 200 亿美元。云厂商正通过"算力+资本"双轮驱动锁定顶级 AI 实验室。</p>
+                <div class="insight-box">
+                    <strong>关键洞察：</strong>当云厂商同时成为最大投资方和算力供应商时，AI 实验室的独立性将面临结构性挑战。Anthropic 的 IPO 或将成为检验"资本-技术"平衡的关键案例。
+                </div>
+            </div>
+            <div class="trend-card fade-in delay-1">
+                <div class="trend-number">02</div>
+                <h3>开源模型逼近闭源天花板——DeepSeek V4 重新定义性价比</h3>
+                <p>DeepSeek 发布 V4 模型预览版，Pro 版本拥有约 1.6 万亿参数，支持 100 万 token 上下文窗口。在代码生成评测中表现"与 GPT-5.4 相当"，定价仅为同类模型的 1/10。华为昇腾芯片已确认兼容，国内半导体企业股价应声大涨。</p>
+                <div class="insight-box">
+                    <strong>关键洞察：</strong>DeepSeek V4 证明了中国 AI 生态在"芯片受限"条件下的适应能力。当开源模型以 1/10 成本达到闭源模型 90% 性能时，商业模型的定价权将被彻底颠覆。
+                </div>
+            </div>
+            <div class="trend-card fade-in delay-2">
+                <div class="trend-number">03</div>
+                <h3>AI 从"聊天工具"进化到"生活操作系统"——Claude 接入 Spotify、Uber、TurboTax</h3>
+                <p>Anthropic 宣布 Claude 向所有用户开放个人应用连接器，支持 15 款主流生活应用。用户授权后，Claude 可在对话中主动调用这些服务。这标志着 AI 助手从"企业效率工具"向"个人生活枢纽"的战略转型。</p>
+                <div class="insight-box">
+                    <strong>关键洞察：</strong>AI 助手的竞争正在从"谁更聪明"转向"谁能更深入用户生活场景"。应用生态的广度和深度，将成为下一个阶段的护城河。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Headlines -->
+<section class="section" id="headlines" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Top Headlines</div>
+            <h2 class="section-title">今日头条</h2>
+            <p class="section-desc">三条不容错过的重磅资讯</p>
+        </div>
+
+        <div class="headline-card fade-in">
+            <div class="headline-badge hot">🔥 头条</div>
+            <h3>OpenAI 发布 GPT-5.5，向"AI 超级应用"再进一步</h3>
+            <p class="headline-summary">OpenAI 于 4 月 23 日发布旗舰模型 GPT-5.5，官方称之为"最智能、最直观的模型"。新模型在自主软件开发、专业认知任务、数学推理和科学研究方面表现显著提升，内部评测得分超越 Gemini 3.1 Pro 和 Claude Opus 4.5。</p>
+            <div class="keypoints">
+                <div class="keypoint">GPT-5.5 在代码生成效率上实现突破，diagnostics 耗时从整天缩短至数小时，原型开发从数周压缩至隔夜完成</div>
+                <div class="keypoint">基于 NVIDIA GB200 NVL72 全机架平台运行，实现"每百万 token 成本降低 35 倍"、"每兆瓦 token 输出速度提升 50 倍"</div>
+                <div class="keypoint">OpenAI 承诺未来将部署超过 10 吉瓦的 NVIDIA 算力，双方联合验证了首个 10 万 GPU 规模的 GB200 集群</div>
+            </div>
+            <div class="headline-meta">
+                <a href="https://techcrunch.com/2026/04/23/openai-chatgpt-gpt-5-5-ai-model-superapp/" target="_blank">🔗 阅读原文</a>
+                <span>📅 2026-04-23</span>
+                <span>📰 TechCrunch / The Verge</span>
+            </div>
+            <div class="impact-box">
+                <strong>思考与影响：</strong>GPT-5.5 的发布巩固了 OpenAI 在模型能力上的领先地位，但其真正的战略意义在于"超级应用"愿景的落地。当对话、编程、研究、办公能力被整合到统一平台时，OpenAI 正在构建的不仅是工具，而是下一代操作系统的雏形。
+            </div>
+        </div>
+
+        <div class="headline-card fade-in delay-1">
+            <div class="headline-badge tech">💡 技术</div>
+            <h3>DeepSeek V4 预览版发布，开源模型逼近前沿水平</h3>
+            <p class="headline-summary">中国 AI 实验室 DeepSeek 发布 V4 大语言模型预览版，包括 V4-Pro 和 V4-Flash 两个变体，均采用稀疏混合专家（MoE）架构。Pro 版本总参数达 1.6 万亿（激活 490 亿），支持 100 万 token 长上下文。</p>
+            <div class="keypoints">
+                <div class="keypoint">V4-Pro-Max 在推理测试中超越 GPT-5.2 和 Gemini 3.0 Pro，但在知识评测中仍落后 GPT-5.4 约 3-6 个月</div>
+                <div class="keypoint">定价极具侵略性：Flash 输入 $0.14/百万 token，Pro 输入 $0.145/百万 token，输出 $0.28-$3.48/百万 token</div>
+                <div class="keypoint">当前版本仅支持文本，暂不涵盖图像、音频或视频理解能力；华为昇腾芯片已确认兼容</div>
+            </div>
+            <div class="headline-meta">
+                <a href="https://techcrunch.com/2026/04/24/deepseek-previews-new-ai-model-that-closes-the-gap-with-frontier-models/" target="_blank">🔗 阅读原文</a>
+                <span>📅 2026-04-24</span>
+                <span>📰 TechCrunch / CNBC</span>
+            </div>
+            <div class="impact-box">
+                <strong>思考与影响：</strong>DeepSeek V4 是中国 AI 自主创新的又一里程碑。在美国出口管制持续收紧的背景下，DeepSeek 通过算法优化和架构创新实现了顶级模型能力。短期内，V4 最可能冲击中端商业 API 市场，迫使 OpenAI、Anthropic 重新评估定价策略。
+            </div>
+        </div>
+
+        <div class="headline-card fade-in delay-2">
+            <div class="headline-badge biz">💼 商业</div>
+            <h3>Google 最高 400 亿美元投资 Anthropic，云厂商锁定顶级 AI 实验室</h3>
+            <p class="headline-summary">Google 宣布向 Anthropic 投资最高 400 亿美元，其中 100 亿美元即时投入，估值达 3500 亿美元；剩余 300 亿美元与业绩里程碑挂钩。Google 将在未来五年额外提供 5 吉瓦 TPU 算力。Amazon 本周也追加 50 亿美元，并可能再投 200 亿美元。</p>
+            <div class="keypoints">
+                <div class="keypoint">此轮融资使 Anthropic 成为全球估值最高的私营 AI 公司之一，仅次于 OpenAI</div>
+                <div class="keypoint">云厂商正通过"资本+算力"捆绑模式深度绑定 AI 实验室，形成新的产业联盟格局</div>
+                <div class="keypoint">Anthropic 上周刚发布"Mythos"模型（号称"史上最强大模型"），但因安全顾虑暂未广泛部署</div>
+            </div>
+            <div class="headline-meta">
+                <a href="https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/" target="_blank">🔗 阅读原文</a>
+                <span>📅 2026-04-24</span>
+                <span>📰 TechCrunch / Bloomberg</span>
+            </div>
+            <div class="impact-box">
+                <strong>思考与影响：</strong>这笔交易揭示了 AI 产业正在发生的结构性重组：顶级模型公司正在成为云巨头的"核心资产"。对于行业而言，这意味着独立 AI 实验室的生存空间正在收窄，"选边站"成为必然选择。
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Frontier -->
+<section class="section" id="tech">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Tech Frontier</div>
+            <h2 class="section-title">技术前沿</h2>
+            <p class="section-desc">大模型、多模态与基础设施的最新突破</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🧠</div>
+                    <h4>大语言模型</h4>
+                </div>
+                <p><strong>OpenAI GPT-5.5 效率革命</strong> — 基于 NVIDIA GB200 NVL72 平台实现 35 倍成本降低和 50 倍吞吐提升，使大规模推理首次具备经济可行性。</p>
+                <span class="cat-tag">NVIDIA 采用隔离云 VM 沙箱、零数据保留策略</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">🧬</div>
+                    <h4>MoE 架构突破</h4>
+                </div>
+                <p><strong>DeepSeek V4</strong> — 1.6 万亿总参数、490 亿激活参数，成为当前最大开源模型之一。100 万 token 长上下文保持高效推理。</p>
+                <span class="cat-tag">完全开源可本地部署；华为昇腾兼容</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">⚠️</div>
+                    <h4>能力-安全悖论</h4>
+                </div>
+                <p><strong>Anthropic Mythos</strong> 被描述为"史上最强大模型"，具有显著的数字防御应用潜力，但出于被恶意利用的担忧，尚未广泛开放。</p>
+                <span class="cat-tag">能力越强、风险越大的悖论限制商业释放</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">🎨</div>
+                    <h4>多模态升级</h4>
+                </div>
+                <p><strong>OpenAI 升级 ChatGPT 图像生成模型</strong>，提升通过文本提示生成和优化视觉内容的质量，扩展创意任务范围。</p>
+                <span class="cat-tag">多模态成为主流 AI 平台标配</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">🎬</div>
+                    <h4>可控生成</h4>
+                </div>
+                <p><strong>ComfyUI 完成 3000 万美元融资，估值达 5 亿美元</strong>。开源 AI 工作流平台用户量突破 400 万，赋予创作者对生成式媒体的精细控制。</p>
+                <span class="cat-tag">节点式工作流让非程序员也能构建复杂 pipeline</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🔌</div>
+                    <h4>芯片生态分化</h4>
+                </div>
+                <p><strong>华为昇腾兼容 DeepSeek V4</strong>，在美国出口管制阻断 Nvidia 加速器直接采购的背景下，国产芯片替代方案加速成熟。</p>
+                <span class="cat-tag">中美 AI 硬件脱钩催生两个平行技术生态</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f5f3ff;">🖥️</div>
+                    <h4>超大规模集群</h4>
+                </div>
+                <p><strong>NVIDIA GB200 NVL72 大规模集群验证成功</strong>。OpenAI 与 NVIDIA 联合验证了首个 10 万 GPU 规模集群，在长时间运行中达到新的稳定性基准。</p>
+                <span class="cat-tag">为下一代万亿参数模型训练扫清工程障碍</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#ecfdf5;">⚡</div>
+                    <h4>算力竞赛</h4>
+                </div>
+                <p><strong>Google 承诺向 Anthropic 提供 5 吉瓦额外 TPU 算力</strong>，叠加此前承诺的 3 吉瓦（2027 年前）。算力正成为比资本更稀缺的战略资源。</p>
+                <span class="cat-tag">TPU 与 GPU 的生态系统竞争加剧</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff1f2;">📄</div>
+                    <h4>模态局限</h4>
+                </div>
+                <p>DeepSeek V4 等最新开源模型仍局限于文本模态，与 GPT-5.5、Gemini 3.1 等多模态系统存在代际差距。</p>
+                <span class="cat-tag">多模态整合成为区分代际的关键指标</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Industry -->
+<section class="section" id="industry" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Industry & Strategy</div>
+            <h2 class="section-title">行业竞争与战略</h2>
+            <p class="section-desc">巨头博弈、融资动态与人才战争</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🏢</div>
+                    <h4>Meta 人才收购</h4>
+                </div>
+                <p>Meta 已挖走 Mira Murati 创立的 Thinking Machines Lab <strong>第五位联合创始人 Joshua Gross</strong>。此前 Meta 已招募该实验室多名核心成员。</p>
+                <span class="cat-tag">AI 人才战已超越传统科技行业</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">📦</div>
+                    <h4>Amazon 机器人布局</h4>
+                </div>
+                <p>Amazon 收购人形机器人公司 <strong>Fauna Robotics</strong>（约 50 人）和配送机器人制造商 <strong>RIVR</strong>（原 Swiss-Mile），重启自主物流配送战略。</p>
+                <span class="cat-tag">科技巨头整合机器人硬件能力</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fffbeb;">🍎</div>
+                    <h4>Apple AI 压力</h4>
+                </div>
+                <p>WIRED 分析指出，<strong>Apple 下一任 CEO 必须发布变革性 AI 产品</strong>以维持竞争优势。隐私优先策略可能是功能迭代的速度瓶颈。</p>
+                <span class="cat-tag">差异化优势与速度瓶颈并存</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">💰</div>
+                    <h4>开源商业模式验证</h4>
+                </div>
+                <p><strong>ComfyUI 以 5 亿美元估值完成融资</strong>，证明开源 AI 工作流平台具备独立商业价值。开源不再是"慈善"，而是可规模化变现的模式。</p>
+                <span class="cat-tag">开源+服务商业化路径获验证</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">💊</div>
+                    <h4>AI 药物发现</h4>
+                </div>
+                <p><strong>Isomorphic Labs 募资 6 亿美元</strong>，聘请首席医学官，准备将首批 AI 设计药物推进人体临床试验。与 Eli Lilly 和 Novartis 合作。</p>
+                <span class="cat-tag">从概念验证走向临床验证</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🤖</div>
+                    <h4>视频驱动机器人</h4>
+                </div>
+                <p><strong>Rhoda AI 获 4.5 亿美元融资</strong>，推出 FutureVision 平台，以"视频预测控制"取代 rigid 预设轨迹，使机器人通过观察学习行为。</p>
+                <span class="cat-tag">模仿学习成为机器人训练主流范式</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">📊</div>
+                    <h4>劳动力市场真相</h4>
+                </div>
+                <p>Anthropic 研究：97% 被观测任务理论上可被 AI 覆盖，但实际覆盖率有限。Claude 仅覆盖计算机与数学任务的 <strong>33%</strong>，30% 劳动者"零覆盖"。</p>
+                <span class="cat-tag">22-25 岁青年入职率下降 14%</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">👥</div>
+                    <h4>创始人级人才争夺</h4>
+                </div>
+                <p>Meta 从 Thinking Machines Lab 挖角多名<strong>创始成员</strong>，标志着 AI 人才竞争已从工程师层面上升到联合创始人/架构师层面。</p>
+                <span class="cat-tag">顶级人才流动性重塑行业权力格局</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#ecfdf5;">🤝</div>
+                    <h4>NVIDIA-OpenAI 十年联盟</h4>
+                </div>
+                <p>从 2016 年 Jensen Huang 亲自交付首台 DGX-1 至今，双方合作已跨越整技术栈。OpenAI 承诺未来部署 <strong>超 10 吉瓦 NVIDIA 算力</strong>。</p>
+                <span class="cat-tag">AI 基础设施领域最稳固的战略合作</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ethics -->
+<section class="section" id="ethics">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Ethics & Safety</div>
+            <h2 class="section-title">伦理与安全</h2>
+            <p class="section-desc">当 AI 能力跃升，安全边界在哪里？</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">🎣</div>
+                    <h4>AI 钓鱼攻击测试</h4>
+                </div>
+                <p>WIRED 测试 5 款主流 AI 模型（Claude 3 Haiku、GPT-4o、NVIDIA Nemotron、DeepSeek-V3、Alibaba Qwen）的社交工程攻击能力。<strong>DeepSeek-V3 表现尤为逼真</strong>，能引用目标个人兴趣诱导点击恶意链接。</p>
+                <span class="cat-tag">90% 企业攻击源于人为风险</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff1f2;">🗳️</div>
+                    <h4>AI 操纵民主进程</h4>
+                </div>
+                <p>ScienceDaily 报道：AI 驱动的虚拟人格已足够逼真，可渗透互联网社群并悄然塑造集体观点。它们能<strong>"自适应、协调并大规模优化信息"</strong>。</p>
+                <span class="cat-tag">进入"合成共识"的新阶段</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fffbeb;">🛡️</div>
+                    <h4>审慎部署策略</h4>
+                </div>
+                <p>尽管 GPT-5.5 具备强大的代码和安全分析能力，OpenAI officials 强调对<strong>网络安全应用场景采取了审慎的部署策略</strong>。</p>
+                <span class="cat-tag">能力释放与安全管控的动态平衡</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🗣️</div>
+                    <h4>拟人化术语陷阱</h4>
+                </div>
+                <p>ScienceDaily：将机器描述为"聪明"或称其"知道"会造成公众对 AI 真实功能的混淆。清晰的公众沟通是 AI 治理的基础设施。</p>
+                <span class="cat-tag">媒体素养与模型透明度同等重要</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">🔒</div>
+                    <h4>Claude 数据隔离承诺</h4>
+                </div>
+                <p>Anthropic 明确承诺：来自连接应用的数据<strong>不用于训练模型</strong>，应用无法查看用户的其他对话，用户可随时断开连接，且不存在付费推广。</p>
+                <span class="cat-tag">可验证的隐私承诺成为核心考量</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🌍</div>
+                    <h4>全球协作呼声</h4>
+                </div>
+                <p>国际 AI 安全报告 2026 评估了通用 AI 系统的风险状况，Nature 社论呼吁<strong>"让 2026 年成为世界为 AI 安全团结一致的一年"</strong>。</p>
+                <span class="cat-tag">AI 安全升级为全球公共品</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Med & Edu -->
+<section class="section" id="mededu" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Healthcare & Education</div>
+            <h2 class="section-title">医疗与教育应用</h2>
+            <p class="section-desc">AI 如何重塑人类最基础的两大领域</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">💊</div>
+                    <h4>AI 药物进入临床</h4>
+                </div>
+                <p><strong>Isomorphic Labs</strong> 使用 AlphaFold 3 和自研 IsoDDE 平台设计药物，目标以极小剂量实现强效作用。首批 AI 设计药物即将进入人体临床试验。</p>
+                <span class="cat-tag">新药研发周期有望从 10-15 年压缩至 5 年</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🔬</div>
+                    <h4>GPT-5.5 探索药物开发</h4>
+                </div>
+                <p>OpenAI 内部评估显示 GPT-5.5 在药物开发等技术研究领域具有潜力，但 officials 强调对该领域应用的<strong>审慎方法论</strong>。</p>
+                <span class="cat-tag">从辅助诊断扩展到分子设计</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">🏭</div>
+                    <h4>BMW 机器人装配试点</h4>
+                </div>
+                <p>BMW 莱比锡工厂测试 Hexagon 的 <strong>AEON 轮式人形机器人</strong>，用于车辆和电池装配。AI 人形机器人开始进入柔性制造 workflow。</p>
+                <span class="cat-tag">汽车制造成为人形机器人首个规模化场景</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">🎓</div>
+                    <h4>K-12 个性化学习</h4>
+                </div>
+                <p>EdTech Magazine：AI 工具正支持 K-12 个性化学习，包括混合学习、课堂录制和生成式 AI 辅助教学。教师可使用 AI 进行课程规划、测验生成。</p>
+                <span class="cat-tag">从辅助教师转向个性化学习引擎</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🏫</div>
+                    <h4>2026 课堂设计趋势</h4>
+                </div>
+                <p>Faculty Focus：2026 年课堂设计趋势包括 AI 驱动教学、个性化学习路径和智能评估系统。AI 正在重塑课程设计、学生互动和成果评估的全流程。</p>
+                <span class="cat-tag">传统"一刀切"教育模式面临挑战</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">⚠️</div>
+                    <h4>青年就业冲击</h4>
+                </div>
+                <p>Anthropic 研究：AI 高暴露职业的 <strong>22-25 岁青年入职率下降 14%</strong>。教育系统需要为年轻人提供更具"AI 韧性"的技能培养。</p>
+                <span class="cat-tag">教育改革速度须跟上 AI 转型速度</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Robotics -->
+<section class="section" id="robotics">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Robotics Frontier</div>
+            <h2 class="section-title">机器人前沿</h2>
+            <p class="section-desc">从实验室到工厂，人形机器人商业化元年开启</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">🏃</div>
+                    <h4>北京机器人马拉松</h4>
+                </div>
+                <p>4 月 19 日，北京亦庄举办 <strong>21 公里人形机器人半程马拉松</strong>，参赛机器人展示了在速度、稳定性和自主决策方面的重大进步。阿里巴巴、荣耀等公司参与。</p>
+                <span class="cat-tag">长距离动态运动是综合能力的终极测试</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">🤖</div>
+                    <h4>Noble Machines 交付客户</h4>
+                </div>
+                <p>由苹果和 SpaceX 背景工程师组建的 Noble Machines 已公开 <strong>Moby 人形机器人</strong>，并向 Fortune Global 500 客户交付首批单元。</p>
+                <span class="cat-tag">顶级科技背景加速企业级商业化</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🚗</div>
+                    <h4>特斯拉 Optimus 计划</h4>
+                </div>
+                <p>据 Qviro 分析，特斯拉计划 2026 年推出 <strong>Optimus 人形机器人</strong>，多家制造商正在准备各自的产品发布。</p>
+                <span class="cat-tag">2026 年被视为人形机器人商业化元年</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">📦</div>
+                    <h4>Amazon 物流机器人</h4>
+                </div>
+                <p>Amazon 收购 Fauna Robotics（约 50 人）和 RIVR（原 Swiss-Mile），<strong>重启自主物流配送战略</strong>。</p>
+                <span class="cat-tag">以机器学习驱动的新一代方案重新入场</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🎮</div>
+                    <h4>NVIDIA 机器人生态</h4>
+                </div>
+                <p>NVIDIA 在 GTC 大会上展示与 <strong>110 家机器人公司</strong>的合作，共同构建"生产级物理 AI"生态。RealSense 展示 LimX Dynamics 自主导航能力。</p>
+                <span class="cat-tag">将 GPU 生态优势复制到机器人领域</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">🎥</div>
+                    <h4>视频预测控制</h4>
+                </div>
+                <p><strong>Rhoda AI 获 4.5 亿美元融资</strong>，推出 FutureVision 平台，以视频预测控制取代刚性预设轨迹，机器人通过观察学习行为。</p>
+                <span class="cat-tag">降低机器人编程门槛</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🎲</div>
+                    <h4>随机性解决拥堵</h4>
+                </div>
+                <p>哈佛大学：在机器人导航中注入<strong>不可预测性</strong>可避免密集空间瓶颈。大规模群体中，随机运动反而维持集体前进动力。</p>
+                <span class="cat-tag">"有序"不等于"高效"，适度混沌提升吞吐量</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff1f2;">⚖️</div>
+                    <h4>机器人软件版权战</h4>
+                </div>
+                <p>Universal Robots 母公司 Teradyne 指控中国 Elite Robots <strong>抄袭专有协作机器人代码</strong>，反映控制算法的竞争价值上升。</p>
+                <span class="cat-tag">知识产权竞争从硬件专利转向软件算法</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">🦿</div>
+                    <h4>BMW 轮式人形机器人</h4>
+                </div>
+                <p>BMW 莱比锡工厂测试 Hexagon AEON <strong>轮式人形机器人</strong>用于装配。轮式设计在平坦工厂地面上可能比双足更稳定高效。</p>
+                <span class="cat-tag">轮式设计或成工业场景更优解</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Security -->
+<section class="section" id="security" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Data Security & Privacy</div>
+            <h2 class="section-title">数据安全与隐私</h2>
+            <p class="section-desc">AI 时代的攻与防</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">🎣</div>
+                    <h4>AI 钓鱼攻击升级</h4>
+                </div>
+                <p>WIRED：DeepSeek-V3 等模型能生成极具说服力的钓鱼邮件，结合自动化侦察可实现<strong>"完全自动化的攻击链"</strong>。90% 企业攻击源于人为风险。</p>
+                <span class="cat-tag">攻击的规模化、个性化和跨国界成为可能</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff1f2;">🏛️</div>
+                    <h4>董事会级风险</h4>
+                </div>
+                <p>HBR：AI 使能的数据泄露平均成本飙升，<strong>董事会必须建立新的风险管理框架</strong>来应对 AI 驱动的网络威胁。</p>
+                <span class="cat-tag">AI 安全需董事会层面关注</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">📉</div>
+                    <h4>Experian 年度威胁报告</h4>
+                </div>
+                <p>Experian 第 13 年度数据泄露展望报告：<strong>AI 已成为 2026 年最主要的网络安全威胁</strong>。</p>
+                <span class="cat-tag">防御侧 AI 军备竞赛进入白热化</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">🔐</div>
+                    <h4>Anthropic 数据隔离</h4>
+                </div>
+                <p>Anthropic 明确声明：来自连接应用的数据<strong>不用于训练模型</strong>，应用无法访问其他对话，用户可随时断开连接。</p>
+                <span class="cat-tag">数据最小化成为差异化优势</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🛡️</div>
+                    <h4>NVIDIA 零信任架构</h4>
+                </div>
+                <p>NVIDIA 为 Codex 部署建立<strong>隔离云 VM 沙箱</strong>，完整审计追踪，零数据保留策略，只读 CLI 访问生产系统。</p>
+                <span class="cat-tag">企业级 AI 部署安全标杆</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">🎯</div>
+                    <h4>定制化社会工程</h4>
+                </div>
+                <p>AI 模型能基于目标个人兴趣、职业背景和社交关系生成<strong>定制化攻击内容</strong>，传统基于模板的钓鱼检测失效。</p>
+                <span class="cat-tag">需基于行为分析的防御方案</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Policy -->
+<section class="section" id="policy">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Policy & Standards</div>
+            <h2 class="section-title">行业标准与政策</h2>
+            <p class="section-desc">全球 AI 治理的三轨并行格局</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🇬🇧</div>
+                    <h4>英国主权 AI 基金</h4>
+                </div>
+                <p>英国政府推出 <strong>Sovereign AI 基金</strong>，投资约 6.75 亿美元支持国内 AI 初创公司，已支持 Callosum、Prima Mente、Cosine 等。提供国家超算资源、简化签证等非货币支持。</p>
+                <span class="cat-tag">从"AI 使用者"转型为"AI 制造者"</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff1f2;">🇺🇸</div>
+                    <h4>特朗普政府打击令</h4>
+                </div>
+                <p>特朗普政府宣布将对<strong>利用美国 AI 模型的中国公司</strong>实施打击。此前 Anthropic 和 OpenAI 指控 DeepSeek 未经授权"蒸馏"其系统。</p>
+                <span class="cat-tag">技术民族主义进入"模型主权"新阶段</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">🌍</div>
+                    <h4>全球监管三轨并行</h4>
+                </div>
+                <p>截至 2026 年 4 月，<strong>欧盟 AI 法案已生效</strong>，美国尚无约束性联邦 AI 法律，中国已制定 50 多项 AI 标准。各国沿不同路径推进 AI 治理。</p>
+                <span class="cat-tag">碎片化治理增加跨国企业合规成本</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">🚗</div>
+                    <h4>中国汽车 AI 化</h4>
+                </div>
+                <p>Reuters：在中国政府号召下，<strong>汽车产业正加速将 AI 嵌入生产流程</strong>，以符合北京的政策要求。汽车成为"带轮子的智能终端"。</p>
+                <span class="cat-tag">中国 AI 应用落地的最大垂直场景</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">📋</div>
+                    <h4>中国 AI 伦理审查新规</h4>
+                </div>
+                <p>中国发布 AI 伦理审查新规，要求对 AI 系统进行<strong>负责任的开发评估</strong>，强化算法备案和内容审核要求。</p>
+                <span class="cat-tag">从"事后处罚"转向"事前审查"</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🔌</div>
+                    <h4>芯片脱钩倒逼自主化</h4>
+                </div>
+                <p>在美国限制 Nvidia 高端芯片对华出口的背景下，<strong>华为昇腾等国产芯片加速成熟</strong>，DeepSeek V4 的昇腾兼容性验证了国产替代方案的可行性。</p>
+                <span class="cat-tag">两个平行 AI 硬件生态正在形成</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#ecfdf5;">📊</div>
+                    <h4>中国 50+ 项 AI 标准</h4>
+                </div>
+                <p>截至 2026 年初，中国已制定<strong>超过 50 项 AI 国家标准</strong>，覆盖算法、数据、安全等多个维度。标准制定权是 AI 产业竞争的高地。</p>
+                <span class="cat-tag">标准化速度可能带来出口优势</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">⚖️</div>
+                    <h4>全球 1000+ 项 AI 法规</h4>
+                </div>
+                <p>Mind Foundry：全球至少 <strong>69 个国家已提出超过 1000 项 AI 相关法规</strong>，AI 治理正成为全球立法热点。</p>
+                <span class="cat-tag">监管与创新之间的平衡是共同挑战</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fef2f2;">🇪🇺</div>
+                    <h4>欧盟 AI 法案执行</h4>
+                </div>
+                <p>欧盟 AI 法案于 2024 年 8 月生效，2026 年正进入<strong>关键执行阶段</strong>，高风险 AI 系统面临严格的合规要求和市场准入限制。</p>
+                <span class="cat-tag">"布鲁塞尔效应"或辐射全球</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Productivity -->
+<section class="section" id="productivity" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Smart Office & Productivity</div>
+            <h2 class="section-title">智能办公与生产力工具</h2>
+            <p class="section-desc">AI 正在重新定义"工作"本身</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">🔗</div>
+                    <h4>Claude 个人连接器</h4>
+                </div>
+                <p>Anthropic 向所有用户开放 <strong>15 款个人应用连接器</strong>，支持 Spotify、Uber、Instacart、TurboTax 等。用户可在对话中直接调用这些服务完成日常任务。</p>
+                <span class="cat-tag">从"问答工具"进化为"行动代理"</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">🚀</div>
+                    <h4>企业 AI Agent 飞跃</h4>
+                </div>
+                <p>Google Cloud 对 <strong>3466 名全球高管</strong>调查：2026 年标志着从简单提示词向半自主 AI Agent 的转变，Agent 能够编排复杂端到端 workflow。</p>
+                <span class="cat-tag">从单点效率转向系统性 workflow 自动化</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">💻</div>
+                    <h4>Codex "隔日原型"</h4>
+                </div>
+                <p>NVIDIA 内部超过 1 万名员工使用 Codex 后反馈：原先需要数周的 prototype 开发现在可<strong>隔夜完成</strong>，diagnostics 从整天缩短至数小时。</p>
+                <span class="cat-tag">迭代周期从"周/天"压缩到"小时/分钟"</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fff7ed;">📊</div>
+                    <h4>AI 覆盖 33% 计算任务</h4>
+                </div>
+                <p>Anthropic：Claude 当前覆盖了计算机与数学类任务的 <strong>33%</strong>，30% 的劳动者完全未被覆盖。高暴露群体收入平均高 47%。</p>
+                <span class="cat-tag">高收入、高教育群体反而最先受影响</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#ecfdf5;">📈</div>
+                    <h4>45% 企业报告生产力提升</h4>
+                </div>
+                <p>Orange 商业调研：<strong>45% 使用生成式 AI 的企业</strong>表示已实现生产力提升。AI 在业务中从实验阶段进入规模化部署。</p>
+                <span class="cat-tag">最后一公里在于组织变革和技能升级</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0f9ff;">🛡️</div>
+                    <h4>企业 AI 安全标杆</h4>
+                </div>
+                <p>NVIDIA 为 Codex 用户分配<strong>隔离云 VM</strong>，完整审计追踪，零数据保留策略，只读 CLI 访问生产系统，为大规模企业 AI 部署提供安全框架。</p>
+                <span class="cat-tag">安全-效率平衡需要制度设计</span>
+            </div>
+            <div class="cat-card fade-in">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#eff6ff;">📝</div>
+                    <h4>AI 会议记录标配</h4>
+                </div>
+                <p>Otter.ai 等 AI 会议记录工具通过自动转录、要点提取和行动项追踪，消除了手动笔记的摩擦，成为 2026 年企业生产力工具的<strong>核心类别</strong>。</p>
+                <span class="cat-tag">会议后遗忘和信息孤岛问题得到缓解</span>
+            </div>
+            <div class="cat-card fade-in delay-1">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#fdf4ff;">🧰</div>
+                    <h4>通用 AI 取代垂直 SaaS</h4>
+                </div>
+                <p>据多份 2026 年调研，ChatGPT、Claude 和 Gemini 已成为专业人士日常使用最广泛的 AI 办公辅助工具，覆盖写作、分析、编程、研究等场景。</p>
+                <span class="cat-tag">生产力软件市场面临整合压力</span>
+            </div>
+            <div class="cat-card fade-in delay-2">
+                <div class="cat-card-header">
+                    <div class="cat-icon" style="background:#f0fdf4;">💬</div>
+                    <h4>自然语言交付功能</h4>
+                </div>
+                <p>NVIDIA 员工反馈：使用 Codex 后团队能够<strong>"从日常语言提示开始交付完整功能"</strong>，且可靠性较早期版本大幅提升。</p>
+                <span class="cat-tag">"公民开发者"概念真正落地</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products -->
+<section class="section" id="products" style="background: #f8fafc;">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Trending AI Products</div>
+            <h2 class="section-title">热门 AI 产品动态</h2>
+            <p class="section-desc">基于官方发布与公开报道整理的热门产品 Top 5</p>
+        </div>
+
+        <div class="product-card fade-in">
+            <div class="product-rank">1</div>
+            <div class="product-info">
+                <h4>DeepSeek-V4</h4>
+                <div class="product-meta">
+                    <span>📅 2026-04-24</span>
+                    <span>🔥 发布当日登顶 ProductHunt 日榜</span>
+                    <span>🏷️ 开源大语言模型</span>
+                </div>
+                <p class="product-desc">DeepSeek 最新开源大语言模型，采用 MoE 架构，Pro 版 1.6 万亿参数，支持 100 万 token 长上下文。在代码生成评测中表现与 GPT-5.4 相当，定价仅为同类模型的 1/10。</p>
+                <div class="product-kp">
+                    <div class="product-kp-item">完全开源，支持本地部署和华为昇腾芯片</div>
+                    <div class="product-kp-item">Flash 版本输入成本仅 $0.14/百万 token，性价比颠覆行业</div>
+                    <div class="product-kp-item">当前仅限文本模态，多模态能力待后续版本补齐</div>
+                </div>
+                <div class="product-scene">💼 场景：企业级 API 替代、本地化 AI 部署、长文档分析与代码生成</div>
+                <div class="product-users">👤 适合：开发者、中小企业技术团队、关注数据隐私的企业、预算敏感型 AI 应用构建者</div>
+            </div>
+        </div>
+
+        <div class="product-card fade-in delay-1">
+            <div class="product-rank">2</div>
+            <div class="product-info">
+                <h4>ComfyUI</h4>
+                <div class="product-meta">
+                    <span>📅 2026-04-24</span>
+                    <span>💰 估值 5 亿美元 / 融资 3000 万美元</span>
+                    <span>👥 用户突破 400 万</span>
+                </div>
+                <p class="product-desc">开源 AI 媒体生成工作流平台，赋予创作者对生成式媒体的精细化控制能力。支持节点式工作流编排，可自定义 Stable Diffusion、视频生成等 pipeline。</p>
+                <div class="product-kp">
+                    <div class="product-kp-item">节点式工作流让非程序员也能构建复杂 AI 生成 pipeline</div>
+                    <div class="product-kp-item">400 万用户社区形成丰富的插件和模板生态</div>
+                    <div class="product-kp-item">开源模式获顶级风投认可，验证"开源+服务"商业化路径</div>
+                </div>
+                <div class="product-scene">💼 场景：AI 图像/视频生成、广告创意制作、游戏资产生成、影视预可视化</div>
+                <div class="product-users">👤 适合：数字艺术家、创意工作室、游戏开发者、AI 艺术爱好者</div>
+            </div>
+        </div>
+
+        <div class="product-card fade-in delay-2">
+            <div class="product-rank">3</div>
+            <div class="product-info">
+                <h4>GPT-5.5 / Codex</h4>
+                <div class="product-meta">
+                    <span>📅 2026-04-23</span>
+                    <span>🔥 OpenAI 旗舰发布</span>
+                    <span>🏷️ 大语言模型 / 自主编码</span>
+                </div>
+                <p class="product-desc">OpenAI 最新旗舰模型，官方称为"最智能、最直观的模型"。增强自主软件开发、专业认知任务、数学推理和科学研究能力。同步接入 ChatGPT 和 Codex 自主编码服务。</p>
+                <div class="product-kp">
+                    <div class="product-kp-item">基于 NVIDIA GB200 NVL72 实现 35 倍成本降低和 50 倍吞吐提升</div>
+                    <div class="product-kp-item">支持更强大的桌面任务管理和技术研究，包括药物开发潜力</div>
+                    <div class="product-kp-item">已向 Plus/Pro/Enterprise 用户全面开放</div>
+                </div>
+                <div class="product-scene">💼 场景：企业级软件开发、科学研究、复杂数据分析、自动化工作流</div>
+                <div class="product-users">👤 适合：软件工程师、数据科学家、科研人员、企业技术团队</div>
+            </div>
+        </div>
+
+        <div class="product-card fade-in">
+            <div class="product-rank">4</div>
+            <div class="product-info">
+                <h4>Claude Personal Connectors</h4>
+                <div class="product-meta">
+                    <span>📅 2026-04-23</span>
+                    <span>🔥 Anthropic 重大产品更新</span>
+                    <span>🔗 15 款个人应用集成</span>
+                </div>
+                <p class="product-desc">Anthropic 为 Claude 推出 15 款个人生活应用连接器，支持 Spotify、Uber、Instacart、TurboTax、AllTrails 等。用户可在对话中直接调用这些服务完成日常任务。</p>
+                <div class="product-kp">
+                    <div class="product-kp-item">从企业连接器扩展至个人生活场景，战略定位从"办公助手"转向"生活管家"</div>
+                    <div class="product-kp-item">强调隐私保护：连接数据不用于训练，可随时断开，无付费推广</div>
+                    <div class="product-kp-item">敏感操作前要求用户确认，建立信任机制</div>
+                </div>
+                <div class="product-scene">💼 场景：日常任务自动化、旅行规划、餐饮预订、音乐推荐、税务准备</div>
+                <div class="product-users">👤 适合：追求效率的数字化生活用户、Claude 现有订阅用户、AI 助手早期采纳者</div>
+            </div>
+        </div>
+
+        <div class="product-card fade-in delay-1">
+            <div class="product-rank">5</div>
+            <div class="product-info">
+                <h4>Isomorphic Labs</h4>
+                <div class="product-meta">
+                    <span>📅 2026-04 宣布临床计划</span>
+                    <span>💰 获 6 亿美元融资</span>
+                    <span>🏷️ AI 药物发现</span>
+                </div>
+                <p class="product-desc">Google DeepMind 分拆的 AI 药物发现公司，使用 AlphaFold 3 和自研 IsoDDE 平台设计全新药物分子。与 Eli Lilly 和 Novartis 合作。</p>
+                <div class="product-kp">
+                    <div class="product-kp-item">首批完全由 AI 设计的化合物即将进入人体临床试验</div>
+                    <div class="product-kp-item">自研 IsoDDE 平台精度超越 AlphaFold 3，支持超低剂量高特异性药物设计</div>
+                    <div class="product-kp-item">聘请首席医学官，从"研究"向"临床"转型的组织架构到位</div>
+                </div>
+                <div class="product-scene">💼 场景：新药研发、肿瘤免疫治疗、药物重定向、分子优化</div>
+                <div class="product-users">👤 适合：制药企业研发团队、生物技术投资者、医学研究人员</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Insights -->
+<section class="insight-section" id="insights">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" style="background: rgba(255,255,255,0.15); color: white;">Key Insights</div>
+            <h2 class="section-title">当日关键洞察总结</h2>
+            <p class="section-desc">超越新闻表面，看见产业结构性变化</p>
+        </div>
+        <div class="insight-grid">
+            <div class="insight-card fade-in">
+                <h3>从"技术竞赛"到"生态锁定"</h3>
+                <p>Google 400 亿美元加注 Anthropic、Amazon 200 亿美元跟投、OpenAI-NVIDIA 十年联盟深化——这些交易揭示了一个核心趋势：<strong>顶级 AI 实验室正在变成云巨头的"核心资产"</strong>。未来，独立运营的前沿模型公司可能不复存在，AI 能力将通过"云厂商-模型公司"联盟的形式分发。对于开发者和企业用户而言，这意味着选择 AI 服务时不仅要比较模型能力，更要评估背后的生态系统和长期稳定性。</p>
+            </div>
+            <div class="insight-card fade-in delay-1">
+                <h3>开源与闭源的"性价比剪刀差"</h3>
+                <p>DeepSeek V4 以 1/10 成本达到闭源模型 90% 性能，ComfyUI 以开源模式获得 5 亿美元估值——这些案例表明，<strong>开源不再只是"研究者的玩具"</strong>，而是具备完整商业竞争力的替代方案。当企业发现开源模型足以满足 80% 的应用场景时，闭源 API 的定价权将被严重削弱。我们预计 2026 年下半年将出现一波"开源替代"浪潮，特别是在代码生成、文档分析和客服自动化等成熟场景。</p>
+            </div>
+            <div class="insight-card fade-in delay-2">
+                <h3>AI 安全威胁从"潜在风险"变为"现实攻击"</h3>
+                <p>当 DeepSeek-V3 能在几分钟内生成针对特定个人的定制化钓鱼邮件，当 AI 集群可以悄然渗透互联网社群塑造舆论——我们正进入一个<strong>"攻击民主化"的时代</strong>。与以往不同的是，这些威胁不再来自国家级黑客组织，而是任何拥有基础 AI 访问权限的个体。防御侧的应对速度必须跟上攻击侧的进化速度，否则 2026 年可能成为"AI 驱动网络犯罪元年"。企业和个人都需要重新审视自身的安全意识和防护体系。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>AI 资讯快报 · 2026年4月24日 | 编辑：QoderWork AI</p>
+    <p>资讯来源：TechCrunch、The Verge、WIRED、ScienceDaily、Reuters、CNBC、机器之心、量子位、ProductHunt 等</p>
+    <p style="margin-top:12px; color:#475569;">免责声明：本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。</p>
+    <p style="margin-top:8px; font-size:0.75rem; color:#334155;">
+        抓取说明：ProductHunt 实施了反爬检测（HTTP 403），AP News 访问超时，LiveScience 返回 404，VentureBeat 返回 429 限制，部分中文站点访问受限。受限来源内容已通过其他信源交叉验证补充。
+    </p>
+</footer>
+
+<script>
+// Investment Chart
+new Chart(document.getElementById('investChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Google→Anthropic', 'Amazon→Anthropic', 'OpenAI↔NVIDIA', 'Isomorphic Labs', 'Rhoda AI', 'ComfyUI'],
+        datasets: [{
+            label: '投资/承诺规模（亿美元）',
+            data: [400, 275, 100, 6, 4.5, 0.3],
+            backgroundColor: [
+                'rgba(99,102,241,0.8)',
+                'rgba(236,72,153,0.8)',
+                'rgba(6,182,212,0.8)',
+                'rgba(16,185,129,0.8)',
+                'rgba(245,158,11,0.8)',
+                'rgba(139,92,246,0.8)'
+            ],
+            borderRadius: 8
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }
+    }
+});
+
+// Price Chart
+new Chart(document.getElementById('priceChart'), {
+    type: 'bar',
+    data: {
+        labels: ['DeepSeek V4 Flash', 'DeepSeek V4 Pro', 'GPT-5.5', 'Claude Opus', 'Gemini 3.1 Pro'],
+        datasets: [{
+            label: '输入价格（$/百万 token）',
+            data: [0.14, 0.145, 2.5, 15, 3.5],
+            backgroundColor: 'rgba(99,102,241,0.7)',
+            borderRadius: 6
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }
+    }
+});
+
+// Coverage Chart
+new Chart(document.getElementById('coverageChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['计算机与数学（33%覆盖）', '其他领域（部分覆盖）', '零覆盖劳动者（30%）'],
+        datasets: [{
+            data: [33, 37, 30],
+            backgroundColor: [
+                'rgba(99,102,241,0.8)',
+                'rgba(6,182,212,0.8)',
+                'rgba(148,163,184,0.5)'
+            ],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '65%',
+        plugins: {
+            legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }
+        }
+    }
+});
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.nav-item');
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 200) current = section.getAttribute('id');
+    });
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) item.classList.add('active');
+    });
+});
+
+// Fade in on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+        }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+});
+</script>
+
+</body>
+</html>

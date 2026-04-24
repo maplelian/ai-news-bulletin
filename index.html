@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 资讯快报归档</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        .hero {
+            background: var(--dark);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(236,72,153,0.1) 0%, transparent 50%);
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+        .hero p { color: #94a3b8; font-size: 1.05rem; }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-value {
+            font-size: 2rem; font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-label { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 48px 0; }
+        .section-title {
+            font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Timeline */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 18px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+        .year-group { margin-bottom: 40px; }
+        .year-label {
+            font-size: 1.25rem; font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            padding-left: 44px;
+            position: relative;
+        }
+        .year-label::before {
+            content: '';
+            position: absolute;
+            left: 12px; top: 50%; transform: translateY(-50%);
+            width: 14px; height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--light);
+        }
+        .month-group { margin-bottom: 20px; padding-left: 44px; }
+        .month-label {
+            font-size: 1rem; font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        .day-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .day-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .day-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99,102,241,0.15);
+        }
+        .day-link .date { font-weight: 700; color: var(--primary); }
+        .day-link .tag {
+            font-size: 0.7rem; padding: 2px 8px;
+            background: #f1f5f9; color: var(--gray);
+            border-radius: 4px;
+        }
+
+        /* Latest card */
+        .latest-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .latest-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+        .latest-info p { color: var(--gray); font-size: 0.9rem; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.9; }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 60px 20px 40px; }
+            .stats { gap: 24px; }
+            .timeline::before { left: 14px; }
+            .year-label { padding-left: 36px; }
+            .year-label::before { left: 8px; width: 12px; height: 12px; }
+            .month-group { padding-left: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>AI 资讯快报归档</h1>
+        <p>每日追踪全球人工智能前沿动态</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="total-count">1</div>
+                <div class="stat-label">期已归档</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="year-count">1</div>
+                <div class="stat-label">年份覆盖</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">资讯板块</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <section class="section">
+        <div class="latest-card">
+            <div class="latest-info">
+                <h3>最新一期：2026年4月24日</h3>
+                <p>GPT-5.5 发布、DeepSeek V4 开源、Google 400亿加注 Anthropic</p>
+            </div>
+            <a href="./2026/04/24.html" class="btn">阅读最新快报 →</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">📁 历史归档</h2>
+        <div class="timeline" id="timeline">
+            <!-- Will be populated by JavaScript -->
+            <div class="year-group">
+                <div class="year-label">2026</div>
+                <div class="month-group">
+                    <div class="month-label">四月</div>
+                    <div class="day-list">
+                        <a href="./2026/04/24.html" class="day-link">
+                            <span class="date">04-24</span>
+                            <span>AI 资讯快报</span>
+                            <span class="tag">12板块</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer">
+    <p>AI 资讯快报 · 由 QoderWork 自动生成 · 每日更新</p>
+</footer>
+
+<script>
+// Auto-scan directory structure (static fallback above)
+// In a real dynamic setup, this would scan the filesystem
+const archives = [
+    { year: '2026', month: '04', day: '24', path: './2026/04/24.html', tags: ['GPT-5.5', 'DeepSeek V4', 'Anthropic'] }
+];
+
+function renderTimeline() {
+    const timeline = document.getElementById('timeline');
+    const grouped = {};
+    archives.forEach(a => {
+        if (!grouped[a.year]) grouped[a.year] = {};
+        if (!grouped[a.year][a.month]) grouped[a.year][a.month] = [];
+        grouped[a.year][a.month].push(a);
+    });
+
+    timeline.innerHTML = '';
+    Object.entries(grouped).sort((a,b) => b[0]-a[0]).forEach(([year, months]) => {
+        const yearDiv = document.createElement('div');
+        yearDiv.className = 'year-group';
+        yearDiv.innerHTML = `<div class="year-label">${year}</div>`;
+        Object.entries(months).sort((a,b) => b[0]-a[0]).forEach(([month, days]) => {
+            const monthNames = {'01':'一月','02':'二月','03':'三月','04':'四月','05':'五月','06':'六月','07':'七月','08':'八月','09':'九月','10':'十月','11':'十一月','12':'十二月'};
+            const monthDiv = document.createElement('div');
+            monthDiv.className = 'month-group';
+            let daysHtml = '<div class="day-list">';
+            days.forEach(d => {
+                daysHtml += `<a href="${d.path}" class="day-link"><span class="date">${month}-${d.day}</span><span>AI 资讯快报</span><span class="tag">${d.tags ? d.tags.length + '条热闻' : '12板块'}</span></a>`;
+            });
+            daysHtml += '</div>';
+            monthDiv.innerHTML = `<div class="month-label">${monthNames[month] || month}</div>${daysHtml}`;
+            yearDiv.appendChild(monthDiv);
+        });
+        timeline.appendChild(yearDiv);
+    });
+
+    document.getElementById('total-count').textContent = archives.length;
+    document.getElementById('year-count').textContent = Object.keys(grouped).length;
+}
+
+renderTimeline();
+</script>
+
+</body>
+</html>
