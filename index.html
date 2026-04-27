@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报归档</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', -apple-system, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%); color: white; padding: 100px 20px 80px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(236,72,153,0.2) 0%, transparent 50%); }
+  .hero h1 { font-size: 2.6rem; font-weight: 900; background: linear-gradient(90deg, #a5b4fc, #f9a8d4, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; z-index: 1; }
+  .hero p { font-size: 1.1rem; color: #cbd5e1; margin-top: 12px; position: relative; z-index: 1; font-weight: 300; }
+  .stats { display: flex; gap: 40px; justify-content: center; margin-top: 32px; position: relative; z-index: 1; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-value { font-size: 2.2rem; font-weight: 900; background: linear-gradient(90deg, #a5b4fc, #f9a8d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+  .latest-card { background: linear-gradient(135deg, #ffffff, #eef2ff); border: 1px solid #c7d2fe; border-radius: 16px; padding: 28px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 16px rgba(99,102,241,0.08); }
+  .latest-card .text { font-size: 1.1rem; font-weight: 600; color: #312e81; }
+  .latest-card .date { font-size: 0.9rem; color: #64748b; margin-top: 4px; }
+  .latest-card a { background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px 24px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: opacity 0.2s; }
+  .latest-card a:hover { opacity: 0.9; }
+
+  .timeline { position: relative; }
+  .year-group { margin-bottom: 32px; }
+  .year-label { font-size: 1.5rem; font-weight: 800; color: #1e1b4b; margin-bottom: 16px; padding-left: 12px; border-left: 4px solid #6366f1; }
+  .month-group { margin-bottom: 20px; padding-left: 24px; }
+  .month-label { font-size: 1.1rem; font-weight: 700; color: #4338ca; margin-bottom: 10px; }
+  .day-list { display: flex; flex-direction: column; gap: 8px; }
+  .day-link { display: flex; align-items: center; gap: 16px; background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 18px; transition: all 0.2s; text-decoration: none; color: inherit; }
+  .day-link:hover { border-color: #c7d2fe; box-shadow: 0 4px 12px rgba(99,102,241,0.08); transform: translateX(4px); }
+  .day-link .date-badge { background: #ede9fe; color: #6d28d9; font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; }
+  .day-link .title { font-size: 0.95rem; font-weight: 500; color: #1e293b; }
+  .day-link .arrow { margin-left: auto; color: #94a3b8; font-size: 1.1rem; }
+
+  footer { text-align: center; padding: 40px 20px; color: #94a3b8; font-size: 0.8rem; border-top: 1px solid #e2e8f0; margin-top: 20px; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    .stats { gap: 24px; }
+    .latest-card { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>AI 资讯快报归档</h1>
+  <p>全球人工智能产业动态 · 每日精选</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-value">1</div><div class="stat-label">期已归档</div></div>
+    <div class="stat"><div class="stat-value">1</div><div class="stat-label">年份覆盖</div></div>
+    <div class="stat"><div class="stat-value">12</div><div class="stat-label">个板块</div></div>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="latest-card">
+    <div>
+      <div class="text">最新一期：2026年4月27日</div>
+      <div class="date">覆盖 50+ 条精选资讯 · 3 大核心趋势 · 3 条今日头条</div>
+    </div>
+    <a href="./2026/04/27.html">阅读 →</a>
+  </div>
+
+  <div class="timeline">
+    <div class="year-group">
+      <div class="year-label">2026</div>
+      <div class="month-group">
+        <div class="month-label">四月</div>
+        <div class="day-list">
+          <a href="./2026/04/27.html" class="day-link">
+            <span class="date-badge">04-27</span>
+            <span class="title">AI 资讯快报 · Google 400亿美元加注 Anthropic · OpenAI GPT-5.5 发布 · 中国阻止 Meta 收购</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>AI 资讯快报归档 · Generated by QoderWork</p>
+</footer>
+
+</body>
+</html>
