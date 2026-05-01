@@ -1,1231 +1,1411 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 资讯快报 · 2026年5月1日</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --accent: #06b6d4;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --gray: #64748b;
-            --light: #f8fafc;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --gradient-1: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
-            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-        .hero {
-            background: var(--dark);
-            color: white;
-            padding: 80px 20px 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 50%, rgba(236,72,153,0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-        .hero-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; text-align: center; }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-        }
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 600px; margin: 0 auto 32px; }
-        .hero-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 0.9rem; color: #64748b; }
-        .hero-meta span { display: flex; align-items: center; gap: 6px; }
-        .scroll-indicator {
-            position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 资讯快报 · 2026年5月1日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.1);
+      --indigo: #6366f1;
+      --pink: #ec4899;
+      --tech: #3b82f6;
+      --industry: #22c55e;
+      --ethics: #f97316;
+      --medical: #06b6d4;
+      --robot: #a855f7;
+      --security: #ef4444;
+      --policy: #4338ca;
+      --office: #ec4899;
+      --product: #f59e0b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    a { color: var(--indigo); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-        .nav-bar {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #e2e8f0;
-            padding: 0 20px;
-        }
-        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; padding: 12px 0; scrollbar-width: none; }
-        .nav-inner::-webkit-scrollbar { display: none; }
-        .nav-item {
-            white-space: nowrap; padding: 8px 16px;
-            border-radius: 8px; font-size: 0.85rem; font-weight: 500;
-            color: var(--gray); cursor: pointer; transition: all 0.2s;
-            text-decoration: none;
-        }
-        .nav-item:hover, .nav-item.active { background: var(--primary); color: white; }
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15,23,42,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-weight: 900;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--indigo), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-left: 12px;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(99,102,241,0.2);
+      color: #fff;
+    }
+    .nav-toggle {
+      display: none;
+      color: #fff;
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    /* Hero */
+    .hero {
+      background: var(--bg-dark);
+      padding: 80px 20px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 140%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(99,102,241,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(236,72,153,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--indigo), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    .hero .date {
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .hero .meta {
+      color: #64748b;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
 
-        .section { padding: 60px 0; border-bottom: 1px solid #e2e8f0; }
-        .section-header { margin-bottom: 40px; }
-        .section-label {
-            display: inline-block; padding: 4px 12px;
-            background: var(--gradient-1); color: white;
-            border-radius: 6px; font-size: 0.75rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
-        }
-        .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
-        .section-desc { color: var(--gray); font-size: 1rem; }
+    /* Sections */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 20px;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), var(--pink));
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 24px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
 
-        .trend-grid { display: grid; gap: 24px; }
-        .trend-card {
-            background: white; border-radius: 16px;
-            padding: 32px; box-shadow: var(--shadow);
-            border: 1px solid #e2e8f0;
-            position: relative; overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .trend-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-        .trend-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: var(--gradient-1);
-        }
-        .trend-card:nth-child(2)::before { background: var(--gradient-2); }
-        .trend-card:nth-child(3)::before { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
-        .trend-number {
-            font-size: 3rem; font-weight: 900; line-height: 1;
-            background: var(--gradient-1); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; opacity: 0.3;
-            position: absolute; top: 16px; right: 24px;
-        }
-        .trend-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; padding-right: 60px; }
-        .trend-card p { color: #475569; margin-bottom: 16px; }
-        .insight-box {
-            background: #f1f5f9; border-left: 4px solid var(--primary);
-            padding: 16px; border-radius: 0 8px 8px 0; font-size: 0.95rem;
-        }
-        .insight-box strong { color: var(--primary-dark); }
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s, translate 0.6s;
+      opacity: 0;
+      translate: 0 24px;
+      height: 100%;
+    }
+    .card.visible {
+      opacity: 1;
+      translate: 0 0;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .card p, .card li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .card ul { padding-left: 18px; }
+    .card li { margin-bottom: 6px; }
+    .card .highlight {
+      background: linear-gradient(90deg, rgba(99,102,241,0.08), rgba(236,72,153,0.08));
+      border-left: 3px solid var(--indigo);
+      padding: 12px 14px;
+      border-radius: 0 10px 10px 0;
+      margin: 12px 0;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+    .card .source {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .card .source a {
+      color: var(--indigo);
+      word-break: break-all;
+    }
 
-        .headline-card {
-            background: white; border-radius: 16px;
-            padding: 32px; margin-bottom: 24px;
-            box-shadow: var(--shadow); border: 1px solid #e2e8f0;
-            position: relative;
-        }
-        .headline-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 6px 14px; border-radius: 50px;
-            font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
-        }
-        .headline-badge.hot { background: #fef2f2; color: var(--danger); }
-        .headline-badge.tech { background: #eff6ff; color: #2563eb; }
-        .headline-badge.biz { background: #f0fdf4; color: var(--success); }
-        .headline-card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; }
-        .headline-summary { color: #475569; margin-bottom: 20px; }
-        .keypoints { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .keypoint {
-            display: flex; gap: 12px; align-items: flex-start;
-            padding: 12px 16px; background: #f8fafc;
-            border-radius: 10px; font-size: 0.95rem;
-        }
-        .keypoint::before {
-            content: ''; width: 8px; height: 8px;
-            background: var(--primary); border-radius: 50%;
-            margin-top: 8px; flex-shrink: 0;
-        }
-        .headline-meta {
-            display: flex; flex-wrap: wrap; gap: 16px;
-            padding-top: 16px; border-top: 1px solid #e2e8f0;
-            font-size: 0.9rem; color: var(--gray);
-        }
-        .headline-meta a { color: var(--primary); text-decoration: none; font-weight: 500; }
-        .headline-meta a:hover { text-decoration: underline; }
-        .impact-box {
-            margin-top: 16px; padding: 16px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 10px; font-size: 0.95rem;
-        }
-        .impact-box strong { color: #0369a1; }
+    /* Grids */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .grid-1 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 1024px) {
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: rgba(15,23,42,0.98);
+        flex-direction: column;
+        padding: 12px 20px;
+        gap: 4px;
+        display: none;
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 12px; }
+    }
 
-        .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .cat-card {
-            background: white; border-radius: 14px;
-            padding: 24px; box-shadow: var(--shadow);
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
-        }
-        .cat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-        .cat-card-header {
-            display: flex; align-items: center; gap: 10px;
-            margin-bottom: 16px; padding-bottom: 12px;
-            border-bottom: 2px solid #f1f5f9;
-        }
-        .cat-icon {
-            width: 36px; height: 36px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem;
-        }
-        .cat-card h4 { font-size: 1rem; font-weight: 700; }
-        .cat-card p { font-size: 0.9rem; color: #475569; margin-bottom: 12px; }
-        .cat-tag {
-            display: inline-block; padding: 3px 10px;
-            background: #f1f5f9; color: var(--gray);
-            border-radius: 6px; font-size: 0.75rem; font-weight: 500;
-            margin-top: 8px;
-        }
+    /* Badges */
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #fff;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .badge-tech { background: var(--tech); }
+    .badge-industry { background: var(--industry); }
+    .badge-ethics { background: var(--ethics); }
+    .badge-medical { background: var(--medical); }
+    .badge-robot { background: var(--robot); }
+    .badge-security { background: var(--security); }
+    .badge-policy { background: var(--policy); }
+    .badge-office { background: var(--office); }
+    .badge-product { background: var(--product); }
 
-        .product-card {
-            background: white; border-radius: 16px;
-            padding: 28px; margin-bottom: 20px;
-            box-shadow: var(--shadow); border: 1px solid #e2e8f0;
-            display: grid; grid-template-columns: auto 1fr;
-            gap: 24px; align-items: start;
-        }
-        .product-rank {
-            width: 56px; height: 56px; border-radius: 16px;
-            background: var(--gradient-1); color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: 900; flex-shrink: 0;
-        }
-        .product-card:nth-child(2) .product-rank { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); }
-        .product-card:nth-child(3) .product-rank { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); }
-        .product-card:nth-child(4) .product-rank { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
-        .product-card:nth-child(5) .product-rank { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); }
-        .product-info h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
-        .product-meta { display: flex; gap: 16px; font-size: 0.85rem; color: var(--gray); margin-bottom: 10px; flex-wrap: wrap; }
-        .product-desc { color: #475569; margin-bottom: 12px; font-size: 0.95rem; }
-        .product-kp { display: flex; flex-direction: column; gap: 6px; }
-        .product-kp-item {
-            display: flex; gap: 8px; font-size: 0.9rem;
-            padding: 6px 0; border-bottom: 1px dashed #e2e8f0;
-        }
-        .product-kp-item:last-child { border-bottom: none; }
-        .product-scene {
-            margin-top: 12px; padding: 10px 14px;
-            background: #f0fdf4; border-radius: 8px;
-            font-size: 0.85rem; color: #166534;
-        }
-        .product-users {
-            margin-top: 8px; padding: 10px 14px;
-            background: #eff6ff; border-radius: 8px;
-            font-size: 0.85rem; color: #1e40af;
-        }
+    /* Dashboard */
+    .dashboard {
+      background: linear-gradient(180deg, #fff 0%, var(--bg-light) 100%);
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 20px;
+    }
+    .chart-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      opacity: 0;
+      translate: 0 24px;
+      transition: opacity 0.6s, translate 0.6s;
+    }
+    .chart-card.visible { opacity: 1; translate: 0 0; }
+    .chart-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    .chart-container { position: relative; height: 260px; }
+    @media (max-width: 1024px) {
+      .chart-grid { grid-template-columns: 1fr; }
+    }
 
-        .charts-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
-        .chart-card {
-            background: white; border-radius: 16px;
-            padding: 24px; box-shadow: var(--shadow);
-            border: 1px solid #e2e8f0;
-        }
-        .chart-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; text-align: center; }
+    /* Headline special */
+    .headline-card {
+      border-left: 4px solid var(--indigo);
+    }
+    .headline-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), var(--pink));
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
 
-        .insight-section { background: var(--dark); color: white; padding: 80px 20px; margin-top: 40px; }
-        .insight-section .section-title { color: white; }
-        .insight-section .section-desc { color: #94a3b8; }
-        .insight-grid { display: grid; gap: 24px; margin-top: 40px; }
-        .insight-card {
-            background: var(--dark-light); border-radius: 16px;
-            padding: 32px; border: 1px solid #334155;
-            position: relative;
-        }
-        .insight-card::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 4px; height: 100%; border-radius: 4px 0 0 4px;
-            background: var(--gradient-1);
-        }
-        .insight-card:nth-child(2)::before { background: var(--gradient-2); }
-        .insight-card:nth-child(3)::before { background: linear-gradient(180deg, #10b981 0%, #06b6d4 100%); }
-        .insight-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: #f1f5f9; }
-        .insight-card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.8; }
+    /* Product cards */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .product-card .rank {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--indigo), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
 
-        .footer {
-            background: var(--dark); color: #64748b;
-            padding: 40px 20px; text-align: center;
-            font-size: 0.85rem; border-top: 1px solid #1e293b;
-        }
-        .footer a { color: #94a3b8; }
+    /* Insight block */
+    .insight-block {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      color: #e0e7ff;
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 20px;
+      opacity: 0;
+      translate: 0 24px;
+      transition: opacity 0.6s, translate 0.6s;
+    }
+    .insight-block.visible { opacity: 1; translate: 0 0; }
+    .insight-block h3 {
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .insight-block p {
+      color: #c7d2fe;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
 
-        .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 0.6s ease forwards; }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
+    /* Disclaimer */
+    .disclaimer {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #92400e;
+      margin-top: 20px;
+    }
 
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    /* Footer */
+    .footer {
+      background: var(--bg-dark);
+      color: #94a3b8;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.85rem;
+    }
+    .footer a { color: #cbd5e1; }
 
-        @media (max-width: 768px) {
-            .hero { padding: 60px 20px 80px; }
-            .section { padding: 40px 0; }
-            .section-title { font-size: 1.5rem; }
-            .product-card { grid-template-columns: 1fr; }
-            .product-rank { width: 48px; height: 48px; font-size: 1.2rem; }
-            .cat-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    /* Stagger animation delays */
+    .card:nth-child(1) { transition-delay: 0ms; }
+    .card:nth-child(2) { transition-delay: 80ms; }
+    .card:nth-child(3) { transition-delay: 160ms; }
+    .card:nth-child(4) { transition-delay: 240ms; }
+    .card:nth-child(5) { transition-delay: 320ms; }
+    .card:nth-child(6) { transition-delay: 400ms; }
+    .card:nth-child(7) { transition-delay: 480ms; }
+    .card:nth-child(8) { transition-delay: 560ms; }
+    .card:nth-child(9) { transition-delay: 640ms; }
+  </style>
 </head>
 <body>
 
-<!-- Hero -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge">Daily AI Intelligence Briefing</div>
-        <h1>AI 资讯快报</h1>
-        <p class="hero-subtitle">追踪全球人工智能前沿动态，解码技术、商业与政策的深层博弈</p>
-        <div class="hero-meta">
-            <span>&#x1F4C5; 2026年5月1日</span>
-            <span>&#x1F4CA; 覆盖 48 小时全球资讯</span>
-            <span>&#x1F30D; 12 大核心板块</span>
-            <span>&#x1F525; 50+ 条精选资讯</span>
-        </div>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">AI 资讯快报</div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <div class="nav-links">
+      <a href="#dashboard">&#x1F4CA; 仪表盘</a>
+      <a href="#trends">&#x1F525; 核心趋势</a>
+      <a href="#headlines">&#x1F4F0; 今日头条</a>
+      <a href="#tech">&#x1F9E0; 技术前沿</a>
+      <a href="#industry">&#x1F3E2; 行业竞争</a>
+      <a href="#ethics">&#x1F6E1; 伦理安全</a>
+      <a href="#mededu">&#x1F48A; 医疗教育</a>
+      <a href="#robotics">&#x1F916; 机器人</a>
+      <a href="#security">&#x1F512; 数据安全</a>
+      <a href="#policy">&#x1F4CB; 政策标准</a>
+      <a href="#productivity">&#x1F4BB; 智能办公</a>
+      <a href="#products">&#x2B50; 产品动态</a>
+      <a href="#insights">&#x1F4A1; 关键洞察</a>
     </div>
-    <div class="scroll-indicator">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <path d="M12 5v14M19 12l-7 7-7-7"/>
-        </svg>
-    </div>
-</section>
-
-<!-- Navigation -->
-<nav class="nav-bar">
-    <div class="nav-inner">
-        <a href="#trends" class="nav-item">核心趋势</a>
-        <a href="#headlines" class="nav-item">今日头条</a>
-        <a href="#tech" class="nav-item">技术前沿</a>
-        <a href="#industry" class="nav-item">行业竞争</a>
-        <a href="#ethics" class="nav-item">伦理安全</a>
-        <a href="#mededu" class="nav-item">医疗教育</a>
-        <a href="#robotics" class="nav-item">机器人</a>
-        <a href="#security" class="nav-item">数据安全</a>
-        <a href="#policy" class="nav-item">政策标准</a>
-        <a href="#productivity" class="nav-item">智能办公</a>
-        <a href="#products" class="nav-item">热门产品</a>
-        <a href="#insights" class="nav-item">深度洞察</a>
-    </div>
+  </div>
 </nav>
 
-<!-- Data Dashboard -->
-<section class="section" style="background: #f8fafc;">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Data Dashboard</div>
-            <h2 class="section-title">本期关键数据一览</h2>
-        </div>
-        <div class="charts-row">
-            <div class="chart-card fade-in">
-                <h4>Q1 2026 全球风投分布（亿美元）</h4>
-                <canvas id="investChart"></canvas>
-            </div>
-            <div class="chart-card fade-in delay-1">
-                <h4>AI 行业融资 Top 5（亿美元）</h4>
-                <canvas id="fundingChart"></canvas>
-            </div>
-            <div class="chart-card fade-in delay-2">
-                <h4>AI 网络安全威胁统计（%）</h4>
-                <canvas id="securityChart"></canvas>
-            </div>
-        </div>
+<header class="hero">
+  <div class="hero-content">
+    <h1>AI 资讯快报 &#183; 2026年5月1日</h1>
+    <div class="date">2026年5月1日</div>
+    <div class="meta">
+      <strong>本期覆盖：</strong>2026年4月29日—5月1日<br>
+      <strong>编辑：</strong>QoderWork AI 资讯引擎<br>
+      <strong>数据来源：</strong>TechCrunch、The Verge、VentureBeat、Wired、ScienceDaily、AP News、LiveScience、Reuters、CNBC、机器之心、量子位、ProductHunt 等
     </div>
+  </div>
+</header>
+
+<main>
+
+<!-- Dashboard -->
+<section id="dashboard" class="section dashboard">
+  <h2 class="section-title"><span class="dot"></span>数据仪表板</h2>
+  <div class="chart-grid">
+    <div class="chart-card" data-animate>
+      <h4>Q1 2026 全球风投分布（亿美元）</h4>
+      <div class="chart-container"><canvas id="chartFunding"></canvas></div>
+    </div>
+    <div class="chart-card" data-animate>
+      <h4>AI 资讯领域分布雷达图</h4>
+      <div class="chart-container"><canvas id="chartRadar"></canvas></div>
+    </div>
+    <div class="chart-card" data-animate>
+      <h4>近期 AI 大事件时间线密度</h4>
+      <div class="chart-container"><canvas id="chartTimeline"></canvas></div>
+    </div>
+  </div>
 </section>
 
 <!-- Core Trends -->
-<section class="section" id="trends">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Core Trends</div>
-            <h2 class="section-title">今日核心趋势</h2>
-            <p class="section-desc">三条正在重塑 AI 产业格局的深层趋势</p>
-        </div>
-        <div class="trend-grid">
-            <div class="trend-card fade-in">
-                <div class="trend-number">01</div>
-                <h3>五角大楼 AI 军备竞赛——Google、OpenAI、Nvidia 获机密合同，Anthropic 被排除</h3>
-                <p>美国国防部与 Google、OpenAI 和 Nvidia 签署了机密 AI 合作协议，Google 协议价值高达 2 亿美元。此前参与机密信息处理的 Anthropic 因拒绝接受国防部服务条款被排除在外。国防部长 Hegseth 在听证会上公开批评 Anthropic CEO Dario Amodei 为"意识形态疯子"。</p>
-                <div class="insight-box">
-                    <strong>关键洞察：</strong>AI 安全哲学不再仅是伦理问题，而是直接影响商业合同和市场份额的战略决策。行业正在分化为"军用"和"民用"两条路线，这将深刻影响技术发展方向和人才流动。
-                </div>
-            </div>
-            <div class="trend-card fade-in delay-1">
-                <div class="trend-number">02</div>
-                <h3>Q1 2026 全球风投破纪录——AI 攫取 2420 亿美元，Anthropic 完成 300 亿融资</h3>
-                <p>Crunchbase 和 KPMG 数据显示，2026 年第一季度全球风险投资总额达到 3309 亿美元，其中 AI 初创公司获得约 2420 亿美元，占比超过 73%。xAI 完成 200 亿美元 E 轮融资，Anthropic 完成 300 亿美元融资，十个融资轮次各超过 20 亿美元。</p>
-                <div class="insight-box">
-                    <strong>关键洞察：</strong>全球风投正以前所未有的集中度押注 AI。当 AI 占全球风投 73% 时，意味着其他科技领域的融资空间被严重挤压，AI 已成为风险投资的"单一主题交易"。
-                </div>
-            </div>
-            <div class="trend-card fade-in delay-2">
-                <div class="trend-number">03</div>
-                <h3>Agentic AI 进入生产元年——从"AI 辅助"到"数字员工"</h3>
-                <p>Microsoft 在 Word 中推出面向法律专业人士的 AI Agent，Google 发布新型 AI Agent 工具套件直接挑战 OpenAI 和 Anthropic，Zapier 引入 Agent 编排功能。"Agentic AI Foundation"正式成立，标志着 AI Agent 从概念验证进入产业级应用。</p>
-                <div class="insight-box">
-                    <strong>关键洞察：</strong>2026 年是 Agentic AI 的"生产元年"。企业不再满足于辅助式工具，而是需要能够自主执行复杂工作流的"数字员工"，这将彻底重塑企业软件市场的竞争格局。
-                </div>
-            </div>
-        </div>
+<section id="trends" class="section">
+  <h2 class="section-title"><span class="dot"></span>今日核心趋势</h2>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>趋势 1：五角大楼 AI 军备竞赛——Google、OpenAI、Nvidia 获机密合同</h3>
+      <p>美国国防部与 Google、OpenAI 和 Nvidia 签署了机密 AI 合作协议，Google 协议价值高达 2 亿美元。此前参与机密信息处理的 Anthropic 因拒绝接受国防部服务条款被排除在外。国防部长 Hegseth 在听证会上公开批评 Anthropic CEO Dario Amodei 为"意识形态疯子"。</p>
+      <div class="highlight"><strong>关键洞察：</strong>AI 安全哲学不再仅是伦理问题，而是直接影响商业合同和市场份额的战略决策。行业正在分化为"军用"和"民用"两条路线。</div>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>趋势 2：Q1 2026 全球风投破纪录——AI 攫取 2420 亿美元</h3>
+      <p>Crunchbase 和 KPMG 数据显示，2026 年第一季度全球风险投资总额达到 3309 亿美元，其中 AI 初创公司获得约 2420 亿美元，占比超过 73%。xAI 完成 200 亿美元 E 轮融资，Anthropic 完成 300 亿美元融资。</p>
+      <div class="highlight"><strong>关键洞察：</strong>当 AI 占全球风投 73% 时，意味着其他科技领域的融资空间被严重挤压，AI 已成为风险投资的"单一主题交易"。</div>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">技术</span>
+      <h3>趋势 3：Agentic AI 进入生产元年——从"AI 辅助"到"数字员工"</h3>
+      <p>Microsoft 在 Word 中推出面向法律专业人士的 AI Agent，Google 发布新型 AI Agent 工具套件，Zapier 引入 Agent 编排功能。"Agentic AI Foundation"正式成立，标志着 AI Agent 从概念验证进入产业级应用。</p>
+      <div class="highlight"><strong>关键洞察：</strong>2026 年是 Agentic AI 的"生产元年"。企业不再满足于辅助式工具，而是需要能够自主执行复杂工作流的"数字员工"。</div>
+    </div>
+  </div>
 </section>
 
 <!-- Headlines -->
-<section class="section" id="headlines" style="background: #f8fafc;">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Top Headlines</div>
-            <h2 class="section-title">今日头条</h2>
-            <p class="section-desc">三条不容错过的重磅资讯</p>
+<section id="headlines" class="section">
+  <h2 class="section-title"><span class="dot"></span>今日头条</h2>
+  <div class="grid-1">
+    <div class="card headline-card" data-animate>
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <span class="headline-number">1</span>
+        <div>
+          <h3>五角大楼与 Google、OpenAI、Nvidia 签署机密 AI 协议，Anthropic 遭排除</h3>
         </div>
-
-        <div class="headline-card fade-in">
-            <div class="headline-badge hot">🔥 头条</div>
-            <h3>五角大楼与 Google、OpenAI、Nvidia 签署机密 AI 协议，Anthropic 遭排除</h3>
-            <p class="headline-summary">美国国防部与 Google、OpenAI 和 Nvidia 达成机密 AI 合作协议，Google 协议价值高达 2 亿美元。Anthropic 因拒绝接受国防部服务条款被排除在外。国防部长 Hegseth 在听证会上公开批评 Anthropic CEO Dario Amodei 为"意识形态疯子"，凸显 AI 安全立场与商业利益之间的根本冲突。</p>
-            <div class="keypoints">
-                <div class="keypoint">Google 与 Pentagon 签署最高 2 亿美元机密 AI 协议，扩展国防部对 Gemini 和云服务的使用权限</div>
-                <div class="keypoint">OpenAI 和 Nvidia 同步获得机密合作资格，Anthropic 是唯一被排除在外的顶级 AI 实验室</div>
-                <div class="keypoint">Hegseth 公开指责 Anthropic CEO 为"意识形态疯子"，争端核心是宪法式 AI 理念 vs 军方需求</div>
-            </div>
-            <div class="headline-meta">
-                <a href="https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/" target="_blank">🔗 阅读原文</a>
-                <span>&#x1F4C5; 2026-04-28</span>
-                <span>&#x1F4F0; TechCrunch / NYT / Reuters</span>
-            </div>
-            <div class="impact-box">
-                <strong>思考与影响：</strong>这一事件揭示了 AI 行业正在经历的"军事化"分水岭。AI 公司的安全哲学正直接转化为商业合同得失。Anthropic 的"安全优先"立场在短期失去国防市场，但可能强化其在民用市场的品牌信任度。长期来看，这种分化将重塑 AI 技术路线和应用场景。
-            </div>
-        </div>
-
-        <div class="headline-card fade-in delay-1">
-            <div class="headline-badge biz">💼 商业</div>
-            <h3>Q1 2026 全球风投创纪录 3309 亿美元，AI 占 73% 主导投资版图</h3>
-            <p class="headline-summary">KPMG 和 Crunchbase 联合数据显示，2026 年第一季度全球风险投资达到创纪录的 3309 亿美元，AI 初创公司获得约 2420 亿美元，占比 73%。xAI 完成 200 亿美元 E 轮融资，Anthropic 完成 300 亿美元，十个融资轮次各超 20 亿美元，资本集中度达历史极值。</p>
-            <div class="keypoints">
-                <div class="keypoint">全球风投总额 3309 亿美元，AI 占 73%，创历史单季度纪录</div>
-                <div class="keypoint">Anthropic 完成 300 亿美元融资，xAI 完成 200 亿美元 E 轮，10 轮融资超 20 亿</div>
-                <div class="keypoint">资金主要流向大模型基础设施、AI Agent 平台和企业自动化方案</div>
-            </div>
-            <div class="headline-meta">
-                <a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank">🔗 阅读原文</a>
-                <span>&#x1F4C5; 2026-04</span>
-                <span>&#x1F4F0; Crunchbase / KPMG / TechCrunch</span>
-            </div>
-            <div class="impact-box">
-                <strong>思考与影响：</strong>AI 已从"科技趋势"升级为"资本市场的核心叙事"。73% 的集中度意味着其他科技领域（清洁能源、生物科技、太空技术）的融资空间被严重挤压。一旦 AI 商业化回报不及预期，可能出现类似 2000 年互联网泡沫的系统性修正。
-            </div>
-        </div>
-
-        <div class="headline-card fade-in delay-2">
-            <div class="headline-badge tech">💡 技术</div>
-            <h3>OpenAI 公布"星际之门"算力基础设施扩展计划</h3>
-            <p class="headline-summary">OpenAI 正式发布"Building the Compute Infrastructure for the Intelligence Age"计划，详细披露其"Stargate"（星际之门）项目的扩展路线图。该计划涵盖超大规模数据中心建设、芯片供应链优化、能源管理等多个维度，并承诺未来部署超过 10 吉瓦的 NVIDIA 算力。</p>
-            <div class="keypoints">
-                <div class="keypoint">Stargate 项目进入实质性建设阶段，数据中心规模创 AI 行业纪录</div>
-                <div class="keypoint">与 NVIDIA 深度绑定，联合验证首个 10 万 GPU 规模 GB200 集群</div>
-                <div class="keypoint">能源管理成为关键挑战，AI 算力需求推动绿色能源转型压力增大</div>
-            </div>
-            <div class="headline-meta">
-                <a href="https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/" target="_blank">🔗 阅读原文</a>
-                <span>&#x1F4C5; 2026-04</span>
-                <span>&#x1F4F0; OpenAI 官方博客</span>
-            </div>
-            <div class="impact-box">
-                <strong>思考与影响：</strong>OpenAI 的这一举措标志着 AI 行业从"算法竞赛"彻底转向"基础设施竞赛"。谁能控制更多算力和更高效的供应链，谁就能在下一代模型迭代中占据优势。这也意味着 AI 行业的资本门槛急剧提高，小型玩家将被进一步边缘化。
-            </div>
-        </div>
+      </div>
+      <p>美国国防部与 Google、OpenAI 和 Nvidia 达成机密 AI 合作协议，Google 协议价值高达 2 亿美元。Anthropic 因拒绝接受国防部服务条款被排除在外。国防部长 Hegseth 在听证会上公开批评 Anthropic CEO Dario Amodei 为"意识形态疯子"，凸显 AI 安全立场与商业利益之间的根本冲突。</p>
+      <ul>
+        <li>关键点：Google 与 Pentagon 签署最高 2 亿美元机密 AI 协议，扩展国防部对 Gemini 和云服务的使用权限</li>
+        <li>关键点：OpenAI 和 Nvidia 同步获得机密合作资格，Anthropic 是唯一被排除在外的顶级 AI 实验室</li>
+        <li>关键点：Hegseth 公开指责 Anthropic CEO 为"意识形态疯子"，争端核心是宪法式 AI 理念 vs 军方需求</li>
+      </ul>
+      <div class="source">
+        <a href="https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/" target="_blank">&#x1F517; 阅读原文</a>
+        <span>| TechCrunch / NYT / Reuters</span>
+      </div>
     </div>
+    <div class="card headline-card" data-animate>
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <span class="headline-number">2</span>
+        <div>
+          <h3>Q1 2026 全球风投创纪录 3309 亿美元，AI 占 73% 主导投资版图</h3>
+        </div>
+      </div>
+      <p>KPMG 和 Crunchbase 联合数据显示，2026 年第一季度全球风险投资达到创纪录的 3309 亿美元，AI 初创公司获得约 2420 亿美元，占比 73%。xAI 完成 200 亿美元 E 轮融资，Anthropic 完成 300 亿美元，十个融资轮次各超 20 亿美元，资本集中度达历史极值。</p>
+      <ul>
+        <li>关键点：全球风投总额 3309 亿美元，AI 占 73%，创历史单季度纪录</li>
+        <li>关键点：Anthropic 完成 300 亿美元融资，xAI 完成 200 亿美元 E 轮，10 轮融资超 20 亿</li>
+        <li>关键点：资金主要流向大模型基础设施、AI Agent 平台和企业自动化方案</li>
+      </ul>
+      <div class="source">
+        <a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank">&#x1F517; 阅读原文</a>
+        <span>| Crunchbase / KPMG / TechCrunch</span>
+      </div>
+    </div>
+    <div class="card headline-card" data-animate>
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <span class="headline-number">3</span>
+        <div>
+          <h3>OpenAI 公布"星际之门"算力基础设施扩展计划</h3>
+        </div>
+      </div>
+      <p>OpenAI 正式发布"Building the Compute Infrastructure for the Intelligence Age"计划，详细披露其"Stargate"（星际之门）项目的扩展路线图。该计划涵盖超大规模数据中心建设、芯片供应链优化、能源管理等多个维度，并承诺未来部署超过 10 吉瓦的 NVIDIA 算力。</p>
+      <ul>
+        <li>关键点：Stargate 项目进入实质性建设阶段，数据中心规模创 AI 行业纪录</li>
+        <li>关键点：与 NVIDIA 深度绑定，联合验证首个 10 万 GPU 规模 GB200 集群</li>
+        <li>关键点：能源管理成为关键挑战，AI 算力需求推动绿色能源转型压力增大</li>
+      </ul>
+      <div class="source">
+        <a href="https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/" target="_blank">&#x1F517; 阅读原文</a>
+        <span>| OpenAI 官方博客</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Tech Frontier -->
-<section class="section" id="tech">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Tech Frontier</div>
-            <h2 class="section-title">技术前沿</h2>
-            <p class="section-desc">大模型、多模态与基础设施的最新突破</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F9E0;</div>
-                    <h4>大语言模型</h4>
-                </div>
-                <p><strong>MIT Technology Review 2026 AI 十大趋势</strong> — Agentic AI 规模化部署被列为头号趋势，AI 在科学发现中的作用被强调，多模态模型进入实用阶段。</p>
-                <span class="cat-tag">AI 从工具向自主系统进化</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F4CA;</div>
-                    <h4>Google Gemini</h4>
-                </div>
-                <p><strong>Google Gemini 新增购物助手功能</strong>，可跨平台比价、支持自然语言购物咨询，整合 Google Shopping 数据，直接挑战 Amazon 推荐系统。</p>
-                <span class="cat-tag">AI 从效率工具向生活操作系统转型</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fef2f2;">&#x1F916;</div>
-                    <h4>AI Agent 框架</h4>
-                </div>
-                <p><strong>"Agentic AI Foundation" 正式成立</strong>，标志 AI Agent 技术组织化和标准化进程加速，产学研协同发展，行业从实验走向生产。</p>
-                <span class="cat-tag">Agent 编排成为企业自动化核心</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fdf4ff;">&#x1F3A8;</div>
-                    <h4>多模态升级</h4>
-                </div>
-                <p><strong>多模态模型在商业场景大规模应用</strong>，文本+图像+音频+视频全模态覆盖，内容创作行业被重塑。AI 视频生成质量大幅提升。</p>
-                <span class="cat-tag">多模态成为主流 AI 平台标配</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fff7ed;">&#x26A1;</div>
-                    <h4>算力基础设施</h4>
-                </div>
-                <p><strong>OpenAI Stargate 项目扩展</strong>，数据中心规模创纪录，能源管理成关键挑战。新华网指出 AI 大规模应用带来的能源压力持续高企。</p>
-                <span class="cat-tag">数据中心耗电量指数级增长</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F50C;</div>
-                    <h4>边缘计算</h4>
-                </div>
-                <p><strong>边缘 AI 计算兴起</strong>，更多推理任务从云端转移到本地设备，降低延迟和保护数据隐私，延迟敏感场景推动边缘部署。</p>
-                <span class="cat-tag">边缘推理成隐私敏感场景首选</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f5f3ff;">&#x1F4BB;</div>
-                    <h4>芯片生态</h4>
-                </div>
-                <p><strong>NVIDIA 持续升级 AI 芯片架构</strong>，新一代芯片优化训练推理效率，与 OpenAI/五角大楼深度合作，芯片供应链成为战略资源。</p>
-                <span class="cat-tag">芯片供应链成地缘博弈焦点</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#ecfdf5;">&#x1F399;</div>
-                    <h4>语音交互</h4>
-                </div>
-                <p><strong>AI 语音助手对话能力接近真人水平</strong>，上下文理解能力显著改善，为智能客服、教育辅导和医疗咨询打开新可能。</p>
-                <span class="cat-tag">语音接近真人水平</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fff1f2;">&#x1F4D1;</div>
-                    <h4>模态局限</h4>
-                </div>
-                <p>最新开源模型仍局限于文本模态，与 GPT-5.5、Gemini 3.1 等多模态系统存在代际差距。多模态整合成为区分代际的关键指标。</p>
-                <span class="cat-tag">多模态成代际区分核心指标</span>
-            </div>
-        </div>
+<section id="tech" class="section">
+  <h2 class="section-title"><span class="dot"></span>技术前沿</h2>
+
+  <h3 class="section-subtitle">大模型与多模态</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-tech">模型</span>
+      <h3>MIT Technology Review 2026 AI 十大趋势</h3>
+      <p>Agentic AI 规模化部署被列为头号趋势，AI 在科学发现中的作用被强调，多模态模型进入实用阶段。</p>
+      <ul>
+        <li>关键点：AI 从工具向自主系统进化；多模态模型进入实用阶段；科学发现中的 AI 角色被强调</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">模型</span>
+      <h3>Google Gemini 新增购物助手功能</h3>
+      <p>Gemini 可跨平台比价、支持自然语言购物咨询，整合 Google Shopping 数据，直接挑战 Amazon 推荐系统。</p>
+      <ul>
+        <li>关键点：AI 从效率工具向生活操作系统转型；购物场景深度整合；跨平台数据打通</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">多模态</span>
+      <h3>多模态模型在商业场景大规模应用</h3>
+      <p>文本+图像+音频+视频全模态覆盖，内容创作行业被重塑。AI 视频生成质量大幅提升，成为主流 AI 平台标配。</p>
+      <ul>
+        <li>关键点：多模态成为主流 AI 平台标配；内容创作行业被重塑；视频生成质量显著提升</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">AI Agent 与基础设施</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-tech">Agent</span>
+      <h3>"Agentic AI Foundation" 正式成立</h3>
+      <p>标志 AI Agent 技术组织化和标准化进程加速，产学研协同发展，行业从实验走向生产。</p>
+      <ul>
+        <li>关键点：Agent 编排成为企业自动化核心；产学研协同发展；技术标准化进程加速</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">基础设施</span>
+      <h3>OpenAI Stargate 项目扩展</h3>
+      <p>数据中心规模创纪录，能源管理成关键挑战。新华网指出 AI 大规模应用带来的能源压力持续高企。</p>
+      <ul>
+        <li>关键点：数据中心耗电量指数级增长；能源管理成为关键挑战；与 NVIDIA 深度绑定</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">边缘计算</span>
+      <h3>边缘 AI 计算兴起</h3>
+      <p>更多推理任务从云端转移到本地设备，降低延迟和保护数据隐私，延迟敏感场景推动边缘部署。</p>
+      <ul>
+        <li>关键点：边缘推理成隐私敏感场景首选；降低延迟；数据本地化处理</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">芯片与语音交互</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-tech">芯片</span>
+      <h3>NVIDIA 持续升级 AI 芯片架构</h3>
+      <p>新一代芯片优化训练推理效率，与 OpenAI/五角大楼深度合作，芯片供应链成为战略资源。</p>
+      <ul>
+        <li>关键点：芯片供应链成地缘博弈焦点；训练推理效率持续优化；战略合作深化</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">语音</span>
+      <h3>AI 语音助手对话能力接近真人水平</h3>
+      <p>上下文理解能力显著改善，为智能客服、教育辅导和医疗咨询打开新可能。</p>
+      <ul>
+        <li>关键点：语音接近真人水平；上下文理解能力显著改善；多场景应用拓展</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-tech">局限</span>
+      <h3>开源模型仍局限于文本模态</h3>
+      <p>最新开源模型与 GPT-5.5、Gemini 3.1 等多模态系统存在代际差距。多模态整合成为区分代际的关键指标。</p>
+      <ul>
+        <li>关键点：多模态成代际区分核心指标；开源与闭源差距拉大；整合能力决定竞争力</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- Industry -->
-<section class="section" id="industry" style="background: #f8fafc;">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Industry & Strategy</div>
-            <h2 class="section-title">行业竞争与战略</h2>
-            <p class="section-desc">巨头博弈、融资动态与人才战争</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F3E2;</div>
-                    <h4>Google AI Agent 攻势</h4>
-                </div>
-                <p><strong>Google 发布新型 AI Agent 工具套件</strong>，涵盖搜索增强、云端任务自动化和 Android 设备集成，凭借垂直整合优势直接挑战 OpenAI 和 Anthropic。</p>
-                <span class="cat-tag">2026 年是 Google 挑战行业领导者的关键年</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F4BC;</div>
-                    <h4>Microsoft 法律 AI Agent</h4>
-                </div>
-                <p><strong>Microsoft 在 Word 中推出法律 AI Agent</strong>，面向法律专业人士辅助文档起草、合同审查和法规检索，Copilot 生态向垂直领域深化。</p>
-                <span class="cat-tag">专业领域 Agent 成下一战场</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fffbeb;">&#x2696;</div>
-                    <h4>Musk v. OpenAI 纠纷</h4>
-                </div>
-                <p><strong>Elon Musk 与 OpenAI 法律纠纷持续升级</strong>，法庭证词引发广泛关注，AI 行业治理权争夺白热化，Musk 在法庭上的表现受多方评论。</p>
-                <span class="cat-tag">AI 治理权争夺进入司法阶段</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fdf4ff;">&#x1F4B0;</div>
-                    <h4>Anthropic 300 亿美元融资</h4>
-                </div>
-                <p><strong>Anthropic 完成 300 亿美元巨额融资</strong>，创 AI 行业单笔融资纪录之一，资金用于大模型研发、基础设施扩展和团队建设。</p>
-                <span class="cat-tag">估值大幅攀升，独立生存能力受考验</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F48A;</div>
-                    <h4>AI 药物发现</h4>
-                </div>
-                <p><strong>BCG 报告：AI Agent 将彻底改变医疗服务交付</strong>，涵盖患者分诊、诊断辅助、治疗方案个性化和药物发现。NBER 举办 AI 医疗春季会议。</p>
-                <span class="cat-tag">从辅助诊断扩展到分子设计</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F91D;</div>
-                    <h4>中国 AI 产业突破</h4>
-                </div>
-                <p><strong>中国 AI 企业数量突破 6000 家</strong>，核心产业规模预计突破 1.2 万亿元，同比增长近 30%。第九届数字中国建设峰会召开。</p>
-                <span class="cat-tag">政府持续加大 AI 产业支持</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fff7ed;">&#x1F4CA;</div>
-                    <h4>劳动力市场影响</h4>
-                </div>
-                <p>Anthropic 研究：AI 高暴露职业的 <strong>22-25 岁青年入职率下降</strong>，30% 劳动者"零覆盖"。教育系统需要为年轻人提供更具"AI 韧性"的技能培养。</p>
-                <span class="cat-tag">AI 替代效应开始显现</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fef2f2;">&#x1F465;</div>
-                    <h4>人才争夺战升级</h4>
-                </div>
-                <p>大模型工程师、AI 安全研究员和 Agent 架构师成为最抢手人才，<strong>核心人才薪酬飙升</strong>，AI 安全研究员需求激增，全球人才竞争加剧。</p>
-                <span class="cat-tag">AI 人才战已超越传统科技行业</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#ecfdf5;">&#x1F93E;</div>
-                    <h4>NVIDIA-OpenAI 十年联盟</h4>
-                </div>
-                <p>从首台 DGX-1 交付至今合作跨越整技术栈，OpenAI 承诺未来部署<strong>超 10 吉瓦 NVIDIA 算力</strong>，AI 基础设施最稳固的战略合作。</p>
-                <span class="cat-tag">算力联盟成产业竞争核心</span>
-            </div>
-        </div>
+<section id="industry" class="section">
+  <h2 class="section-title"><span class="dot"></span>行业竞争与战略</h2>
+
+  <h3 class="section-subtitle">巨头博弈</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>Google 发布新型 AI Agent 工具套件</h3>
+      <p>涵盖搜索增强、云端任务自动化和 Android 设备集成，凭借垂直整合优势直接挑战 OpenAI 和 Anthropic。</p>
+      <ul>
+        <li>关键点：2026 年是 Google 挑战行业领导者的关键年；垂直整合优势；搜索+云端+设备三位一体</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>Microsoft 在 Word 中推出法律 AI Agent</h3>
+      <p>面向法律专业人士辅助文档起草、合同审查和法规检索，Copilot 生态向垂直领域深化。</p>
+      <ul>
+        <li>关键点：专业领域 Agent 成下一战场；Copilot 生态深化；法律服务自动化</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>Elon Musk 与 OpenAI 法律纠纷持续升级</h3>
+      <p>法庭证词引发广泛关注，AI 行业治理权争夺白热化，Musk 在法庭上的表现受多方评论。</p>
+      <ul>
+        <li>关键点：AI 治理权争夺进入司法阶段；行业关注度极高；治理权博弈复杂化</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">融资与人才</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-industry">融资</span>
+      <h3>Anthropic 完成 300 亿美元巨额融资</h3>
+      <p>创 AI 行业单笔融资纪录之一，资金用于大模型研发、基础设施扩展和团队建设。</p>
+      <ul>
+        <li>关键点：估值大幅攀升；独立生存能力受考验；资金规模创纪录</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">人才</span>
+      <h3>中国 AI 企业数量突破 6000 家</h3>
+      <p>核心产业规模预计突破 1.2 万亿元，同比增长近 30%。第九届数字中国建设峰会召开。</p>
+      <ul>
+        <li>关键点：政府持续加大 AI 产业支持；规模快速增长；生态日益完善</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">人才</span>
+      <h3>AI 人才争夺战升级</h3>
+      <p>大模型工程师、AI 安全研究员和 Agent 架构师成为最抢手人才，核心人才薪酬飙升，全球人才竞争加剧。</p>
+      <ul>
+        <li>关键点：AI 人才战已超越传统科技行业；安全研究员需求激增；薪酬持续攀升</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">劳动力市场</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>Anthropic 研究：AI 高暴露职业青年入职率下降</h3>
+      <p>22-25 岁青年入职率下降，30% 劳动者"零覆盖"。教育系统需要为年轻人提供更具"AI 韧性"的技能培养。</p>
+      <ul>
+        <li>关键点：AI 替代效应开始显现；青年就业受冲击；教育系统需改革</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>BCG 报告：AI Agent 将彻底改变医疗服务交付</h3>
+      <p>涵盖患者分诊、诊断辅助、治疗方案个性化和药物发现。NBER 举办 AI 医疗春季会议。</p>
+      <ul>
+        <li>关键点：从辅助诊断扩展到分子设计；全流程 AI 覆盖；医疗行业变革加速</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-industry">行业</span>
+      <h3>NVIDIA-OpenAI 十年联盟深化</h3>
+      <p>从首台 DGX-1 交付至今合作跨越整技术栈，OpenAI 承诺未来部署超 10 吉瓦 NVIDIA 算力。</p>
+      <ul>
+        <li>关键点：算力联盟成产业竞争核心；十年战略合作；基础设施最稳固的伙伴关系</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- Ethics -->
-<section class="section" id="ethics">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Ethics & Safety</div>
-            <h2 class="section-title">伦理与安全</h2>
-            <p class="section-desc">当 AI 能力跃升，安全边界在哪里？</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fef2f2;">&#x1F6E1;</div>
-                    <h4>国际 AI 安全报告</h4>
-                </div>
-                <p><strong>International AI Safety Report 2026 发布</strong>，涵盖可接受使用政策、安全评估框架和风险缓解策略，安全治理紧迫性持续增加。</p>
-                <span class="cat-tag">AI 安全升级为全球公共品</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fff1f2;">&#x2696;</div>
-                    <h4>宪法式 AI vs 军方需求</h4>
-                </div>
-                <p><strong>Anthropic 因宪法式 AI 理念被排除在五角大楼合同外</strong>，引发伦理立场与商业利益平衡的广泛讨论，行业分化加剧。</p>
-                <span class="cat-tag">安全哲学与商业利益冲突</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fffbeb;">&#x1F4F0;</div>
-                    <h4>AI 生成内容伦理争议</h4>
-                </div>
-                <p>Christian 内容创作者在 Fiverr 外包 AI 生成"圣经"视频，引发关于<strong>真实性、原创性和伦理边界</strong>的讨论，平台治理挑战增大。</p>
-                <span class="cat-tag">AI 生成宗教内容争议</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F50D;</div>
-                    <h4>透明度标准升温</h4>
-                </div>
-                <p>多个行业组织推动建立统一的 AI 透明度框架，<strong>可解释性成为关注焦点</strong>，行业自律与监管并行推进。</p>
-                <span class="cat-tag">透明度框架制定中</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F4CB;</div>
-                    <h4>伦理 AI 状态报告</h4>
-                </div>
-                <p><strong>The State of Ethical AI Report April 2026</strong> 评估全球主要 AI 公司伦理实践进展，头部公司表现分化，改进空间依然巨大。</p>
-                <span class="cat-tag">伦理实践评估体系化</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F30D;</div>
-                    <h4>AI 审计标准化</h4>
-                </div>
-                <p>多国推动 AI 系统审计标准化，涵盖<strong>模型偏见检测、数据隐私保护和输出安全性评估</strong>，偏见检测技术日趋成熟。</p>
-                <span class="cat-tag">审计标准加速制定</span>
-            </div>
-        </div>
+<section id="ethics" class="section">
+  <h2 class="section-title"><span class="dot"></span>伦理与安全</h2>
+
+  <h3 class="section-subtitle">AI 安全与治理</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-ethics">伦理</span>
+      <h3>International AI Safety Report 2026 发布</h3>
+      <p>涵盖可接受使用政策、安全评估框架和风险缓解策略，安全治理紧迫性持续增加。</p>
+      <ul>
+        <li>关键点：AI 安全升级为全球公共品；治理框架日益完善；国际合作加强</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-ethics">伦理</span>
+      <h3>宪法式 AI vs 军方需求</h3>
+      <p>Anthropic 因宪法式 AI 理念被排除在五角大楼合同外，引发伦理立场与商业利益平衡的广泛讨论。</p>
+      <ul>
+        <li>关键点：安全哲学与商业利益冲突；行业分化加剧；伦理立场直接转化为商业得失</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-ethics">伦理</span>
+      <h3>AI 生成内容伦理争议</h3>
+      <p>Christian 内容创作者在 Fiverr 外包 AI 生成"圣经"视频，引发关于真实性、原创性和伦理边界的讨论。</p>
+      <ul>
+        <li>关键点：AI 生成宗教内容争议；平台治理挑战增大；真实性与原创性边界模糊</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">透明度与审计</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-ethics">标准</span>
+      <h3>透明度标准升温</h3>
+      <p>多个行业组织推动建立统一的 AI 透明度框架，可解释性成为关注焦点，行业自律与监管并行推进。</p>
+      <ul>
+        <li>关键点：透明度框架制定中；可解释性成为焦点；自律与监管并行</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-ethics">标准</span>
+      <h3>The State of Ethical AI Report April 2026</h3>
+      <p>评估全球主要 AI 公司伦理实践进展，头部公司表现分化，改进空间依然巨大。</p>
+      <ul>
+        <li>关键点：伦理实践评估体系化；头部公司分化明显；改进空间巨大</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-ethics">标准</span>
+      <h3>AI 审计标准化推进</h3>
+      <p>多国推动 AI 系统审计标准化，涵盖模型偏见检测、数据隐私保护和输出安全性评估。</p>
+      <ul>
+        <li>关键点：审计标准加速制定；偏见检测技术日趋成熟；多维度覆盖</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- Med & Edu -->
-<section class="section" id="mededu" style="background: #f8fafc;">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Healthcare & Education</div>
-            <h2 class="section-title">医疗与教育应用</h2>
-            <p class="section-desc">AI 如何重塑人类最基础的两大领域</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F48A;</div>
-                    <h4>AI 医疗服务交付变革</h4>
-                </div>
-                <p><strong>BCG 报告指出 AI Agent 将彻底改变医疗交付</strong>，包括患者分诊自动化、诊断辅助精度提升和个性化治疗方案生成。</p>
-                <span class="cat-tag">从辅助诊断到全流程 AI 覆盖</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F52C;</div>
-                    <h4>NBER AI 医疗会议</h4>
-                </div>
-                <p><strong>NBER 举办 AI 医疗健康应用春季会议</strong>，讨论 AI 在临床决策、治疗方案优化和医疗资源分配中的最新进展。</p>
-                <span class="cat-tag">临床决策支持系统成熟</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fff7ed;">&#x1F3E5;</div>
-                    <h4>NYAS 医疗 AI 大会</h4>
-                </div>
-                <p><strong>NYAS 举办"2026 年医疗 AI 新浪潮"两天大会</strong>，聚焦从诊断到治疗的全流程 AI 和数字技术整合应用。</p>
-                <span class="cat-tag">全流程 AI 整合</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fdf4ff;">&#x1F393;</div>
-                    <h4>AI 医学教育战略</h4>
-                </div>
-                <p>专家指出医学教育亟需在 2026 年制定 <strong>AI 整合战略</strong>，包括 AI 辅助诊断培训、个性化学习路径和临床模拟训练。</p>
-                <span class="cat-tag">医学教育 AI 整合</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F3EB;</div>
-                    <h4>个性化学习平台</h4>
-                </div>
-                <p>AI 教育平台根据学生<strong>学习进度、理解程度和兴趣偏好</strong>动态调整教学内容，自适应学习算法和学生画像精细化。</p>
-                <span class="cat-tag">自适应学习成主流</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fef2f2;">&#x26A0;</div>
-                    <h4>教育公平挑战</h4>
-                </div>
-                <p>AI 可为资源匮乏地区提供优质教育资源，但<strong>数字鸿沟可能加剧不平等</strong>，政策干预必要性被重新评估。</p>
-                <span class="cat-tag">教育资源普惠与鸿沟并存</span>
-            </div>
-        </div>
+<section id="mededu" class="section">
+  <h2 class="section-title"><span class="dot"></span>医疗与教育应用</h2>
+
+  <h3 class="section-subtitle">医疗应用</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-medical">医疗</span>
+      <h3>AI 医疗服务交付变革</h3>
+      <p>BCG 报告指出 AI Agent 将彻底改变医疗交付，包括患者分诊自动化、诊断辅助精度提升和个性化治疗方案生成。</p>
+      <ul>
+        <li>关键点：从辅助诊断到全流程 AI 覆盖；患者分诊自动化；治疗方案个性化</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-medical">医疗</span>
+      <h3>NBER 举办 AI 医疗健康应用春季会议</h3>
+      <p>讨论 AI 在临床决策、治疗方案优化和医疗资源分配中的最新进展。</p>
+      <ul>
+        <li>关键点：临床决策支持系统成熟；资源分配优化；学术研究推动</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-medical">医疗</span>
+      <h3>NYAS 举办"2026 年医疗 AI 新浪潮"大会</h3>
+      <p>聚焦从诊断到治疗的全流程 AI 和数字技术整合应用，两天会议深度探讨行业未来。</p>
+      <ul>
+        <li>关键点：全流程 AI 整合；数字技术深度融合；行业共识逐步形成</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">教育应用</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-medical">教育</span>
+      <h3>AI 医学教育战略</h3>
+      <p>专家指出医学教育亟需在 2026 年制定 AI 整合战略，包括 AI 辅助诊断培训、个性化学习路径和临床模拟训练。</p>
+      <ul>
+        <li>关键点：医学教育 AI 整合；个性化学习路径；临床模拟训练</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-medical">教育</span>
+      <h3>个性化学习平台</h3>
+      <p>AI 教育平台根据学生学习进度、理解程度和兴趣偏好动态调整教学内容，自适应学习算法和学生画像精细化。</p>
+      <ul>
+        <li>关键点：自适应学习成主流；学生画像精细化；动态内容调整</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-medical">教育</span>
+      <h3>教育公平挑战</h3>
+      <p>AI 可为资源匮乏地区提供优质教育资源，但数字鸿沟可能加剧不平等，政策干预必要性被重新评估。</p>
+      <ul>
+        <li>关键点：教育资源普惠与鸿沟并存；数字鸿沟风险；政策干预必要性</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- Robotics -->
-<section class="section" id="robotics">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Robotics Frontier</div>
-            <h2 class="section-title">机器人前沿</h2>
-            <p class="section-desc">从实验室到工厂，人形机器人商业化元年开启</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fef2f2;">&#x1F3C3;</div>
-                    <h4>出货量暴涨 7 倍</h4>
-                </div>
-                <p><strong>TrendForce 预测 2026 年全球人形机器人出货量突破 5 万台</strong>，同比增长 7 倍，标志从实验室走向规模化商业部署元年。</p>
-                <span class="cat-tag">规模化商业部署元年</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F916;</div>
-                    <h4>波士顿动力 Atlas 量产</h4>
-                </div>
-                <p><strong>电动版 Atlas 进入量产阶段</strong>，首批部署至现代汽车工厂，专为动态环境中的人机交互和自动化设计。</p>
-                <span class="cat-tag">部署至现代汽车工厂</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fffbeb;">&#x1F1E8;&#x1F1F3;</div>
-                    <h4>中国"十强"竞争</h4>
-                </div>
-                <p>中国人形机器人产业告别实验室投身<strong>"真竞时代"</strong>，CES 2026 上多家厂商展示量产级产品，量产能力成核心竞争力。</p>
-                <span class="cat-tag">中国进入真竞时代</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fdf4ff;">&#x1F3ED;</div>
-                    <h4>工业机器人柔性化</h4>
-                </div>
-                <p>从"预编程"模式转向 AI 驱动的<strong>"柔性适应"模式</strong>，自主应对生产线变化和未知情况，中小企业采用加速。</p>
-                <span class="cat-tag">从预编程到自主适应</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F4AA;</div>
-                    <h4>训练控制突破</h4>
-                </div>
-                <p><strong>强化学习在复杂地形导航中应用</strong>，多任务学习框架取得进展，Sim-to-Real 迁移效率显著提升。</p>
-                <span class="cat-tag">仿真到现实迁移效率提升</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#ecfdf5;">&#x1F91D;</div>
-                    <h4>多机器人协同</h4>
-                </div>
-                <p>多机器人协同控制技术在 2026 年取得重要进展，多个机器人可在<strong>共享环境中协同完成复杂任务</strong>。</p>
-                <span class="cat-tag">多机协同算法成熟</span>
-            </div>
-        </div>
+<section id="robotics" class="section">
+  <h2 class="section-title"><span class="dot"></span>机器人前沿</h2>
+
+  <h3 class="section-subtitle">商业化进展</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-robot">机器人</span>
+      <h3>出货量暴涨 7 倍</h3>
+      <p>TrendForce 预测 2026 年全球人形机器人出货量突破 5 万台，同比增长 7 倍，标志从实验室走向规模化商业部署元年。</p>
+      <ul>
+        <li>关键点：规模化商业部署元年；增速创纪录；产业进入快车道</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-robot">机器人</span>
+      <h3>波士顿动力 Atlas 量产</h3>
+      <p>电动版 Atlas 进入量产阶段，首批部署至现代汽车工厂，专为动态环境中的人机交互和自动化设计。</p>
+      <ul>
+        <li>关键点：部署至现代汽车工厂；电动版量产；人机交互优化</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-robot">机器人</span>
+      <h3>中国"十强"竞争</h3>
+      <p>中国人形机器人产业告别实验室投身"真竞时代"，CES 2026 上多家厂商展示量产级产品，量产能力成核心竞争力。</p>
+      <ul>
+        <li>关键点：中国进入真竞时代；量产能力成核心竞争力；多家厂商同台竞技</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">技术突破</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-robot">机器人</span>
+      <h3>工业机器人柔性化</h3>
+      <p>从"预编程"模式转向 AI 驱动的"柔性适应"模式，自主应对生产线变化和未知情况，中小企业采用加速。</p>
+      <ul>
+        <li>关键点：从预编程到自主适应；中小企业采用加速；AI 驱动柔性生产</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-robot">机器人</span>
+      <h3>训练控制突破</h3>
+      <p>强化学习在复杂地形导航中应用，多任务学习框架取得进展，Sim-to-Real 迁移效率显著提升。</p>
+      <ul>
+        <li>关键点：仿真到现实迁移效率提升；强化学习应用深化；多任务学习框架</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-robot">机器人</span>
+      <h3>多机器人协同</h3>
+      <p>多机器人协同控制技术在 2026 年取得重要进展，多个机器人可在共享环境中协同完成复杂任务。</p>
+      <ul>
+        <li>关键点：多机协同算法成熟；共享环境协作；复杂任务分解</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- Security -->
-<section class="section" id="security" style="background: #f8fafc;">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Data Security & Privacy</div>
-            <h2 class="section-title">数据安全与隐私</h2>
-            <p class="section-desc">AI 时代的新威胁与新防护</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fef2f2;">&#x1F3A3;</div>
-                    <h4>AI 成最大网络威胁</h4>
-                </div>
-                <p><strong>Experian 报告：73% 安全专业人员确认 AI 驱动威胁显著增加</strong>，攻击者利用 AI 生成更复杂的钓鱼攻击和智能恶意软件。</p>
-                <span class="cat-tag">AI 驱动钓鱼攻击升级</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fff1f2;">&#x1F480;</div>
-                    <h4>攻击面扩大</h4>
-                </div>
-                <p><strong>Darktrace 报告指出生成式 AI 工具无处不在</strong>，攻击面急剧扩大，勒索软件组织整合 AI 技术使攻击更精准。</p>
-                <span class="cat-tag">勒索软件 AI 化</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fffbeb;">&#x1F512;</div>
-                    <h4>隐私保护进展</h4>
-                </div>
-                <p><strong>联邦学习、差分隐私和同态加密</strong>等隐私计算技术取得显著进展，AI 模型可在保护隐私前提下训练和推理。</p>
-                <span class="cat-tag">联邦学习实用化</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F50D;</div>
-                    <h4>隐私与 AI 十大问题</h4>
-                </div>
-                <p>Workplace Privacy Report 发布 2026 年十大问题，涵盖<strong>数据收集透明度、AI 决策可解释性和员工隐私保护</strong>。</p>
-                <span class="cat-tag">员工隐私保护成焦点</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F310;</div>
-                    <h4>全球监管趋同</h4>
-                </div>
-                <p>Eversheds Sutherland 发布全球 AI 监管更新，各国 AI 安全规则<strong>加速趋同</strong>，美国将 AI 安全规则视为关键基础设施要求。</p>
-                <span class="cat-tag">合规时间线缩短</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x26A1;</div>
-                    <h4>自动化目标识别</h4>
-                </div>
-                <p>2026 威胁情报指数显示，勒索软件组织正在整合 AI 实现<strong>自动识别高价值目标和自适应加密策略</strong>。</p>
-                <span class="cat-tag">自适应加密策略</span>
-            </div>
-        </div>
+<section id="security" class="section">
+  <h2 class="section-title"><span class="dot"></span>数据安全与隐私</h2>
+
+  <h3 class="section-subtitle">威胁态势</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-security">安全</span>
+      <h3>AI 成最大网络威胁</h3>
+      <p>Experian 报告：73% 安全专业人员确认 AI 驱动威胁显著增加，攻击者利用 AI 生成更复杂的钓鱼攻击和智能恶意软件。</p>
+      <ul>
+        <li>关键点：AI 驱动钓鱼攻击升级；智能恶意软件增多；安全专业人员高度关注</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-security">安全</span>
+      <h3>攻击面扩大</h3>
+      <p>Darktrace 报告指出生成式 AI 工具无处不在，攻击面急剧扩大，勒索软件组织整合 AI 技术使攻击更精准。</p>
+      <ul>
+        <li>关键点：勒索软件 AI 化；攻击面急剧扩大；攻击精准度提升</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-security">安全</span>
+      <h3>自动化目标识别</h3>
+      <p>2026 威胁情报指数显示，勒索软件组织正在整合 AI 实现自动识别高价值目标和自适应加密策略。</p>
+      <ul>
+        <li>关键点：自适应加密策略；高价值目标自动识别；威胁情报升级</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">隐私保护</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-security">隐私</span>
+      <h3>隐私保护进展</h3>
+      <p>联邦学习、差分隐私和同态加密等隐私计算技术取得显著进展，AI 模型可在保护隐私前提下训练和推理。</p>
+      <ul>
+        <li>关键点：联邦学习实用化；差分隐私成熟；同态加密突破</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-security">隐私</span>
+      <h3>隐私与 AI 十大问题</h3>
+      <p>Workplace Privacy Report 发布 2026 年十大问题，涵盖数据收集透明度、AI 决策可解释性和员工隐私保护。</p>
+      <ul>
+        <li>关键点：员工隐私保护成焦点；数据收集透明度；AI 决策可解释性</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-security">隐私</span>
+      <h3>全球监管趋同</h3>
+      <p>Eversheds Sutherland 发布全球 AI 监管更新，各国 AI 安全规则加速趋同，美国将 AI 安全规则视为关键基础设施要求。</p>
+      <ul>
+        <li>关键点：合规时间线缩短；监管趋同加速；关键基础设施定位</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<!-- Policy -->
-<section class="section" id="policy">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Policy & Standards</div>
-            <h2 class="section-title">行业标准与政策</h2>
-            <p class="section-desc">全球监管加速，合规 deadline 临近</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F1EA;&#x1F1FA;</div>
-                    <h4>欧盟 AI Act 实施</h4>
-                </div>
-                <p><strong>欧盟 AI Act 进入实施阶段</strong>，美国推动 AI 安全规则标准化，跨国治理共识正在形成。</p>
-                <span class="cat-tag">跨国治理共识形成</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x1F1E8;&#x1F1F3;</div>
-                    <h4>数字中国建设峰会</h4>
-                </div>
-                <p><strong>第九届数字中国建设峰会召开</strong>，中国移动举办人工智能生态大会，聚焦五大赛题方向。</p>
-                <span class="cat-tag">AI 生态大会五大赛题</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fffbeb;">&#x1F4C5;</div>
-                    <h4>合规 deadline 临近</h4>
-                </div>
-                <p>The AI Forest 报告指出 2026 年对大多数企业是<strong>最关键的 AI 合规截止日期</strong>，未能满足要求将面临严重后果。</p>
-                <span class="cat-tag">违规后果严重</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fdf4ff;">&#x1F4CA;</div>
-                    <h4>中国 AI 产业 1.2 万亿</h4>
-                </div>
-                <p>央视网报道中国 AI 核心产业规模预计突破<strong>1.2 万亿元</strong>，企业超 6000 家，同比增长近 30%。</p>
-                <span class="cat-tag">政府持续加大支持</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F4CB;</div>
-                    <h4>模型评估标准</h4>
-                </div>
-                <p>多个国际组织构建 AI 模型评估标准体系，涵盖<strong>性能基准、安全测试和伦理审查</strong>三个维度。</p>
-                <span class="cat-tag">性能基准统一化</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#ecfdf5;">&#x1F5C3;</div>
-                    <h4>数据治理标准</h4>
-                </div>
-                <p>AI 数据治理标准涵盖<strong>数据采集、标注、使用和销毁的全生命周期管理</strong>，隐私保护集成到标准中。</p>
-                <span class="cat-tag">全生命周期管理</span>
-            </div>
-        </div>
+<!-- Policy & Standards -->
+<section id="policy" class="section">
+  <h2 class="section-title"><span class="dot"></span>行业标准与政策</h2>
+
+  <h3 class="section-subtitle">国际政策</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>欧盟 AI Act 实施</h3>
+      <p>欧盟 AI Act 进入实施阶段，美国推动 AI 安全规则标准化，跨国治理共识正在形成。</p>
+      <ul>
+        <li>关键点：跨国治理共识形成；欧盟法规落地；美国标准化推进</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>数字中国建设峰会</h3>
+      <p>第九届数字中国建设峰会召开，中国移动举办人工智能生态大会，聚焦五大赛题方向。</p>
+      <ul>
+        <li>关键点：AI 生态大会五大赛题；政府主导生态建设；产业协同推进</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>合规 deadline 临近</h3>
+      <p>The AI Forest 报告指出 2026 年对大多数企业是最关键的 AI 合规截止日期，未能满足要求将面临严重后果。</p>
+      <ul>
+        <li>关键点：违规后果严重；合规窗口期缩短；企业需加速应对</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">中国政策</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>中国 AI 核心产业规模突破 1.2 万亿</h3>
+      <p>央视网报道中国 AI 核心产业规模预计突破 1.2 万亿元，企业超 6000 家，同比增长近 30%。</p>
+      <ul>
+        <li>关键点：政府持续加大支持；产业规模快速增长；企业数量激增</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>模型评估标准体系构建</h3>
+      <p>多个国际组织构建 AI 模型评估标准体系，涵盖性能基准、安全测试和伦理审查三个维度。</p>
+      <ul>
+        <li>关键点：性能基准统一化；安全测试标准化；伦理审查纳入体系</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-policy">政策</span>
+      <h3>数据治理标准完善</h3>
+      <p>AI 数据治理标准涵盖数据采集、标注、使用和销毁的全生命周期管理，隐私保护集成到标准中。</p>
+      <ul>
+        <li>关键点：全生命周期管理；隐私保护集成；标准体系完善</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<!-- Productivity -->
-<section class="section" id="productivity" style="background: #f8fafc;">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Smart Office & Productivity</div>
-            <h2 class="section-title">智能办公与生产力工具</h2>
-            <p class="section-desc">AI Agent 重塑企业工作流</p>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#eff6ff;">&#x1F916;</div>
-                    <h4>AI Agent 成为"数字员工"</h4>
-                </div>
-                <p>LinkedIn 分析报告：2026 年 AI Agent 正在成为企业的<strong>"数字员工"</strong>，能够独立完成复杂工作流而非仅辅助人类。</p>
-                <span class="cat-tag">从辅助到自主</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0fdf4;">&#x2699;</div>
-                    <h4>Zapier Agent 编排</h4>
-                </div>
-                <p><strong>Zapier 引入 Agent 编排功能</strong>，允许用户创建复杂自动化工作流，多个 AI Agent 可协同完成任务。</p>
-                <span class="cat-tag">多 Agent 协同</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fffbeb;">&#x1F4C8;</div>
-                    <h4>企业自动化平台</h4>
-                </div>
-                <p>Vellum 发布 2026 年企业 AI 自动化平台指南，Medium 发布<strong>十大企业 AI 自动化工具排名</strong>。</p>
-                <span class="cat-tag">平台评估框架成熟</span>
-            </div>
-            <div class="cat-card fade-in">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#fdf4ff;">&#x1F4E7;</div>
-                    <h4>Superhuman 邮件进化</h4>
-                </div>
-                <p>Superhuman 等 AI 邮件工具新增<strong>智能分类、自动回复建议和优先级排序</strong>，大幅提升邮件处理效率。</p>
-                <span class="cat-tag">智能邮件分类</span>
-            </div>
-            <div class="cat-card fade-in delay-1">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#f0f9ff;">&#x1F3A5;</div>
-                    <h4>AI 会议助手普及</h4>
-                </div>
-                <p>AI 会议助手普及率飙升，<strong>实时记录会议纪要、提取行动项并自动分配任务</strong>。</p>
-                <span class="cat-tag">行动项自动提取</span>
-            </div>
-            <div class="cat-card fade-in delay-2">
-                <div class="cat-card-header">
-                    <div class="cat-icon" style="background:#ecfdf5;">&#x1F93E;</div>
-                    <h4>远程协作工具</h4>
-                </div>
-                <p>TechPlusTrends 发布 <strong>12 款最佳 AI 远程协作工具</strong>，涵盖会议摘要、项目管理和团队沟通。</p>
-                <span class="cat-tag">会议摘要自动化</span>
-            </div>
-        </div>
+<!-- Office & Productivity -->
+<section id="productivity" class="section">
+  <h2 class="section-title"><span class="dot"></span>智能办公与生产力工具</h2>
+
+  <h3 class="section-subtitle">AI Agent</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-office">办公</span>
+      <h3>AI Agent 成为"数字员工"</h3>
+      <p>LinkedIn 分析报告：2026 年 AI Agent 正在成为企业的"数字员工"，能够独立完成复杂工作流而非仅辅助人类。</p>
+      <ul>
+        <li>关键点：从辅助到自主；独立工作流执行；企业组织形态变革</li>
+      </ul>
     </div>
+    <div class="card" data-animate>
+      <span class="badge badge-office">办公</span>
+      <h3>Zapier Agent 编排</h3>
+      <p>Zapier 引入 Agent 编排功能，允许用户创建复杂自动化工作流，多个 AI Agent 可协同完成任务。</p>
+      <ul>
+        <li>关键点：多 Agent 协同；复杂工作流自动化；低门槛编排</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-office">办公</span>
+      <h3>企业自动化平台指南</h3>
+      <p>Vellum 发布 2026 年企业 AI 自动化平台指南，Medium 发布十大企业 AI 自动化工具排名。</p>
+      <ul>
+        <li>关键点：平台评估框架成熟；工具选型指南；企业自动化加速</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">协作与效率</h3>
+  <div class="grid-3">
+    <div class="card" data-animate>
+      <span class="badge badge-office">办公</span>
+      <h3>Superhuman 邮件进化</h3>
+      <p>Superhuman 等 AI 邮件工具新增智能分类、自动回复建议和优先级排序，大幅提升邮件处理效率。</p>
+      <ul>
+        <li>关键点：智能邮件分类；自动回复建议；优先级排序</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-office">办公</span>
+      <h3>AI 会议助手普及</h3>
+      <p>AI 会议助手普及率飙升，实时记录会议纪要、提取行动项并自动分配任务。</p>
+      <ul>
+        <li>关键点：行动项自动提取；会议纪要实时生成；任务自动分配</li>
+      </ul>
+    </div>
+    <div class="card" data-animate>
+      <span class="badge badge-office">办公</span>
+      <h3>远程协作工具</h3>
+      <p>TechPlusTrends 发布 12 款最佳 AI 远程协作工具，涵盖会议摘要、项目管理和团队沟通。</p>
+      <ul>
+        <li>关键点：会议摘要自动化；项目管理智能化；团队协作效率提升</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<!-- Products -->
-<section class="section" id="products">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Hot Products</div>
-            <h2 class="section-title">热门 AI 产品动态</h2>
-            <p class="section-desc">ProductHunt 风格 Top 5</p>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-rank">1</div>
-            <div class="product-info">
-                <h4>Kilo Code Reviewer</h4>
-                <div class="product-meta">
-                    <span>ProductHunt 周榜前列</span>
-                    <span>2026 年 1 月</span>
-                </div>
-                <p class="product-desc">自动 AI 驱动的代码审查工具，能够深度理解代码逻辑并给出建设性改进建议。</p>
-                <div class="product-kp">
-                    <div class="product-kp-item">AI 驱动的代码深度审查</div>
-                    <div class="product-kp-item">建设性改进建议生成</div>
-                    <div class="product-kp-item">集成主流开发工作流</div>
-                </div>
-                <div class="product-scene">&#x1F3AF; 场景：软件开发团队代码审查</div>
-                <div class="product-users">&#x1F465; 适合：开发团队、技术 Lead</div>
-            </div>
-        </div>
-
-        <div class="product-card fade-in delay-1">
-            <div class="product-rank">2</div>
-            <div class="product-info">
-                <h4>Hera</h4>
-                <div class="product-meta">
-                    <span>ProductHunt 热门新品</span>
-                    <span>2026 年 4 月</span>
-                </div>
-                <p class="product-desc">创建工作室级别的发布视频，利用 AI 自动生成高质量的产品发布宣传视频。</p>
-                <div class="product-kp">
-                    <div class="product-kp-item">AI 自动生成宣传视频</div>
-                    <div class="product-kp-item">工作室级别质量</div>
-                    <div class="product-kp-item">快速制作周期</div>
-                </div>
-                <div class="product-scene">&#x1F3AF; 场景：产品发布宣传、营销视频</div>
-                <div class="product-users">&#x1F465; 适合：营销团队、产品发布者</div>
-            </div>
-        </div>
-
-        <div class="product-card fade-in delay-2">
-            <div class="product-rank">3</div>
-            <div class="product-info">
-                <h4>PostSyncer AI</h4>
-                <div class="product-meta">
-                    <span>ProductHunt 2026 年度热门</span>
-                    <span>2026 年初</span>
-                </div>
-                <p class="product-desc">AI 社交媒体内容制作与发布工具，能够自动生成、优化和定时发布社交媒体内容。</p>
-                <div class="product-kp">
-                    <div class="product-kp-item">AI 内容自动生成</div>
-                    <div class="product-kp-item">多平台发布管理</div>
-                    <div class="product-kp-item">内容优化建议</div>
-                </div>
-                <div class="product-scene">&#x1F3AF; 场景：社交媒体运营、内容营销</div>
-                <div class="product-users">&#x1F465; 适合：社交媒体经理、内容创作者</div>
-            </div>
-        </div>
-
-        <div class="product-card fade-in delay-3">
-            <div class="product-rank">4</div>
-            <div class="product-info">
-                <h4>Suno AI</h4>
-                <div class="product-meta">
-                    <span>ProductHunt 持续热门</span>
-                    <span>持续迭代中</span>
-                </div>
-                <p class="product-desc">AI 音乐生成平台，用户可以用自然语言描述想要的音乐风格和内容，自动生成高质量音乐。</p>
-                <div class="product-kp">
-                    <div class="product-kp-item">自然语言音乐生成</div>
-                    <div class="product-kp-item">多风格支持</div>
-                    <div class="product-kp-item">高质量音频输出</div>
-                </div>
-                <div class="product-scene">&#x1F3AF; 场景：音乐创作、内容配乐</div>
-                <div class="product-users">&#x1F465; 适合：音乐创作者、内容制作者</div>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-rank">5</div>
-            <div class="product-info">
-                <h4>CodeRabbit</h4>
-                <div class="product-meta">
-                    <span>ProductHunt 热门开发者工具</span>
-                    <span>持续迭代中</span>
-                </div>
-                <p class="product-desc">AI 代码审查助手，自动分析 Pull Request，提供代码质量评估和改进建议。</p>
-                <div class="product-kp">
-                    <div class="product-kp-item">自动化 PR 审查</div>
-                    <div class="product-kp-item">代码质量评分</div>
-                    <div class="product-kp-item">改进建议生成</div>
-                </div>
-                <div class="product-scene">&#x1F3AF; 场景：代码审查、团队协作开发</div>
-                <div class="product-users">&#x1F465; 适合：开发团队、开源项目维护者</div>
-            </div>
-        </div>
+<!-- Hot Products -->
+<section id="products" class="section">
+  <h2 class="section-title"><span class="dot"></span>热门 AI 产品动态</h2>
+  <p style="color:var(--text-secondary);margin-bottom:20px;font-size:0.9rem;">注：ProductHunt 官方页面实施反爬检测（HTTP 403），以下信息综合自 WebSearch、产品官网、LinkedIn、第三方追踪站点的交叉验证。</p>
+  <div class="grid-3">
+    <div class="card product-card" data-animate>
+      <div class="rank">01</div>
+      <span class="badge badge-product">产品</span>
+      <h3>Kilo Code Reviewer</h3>
+      <p><strong>票数/热度：</strong>ProductHunt 周榜前列（2026 年 1 月上线）</p>
+      <p><strong>发布时间：</strong>2026 年 1 月</p>
+      <p><strong>简介：</strong>自动 AI 驱动的代码审查工具，能够深度理解代码逻辑并给出建设性改进建议。</p>
+      <p><strong>关键点：</strong></p>
+      <ul>
+        <li>AI 驱动的代码深度审查，理解复杂逻辑依赖</li>
+        <li>建设性改进建议自动生成，减少人工审查负担</li>
+        <li>集成主流开发工作流（GitHub、GitLab 等）</li>
+      </ul>
+      <p><strong>场景：</strong>软件开发团队代码审查、Pull Request 自动化评估、代码质量持续提升</p>
+      <p><strong>适合使用者：</strong>开发团队、技术 Lead、开源项目维护者</p>
     </div>
+    <div class="card product-card" data-animate>
+      <div class="rank">02</div>
+      <span class="badge badge-product">产品</span>
+      <h3>Hera</h3>
+      <p><strong>票数/热度：</strong>ProductHunt 热门新品（2026 年 4 月）</p>
+      <p><strong>发布时间：</strong>2026 年 4 月</p>
+      <p><strong>简介：</strong>创建工作室级别的发布视频，利用 AI 自动生成高质量的产品发布宣传视频。</p>
+      <p><strong>关键点：</strong></p>
+      <ul>
+        <li>AI 自动生成宣传视频，大幅降低制作成本</li>
+        <li>工作室级别质量输出，媲美专业制作团队</li>
+        <li>快速制作周期，从创意到成品仅需数小时</li>
+      </ul>
+      <p><strong>场景：</strong>产品发布宣传、营销视频制作、品牌内容创作</p>
+      <p><strong>适合使用者：</strong>营销团队、产品发布者、内容创作者、初创公司</p>
+    </div>
+    <div class="card product-card" data-animate>
+      <div class="rank">03</div>
+      <span class="badge badge-product">产品</span>
+      <h3>PostSyncer AI</h3>
+      <p><strong>票数/热度：</strong>ProductHunt 2026 年度热门</p>
+      <p><strong>发布时间：</strong>2026 年初</p>
+      <p><strong>简介：</strong>AI 社交媒体内容制作与发布工具，能够自动生成、优化和定时发布社交媒体内容。</p>
+      <p><strong>关键点：</strong></p>
+      <ul>
+        <li>AI 内容自动生成，基于品牌风格和学习历史</li>
+        <li>多平台发布管理，一次创作多端分发</li>
+        <li>内容优化建议，提升互动率和传播效果</li>
+      </ul>
+      <p><strong>场景：</strong>社交媒体运营、内容营销、品牌传播矩阵管理</p>
+      <p><strong>适合使用者：</strong>社交媒体经理、内容创作者、营销团队、品牌方</p>
+    </div>
+    <div class="card product-card" data-animate>
+      <div class="rank">04</div>
+      <span class="badge badge-product">产品</span>
+      <h3>Suno AI</h3>
+      <p><strong>票数/热度：</strong>ProductHunt 持续热门，AI 音乐生成领域头部产品</p>
+      <p><strong>发布时间：</strong>持续迭代中</p>
+      <p><strong>简介：</strong>AI 音乐生成平台，用户可以用自然语言描述想要的音乐风格和内容，自动生成高质量音乐。</p>
+      <p><strong>关键点：</strong></p>
+      <ul>
+        <li>自然语言音乐生成，降低创作门槛</li>
+        <li>多风格支持，从古典到电子全覆盖</li>
+        <li>高质量音频输出，可直接用于商业场景</li>
+      </ul>
+      <p><strong>场景：</strong>音乐创作、内容配乐、广告背景音乐、游戏音效</p>
+      <p><strong>适合使用者：</strong>音乐创作者、内容制作者、广告从业者、游戏开发者</p>
+    </div>
+    <div class="card product-card" data-animate>
+      <div class="rank">05</div>
+      <span class="badge badge-product">产品</span>
+      <h3>CodeRabbit</h3>
+      <p><strong>票数/热度：</strong>ProductHunt 热门开发者工具</p>
+      <p><strong>发布时间：</strong>持续迭代中</p>
+      <p><strong>简介：</strong>AI 代码审查助手，自动分析 Pull Request，提供代码质量评估和改进建议。</p>
+      <p><strong>关键点：</strong></p>
+      <ul>
+        <li>自动化 PR 审查，缩短代码审核周期</li>
+        <li>代码质量评分，量化评估代码健康度</li>
+        <li>改进建议生成，针对性强且可执行</li>
+      </ul>
+      <p><strong>场景：</strong>代码审查、团队协作开发、CI/CD 流程集成</p>
+      <p><strong>适合使用者：</strong>开发团队、开源项目维护者、技术管理者</p>
+    </div>
+  </div>
 </section>
 
-<!-- Deep Insights -->
-<section class="insight-section" id="insights">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label">Deep Insights</div>
-            <h2 class="section-title">当日关键洞察总结</h2>
-            <p class="section-desc">超越新闻表面的结构性分析</p>
-        </div>
-        <div class="insight-grid">
-            <div class="insight-card fade-in">
-                <h3>洞察一：AI 行业正在经历"军事化"分水岭</h3>
-                <p>五角大楼与 Google、OpenAI、Nvidia 的机密合作以及 Anthropic 的被排除，标志着一个更深层次的分化趋势：AI 技术正在被明确地划分为"军用"和"民用"两条路线。这种分化不仅仅是商业选择，更是哲学立场的体现。</p>
-                <p>Anthropic 的宪法式 AI 理念使其无法在短期内接受军方的使用条款，而 OpenAI 和 Google 则更务实地拥抱国防市场。这种分化将在未来几年深刻影响 AI 技术的发展方向、人才流动和应用场景。对企业和投资者而言，理解这种分化并做出相应的战略选择至关重要。</p>
-            </div>
-            <div class="insight-card fade-in delay-1">
-                <h3>洞察二：资本集中度达到历史极值，AI 成为"单一主题交易"</h3>
-                <p>Q1 2026 全球风投中 AI 占比 73%，这是一个接近史无前例的数字。它表明资本市场已经将 AI 视为未来十年最重要的技术叙事，几乎所有风险资本都在向 AI 赛道集中。</p>
-                <p>这种集中度的好处是 AI 基础设施和生态系统将以前所未有的速度完善，但风险同样明显：一旦 AI 商业化回报不及预期，整个风险投资市场可能面临系统性调整。此外，清洁能源、生物科技、太空技术等关键领域的融资空间被严重挤压。</p>
-            </div>
-            <div class="insight-card fade-in delay-2">
-                <h3>洞察三：2026 是 Agentic AI 的"生产元年"，企业软件格局将被重塑</h3>
-                <p>从 Microsoft 的法律 AI Agent 到 Google 的 Agent 工具套件，再到 Zapier 的 Agent 编排功能，2026 年初的信号非常明确：AI Agent 正在从概念验证走向生产部署。企业不再满足于"AI 辅助"式的工具，而是需要能够自主执行复杂工作流的"数字员工"。</p>
-                <p>这一转变将彻底重塑企业软件市场的竞争格局——传统的 SaaS 公司如果不能快速整合 AI Agent 能力，可能会被新一代 AI-native 平台颠覆。对于 IT 决策者而言，现在是评估和部署 AI Agent 战略的关键窗口期。</p>
-            </div>
-        </div>
-    </div>
+<!-- Key Insights -->
+<section id="insights" class="section">
+  <h2 class="section-title"><span class="dot"></span>当日关键洞察总结</h2>
+  <div class="insight-block" data-animate>
+    <h3>洞察一：AI 行业正在经历"军事化"分水岭</h3>
+    <p>五角大楼与 Google、OpenAI、Nvidia 的机密合作以及 Anthropic 的被排除，标志着一个更深层次的分化趋势：AI 技术正在被明确地划分为"军用"和"民用"两条路线。这种分化不仅仅是商业选择，更是哲学立场的体现。Anthropic 的宪法式 AI 理念使其无法在短期内接受军方的使用条款，而 OpenAI 和 Google 则更务实地拥抱国防市场。这种分化将在未来几年深刻影响 AI 技术的发展方向、人才流动和应用场景。对企业和投资者而言，理解这种分化并做出相应的战略选择至关重要。</p>
+  </div>
+  <div class="insight-block" data-animate>
+    <h3>洞察二：资本集中度达到历史极值，AI 成为"单一主题交易"</h3>
+    <p>Q1 2026 全球风投中 AI 占比 73%，这是一个接近史无前例的数字。它表明资本市场已经将 AI 视为未来十年最重要的技术叙事，几乎所有风险资本都在向 AI 赛道集中。这种集中度的好处是 AI 基础设施和生态系统将以前所未有的速度完善，但风险同样明显：一旦 AI 商业化回报不及预期，整个风险投资市场可能面临系统性调整。此外，清洁能源、生物科技、太空技术等关键领域的融资空间被严重挤压。</p>
+  </div>
+  <div class="insight-block" data-animate>
+    <h3>洞察三：2026 是 Agentic AI 的"生产元年"，企业软件格局将被重塑</h3>
+    <p>从 Microsoft 的法律 AI Agent 到 Google 的 Agent 工具套件，再到 Zapier 的 Agent 编排功能，2026 年初的信号非常明确：AI Agent 正在从概念验证走向生产部署。企业不再满足于"AI 辅助"式的工具，而是需要能够自主执行复杂工作流的"数字员工"。这一转变将彻底重塑企业软件市场的竞争格局——传统的 SaaS 公司如果不能快速整合 AI Agent 能力，可能会被新一代 AI-native 平台颠覆。对于 IT 决策者而言，现在是评估和部署 AI Agent 战略的关键窗口期。</p>
+  </div>
 </section>
 
-<!-- Footer -->
+<!-- Disclaimer -->
+<section class="section" style="padding-top:0;">
+  <div class="disclaimer">
+    <strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，TechCrunch、The Verge、VentureBeat、Wired、ScienceDaily、AP News、LiveScience、Reuters、CNBC、机器之心、ProductHunt 等来源遭遇反爬检测（403/429/超时），上述受限来源的内容已通过 WebSearch 交叉验证补充。
+  </div>
+</section>
+
+</main>
+
 <footer class="footer">
-    <p>生成时间：2026-05-01 | 数据来源：TechCrunch, The Verge, NYT, Reuters, Yahoo Finance, Crunchbase, KPMG, OpenAI, MIT Technology Review, BCG, NBER, NYAS, Darktrace, Experian, 新华网, 央视网, IT之家 等</p>
-    <p style="margin-top:12px; padding-top:12px; border-top:1px solid #334155;">
-        <strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。<br>
-        <strong>抓取说明：</strong>VentureBeat 遭遇 HTTP 429 限速、Reuters 遭遇 HTTP 401 认证限制、ProductHunt 实施了反爬检测（HTTP 403）。上述受限来源的内容已通过 WebSearch 和其他信源交叉验证补充。
-    </p>
-    <p style="margin-top:12px;">归档：<a href="https://maplelian.github.io/ai-news-bulletin/">https://maplelian.github.io/ai-news-bulletin/</a></p>
+  <p><strong>AI 资讯快报</strong> &#183; 2026年5月1日</p>
+  <p style="margin-top:8px;">编辑：QoderWork AI 资讯引擎</p>
+  <p style="margin-top:4px;">数据来源：TechCrunch、The Verge、VentureBeat、Wired、ScienceDaily、AP News、LiveScience、Reuters、CNBC、机器之心、量子位、ProductHunt、Crunchbase、KPMG、OpenAI、MIT Technology Review、BCG、NBER、NYAS、Darktrace、Experian、新华网、央视网、IT之家 等</p>
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    Chart.defaults.font.family = "'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif";
-    Chart.defaults.font.size = 11;
-
-    var c = { indigo: '#6366f1', pink: '#ec4899', cyan: '#06b6d4', amber: '#f59e0b', green: '#10b981', red: '#ef4444', purple: '#8b5cf6', blue: '#3b82f6' };
-
-    // Q1 2026 VC Distribution
-    new Chart(document.getElementById('investChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['AI 初创公司', '其他科技领域'],
-            datasets: [{
-                data: [2420, 889],
-                backgroundColor: [c.indigo, c.pink],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            cutout: '65%',
-            plugins: {
-                legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true, pointStyle: 'circle' } },
-                tooltip: { callbacks: { label: function(ctx) { return ctx.label + ': $' + ctx.parsed + 'B'; } } }
-            }
-        }
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    // Top 5 AI Funding
-    new Chart(document.getElementById('fundingChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Anthropic', 'xAI', 'Google-Anthropic', 'Isomorphic Labs', 'Rhoda AI'],
-            datasets: [{
-                label: '融资金额（亿美元）',
-                data: [300, 200, 400, 6, 45],
-                backgroundColor: [c.indigo, c.purple, c.pink, c.green, c.cyan],
-                borderRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: { legend: { display: false } },
-            scales: {
-                y: { beginAtZero: true, ticks: { callback: function(v) { return '$' + v + 'B'; } } },
-                x: { grid: { display: false } }
-            }
-        }
-    });
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
-    // AI Cybersecurity Threats
-    new Chart(document.getElementById('securityChart'), {
-        type: 'bar',
-        data: {
-            labels: ['AI驱动威胁增加', '安全专家关注', '攻击面扩大'],
-            datasets: [{
-                label: '百分比 (%)',
-                data: [73, 68, 82],
-                backgroundColor: [c.red, c.amber, c.pink],
-                borderRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            indexAxis: 'y',
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { beginAtZero: true, max: 100, ticks: { callback: function(v) { return v + '%'; } } },
-                y: { grid: { display: false } }
-            }
-        }
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const navHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        document.querySelector('.nav-links').classList.remove('open');
+      }
     });
-});
+  });
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const navHeight = document.querySelector('.navbar').offsetHeight;
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - navHeight - 80;
+      if (window.pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Chart.js defaults
+  Chart.defaults.font.family = "'Noto Sans SC', system-ui, sans-serif";
+  Chart.defaults.color = '#64748b';
+
+  // Chart 1: Funding Comparison (Bar chart with log scale)
+  const ctx1 = document.getElementById('chartFunding').getContext('2d');
+  new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: ['AI 初创公司\n(Q1 2026)', '其他科技领域\n(Q1 2026)'],
+      datasets: [{
+        label: '金额 (亿美元)',
+        data: [2420, 889],
+        backgroundColor: ['#6366f1', '#ec4899'],
+        borderRadius: 8,
+        barThickness: 50
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return '$' + context.parsed.y + ' 亿美元';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: '#f1f5f9' },
+          ticks: {
+            callback: function(value) {
+              return '$' + value + 'B';
+            }
+          }
+        },
+        x: {
+          grid: { display: false }
+        }
+      }
+    }
+  });
+
+  // Chart 2: Radar
+  const ctx2 = document.getElementById('chartRadar').getContext('2d');
+  new Chart(ctx2, {
+    type: 'radar',
+    data: {
+      labels: ['技术前沿', '行业竞争', '伦理安全', '医疗教育', '机器人', '数据安全', '政策标准', '办公工具'],
+      datasets: [{
+        label: '报道覆盖度（条数）',
+        data: [9, 9, 6, 6, 6, 6, 6, 6],
+        backgroundColor: 'rgba(99, 102, 241, 0.15)',
+        borderColor: '#6366f1',
+        pointBackgroundColor: '#6366f1',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: '#6366f1',
+        borderWidth: 2,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 10,
+          ticks: { stepSize: 2, backdropColor: 'transparent' },
+          grid: { color: '#e2e8f0' },
+          angleLines: { color: '#e2e8f0' },
+          pointLabels: {
+            font: { size: 12, weight: '600' },
+            color: '#334155'
+          }
+        }
+      }
+    }
+  });
+
+  // Chart 3: Timeline
+  const ctx3 = document.getElementById('chartTimeline').getContext('2d');
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: ['4/26', '4/27', '4/28', '4/29', '4/30', '5/1'],
+      datasets: [{
+        label: '重大事件密度指数',
+        data: [5, 8, 10, 6, 7, 9],
+        borderColor: '#ec4899',
+        backgroundColor: 'rgba(236, 72, 153, 0.08)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#ec4899',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel: function(context) {
+              const events = {
+                0: 'MIT 十大趋势 / 边缘 AI 兴起',
+                1: '五角大楼 AI 合同 / Meta-Manus 被阻',
+                2: '微软 OpenAI 协议终结 / 中国 AI 6000 家企业',
+                3: 'Google Agent 套件 / BCG 医疗报告',
+                4: 'Stargate 扩展 / 人形机器人出货量',
+                5: 'Agentic AI Foundation / AI 合规 deadline'
+              };
+              return '事件: ' + events[context.dataIndex];
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 12,
+          grid: { color: '#f1f5f9' }
+        },
+        x: {
+          grid: { display: false }
+        }
+      }
+    }
+  });
 </script>
 
 </body>
