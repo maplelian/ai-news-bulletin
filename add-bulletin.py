@@ -49,21 +49,57 @@ def get_date_title(filepath, custom_title=None):
 
 
 def copy_bulletin(filepath, year, month, day):
-    """复制 HTML 到日期目录"""
+    """复制 HTML 到日期目录，并注入归档首页链接"""
     dest_dir = os.path.join(REPO_DIR, year, month)
     os.makedirs(dest_dir, exist_ok=True)
     dest_path = os.path.join(dest_dir, f"{day}.html")
-    shutil.copy2(filepath, dest_path)
+    
+    # 读取源文件内容
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 检查是否已有归档链接，如果没有则注入
+    archive_link = f'https://maplelian.github.io/ai-news-bulletin/'
+    if 'nav-archive' not in content:
+        # 在 </nav> 前插入归档链接
+        nav_end = '</nav>'
+        archive_btn = f'    <a href="{archive_link}" class="nav-archive" target="_blank">&#x1F4C1; 归档首页</a>\n  </div>\n</nav>'
+        content = content.replace('</nav>', archive_btn)
+        
+        # 注入 CSS 样式（在 .nav-link:hover 后）
+        archive_css = '''.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; display: flex; align-items: center; gap: 0.35rem; }
+.nav-archive:hover { color: #fde68a; border-bottom-color: #fbbf24; }'''
+        content = content.replace(
+            '.nav-link:hover, .nav-link.active { color: #fff; border-bottom-color: #6366f1; }',
+            f'.nav-link:hover, .nav-link.active {{ color: #fff; border-bottom-color: #6366f1; }}\n{archive_css}'
+        )
+    
+    # 写入目标文件
+    with open(dest_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    
     print(f"[复制] {filepath} -> {dest_path}")
     return dest_path
 
 
 def update_index(year, month, day, title):
-    """更新 index.html 时间线"""
+    """更新 index.html 时间线 + 最新一期卡片"""
     with open(INDEX_FILE, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # 1. 更新统计数字 - 增加期数
+    # 1. 更新最新一期卡片
+    date_str = f"{year}年{int(month)}月{int(day)}日"
+    latest_pattern = r'<div class="latest-card">.*?</div>\s*</div>\s*<a href="[^"]*">[^<]*</a>\s*</div>'
+    latest_replacement = f'''<div class="latest-card">
+    <div>
+      <div class="text">最新一期：{date_str}</div>
+      <div class="date">覆盖 50+ 条精选资讯 · 3 大核心趋势 · 3 条今日头条</div>
+    </div>
+    <a href="./{year}/{month}/{day}.html">阅读 &rarr;</a>
+  </div>'''
+    content = re.sub(latest_pattern, latest_replacement, content, flags=re.DOTALL)
+
+    # 2. 更新统计数字 - 增加期数
     content = re.sub(
         r'(<div class="stat-value">)(\d+)(</div><div class="stat-label">期已归档</div>)',
         lambda m: f'{m.group(1)}{int(m.group(2)) + 1}{m.group(3)}',
