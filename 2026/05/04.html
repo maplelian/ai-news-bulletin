@@ -13,22 +13,21 @@ body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-seri
 
 /* Navigation */
 nav { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 0; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; overflow-x: auto; gap: 0; scrollbar-width: thin; }
-.nav-inner::-webkit-scrollbar { height: 4px; }
-.nav-inner::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
-.nav-brand { font-size: 1rem; font-weight: 700; color: #fff; padding: 1rem 1.5rem; white-space: nowrap; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.nav-link { color: #94a3b8; text-decoration: none; padding: 1rem 1rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; }
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0; }
+.nav-brand { font-size: 0.95rem; font-weight: 700; color: #fff; padding: 0.75rem 1.25rem; white-space: nowrap; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-right: 1px solid rgba(255,255,255,0.1); }
+.nav-row { display: contents; }
+.nav-link { color: #94a3b8; text-decoration: none; padding: 0.65rem 0.85rem; font-size: 0.82rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; }
 .nav-link:hover, .nav-link.active { color: #fff; border-bottom-color: #6366f1; }
-.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; flex-shrink: 0; display: flex; align-items: center; gap: 0.35rem; font-weight: 600; }
-.nav-archive:hover { color: #fde68a; border-bottom-color: #fbbf24; }
 
 /* Hero */
-.hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); color: #fff; padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden; }
+.hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); color: #fff; padding: 4rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(236,72,153,0.1) 0%, transparent 50%); }
 .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
-.hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero .subtitle { font-size: 1.2rem; color: #94a3b8; margin-bottom: 2rem; }
-.hero .date-badge { display: inline-block; background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.4); padding: 0.5rem 1.5rem; border-radius: 999px; font-size: 0.9rem; color: #c7d2fe; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 0.75rem; background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 1.5rem; }
+.hero .date-badge { display: inline-block; background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.4); padding: 0.4rem 1.25rem; border-radius: 999px; font-size: 0.85rem; color: #c7d2fe; }
+.hero .archive-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; color: #fbbf24; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.25rem; border-radius: 999px; border: 1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); transition: all 0.3s; }
+.hero .archive-link:hover { background: rgba(251,191,36,0.2); border-color: rgba(251,191,36,0.5); color: #fde68a; }
 
 /* Main content */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
@@ -131,11 +130,12 @@ footer { text-align: center; padding: 3rem 2rem; color: #94a3b8; font-size: 0.85
     <a href="#medical" class="nav-link">医疗教育</a>
     <a href="#robot" class="nav-link">机器人</a>
     <a href="#privacy" class="nav-link">数据隐私</a>
+  </div>
+  <div class="nav-inner" style="border-top: 1px solid rgba(255,255,255,0.08);">
     <a href="#policy" class="nav-link">标准政策</a>
     <a href="#productivity" class="nav-link">生产力</a>
     <a href="#products" class="nav-link">热门产品</a>
     <a href="#insights" class="nav-link">关键洞察</a>
-    <a href="https://maplelian.github.io/ai-news-bulletin/" class="nav-archive" target="_blank">&#x1F4C1; 归档首页</a>
   </div>
 </nav>
 
@@ -145,6 +145,8 @@ footer { text-align: center; padding: 3rem 2rem; color: #94a3b8; font-size: 0.85
     <h1>AI 资讯快报</h1>
     <p class="subtitle">每日全球 AI 行业 Intelligence Briefing</p>
     <span class="date-badge">2026 年 5 月 4 日 | 第 369 期</span>
+    <br>
+    <a href="https://maplelian.github.io/ai-news-bulletin/" class="archive-link" target="_blank">&#x1F4C1; 查看所有归档期数</a>
   </div>
 </header>
 

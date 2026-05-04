@@ -60,18 +60,19 @@ def copy_bulletin(filepath, year, month, day):
     
     # 检查是否已有归档链接，如果没有则注入
     archive_link = f'https://maplelian.github.io/ai-news-bulletin/'
-    if 'nav-archive' not in content:
-        # 在 </nav> 前插入归档链接
-        nav_end = '</nav>'
-        archive_btn = f'    <a href="{archive_link}" class="nav-archive" target="_blank">&#x1F4C1; 归档首页</a>\n  </div>\n</nav>'
-        content = content.replace('</nav>', archive_btn)
-        
-        # 注入 CSS 样式（在 .nav-link:hover 后）
-        archive_css = '''.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; flex-shrink: 0; display: flex; align-items: center; gap: 0.35rem; font-weight: 600; }
-.nav-archive:hover { color: #fde68a; border-bottom-color: #fbbf24; }'''
+    if 'archive-link' not in content:
+        # 在 date-badge 后插入归档链接
         content = content.replace(
-            '.nav-link:hover, .nav-link.active { color: #fff; border-bottom-color: #6366f1; }',
-            f'.nav-link:hover, .nav-link.active {{ color: #fff; border-bottom-color: #6366f1; }}\n{archive_css}'
+            '</span>\n  </div>\n</header>',
+            f'</span>\n    <br>\n    <a href="{archive_link}" class="archive-link" target="_blank">&#x1F4C1; 查看所有归档期数</a>\n  </div>\n</header>'
+        )
+        
+        # 注入 CSS 样式（在 .hero .date-badge 后）
+        archive_css = '''.hero .archive-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; color: #fbbf24; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.25rem; border-radius: 999px; border: 1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); transition: all 0.3s; }
+.hero .archive-link:hover { background: rgba(251,191,36,0.2); border-color: rgba(251,191,36,0.5); color: #fde68a; }'''
+        content = content.replace(
+            '.hero .date-badge { display: inline-block;',
+            f'{archive_css}\n.hero .date-badge {{ display: inline-block;'
         )
     
     # 写入目标文件
