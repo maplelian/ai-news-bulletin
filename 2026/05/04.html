@@ -13,12 +13,13 @@ body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-seri
 
 /* Navigation */
 nav { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 0; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; overflow-x: auto; gap: 0; scrollbar-width: none; }
-.nav-inner::-webkit-scrollbar { display: none; }
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; overflow-x: auto; gap: 0; scrollbar-width: thin; }
+.nav-inner::-webkit-scrollbar { height: 4px; }
+.nav-inner::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
 .nav-brand { font-size: 1rem; font-weight: 700; color: #fff; padding: 1rem 1.5rem; white-space: nowrap; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .nav-link { color: #94a3b8; text-decoration: none; padding: 1rem 1rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; }
 .nav-link:hover, .nav-link.active { color: #fff; border-bottom-color: #6366f1; }
-.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; display: flex; align-items: center; gap: 0.35rem; }
+.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; flex-shrink: 0; display: flex; align-items: center; gap: 0.35rem; font-weight: 600; }
 .nav-archive:hover { color: #fde68a; border-bottom-color: #fbbf24; }
 
 /* Hero */

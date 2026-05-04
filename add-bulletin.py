@@ -67,7 +67,7 @@ def copy_bulletin(filepath, year, month, day):
         content = content.replace('</nav>', archive_btn)
         
         # 注入 CSS 样式（在 .nav-link:hover 后）
-        archive_css = '''.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; display: flex; align-items: center; gap: 0.35rem; }
+        archive_css = '''.nav-archive { color: #fbbf24; text-decoration: none; padding: 1rem 1.5rem; font-size: 0.85rem; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; margin-left: auto; flex-shrink: 0; display: flex; align-items: center; gap: 0.35rem; font-weight: 600; }
 .nav-archive:hover { color: #fde68a; border-bottom-color: #fbbf24; }'''
         content = content.replace(
             '.nav-link:hover, .nav-link.active { color: #fff; border-bottom-color: #6366f1; }',
