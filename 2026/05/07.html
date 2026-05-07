@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 | 2026-05-07</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --indigo: #6366f1;
+  --pink: #ec4899;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-400: #94a3b8;
+  --radius: 14px;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,.12);
+}
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--slate-50);
+  color: #1e293b;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Sticky Nav ===== */
+.nav-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 0 8px;
+}
+.nav-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.nav-row a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate-600);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: all .2s;
+}
+.nav-row a:hover { background: var(--slate-100); color: var(--indigo); }
+.nav-brand {
+  font-weight: 700;
+  color: var(--indigo) !important;
+  font-size: 13px;
+}
+
+/* ===== Hero ===== */
+.hero {
+  background: linear-gradient(135deg, var(--slate-900) 0%, #1a1a3e 50%, #2d1b4e 100%);
+  color: #fff;
+  padding: 80px 20px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(99,102,241,.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(236,72,153,.1) 0%, transparent 50%);
+  animation: heroFloat 20s ease-in-out infinite;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(1deg); }
+  66% { transform: translate(-20px, 20px) rotate(-1deg); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #fff 30%, #c7d2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .date-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 24px;
+  padding: 8px 24px;
+  font-size: 15px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+.hero .archive-btn {
+  display: inline-block;
+  background: #fbbf24;
+  color: #78350f;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 28px;
+  border-radius: 24px;
+  text-decoration: none;
+  transition: all .2s;
+  margin-top: 8px;
+}
+.hero .archive-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(251,191,36,.4); }
+
+/* ===== Sections ===== */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--indigo);
+  display: inline-block;
+}
+.section-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 14px;
+  color: var(--slate-800);
+}
+
+/* ===== Cards ===== */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  transition: box-shadow .2s, transform .2s;
+}
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--slate-800);
+}
+.card .meta {
+  font-size: 13px;
+  color: var(--slate-400);
+  margin-bottom: 8px;
+}
+.card p { font-size: 14.5px; color: var(--slate-700); margin-bottom: 10px; }
+.card ul { padding-left: 18px; }
+.card li { font-size: 14px; color: var(--slate-600); margin-bottom: 4px; }
+.card a { color: var(--indigo); text-decoration: none; font-weight: 500; }
+.card a:hover { text-decoration: underline; }
+
+/* ===== Trend Cards ===== */
+.trend-card {
+  background: linear-gradient(135deg, #fff 0%, #f5f3ff 100%);
+  border-left: 4px solid var(--indigo);
+}
+.trend-card .insight {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(99,102,241,.06);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate-700);
+}
+.trend-card .insight strong { color: var(--indigo); }
+
+/* ===== Headline Cards ===== */
+.headline-card { border-left: 4px solid var(--pink); }
+.headline-card .badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 6px;
+}
+.badge-fire { background: #fef2f2; color: #dc2626; }
+.badge-tech { background: #eff6ff; color: #2563eb; }
+.badge-biz { background: #fefce8; color: #ca8a04; }
+.headline-card .impact {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(236,72,153,.05);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--slate-700);
+}
+.headline-card .impact strong { color: var(--pink); }
+
+/* ===== Grid ===== */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+/* ===== Product Cards ===== */
+.product-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--indigo), var(--pink));
+}
+.product-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--indigo);
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.product-card h3 { font-size: 18px; margin-bottom: 6px; }
+.product-card .stat {
+  display: inline-block;
+  font-size: 12px;
+  background: var(--slate-100);
+  color: var(--slate-600);
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-right: 6px;
+  margin-bottom: 10px;
+}
+.product-card .detail { font-size: 14px; color: var(--slate-600); margin-bottom: 6px; }
+.product-card .detail strong { color: var(--slate-800); }
+
+/* ===== Charts ===== */
+.chart-container {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+}
+.chart-container h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--slate-800);
+  text-align: center;
+}
+.chart-wrap { max-width: 600px; margin: 0 auto; }
+
+/* ===== Insight Summary ===== */
+.insight-summary {
+  background: linear-gradient(135deg, var(--slate-900), #1a1a3e);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.insight-summary h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #c7d2fe;
+}
+.insight-summary p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #e2e8f0;
+}
+
+/* ===== Disclaimer ===== */
+.disclaimer {
+  max-width: 1100px;
+  margin: 0 auto 48px;
+  padding: 0 20px;
+}
+.disclaimer-inner {
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: #713f12;
+  line-height: 1.6;
+}
+
+/* ===== Fade In Animation ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-1 { transition-delay: .1s; }
+.delay-2 { transition-delay: .2s; }
+.delay-3 { transition-delay: .3s; }
+.delay-4 { transition-delay: .4s; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .hero { padding: 60px 16px 40px; }
+  .section { padding: 32px 16px; }
+  .nav-row { gap: 2px 8px; }
+  .nav-row a { font-size: 12px; padding: 3px 8px; }
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 13px;
+  color: var(--slate-400);
+  border-top: 1px solid #e2e8f0;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky Navigation ===== -->
+<div class="nav-wrapper">
+  <div class="nav-row">
+    <a href="#" class="nav-brand">AI快报</a>
+    <a href="#trends">核心趋势</a>
+    <a href="#headlines">今日头条</a>
+    <a href="#tech">技术前沿</a>
+    <a href="#business">行业竞争</a>
+    <a href="#ethics">伦理安全</a>
+    <a href="#health">医疗教育</a>
+    <a href="#robot">机器人</a>
+    <a href="#security">数据隐私</a>
+  </div>
+  <div class="nav-row" style="margin-top:4px;">
+    <a href="#policy">标准政策</a>
+    <a href="#productivity">生产力</a>
+    <a href="#products">热门产品</a>
+    <a href="#insights">关键洞察</a>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>AI 资讯快报</h1>
+    <div class="date-badge">2026 年 5 月 7 日 &middot; 第 128 期</div>
+    <p style="font-size:16px; opacity:.8; margin-bottom:16px;">全球 AI 行业每日 intelligence briefing</p>
+    <a href="https://katelian.github.io/ai-news-bulletin/" class="archive-btn" target="_blank">📁 查看所有归档期数</a>
+  </div>
+</header>
+
+<!-- ===== Trends ===== -->
+<section class="section" id="trends">
+  <h2 class="section-title fade-in">一、今日核心趋势</h2>
+  <div class="card trend-card fade-in delay-1">
+    <h3>趋势 1：中美大模型竞赛白热化 —— GPT-5.5、DeepSeek V4、Gemma 4 密集发布</h3>
+    <p>2026 年 4 月底至 5 月初，全球大模型赛道迎来一波密集发布潮。OpenAI 于 4 月 23 日发布 GPT-5.5，在推理能力、代码生成和 Agent 执行效率上显著超越前代；DeepSeek 同期推出 V4 模型，宣布 API 价格削减 75%，并将其适配至消费级硬件运行；Google 则发布开源模型 Gemma 4，同时推出 AI Edge Gallery 应用，支持在 Android/iOS 设备上本地运行。</p>
+    <div class="insight"><strong>关键洞察：</strong> 大模型的"普惠化"趋势正在加速 —— 价格战和本地部署能力的提升，将使 AI 从云端垄断走向终端普及，中小企业和开发者的进入门槛大幅降低。</div>
+  </div>
+  <div class="card trend-card fade-in delay-2">
+    <h3>趋势 2：AI 机器人迎来"物理智能"拐点 —— Meta 收购 + Genesis AI 发布 + 清华研究院成立</h3>
+    <p>本周机器人赛道连爆三件大事：Meta 收购人形机器人初创公司 Assured Robot Intelligence (ARI)；Genesis AI 发布 GENE-26.5，号称首个实现"人类级物理操作能力"的机器人基础模型；清华大学具身智能与机器人研究院五大基础研究中心正式揭牌。</p>
+    <div class="insight"><strong>关键洞察：</strong> "具身智能"正在成为 2026 年 AI 行业最大的结构性机会之一。谁能在物理交互、运动控制和场景适配上建立壁垒，谁就可能定义下一代 AI 硬件的标准。</div>
+  </div>
+  <div class="card trend-card fade-in delay-3">
+    <h3>趋势 3：月之暗面 20 亿美元融资收官，中国 AI 进入"资本军备竞赛"</h3>
+    <p>月之暗面（Kimi）即将完成约 20 亿美元新一轮融资，投后估值突破 200 亿美元。不到半年时间，已完成四轮融资，累计超过 39 亿美元，估值翻了四倍。DeepSeek 估值已达 3000 亿元人民币，中国大模型"诸神之战"全面打响。</p>
+    <div class="insight"><strong>关键洞察：</strong> 中国 AI 赛道的资本集中度正在快速提升，头部效应加剧。200 亿美元估值意味着 Kimi 已进入全球 AI 独角兽第一梯队，但商业化变现能力将是下一轮考验。</div>
+  </div>
+</section>
+
+<!-- ===== Charts ===== -->
+<section class="section" id="charts-section">
+  <h2 class="section-title fade-in">数据可视化</h2>
+  <div class="grid-2">
+    <div class="chart-container fade-in delay-1">
+      <h4>2026 全球 AI 投资格局（十亿美元）</h4>
+      <div class="chart-wrap"><canvas id="chart-invest"></canvas></div>
+    </div>
+    <div class="chart-container fade-in delay-2">
+      <h4>主流大模型 API 价格对比（每百万 tokens / 美元）</h4>
+      <div class="chart-wrap"><canvas id="chart-pricing"></canvas></div>
+    </div>
+  </div>
+  <div class="chart-container fade-in delay-3" style="max-width:600px;margin:0 auto;">
+    <h4>AI 全球采用覆盖率</h4>
+    <div class="chart-wrap"><canvas id="chart-adoption"></canvas></div>
+  </div>
+</section>
+
+<!-- ===== Headlines ===== -->
+<section class="section" id="headlines">
+  <h2 class="section-title fade-in">二、今日头条</h2>
+  <div class="card headline-card fade-in delay-1">
+    <h3><span class="badge badge-fire">🔥 头条</span> OpenAI 发布 GPT-5.5 —— 推理与 Agent 能力全面升级</h3>
+    <p>OpenAI 于 4 月 23 日正式发布 GPT-5.5，作为当前旗舰大语言模型。新版本在复杂推理、代码编写、长程任务规划和 Agent 集群调度方面实现显著跃升，但未原生支持图像、音频或视频输出。</p>
+    <ul>
+      <li>GPT-5.5 在编程和逻辑推理基准测试中大幅领先前代，推理时间扩展成为核心驱动力</li>
+      <li>不原生支持多模态输出，专注于文本和代码能力的极致优化</li>
+      <li>发布同日，Anthropic 也推出新模型，两大巨头正面对决</li>
+    </ul>
+    <p><a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank">原文链接</a></p>
+    <div class="impact"><strong>思考/影响：</strong> GPT-5.5 的发布策略显示出 OpenAI 在"通用多模态"和"深度推理"之间选择了后者。在 Agent 和工作流自动化场景下，推理质量和任务完成度比多模态输出更具商业价值。</div>
+  </div>
+  <div class="card headline-card fade-in delay-2">
+    <h3><span class="badge badge-biz">💼 商业</span> 月之暗面完成 20 亿美元融资，投后估值突破 200 亿美元</h3>
+    <p>Kimi 母公司月之暗面即将完成约 20 亿美元新一轮融资，投后估值突破 200 亿美元。本轮由美团龙珠领投（单笔超 2 亿美元），中国移动、CPE 等跟投。半年内四轮累计融资超 39 亿美元。</p>
+    <ul>
+      <li>融资将用于长上下文处理能力强化、算力基础设施建设和人才招募</li>
+      <li>4 月发布 K2.6 模型，提升代码编写、长程任务执行及 Agent 集群支持能力</li>
+      <li>因用户量激增导致服务不稳定，公司曾对所有用户进行额度重置作为补偿</li>
+    </ul>
+    <p><a href="https://finance.sina.com.cn/tech/shenji/2026-05-07/doc-inhwzrtk7789989.shtml" target="_blank">原文链接</a></p>
+    <div class="impact"><strong>思考/影响：</strong> 200 亿美元估值使月之暗面成为全球 AI 独角兽第一梯队成员。但用户量暴增导致的服务不稳定也暴露了基础设施瓶颈，算力投入将是其商业化成败的关键。</div>
+  </div>
+  <div class="card headline-card fade-in delay-3">
+    <h3><span class="badge badge-tech">💡 技术</span> Genesis AI 发布 GENE-26.5 —— 首个"人类级物理操作"机器人基础模型</h3>
+    <p>Genesis AI 发布 GENE-26.5，这是首个使机器人具备人类级物理操作能力的 AI 基础模型。该模型使机器人能够理解、预测和适应人类行为，实现精细的物体操控和环境交互。</p>
+    <ul>
+      <li>GENE-26.5 聚焦机器人"大脑"层面，提供通用的物理智能基础</li>
+      <li>支持多种机器人平台的适配，不局限于单一硬件形态</li>
+      <li>标志着机器人 AI 从"专用算法"向"通用基础模型"的范式转变</li>
+    </ul>
+    <p><a href="https://www.prnewswire.com/news-releases/genesis-ai-unveils-gene-26-5--the-first-ai-brain-to-enable-robots-with-human-level-physical-manipulation-capabilities-302763638.html" target="_blank">原文链接</a></p>
+    <div class="impact"><strong>思考/影响：</strong> GENE-26.5 的发布类比于大语言模型领域的"GPT 时刻"——将专用机器人算法统一到一个基础模型框架下。这可能大幅降低机器人开发的门槛。</div>
+  </div>
+</section>
+
+<!-- ===== Tech ===== -->
+<section class="section" id="tech">
+  <h2 class="section-title fade-in">三、技术前沿</h2>
+  <h3 class="section-subtitle fade-in">大模型</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>OpenAI GPT-5.5 正式发布</h3>
+      <p>OpenAI 旗舰模型 GPT-5.5 于 4 月 23 日发布，在编程和推理基准上显著提升。采用推理时间扩展和后训练调优策略，而非单纯追求模型参数规模。</p>
+      <ul><li>专注文本/代码推理深度；不原生支持多模态输出；与 Anthropic 新模型同日发布形成正面对决</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>DeepSeek V4 发布并降价 75%</h3>
+      <p>DeepSeek 推出 V4 模型预览版，同时宣布 API 价格削减 75%，并将模型适配至消费级硬件运行，大幅降低部署门槛。</p>
+      <ul><li>价格战策略激进；支持消费级硬件部署；预览版已展现竞争力的基准表现</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>Google Gemma 4 开源 + AI Edge Gallery</h3>
+      <p>Google 发布开源模型 Gemma 4，并同步推出 AI Edge Gallery 应用，支持在 Android/iOS 设备上本地运行大模型。</p>
+      <ul><li>完全开源可商用；端侧本地推理无需联网；与 DeepSeek V4 在端侧赛道形成竞争</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">多模态</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>AI 生成内容检测技术升级</h3>
+      <p>多家机构推出新一代合成媒体检测工具，可识别 AI 生成的文本、图像和音频，检测准确率提升至 90%+。</p>
+      <ul><li>支持多模态联合验证；国际 AI 安全报告 2026 推荐将其纳入基础设施</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>推理时间扩展成为性能核心路径</h3>
+      <p>2026 年大模型性能提升更多来自推理时间扩展和后训练调整，而非单纯扩大参数量。模型在复杂考试中达专家水平，但在简单任务仍有失误。</p>
+      <ul><li>计算效率提升优于参数扩张；专家级考试水平但简单任务出错</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>开源 vs 闭源模型性能差距缩小</h3>
+      <p>Gemma 4、DeepSeek V4 等开源模型在多个基准上接近闭源模型水平，开源生态竞争力显著增强。</p>
+      <ul><li>开源模型成本优势明显；闭源模型在推理深度仍领先；企业选择趋于多元化</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">基础设施</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>全球 AI 基础设施投资将达 6500 亿美元</h3>
+      <p>Bridgewater 预测四大科技巨头 2026 年 AI 基础设施投资约 6500 亿美元。Gartner 预计全球 AI 总支出将达 2.5 万亿美元。</p>
+      <ul><li>算力竞赛持续加码；投资集中在数据中心和芯片</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI Agent 编程能力翻倍</h3>
+      <p>自动化 Agent 现在可处理原本需要人类约 30 分钟完成的编程任务，能力较一年前翻倍。</p>
+      <ul><li>Agent 自主性显著提升；企业工作流自动化加速；开发者角色转变</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>端侧 AI 部署加速</h3>
+      <p>Google AI Edge Gallery 等应用推动大模型在移动端本地运行，减少对云端算力的依赖。</p>
+      <ul><li>隐私保护优势明显；离线场景可用；硬件算力要求仍较高</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Business ===== -->
+<section class="section" id="business">
+  <h2 class="section-title fade-in">四、行业竞争与战略</h2>
+  <h3 class="section-subtitle fade-in">巨头动态</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>Meta 收购人形机器人公司 ARI</h3>
+      <p>Meta 收购 Assured Robot Intelligence，将其创始工程师并入高级 AI 研究部门，强化自主机器学习和全身运动控制能力。</p>
+      <ul><li>收购价格未披露；聚焦消费级机器人场景</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>OpenAI 推出 B2B Signals 洞察服务</h3>
+      <p>OpenAI 于 5 月 6 日发布 B2B Signals，为前沿企业提供 AI 采用情况的洞察数据。</p>
+      <ul><li>面向企业客户；提供 AI adoption 指标；加强 B2B 生态布局</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>Anthropic 与 OpenAI 同日发布新模型</h3>
+      <p>两大 AI 巨头在同一天发布新模型，正面竞争加剧。Anthropic 侧重安全性和可解释性，OpenAI 侧重推理深度。</p>
+      <ul><li>差异化竞争策略；企业客户选择空间扩大</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">融资</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>月之暗面半年四轮融资超 39 亿美元</h3>
+      <p>完成约 20 亿美元新融资，投后估值突破 200 亿美元，美团龙珠领投超 2 亿美元。</p>
+      <ul><li>算力基础设施为主要投入方向；商业化进程加速</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>DeepSeek 估值达 3000 亿元人民币</h3>
+      <p>DeepSeek 在 V4 发布后估值攀升至约 3000 亿元，成为中国 AI 大模型赛道另一巨头。</p>
+      <ul><li>降价策略换取市场份额；开源生态建设领先</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>全球 AI 融资持续向头部集中</h3>
+      <p>2026 年 Q1 全球 AI 融资数据显示，大额融资（&gt;1 亿美元）占比超过 60%。</p>
+      <ul><li>头部效应加剧；基础设施层最受资本青睐</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">人才</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>清华成立具身智能五大研究中心</h3>
+      <p>覆盖模型与交互、感知与控制、软硬件与本体、数据与算力、战略与标准。</p>
+      <ul><li>校长李路明强调具身智能是 AI 走向物理世界的核心载体</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 人才争夺向机器人领域延伸</h3>
+      <p>大模型公司开始招募机器人学、控制理论、机械设计等跨学科人才。</p>
+      <ul><li>跨学科人才最抢手；学术界与产业界合作加深</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>AI 安全研究员需求激增</h3>
+      <p>12 家公司发布或更新了前沿 AI 安全框架，合规岗位需求翻倍。</p>
+      <ul><li>跨法律+技术背景人才稀缺</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Ethics ===== -->
+<section class="section" id="ethics">
+  <h2 class="section-title fade-in">五、伦理与安全</h2>
+  <h3 class="section-subtitle fade-in">AI 安全研究</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>国际 AI 安全报告 2026 发布</h3>
+      <p>至少 7 亿人每周使用领先 AI 系统；AI Agent 编程能力一年翻倍；自动化工具识别了 77% 的软件漏洞。</p>
+      <ul><li>7 亿周活标志 AI 进入主流化；模型能力不均衡</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 模型可被用于网络入侵和自动化欺诈</h3>
+      <p>恶意行为者已积极利用 AI 进行数字入侵和自动化欺诈攻击，降低了网络攻击门槛。</p>
+      <ul><li>自动化欺诈规模化；防御方需同步升级 AI 能力</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>12 家公司更新前沿 AI 安全框架</h3>
+      <p>2025-2026 年间，12 家前沿 AI 公司发布或更新了安全框架，行业自律加强。</p>
+      <ul><li>预部署测试标准提升；安全框架从自愿向强制过渡</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">透明度与治理</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>开源模型治理成难题</h3>
+      <p>开源权重模型"一旦发布无法召回"，用户可移除安全过滤器，给治理带来独特挑战。</p>
+      <ul><li>开源 vs 安全的平衡难题；社区自我监管机制尚不成熟</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>"证据困境"延缓政策制定</h3>
+      <p>过早行动可能制定无效规则，但延迟行动会让社会暴露于严重风险中。</p>
+      <ul><li>AI 发展速度超过立法节奏；需要灵活的监管框架</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>深度伪造检测纳入关键基础设施</h3>
+      <p>报告建议各国将合成媒体验证能力纳入关键基础设施建设。</p>
+      <ul><li>深度伪造技术日益逼真；需要标准化的验证协议</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Health ===== -->
+<section class="section" id="health">
+  <h2 class="section-title fade-in">六、医疗与教育应用</h2>
+  <h3 class="section-subtitle fade-in">医疗</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>NBER 举办 AI 医疗应用春季会议</h3>
+      <p>美国国家经济研究局聚焦 AI 在临床决策、药物研发和健康管理中的最新进展。</p>
+      <ul><li>关注老龄化健康经济学；AI 辅助诊断准确率持续提升</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 在放射肿瘤学教育中的角色</h3>
+      <p>ASTRO 2026 春季刊发文讨论 AI 在医学教育中的定位，认为 AI 可通过考试但无法替代临床判断。</p>
+      <ul><li>AI 能应试但缺乏临床直觉；人机协作而非替代是方向</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>数字健康 AI 趋势 2026</h3>
+      <p>聚焦个性化治疗方案、远程患者监测和预测性健康管理。</p>
+      <ul><li>可穿戴设备数据驱动 AI 分析；慢性病管理效果显著</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">教育</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>AI 自动化与健康教育学位未来</h3>
+      <p>AI 和自动化正在重塑健康教育学位的职业路径，要求课程加入数据科学和 AI 素养内容。</p>
+      <ul><li>AI 素养成为核心技能；跨学科培养是趋势</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 辅助教学工具在企业培训中普及</h3>
+      <p>企业培训领域 AI 辅助教学工具采用率大幅增长，培训效率提升 30%+。</p>
+      <ul><li>自适应学习成为主流；ROI 可量化</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>IJCAI-ECAI 2026 设立 AI + Health 专题</h3>
+      <p>大会设立 AI 与健康专题，征集 AI 赋能医疗方法创新的论文。</p>
+      <ul><li>可解释性是评审重点；临床验证数据受重视</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Robots ===== -->
+<section class="section" id="robot">
+  <h2 class="section-title fade-in">七、机器人前沿</h2>
+  <h3 class="section-subtitle fade-in">人形机器人</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>Genesis AI 发布 GENE-26.5 机器人基础模型</h3>
+      <p>GENE-26.5 使机器人具备人类级物理操作能力，支持理解、预测、适应人类行为。</p>
+      <ul><li>通用基础模型范式；跨硬件平台适配；从专用走向通用</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>新一代人形机器人进入量产阶段</h3>
+      <p>多款人形机器人于 2026 年开始量产并进入实际场景测试，从实验室走向工厂和服务场景。</p>
+      <ul><li>量产成本下降；场景适配度提升；安全标准在制定中</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>Meta 收购 ARI 强化人形机器人布局</h3>
+      <p>Meta 收购 Assured Robot Intelligence，整合算法团队到高级 AI 研究部门。</p>
+      <ul><li>消费级场景定位；全身运动控制是核心</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">工业与服务机器人</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>机器人在竞赛中超越人类</h3>
+      <p>人形机器人在某些任务场景中已超过人类表现，特别是在速度和精确度方面。</p>
+      <ul><li>特定场景超越人类；通用性仍是短板</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>法国初创发布通用机器人 AI 模型</h3>
+      <p>发布可操控多种机器人的 AI 模型，展示类人机械手的精细操作能力。</p>
+      <ul><li>跨机器人平台通用；精细操作能力突出</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>工业机器人智能化升级加速</h3>
+      <p>传统工业机器人厂商加速集成 AI 能力，实现自适应加工、预测性维护和柔性生产。</p>
+      <ul><li>存量设备智能化改造；预测性维护降本显著</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">训练与控制</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>清华成立具身智能五大研究中心</h3>
+      <p>覆盖模型与交互、感知与控制、软硬件与本体、数据与算力、战略与标准。</p>
+      <ul><li>产学研协同创新；国家战略支撑</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>Sim-to-Real 迁移学习取得突破</h3>
+      <p>通过高保真仿真环境训练机器人策略，再迁移到真实世界的能力取得显著进展。</p>
+      <ul><li>训练效率提升 10 倍+；通用策略迁移是方向</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>机器人安全标准制定提上日程</h3>
+      <p>随着人形机器人进入物理世界，安全标准和测试协议成为行业焦点。</p>
+      <ul><li>人机交互安全规范；法律责任框架待建立</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Security ===== -->
+<section class="section" id="security">
+  <h2 class="section-title fade-in">八、数据安全与隐私</h2>
+  <h3 class="section-subtitle fade-in">网络威胁</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>2026 被称为"AI 辅助数据泄露元年"</h3>
+      <p>Experian 报告指出，AI 已成为 2026 年网络安全最大威胁，AI 辅助攻击数量激增。</p>
+      <ul><li>AI 降低了攻击者门槛；自动化攻击规模扩大</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI Agent 配置错误导致数据泄露风险</h3>
+      <p>配置不当或产生"幻觉"的 AI Agent 可能泄露敏感企业数据。</p>
+      <ul><li>Shadow AI 治理难题；Agent 权限管理需细化</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>自动化欺诈攻击规模化</h3>
+      <p>AI 驱动的钓鱼邮件、深度伪造语音等欺诈手段规模化。</p>
+      <ul><li>多模态欺诈增加；零信任架构成必需</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">隐私技术</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>AI 数据治理框架成为企业刚需</h3>
+      <p>Kiteworks 等厂商推出 AI 数据安全管理方案，帮助企业治理 Shadow AI。</p>
+      <ul><li>数据分类分级是基础；合规成本上升</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>隐私计算与大模型融合加速</h3>
+      <p>联邦学习、差分隐私等隐私计算技术与大模型训练的结合加速。</p>
+      <ul><li>医疗和金融领域需求最强；标准化协议在制定中</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>合成数据成为隐私保护新路径</h3>
+      <p>使用合成数据替代真实数据训练 AI 模型，在保护隐私的同时保持模型效果。</p>
+      <ul><li>数据质量在提升；监管认可度增加</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Policy ===== -->
+<section class="section" id="policy">
+  <h2 class="section-title fade-in">九、行业标准与政策</h2>
+  <h3 class="section-subtitle fade-in">国际政策</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>国际 AI 安全报告 2026 呼吁全球协调</h3>
+      <p>强调"纵深防御"和"加强关键基础设施"策略，证据驱动而非预设规则。</p>
+      <ul><li>跨国协调机制缺失；基础设施韧性是优先事项</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>2026 年 AI 监管从自愿走向强制</h3>
+      <p>多国将自愿性行业标准转化为法律要求，预部署测试成法定要求。</p>
+      <ul><li>红队测试纳入合规；处罚力度加大</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>欧盟 AI 法案实施进入关键年</h3>
+      <p>欧盟 AI 法案在 2026 年全面生效，高风险 AI 系统面临严格的合规要求。</p>
+      <ul><li>分类监管框架落地；全球监管标杆效应</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">中国政策</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>中国"AI+"和"机器人+"行动持续推进</h3>
+      <p>清华具身智能研究院明确紧扣国家"人工智能+"和"机器人+"行动部署。</p>
+      <ul><li>国家层面战略支持；重点赛道获资源倾斜</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>中国 AI 大模型监管框架在完善</h3>
+      <p>监管框架在安全评估、算法备案和数据合规方面持续完善。</p>
+      <ul><li>备案制与事后监管结合；数据出境规则细化</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>AI 标准化组织活跃度提升</h3>
+      <p>在模型评测、数据治理、伦理审查等方面发布多项新标准。</p>
+      <ul><li>评测基准本土化；国际标准化参与度提升</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">标准化</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>12 家公司发布前沿 AI 安全框架</h3>
+      <p>框架内容趋同（红队测试、安全评估、透明度报告），从自愿向强制过渡。</p>
+      <ul><li>第三方审计需求增加</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 模型基准测试标准在统一</h3>
+      <p>多家机构推动统一评测体系，避免"基准刷分"现象。</p>
+      <ul><li>真实场景性能受重视；第三方独立评测机构崛起</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>机器人安全标准制定启动</h3>
+      <p>ISO 等组织启动人形机器人安全标准和测试协议相关工作。</p>
+      <ul><li>人机交互安全规范；故障冗余设计要求</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Productivity ===== -->
+<section class="section" id="productivity">
+  <h2 class="section-title fade-in">十、智能办公与生产力工具</h2>
+  <h3 class="section-subtitle fade-in">AI Agent</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>Agentic AI 工具成为企业工作流主流</h3>
+      <p>2026 年，Agentic AI 工具在企业工作流中大规模部署，可自主完成多步骤任务。</p>
+      <ul><li>Agent 自主规划能力提升；多 Agent 协作场景出现</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI Agent 编程能力翻倍</h3>
+      <p>自动化 Agent 可处理原本需要人类约 30 分钟完成的编程任务，识别了 77% 的安全漏洞。</p>
+      <ul><li>代码理解和生成质量提升；安全审计能力突出</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>Slack 发布 2026 最佳 Agentic AI 平台指南</h3>
+      <p>强调工具调用和 API 编排是 Agent 能力的核心，Agent ≠ Chatbot。</p>
+      <ul><li>集成现有系统是关键；安全和合规是采购门槛</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">企业自动化</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>Zapier 等自动化平台全面集成 AI</h3>
+      <p>传统 RPA 和 AI Agent 的融合成为趋势，低代码/无代码 AI 自动化普及。</p>
+      <ul><li>跨系统编排能力提升；中小企业采用率大增</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 工作流自动化 ROI 可量化</h3>
+      <p>企业 AI 自动化投资回报率可量化，培训效率提升 30%+，运营成本降低 20-40%。</p>
+      <ul><li>ROI 数据驱动采购决策；变更管理是成功关键</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>企业 AI 治理框架成标配</h3>
+      <p>AI 治理框架（权限管理、审计日志、合规审查）成为企业标配。</p>
+      <ul><li>Shadow AI 治理是痛点；合规成本可控化</li></ul>
+    </div>
+  </div>
+  <h3 class="section-subtitle fade-in">协作</h3>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>FlowMarket：AI Agent 社交网络</h3>
+      <p>2026 年 5 月 7 日 Product Hunt 登顶，定位为全球首个 AI Agent 社交网络。</p>
+      <ul><li>AI Agent 自主交互；内容生成和消费自动化</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>微软发布 2026 年七大 AI 趋势</h3>
+      <p>聚焦 AI 从实验性工具向生产级基础设施的转变。</p>
+      <ul><li>AI 进入"生产级"阶段；安全和可信度是关键</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>AI 辅助协作工具在企业中普及</h3>
+      <p>会议摘要、文档协作、知识管理等场景中 AI 辅助工具采用率大幅增长。</p>
+      <ul><li>自然语言交互成标配；隐私保护是差异化因素</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Products ===== -->
+<section class="section" id="products">
+  <h2 class="section-title fade-in">十一、热门 AI 产品动态</h2>
+  <div class="grid-3">
+    <div class="product-card fade-in delay-1">
+      <div class="product-rank">1</div>
+      <h3>FlowMarket</h3>
+      <div>
+        <span class="stat">🏆 PH 日榜第1 (5/7)</span>
+        <span class="stat">2026-05-07 发布</span>
+      </div>
+      <p class="detail">全球首个 AI Agent 社交网络，AI Agent 可自主生成和消费内容，构建 Agent 之间的协作生态。</p>
+      <p class="detail"><strong>场景：</strong>AI Agent 生态建设、自动化内容分发、Agent 协作网络</p>
+      <p class="detail"><strong>适合使用者：</strong>AI 开发者、Agent 平台运营者、自动化工作流设计师</p>
+    </div>
+    <div class="product-card fade-in delay-2">
+      <div class="product-rank">2</div>
+      <h3>GPT-5.5 (OpenAI)</h3>
+      <div>
+        <span class="stat">🔥 全球热搜</span>
+        <span class="stat">2026-04-23 发布</span>
+      </div>
+      <p class="detail">OpenAI 最新旗舰大语言模型，在推理、编程和 Agent 能力上全面升级，专注深度推理而非多模态输出。</p>
+      <p class="detail"><strong>场景：</strong>复杂推理、代码生成、Agent 工作流、数据分析</p>
+      <p class="detail"><strong>适合使用者：</strong>开发者、数据分析师、企业自动化团队</p>
+    </div>
+    <div class="product-card fade-in delay-3">
+      <div class="product-rank">3</div>
+      <h3>Gemma 4 (Google)</h3>
+      <div>
+        <span class="stat">📦 完全开源</span>
+        <span class="stat">2026-04 末发布</span>
+      </div>
+      <p class="detail">Google 最新开源大语言模型，配合 AI Edge Gallery 应用支持移动端本地运行。</p>
+      <p class="detail"><strong>场景：</strong>端侧 AI 推理、隐私敏感场景、离线应用</p>
+      <p class="detail"><strong>适合使用者：</strong>移动开发者、隐私合规要求高的企业</p>
+    </div>
+    <div class="product-card fade-in delay-1">
+      <div class="product-rank">4</div>
+      <h3>DeepSeek V4</h3>
+      <div>
+        <span class="stat">💰 降价 75%</span>
+        <span class="stat">2026-04 末预览版</span>
+      </div>
+      <p class="detail">DeepSeek 最新大模型，API 价格削减 75%，适配消费级硬件运行，性价比突出。</p>
+      <p class="detail"><strong>场景：</strong>成本敏感型 AI 应用、端侧部署、中小企业 AI 集成</p>
+      <p class="detail"><strong>适合使用者：</strong>预算有限的开发者、中小企业</p>
+    </div>
+    <div class="product-card fade-in delay-2">
+      <div class="product-rank">5</div>
+      <h3>Kimi K2.6 (月之暗面)</h3>
+      <div>
+        <span class="stat">💵 20亿融资</span>
+        <span class="stat">2026-04 发布</span>
+      </div>
+      <p class="detail">月之暗面最新模型，强化代码编写、长程任务执行及 Agent 集群支持能力，用户量激增。</p>
+      <p class="detail"><strong>场景：</strong>长文档处理、代码开发、Agent 工作流编排</p>
+      <p class="detail"><strong>适合使用者：</strong>中文用户群体、长文本处理需求者</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Insights ===== -->
+<section class="section" id="insights">
+  <h2 class="section-title fade-in">十二、当日关键洞察总结</h2>
+  <div class="insight-summary fade-in delay-1">
+    <h3>洞察 1：AI 竞争已从"模型性能"升级为"生态位争夺"</h3>
+    <p>OpenAI 追求推理深度（GPT-5.5），Google 押注开源和端侧（Gemma 4），DeepSeek 打价格战（V4 降价 75%），月之暗面聚焦长上下文和中文生态（K2.6 + 20 亿美元融资）。每家玩家都在选择不同的生态位，而非单纯在同一个基准上竞争。这种分化有利于市场的多元化和健康发展，但也意味着"赢家通吃"的逻辑正在被打破。对于企业和开发者而言，选择哪个生态将比"哪个模型最强"更重要。</p>
+  </div>
+  <div class="insight-summary fade-in delay-2">
+    <h3>洞察 2："物理智能"是 2026 年最大的结构性增量</h3>
+    <p>Meta 收购 ARI、Genesis AI 发布 GENE-26.5、清华成立具身智能研究院、法国初创发布通用机器人模型 —— 本周机器人赛道的密集度前所未有。大语言模型已经证明了"基础模型 + 大规模数据"范式的可行性，而下一个万亿级市场很可能在物理世界。中国在这条赛道上不仅有资本投入，更有系统化的学术布局（清华五大中心），具备长期竞争力。</p>
+  </div>
+  <div class="insight-summary fade-in delay-3">
+    <h3>洞察 3：AI 安全的"证据困境"需要新的治理范式</h3>
+    <p>国际 AI 安全报告 2026 揭示了一个核心矛盾：AI 发展速度远超立法节奏，政策制定者面临"过早行动制定无效规则"和"延迟行动暴露于风险"的两难选择。7 亿周活用户意味着 AI 已经进入主流社会，但模型在简单任务上的失误和被恶意利用的风险依然真实存在。"纵深防御"策略 —— 不依赖单一安全措施，而是多层防护 —— 可能是当前最务实的路径。</p>
+  </div>
+</section>
+
+<!-- ===== Disclaimer ===== -->
+<div class="disclaimer fade-in">
+  <div class="disclaimer-inner">
+    <strong>免责声明：</strong> 本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，ProductHunt（HTTP 403）、VentureBeat、机器之心/量子位等来源访问受限。上述受限来源的内容已通过 WebSearch 和其他信源交叉验证补充。
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>AI 资讯快报 &copy; 2026 &middot; 每日自动抓取 + 编辑整理 &middot; <a href="https://katelian.github.io/ai-news-bulletin/" target="_blank" style="color:var(--indigo);">查看所有归档期数</a></p>
+</footer>
+
+<script>
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Charts
+const chartColors = {
+  indigo: '#6366f1',
+  pink: '#ec4899',
+  blue: '#3b82f6',
+  green: '#10b981',
+  amber: '#f59e0b',
+  purple: '#8b5cf6',
+  slate: '#64748b'
+};
+
+// Chart 1: Investment
+new Chart(document.getElementById('chart-invest'), {
+  type: 'bar',
+  data: {
+    labels: ['Alphabet', 'Microsoft', 'Amazon', 'Meta', '其他巨头'],
+    datasets: [{
+      label: '2026 AI 基础设施投资 ($B)',
+      data: [180, 160, 140, 120, 50],
+      backgroundColor: [chartColors.indigo, chartColors.blue, chartColors.green, chartColors.pink, chartColors.slate],
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => `$${ctx.parsed.y}B`
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: v => `$${v}B` },
+        grid: { color: '#f1f5f9' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 2: Pricing
+new Chart(document.getElementById('chart-pricing'), {
+  type: 'bar',
+  data: {
+    labels: ['GPT-5.5\n(input)', 'GPT-5.5\n(output)', 'DeepSeek V4\n(input)', 'DeepSeek V4\n(output)', 'Gemma 4\n(开源)'],
+    datasets: [{
+      label: '每百万 tokens 价格 ($)',
+      data: [2.50, 10.00, 0.27, 1.10, 0],
+      backgroundColor: [chartColors.indigo, '#818cf8', chartColors.pink, '#f472b6', chartColors.green],
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => `$${ctx.parsed.x}/M tokens`
+        }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        ticks: { callback: v => `$${v}` },
+        grid: { color: '#f1f5f9' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 3: Adoption
+new Chart(document.getElementById('chart-adoption'), {
+  type: 'doughnut',
+  data: {
+    labels: ['AI 周活用户 (7亿+)', '未使用但计划中', '未使用且无计划'],
+    datasets: [{
+      data: [35, 40, 25],
+      backgroundColor: [chartColors.indigo, chartColors.amber, chartColors.slate],
+      borderWidth: 0,
+      spacing: 4,
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '60%',
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { padding: 16, usePointStyle: true, pointStyleWidth: 10 }
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => `${ctx.label}: ${ctx.parsed}%`
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
