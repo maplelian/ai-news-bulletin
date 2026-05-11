@@ -18,7 +18,7 @@ import re
 import shutil
 from datetime import datetime
 
-REPO_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX_FILE = os.path.join(REPO_DIR, "index.html")
 
 
