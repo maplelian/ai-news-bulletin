@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 · 2026年5月13日</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--indigo:#6366f1;--pink:#ec4899;--dark:#0f172a;--light:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gradient:linear-gradient(135deg,#6366f1,#ec4899)}
+body{font-family:'Noto Sans SC',system-ui,-apple-system,sans-serif;background:var(--light);color:var(--text);line-height:1.7;overflow-x:hidden}
+.hero{background:var(--dark);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 60%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;position:relative}
+.hero .date{color:#94a3b8;font-size:1.1rem;margin-bottom:1.5rem;position:relative}
+.hero .badge{display:inline-block;background:var(--gradient);color:#fff;padding:.4rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1rem;position:relative}
+.archive-btn{display:inline-block;background:#fbbf24;color:#0f172a;padding:.6rem 1.5rem;border-radius:50px;font-weight:700;text-decoration:none;margin-top:.5rem;position:relative;transition:transform .2s,box-shadow .2s}
+.archive-btn:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(251,191,36,.4)}
+.nav-bar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.nav-row{display:flex;justify-content:center;flex-wrap:wrap;gap:.3rem;padding:.5rem 1rem}
+.nav-row a{color:var(--text);text-decoration:none;padding:.4rem .8rem;border-radius:8px;font-size:.85rem;font-weight:500;transition:all .2s}
+.nav-row a:hover{background:var(--indigo);color:#fff}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.section{margin-bottom:3rem}
+.section-title{font-size:1.8rem;font-weight:800;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid var(--indigo);display:inline-block}
+.card{background:var(--card);border-radius:16px;padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;color:var(--indigo)}
+.card p{color:var(--muted);font-size:.95rem;margin-bottom:.5rem}
+.card .key-points{list-style:none;padding:0}
+.card .key-points li{padding:.3rem 0 .3rem 1.2rem;position:relative;font-size:.9rem;color:var(--muted)}
+.card .key-points li::before{content:'▸';position:absolute;left:0;color:var(--pink);font-weight:700}
+.trend-card{border-left:4px solid var(--indigo);background:linear-gradient(135deg,rgba(99,102,241,.03),rgba(236,72,153,.03))}
+.trend-card h3{font-size:1.25rem;color:var(--text)}
+.insight{font-weight:600;color:var(--indigo);margin-top:.5rem;font-size:.9rem}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.2rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem}
+.badge-tag{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.75rem;font-weight:600;margin-right:.5rem}
+.badge-fire{background:#fef2f2;color:#dc2626}
+.badge-tech{background:#eff6ff;color:#2563eb}
+.badge-biz{background:#f0fdf4;color:#16a34a}
+.chart-container{position:relative;height:300px;margin-bottom:2rem}
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1.5rem;margin-bottom:2rem}
+.chart-box{background:var(--card);border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid var(--border)}
+.chart-box h4{text-align:center;margin-bottom:1rem;font-weight:700;color:var(--text)}
+.product-card{display:flex;flex-direction:column;gap:.5rem}
+.product-card .rank{font-size:2rem;font-weight:900;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.product-card .meta{display:grid;grid-template-columns:auto 1fr;gap:.3rem .8rem;font-size:.85rem}
+.product-card .meta dt{font-weight:600;color:var(--text)}
+.product-card .meta dd{color:var(--muted)}
+.headline-card{border-left:4px solid var(--pink)}
+.headline-card .link{color:var(--indigo);text-decoration:none;font-size:.85rem;word-break:break-all}
+.headline-card .link:hover{text-decoration:underline}
+.headline-card .impact{background:#faf5ff;padding:.8rem;border-radius:8px;margin-top:.5rem;font-size:.9rem;border-left:3px solid var(--pink)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
+footer{background:var(--dark);color:#94a3b8;text-align:center;padding:2rem;font-size:.85rem}
+footer a{color:#818cf8;text-decoration:none}
+.subsection{margin:1.5rem 0}
+.subsection h3{font-size:1.3rem;font-weight:700;margin-bottom:.8rem;color:var(--text)}
+@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}.chart-grid{grid-template-columns:1fr}.hero h1{font-size:2rem}.nav-row a{font-size:.75rem;padding:.3rem .5rem}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="badge">📡 每日更新</div>
+  <h1>AI 资讯快报</h1>
+  <p class="date">2026年5月13日 · 覆盖 5月6日 - 5月13日</p>
+  <a href="https://katelian.github.io/ai-news-bulletin/" class="archive-btn">📁 查看所有归档期数</a>
+</section>
+
+<nav class="nav-bar">
+  <div class="nav-row">
+    <a href="#trends">核心趋势</a>
+    <a href="#headlines">今日头条</a>
+    <a href="#tech">技术前沿</a>
+    <a href="#industry">行业竞争</a>
+    <a href="#ethics">伦理安全</a>
+    <a href="#health">医疗教育</a>
+    <a href="#robotics">机器人</a>
+    <a href="#privacy">数据隐私</a>
+  </div>
+  <div class="nav-row">
+    <a href="#policy">标准政策</a>
+    <a href="#productivity">生产力</a>
+    <a href="#products">热门产品</a>
+    <a href="#insights">关键洞察</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- 数据仪表板 -->
+<section class="section fade-in">
+  <h2 class="section-title">📊 数据仪表板</h2>
+  <div class="chart-grid">
+    <div class="chart-box">
+      <h4>Q1 2026 四大 AI 巨头融资对比（亿美元）</h4>
+      <div class="chart-container"><canvas id="fundingChart"></canvas></div>
+    </div>
+    <div class="chart-box">
+      <h4>全球风投 AI 占比</h4>
+      <div class="chart-container"><canvas id="pieChart"></canvas></div>
+    </div>
+    <div class="chart-box">
+      <h4>AI 产品热度指数</h4>
+      <div class="chart-container"><canvas id="productChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- 核心趋势 -->
+<section id="trends" class="section fade-in">
+  <h2 class="section-title">🔥 今日核心趋势</h2>
+  <div class="card trend-card fade-in delay-1">
+    <h3>趋势 1：AI 资本狂潮——Q1 2026 全球融资破 3000 亿美元纪录</h3>
+    <p>2026年第一季度全球风险投资达到史无前例的 3000 亿美元，其中 AI/机器学习公司独占 2420 亿美元，占全球风投总额的 80%。仅 OpenAI（1220亿美元）、Anthropic（300亿美元）、xAI（200亿美元）和 Waymo（160亿美元）四家公司就吞噬了全球风投的 65%。</p>
+    <p class="insight">💡 关键洞察：AI 正在从"技术竞赛"转向"资本垄断"阶段。行业格局可能在 12-18 个月内完成固化。</p>
+  </div>
+  <div class="card trend-card fade-in delay-2">
+    <h3>趋势 2：AI 购物时代来临——千问与淘宝全面打通</h3>
+    <p>5月11日，阿里巴巴宣布千问大模型与淘宝实现全面打通，用户可通过千问 App 以自然语言完成商品挑选、测评解读、跨店比价及下单购买。这是全球首个超大规模电商平台与顶级大模型的深度融合。</p>
+    <p class="insight">💡 关键洞察：对话式购物将成为下一代超级入口，率先完成 AI 整合的电商平台将获得难以逾越的竞争壁垒。</p>
+  </div>
+  <div class="card trend-card fade-in delay-3">
+    <h3>趋势 3：微软自研 MAI-1 模型剑指 Build 大会</h3>
+    <p>微软正在由 Mustafa Suleyman 监督训练自研大模型 MAI-1，参数规模约 5000 亿，计划在 5 月下旬的 Microsoft Build 开发者大会上正式发布。微软对 OpenAI 的投资已达 1350 亿美元，"自研 + 投资"双轨战略反映出微软的供应链安全布局。</p>
+    <p class="insight">💡 关键洞察：当最大的 AI 投资者也开始自研模型，AI 产业链的"供应商-客户"关系正在发生微妙变化。</p>
+  </div>
+</section>
+
+<!-- 今日头条 -->
+<section id="headlines" class="section fade-in">
+  <h2 class="section-title">📰 今日头条</h2>
+  <div class="card headline-card fade-in delay-1">
+    <h3><span class="badge-tag badge-fire">头条</span> OpenAI 升级 ChatGPT 默认模型为 GPT-5.5</h3>
+    <p>OpenAI 于 4 月 24 日发布 GPT-5.5 及 GPT-5.5 Pro，并在 5 月将 ChatGPT 默认模型升级为 GPT-5.5。新模型基于 NVIDIA GB200 NVL72 平台运行，实现 35 倍成本降低和 50 倍吞吐提升。</p>
+    <ul class="key-points">
+      <li>代码生成效率突破，诊断耗时从整天缩短至数小时</li>
+      <li>基于 NVIDIA GB200 NVL72 平台实现显著成本降低</li>
+      <li>超过 1 万名企业员工已获早期访问权限</li>
+    </ul>
+    <a class="link" href="https://openai.com/index/introducing-gpt-5-5/" target="_blank">🔗 https://openai.com/index/introducing-gpt-5-5/</a>
+    <div class="impact">🤔 <strong>影响：</strong>GPT-5.5 成本大幅降低意味着 AI 应用的大规模商业化部署正变得经济可行。当推理成本下降 35 倍，AI 将真正进入"每行代码、每次交互都可用 AI"的新阶段。</div>
+  </div>
+  <div class="card headline-card fade-in delay-2">
+    <h3><span class="badge-tag badge-fire">头条</span> Google, Microsoft, xAI 同意向美国政府开放 AI 模型早期评估</h3>
+    <p>三大 AI 巨头达成协议，同意向美国政府提供其 AI 模型的早期评估权限。与此同时，白宫正在淡化更严格的 AI 监管提案，倾向于通过"国家政策框架"统一 AI 治理。</p>
+    <ul class="key-points">
+      <li>三大公司主动向政府开放模型评估，可能意在影响监管走向</li>
+      <li>白宫发布《国家 AI 政策框架》，主张联邦层面统一监管</li>
+      <li>这一模式可能成为全球 AI 治理的参考范本</li>
+    </ul>
+    <a class="link" href="https://seekingalpha.com/news/4585585-google-microsoft-xai-agree-to-give-us-early-access-to-evaluate-ai-models" target="_blank">🔗 seekingalpha.com</a>
+    <div class="impact">🤔 <strong>影响：</strong>科技巨头主动开放模型评估既是"以透明换信任"的策略，也可能是一种"监管俘获"——通过提前参与规则制定确保竞争优势。</div>
+  </div>
+  <div class="card headline-card fade-in delay-3">
+    <h3><span class="badge-tag badge-fire">头条</span> Yann LeCun 的 AMI Labs 完成 10.3 亿美元种子轮融资</h3>
+    <p>图灵奖得主 Yann LeCun 在巴黎创办的 AMI Labs 完成 10.3 亿美元种子轮融资，创欧洲历史纪录。AMI Labs 致力于开发"世界模型"——让 AI 理解物理世界运行规律的新架构。</p>
+    <ul class="key-points">
+      <li>欧洲历史最大种子轮融资，NVIDIA 为重要投资方</li>
+      <li>走的是与当前大语言模型不同的技术路线</li>
+      <li>"世界模型"旨在实现更接近人类认知的 AI 理解能力</li>
+    </ul>
+    <a class="link" href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank">🔗 techcrunch.com</a>
+    <div class="impact">🤔 <strong>影响：</strong>AMI Labs 的大额融资表明 AI 学术界对当前 LLM 路线的不满正在转化为实际行动。"世界模型"可能代表下一代 AI 的真正方向。</div>
+  </div>
+</section>
+
+<!-- 技术前沿 -->
+<section id="tech" class="section fade-in">
+  <h2 class="section-title">🔬 技术前沿</h2>
+  <div class="subsection">
+    <h3>大模型</h3>
+    <div class="grid-3">
+      <div class="card fade-in delay-1">
+        <h3>Microsoft MAI-1 5000 亿参数模型</h3>
+        <p>微软正在训练 MAI-1 大模型，参数规模约 5000 亿，由 Mustafa Suleyman 监督开发，计划在 Build 大会上发布。</p>
+        <ul class="key-points"><li>5000 亿参数规模</li><li>教师-学生蒸馏架构</li><li>Build 大会发布</li></ul>
+      </div>
+      <div class="card fade-in delay-2">
+        <h3>Google Gemini "Agentic 时代"</h3>
+        <p>Gemini App 新增桌面端原生支持、音乐创作能力，Drive v4.2618 版本内嵌 Gemini AI，向 Agentic AI 转型。</p>
+        <ul class="key-points"><li>桌面原生支持</li><li>音乐创作功能</li><li>与 Drive 深度整合</li></ul>
+      </div>
+      <div class="card fade-in delay-3">
+        <h3>Oracle OCI Enterprise AI</h3>
+        <p>Oracle 推出 OCI Enterprise AI 服务，为企业客户提供云端 AI 推理和训练能力。</p>
+        <ul class="key-points"><li>企业级 AI 云服务</li><li>OCI 生态整合</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3>多模态</h3>
+    <div class="grid-3">
+      <div class="card fade-in delay-1">
+        <h3>GPT-5.5 多模态能力增强</h3>
+        <p>在视觉理解、音频处理和跨模态推理方面取得显著进步，代码与文档跨模态协同能力提升。</p>
+        <ul class="key-points"><li>跨模态推理提升</li><li>代码+文档协同理解</li></ul>
+      </div>
+      <div class="card fade-in delay-2">
+        <h3>OpenAI 语音 Agent 升级</h3>
+        <p>语音 Agent 推理和上下文理解能力重大升级，语音交互更加自然智能。</p>
+        <ul class="key-points"><li>语音推理增强</li><li>更自然对话体验</li></ul>
+      </div>
+      <div class="card fade-in delay-3">
+        <h3>AI 音乐创作进入实用阶段</h3>
+        <p>Gemini App 新增音乐创作功能，自然语言描述即可生成音乐片段。</p>
+        <ul class="key-points"><li>自然语言生成音乐</li><li>多模态向创意领域渗透</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 行业竞争 -->
+<section id="industry" class="section fade-in">
+  <h2 class="section-title">💼 行业竞争与战略</h2>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3><span class="badge-tag badge-biz">巨头</span> 微软 1350 亿 OpenAI 股权博弈</h3>
+      <p>微软对 OpenAI 投资达 1350 亿美元，同时自研 MAI-1，"投资绑定 + 自主研发"双轨并行。</p>
+      <ul class="key-points"><li>1350 亿投资</li><li>自研 MAI-1 并行</li><li>供应链多元化</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3><span class="badge-tag badge-biz">融资</span> Q1 AI 融资 2420 亿美元</h3>
+      <p>AI/机器学习公司占全球风投 80%，OpenAI 1220 亿、Anthropic 300 亿、xAI 200 亿、Waymo 160 亿。</p>
+      <ul class="key-points"><li>占全球风投 80%</li><li>四家公司占 65%</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3><span class="badge-tag badge-biz">人才</span> Yann LeCun 创办 AMI Labs</h3>
+      <p>图灵奖得主创办 AMI Labs 押注"世界模型"，代表学术界对 LLM 范式的反思和创新。</p>
+      <ul class="key-points"><li>欧洲最大种子轮</li><li>世界模型新路线</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 伦理安全 -->
+<section id="ethics" class="section fade-in">
+  <h2 class="section-title">🛡️ 伦理与安全</h2>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>政府-企业模型评估协议</h3>
+      <p>Google、微软、xAI 同意向美国政府提供 AI 模型早期评估权限，可能成为安全审查新范式。</p>
+      <ul class="key-points"><li>政府-企业协作</li><li>模型评估透明化</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>AI 安全行政令"研究"阶段</h3>
+      <p>白宫研究 AI 安全行政令实施方案，倾向柔性监管而非强制约束，反映对创新速度的顾虑。</p>
+      <ul class="key-points"><li>柔性监管方向</li><li>创新与安全平衡</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>AI 透明度联盟立法推进</h3>
+      <p>国际 AI 透明度联盟发布立法更新，多州推进 AI 聊天机器人安全和透明度法案。</p>
+      <ul class="key-points"><li>立法推进</li><li>聊天机器人安全</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 医疗教育 -->
+<section id="health" class="section fade-in">
+  <h2 class="section-title">🏥 医疗与教育</h2>
+  <div class="grid-2">
+    <div class="card fade-in delay-1">
+      <h3>医疗 AI 应用快速增长</h3>
+      <p>AI 在临床决策支持系统中的应用显著增加，包括诊断辅助、治疗方案推荐和患者风险评估。NBER 举办 AI 医疗应用专题会议。</p>
+      <ul class="key-points"><li>临床决策支持</li><li>诊断辅助</li><li>医学教育改革</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>教育 AI 持续进化</h3>
+      <p>基于大语言模型的个性化学习平台持续进化，GPT-5.5 等模型在科研辅助中作用日益突出。</p>
+      <ul class="key-points"><li>个性化学习</li><li>科研辅助自动化</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 机器人 -->
+<section id="robotics" class="section fade-in">
+  <h2 class="section-title">🤖 机器人前沿</h2>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>人形机器人半程马拉松</h3>
+      <p>2026年4月人形机器人完成半程马拉松挑战，央视《新闻1+1》专题报道，标志运动控制和持久性重大突破。</p>
+      <ul class="key-points"><li>半马挑战成功</li><li>央视专题报道</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>10 万级量产将至</h3>
+      <p>新华网分析指出 2026 年人形机器人进入"商业化元年"，头部企业推动 10 万级量产，成本持续下探。</p>
+      <ul class="key-points"><li>10 万级量产</li><li>成本下探</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>斯坦福报告：具身智能趋势</h3>
+      <p>斯坦福 HAI《AI Index Report 2026》将"具身智能"列为年度关键趋势。</p>
+      <ul class="key-points"><li>物理世界 AI 载体</li><li>具身智能趋势</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 数据隐私 -->
+<section id="privacy" class="section fade-in">
+  <h2 class="section-title">🔒 数据安全与隐私</h2>
+  <div class="grid-2">
+    <div class="card fade-in delay-1">
+      <h3>AI 驱动网络攻击升级</h3>
+      <p>AI 被用于生成更复杂的钓鱼攻击和社交工程手段，安全中断事件频率上升，企业面临新挑战。</p>
+      <ul class="key-points"><li>AI 驱动攻击</li><li>安全中断频率上升</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>本地化部署保护隐私</h3>
+      <p>DeepSeek 等开源模型支持本地部署和华为昇腾芯片，联邦学习和差分隐私技术取得实质性进展。</p>
+      <ul class="key-points"><li>本地部署方案</li><li>联邦学习进展</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 标准政策 -->
+<section id="policy" class="section fade-in">
+  <h2 class="section-title">📋 行业标准与政策</h2>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>白宫《国家 AI 政策框架》</h3>
+      <p>主张建立联邦层面统一 AI 监管体系，避免各州立法碎片化。</p>
+      <ul class="key-points"><li>联邦统一监管</li><li>避免立法碎片化</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>深圳 AI 终端万亿目标</h3>
+      <p>深圳发布行动计划，到 2026 年 AI 终端产业规模力争达到 1 万亿元。</p>
+      <ul class="key-points"><li>万亿规模目标</li><li>产业能力提升</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>中国 AI 专利全球居首</h3>
+      <p>中国 AI 专利申请数量全球第一，人形机器人等前沿领域专利布局加速。</p>
+      <ul class="key-points"><li>专利全球第一</li><li>前沿领域布局</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 生产力 -->
+<section id="productivity" class="section fade-in">
+  <h2 class="section-title">💻 智能办公与生产力</h2>
+  <div class="grid-3">
+    <div class="card fade-in delay-1">
+      <h3>Gemini Agentic AI 转型</h3>
+      <p>Gemini 向 Agentic AI 平台转型，桌面原生支持，从聊天工具升级为智能代理。</p>
+      <ul class="key-points"><li>Agentic 转型</li><li>桌面原生支持</li></ul>
+    </div>
+    <div class="card fade-in delay-2">
+      <h3>GPT-5.5 自主软件开发</h3>
+      <p>自主软件开发重大突破，诊断和代码生成耗时从整天缩短至数小时。</p>
+      <ul class="key-points"><li>代码生成效率飞跃</li><li>自主开发能力</li></ul>
+    </div>
+    <div class="card fade-in delay-3">
+      <h3>企业 AI 渗透加速</h3>
+      <p>AI 在企业工作流中渗透加快，从客服、销售到财务、HR，AI Agent 重塑企业运营。</p>
+      <ul class="key-points"><li>全业务场景渗透</li><li>运营方式重塑</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 热门产品 -->
+<section id="products" class="section fade-in">
+  <h2 class="section-title">🚀 热门 AI 产品 Top 5</h2>
+  <div class="grid-3">
+    <div class="card product-card fade-in delay-1">
+      <div class="rank">#1</div>
+      <h3>千问 AI 购物（淘宝打通版）</h3>
+      <dl class="meta">
+        <dt>热度：</dt><dd>5月11日发布后登顶下载榜</dd>
+        <dt>发布：</dt><dd>2026年5月11日</dd>
+        <dt>简介：</dt><dd>千问与淘宝全面打通，自然语言对话完成购物全流程</dd>
+      </dl>
+      <ul class="key-points"><li>全球首个电商与大模型深度融合</li><li>AI 试穿/算优惠/低价帮抢</li><li>依托 20 余年真实购物数据</li></ul>
+    </div>
+    <div class="card product-card fade-in delay-2">
+      <div class="rank">#2</div>
+      <h3>ChatGPT（GPT-5.5）</h3>
+      <dl class="meta">
+        <dt>热度：</dt><dd>模型升级后活跃度大幅攀升</dd>
+        <dt>发布：</dt><dd>2026年5月（默认模型升级）</dd>
+        <dt>简介：</dt><dd>默认模型升级为 GPT-5.5，推理、代码、跨模态能力显著提升</dd>
+      </dl>
+      <ul class="key-points"><li>35 倍成本降低</li><li>自主软件开发突破</li><li>超 1 万企业员工早期访问</li></ul>
+    </div>
+    <div class="card product-card fade-in delay-3">
+      <div class="rank">#3</div>
+      <h3>Gemini App（桌面版）</h3>
+      <dl class="meta">
+        <dt>热度：</dt><dd>Google 生态用户广泛关注</dd>
+        <dt>发布：</dt><dd>2026年4-5月</dd>
+        <dt>简介：</dt><dd>新增桌面端支持和音乐创作，向 Agentic AI 转型</dd>
+      </dl>
+      <ul class="key-points"><li>桌面原生支持</li><li>音乐创作功能</li><li>与 Drive 深度整合</li></ul>
+    </div>
+    <div class="card product-card fade-in delay-1">
+      <div class="rank">#4</div>
+      <h3>MAI-1（预览版）</h3>
+      <dl class="meta">
+        <dt>热度：</dt><dd>Build 大会前引发高度关注</dd>
+        <dt>发布：</dt><dd>2026年5月预览</dd>
+        <dt>简介：</dt><dd>微软自研 5000 亿参数大模型，Mustafa Suleyman 监督</dd>
+      </dl>
+      <ul class="key-points"><li>5000 亿参数</li><li>教师-学生蒸馏架构</li><li>"自研+投资"双轨战略</li></ul>
+    </div>
+    <div class="card product-card fade-in delay-2">
+      <div class="rank">#5</div>
+      <h3>AMI Labs "世界模型"</h3>
+      <dl class="meta">
+        <dt>热度：</dt><dd>10.3 亿种子轮引发全球关注</dd>
+        <dt>发布：</dt><dd>研发中</dd>
+        <dt>简介：</dt><dd>Yann LeCun 创办，开发理解物理世界的新 AI 架构</dd>
+      </dl>
+      <ul class="key-points"><li>不同于 LLM 的新架构</li><li>欧洲最大种子轮</li><li>NVIDIA 等顶级投资</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 关键洞察 -->
+<section id="insights" class="section fade-in">
+  <h2 class="section-title">💡 关键洞察总结</h2>
+  <div class="card fade-in delay-1" style="border-left:4px solid var(--indigo)">
+    <h3>洞察一：从"技术竞赛"到"资本锁定"</h3>
+    <p>Q1 2026 全球 3000 亿美元风投中，AI 独占 2420 亿，四家公司吞噬 65%。当资本集中度达到这种程度，AI 产业竞争已从"谁能做出更好的模型"转变为"谁有足够的资本活下去"。终局可能是 3-5 家超级平台主导全球 AI 生态。</p>
+  </div>
+  <div class="card fade-in delay-2" style="border-left:4px solid var(--pink)">
+    <h3>洞察二：对话式交互成为新"操作系统"</h3>
+    <p>千问与淘宝的打通揭示更广泛趋势——AI 正在重塑用户与数字世界的交互范式。当用户通过自然语言就能完成购物、编程、分析等复杂任务时，传统 App 的 UI/UX 设计哲学面临根本性挑战。"对话即界面"将成为核心范式。</p>
+  </div>
+  <div class="card fade-in delay-3" style="border-left:4px solid #16a34a">
+    <h3>洞察三：AI 治理进入"企业自我监管+"阶段</h3>
+    <p>Google、微软、xAI 主动向政府开放模型评估，加上白宫"国家政策框架"路线，表明 AI 治理正从"政府强制监管"转向"企业-政府协作的自我监管+"模式。核心风险在于：当监管规则由被监管者参与制定时，公共利益是否得到充分保护？</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>AI 资讯快报 · 2026年5月13日</p>
+  <p style="margin-top:.5rem;font-size:.8rem">免责声明：本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。</p>
+  <p style="margin-top:.3rem;font-size:.75rem">受限来源：ProductHunt、VentureBeat、机器之心、量子位（反爬检测/访问受限），已通过其他信源交叉验证补充。</p>
+  <p style="margin-top:1rem"><a href="https://katelian.github.io/ai-news-bulletin/">📁 查看所有归档期数</a></p>
+</footer>
+
+<script>
+// 图表数据
+const fundingCtx=document.getElementById('fundingChart').getContext('2d');
+new Chart(fundingCtx,{type:'bar',data:{labels:['OpenAI','Anthropic','xAI','Waymo'],datasets:[{label:'融资金额（亿美元）',data:[1220,300,200,160],backgroundColor:['#6366f1','#ec4899','#8b5cf6','#f59e0b'],borderRadius:8,barPercentage:.6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>v+'亿'}}}}});
+
+const pieCtx=document.getElementById('pieChart').getContext('2d');
+new Chart(pieCtx,{type:'doughnut',data:{labels:['AI/机器学习','其他领域'],datasets:[{data:[80,20],backgroundColor:['#6366f1','#e2e8f0'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+
+const prodCtx=document.getElementById('productChart').getContext('2d');
+new Chart(prodCtx,{type:'radar',data:{labels:['千问购物','ChatGPT','Gemini','MAI-1','AMI Labs'],datasets:[{label:'热度指数',data:[95,92,85,78,72],backgroundColor:'rgba(99,102,241,.2)',borderColor:'#6366f1',pointBackgroundColor:'#ec4899',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
+
+// 滚动动画
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
