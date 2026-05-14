@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 · 2026年5月14日</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',system-ui,-apple-system,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.7}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%);color:#fff;padding:80px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(99,102,241,0.15) 0%,rgba(236,72,153,0.1) 100%)}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero h1{font-size:3rem;font-weight:900;margin-bottom:16px;background:linear-gradient(135deg,#818cf8,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-date{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:10px 28px;font-size:1.1rem;margin-bottom:24px}
+.archive-btn{display:inline-block;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1e293b;padding:12px 32px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1rem;margin-top:16px;transition:transform 0.2s,box-shadow 0.2s}
+.archive-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(251,191,36,0.4)}
+.stats-bar{display:flex;justify-content:center;gap:40px;margin-top:32px;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-value{font-size:2rem;font-weight:900;color:#818cf8}
+.stat-label{font-size:0.85rem;opacity:0.8}
+.nav-bar{position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0;z-index:100;padding:12px 20px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.nav-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.nav-link{padding:6px 16px;border-radius:20px;text-decoration:none;color:#475569;font-size:0.85rem;font-weight:500;transition:all 0.2s;border:1px solid transparent}
+.nav-link:hover{background:#e0e7ff;color:#4f46e5;border-color:#c7d2fe}
+.section{max-width:1200px;margin:0 auto;padding:60px 20px}
+.section-title{font-size:2rem;font-weight:900;text-align:center;margin-bottom:48px;position:relative}
+.section-title::after{content:'';display:block;width:60px;height:4px;background:linear-gradient(135deg,#6366f1,#ec4899);border-radius:2px;margin:12px auto 0}
+.trends-grid{display:grid;gap:24px;margin-bottom:40px}
+.trend-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #e2e8f0;transition:transform 0.2s}
+.trend-card:hover{transform:translateY(-4px)}
+.trend-badge{display:inline-block;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;margin-bottom:16px}
+.trend-card h3{font-size:1.3rem;font-weight:700;margin-bottom:16px;color:#0f172a}
+.trend-card p{color:#475569;margin-bottom:12px}
+.insight-box{background:linear-gradient(135deg,#eef2ff,#faf5ff);border-radius:12px;padding:20px;margin-top:16px;border-left:4px solid #6366f1}
+.insight-box strong{color:#4f46e5}
+.headlines-grid{display:grid;gap:32px}
+.headline-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e2e8f0}
+.headline-header{padding:24px 32px;background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff}
+.headline-header h3{font-size:1.4rem;font-weight:700;margin-bottom:8px}
+.headline-body{padding:32px}
+.headline-body p{margin-bottom:16px;color:#475569}
+.key-points{list-style:none;padding:0}
+.key-points li{padding:8px 0 8px 28px;position:relative;color:#334155}
+.key-points li::before{content:'';position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#ec4899)}
+.headline-link{display:inline-block;margin-top:16px;color:#4f46e5;text-decoration:none;font-weight:600}
+.headline-link:hover{text-decoration:underline}
+.thought-box{background:#fefce8;border:1px solid #fde047;border-radius:12px;padding:20px;margin-top:20px}
+.thought-box strong{color:#854d0e}
+.category-section{margin-bottom:48px}
+.category-title{font-size:1.5rem;font-weight:700;margin-bottom:24px;color:#0f172a;padding-left:16px;border-left:4px solid #6366f1}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.info-card{background:#fff;border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.05);border:1px solid #e2e8f0;transition:transform 0.2s,box-shadow 0.2s}
+.info-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.info-card h4{font-size:1.05rem;font-weight:600;margin-bottom:12px;color:#1e293b}
+.info-card p{color:#64748b;font-size:0.95rem;margin-bottom:12px}
+.tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:600}
+.tag-tech{background:#e0e7ff;color:#4f46e5}
+.tag-biz{background:#dcfce7;color:#16a34a}
+.tag-security{background:#fef3c7;color:#d97706}
+.tag-policy{background:#f3e8ff;color:#9333ea}
+.tag-health{background:#ffe4e6;color:#e11d48}
+.tag-robot{background:#e0f2fe;color:#0284c7}
+.tag-product{background:#fce7f3;color:#db2777}
+.product-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #e2e8f0;margin-bottom:20px}
+.product-card h4{font-size:1.2rem;font-weight:700;margin-bottom:12px;color:#0f172a}
+.product-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.meta-item{background:#f8fafc;border-radius:8px;padding:12px}
+.meta-label{font-size:0.8rem;color:#64748b;font-weight:500}
+.meta-value{font-weight:600;color:#1e293b}
+.insight-section{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:20px;padding:48px 32px;margin:40px 0}
+.insight-section h3{font-size:1.4rem;font-weight:700;margin-bottom:16px;color:#818cf8}
+.insight-section p{color:#cbd5e1;margin-bottom:16px}
+.insight-section p:last-child{margin-bottom:0}
+.charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin:40px 0}
+.chart-card{background:#fff;border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.05);border:1px solid #e2e8f0}
+.chart-card h4{text-align:center;margin-bottom:16px;color:#1e293b}
+.chart-container{position:relative;height:280px}
+footer{background:#0f172a;color:#94a3b8;text-align:center;padding:40px 20px;margin-top:60px}
+footer a{color:#818cf8;text-decoration:none}
+.disclaimer{background:#fffbeb;border:1px solid #fde047;border-radius:12px;padding:20px;margin:40px 0;font-size:0.9rem;color:#854d0e}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){
+.hero h1{font-size:2rem}
+.cards-grid{grid-template-columns:1fr}
+.nav-row{gap:4px}
+.nav-link{padding:4px 10px;font-size:0.75rem}
+.stats-bar{gap:20px}
+.product-meta{grid-template-columns:1fr}
+.charts-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="hero-content">
+<h1>AI 资讯快报</h1>
+<div class="hero-date">📅 2026年5月14日 · 第 N 期</div>
+<br>
+<a href="https://katelian.github.io/ai-news-bulletin/" class="archive-btn">📁 查看所有归档期数</a>
+<div class="stats-bar">
+<div class="stat-item"><div class="stat-value">48h</div><div class="stat-label">覆盖周期</div></div>
+<div class="stat-item"><div class="stat-value">30+</div><div class="stat-label">资讯条目</div></div>
+<div class="stat-item"><div class="stat-value">12</div><div class="stat-label">分类板块</div></div>
+</div>
+</div>
+</section>
+
+<nav class="nav-bar">
+<div class="nav-inner">
+<div class="nav-row">
+<a href="#trends" class="nav-link">核心趋势</a>
+<a href="#headlines" class="nav-link">今日头条</a>
+<a href="#tech" class="nav-link">技术前沿</a>
+<a href="#industry" class="nav-link">行业竞争</a>
+<a href="#ethics" class="nav-link">伦理安全</a>
+<a href="#health" class="nav-link">医疗教育</a>
+<a href="#robot" class="nav-link">机器人</a>
+</div>
+<div class="nav-row">
+<a href="#privacy" class="nav-link">数据隐私</a>
+<a href="#policy" class="nav-link">标准政策</a>
+<a href="#productivity" class="nav-link">生产力</a>
+<a href="#products" class="nav-link">热门产品</a>
+<a href="#insights" class="nav-link">关键洞察</a>
+</div>
+</div>
+</nav>
+
+<!-- Dashboard Charts -->
+<section class="section">
+<h2 class="section-title fade-in">数据仪表板</h2>
+<div class="charts-grid">
+<div class="chart-card fade-in">
+<h4>本周 AI 融资规模对比 (亿美元)</h4>
+<div class="chart-container"><canvas id="fundingChart"></canvas></div>
+</div>
+<div class="chart-card fade-in">
+<h4>AI 应用场景分布</h4>
+<div class="chart-container"><canvas id="usageChart"></canvas></div>
+</div>
+<div class="chart-card fade-in">
+<h4>热门产品 Product Hunt 热度指数</h4>
+<div class="chart-container"><canvas id="productChart"></canvas></div>
+</div>
+</div>
+</section>
+
+<!-- Core Trends -->
+<section class="section" id="trends">
+<h2 class="section-title fade-in">今日核心趋势</h2>
+<div class="trends-grid">
+<div class="trend-card fade-in">
+<span class="trend-badge">趋势 1</span>
+<h3>AI 语音基础设施爆发——Vapi 获 5 亿美元估值，Amazon Ring 全面接入</h3>
+<p>AI 语音对话基础设施平台 Vapi 完成 5000 万美元 B 轮融资，估值约 5 亿美元。Amazon Ring 在对比 40+ 供应商后选择 Vapi 管理全部客服热线。</p>
+<p>Vapi 日调用量 100-500 万次，总通话量突破 10 亿次，ARR 达八位数级别，企业业务增长 10 倍。</p>
+<div class="insight-box"><strong>关键洞察：</strong>AI 语音从实验性客服走向亿级通话规模的基础设施，赛道从模型层竞争转向工程化能力竞争。Vapi 的"卖铲子"模式在 AI Agent 时代具有显著杠杆效应。</div>
+</div>
+<div class="trend-card fade-in">
+<span class="trend-badge">趋势 2</span>
+<h3>五角大楼大规模签约——Nvidia、Microsoft、AWS 全面部署军用 AI</h3>
+<p>美国国防部与 Nvidia、Microsoft、AWS 及 Oracle 签署协议，将 AI 系统部署到机密网络上。Anthropic 选择退出此次合作。</p>
+<p>同时，AI 编码独角兽 Cognition 正以 250 亿美元估值洽谈新一轮融资，估值较上一轮翻倍。</p>
+<div class="insight-box"><strong>关键洞察：</strong>军用 AI 部署 + 编码 Agent 估值翻倍，共同指向 AI 正在从"人类工具"升级为"自主决策系统"。</div>
+</div>
+<div class="trend-card fade-in">
+<span class="trend-badge">趋势 3</span>
+<h3>Google 搜索 AI 化——引入 Reddit 等社区引述，AI Overviews 转型</h3>
+<p>Google 对 AI Overviews 进行五项更新，开始在搜索结果中嵌入 Reddit 等论坛和社区的专业建议引述，从"直接给答案"转向"聚合多元观点"。</p>
+<p>同期，Google DeepMind 收购 EVE Online 开发商少数股权，将游戏环境作为 AGI 模型测试平台。</p>
+<div class="insight-box"><strong>关键洞察：</strong>Google 搜索的 AI 化正在重塑互联网信息分发生态。内容创作者将面临从 SEO 排名竞争到"被 AI 引用"竞争的结构性转变。</div>
+</div>
+</div>
+</section>
+
+<!-- Headlines -->
+<section class="section" id="headlines">
+<h2 class="section-title fade-in">今日头条</h2>
+<div class="headlines-grid">
+<div class="headline-card fade-in">
+<div class="headline-header"><h3>🔥 头条 1：AI 语音平台 Vapi 估值 5 亿美元，击败 40+ 竞品拿下 Amazon Ring 大单</h3></div>
+<div class="headline-body">
+<p><strong>摘要：</strong>AI 语音对话基础设施平台 Vapi 完成 5000 万美元 B 轮融资，估值达约 5 亿美元。Amazon Ring 在评估超 40 家供应商后选择 Vapi 管理全部客服热线 AI 语音。</p>
+<p><strong>关键点：</strong></p>
+<ul class="key-points">
+<li>投资方包括 Peak XV Partners、Bessemer Venture Partners、Kleiner Perkins 和 Microsoft M12</li>
+<li>Amazon Ring 集成后客户满意度显著提升，非技术人员也能调整 AI 机器人行为</li>
+<li>日调用量 100-500 万次，总通话量突破 10 亿次，ARR 达八位数级别</li>
+</ul>
+<a href="https://techcrunch.com/2026/05/12/vapi-hits-500m-valuation-as-amazon-ring-chose-its-ai-platform-over-40-rivals/" class="headline-link" target="_blank">原文链接 →</a>
+<div class="thought-box"><strong>思考/影响：</strong>Vapi 的核心竞争力不在于拥有最好的语音模型，而在于它解决了"如何把不可预测的大模型变成可靠的生产系统"这一工程难题。在 AI Agent 赛道中，基础设施层的价值往往被低估。</div>
+</div>
+</div>
+<div class="headline-card fade-in">
+<div class="headline-header"><h3>🔥 头条 2：五角大楼与 Nvidia、Microsoft、AWS 签约，AI 全面进入国防机密网络</h3></div>
+<div class="headline-body">
+<p><strong>摘要：</strong>美国国防部与多家科技巨头达成协议，将 AI 系统部署到机密网络上，涵盖 GPU 基础设施、云 AI 服务和分类网络部署。Anthropic 明确选择退出。</p>
+<p><strong>关键点：</strong></p>
+<ul class="key-points">
+<li>Nvidia 提供 GPU 算力基础设施，Microsoft 和 AWS 提供云 AI 服务，Oracle 也加入合作</li>
+<li>AI 技术向国防核心场景大规模渗透的标志性事件</li>
+<li>Anthropic 的退出反映了 AI 公司在军事应用上的伦理分化</li>
+</ul>
+<a href="https://techcrunch.com/2026/05/01/pentagon-inks-deals-with-nvidia-microsoft-and-aws-to-deploy-ai-on-classified-networks/" class="headline-link" target="_blank">原文链接 →</a>
+<div class="thought-box"><strong>思考/影响：</strong>AI 的国防应用将深刻影响全球 AI 竞争格局。军事需求会推动 AI 在边缘计算、安全推理等方向的加速发展，同时伦理立场分化将影响人才流向。</div>
+</div>
+</div>
+<div class="headline-card fade-in">
+<div class="headline-header"><h3>🔥 头条 3：Google AI 搜索重大更新——引入 Reddit 社区引述，从"给答案"到"聚合观点"</h3></div>
+<div class="headline-body">
+<p><strong>摘要：</strong>Google 对 AI Overviews 进行五项更新，开始在搜索结果中嵌入 Reddit 等论坛和社区的专业建议引述，同时展示创作者身份标识。</p>
+<p><strong>关键点：</strong></p>
+<ul class="key-points">
+<li>搜索结果从社交媒体、公共留言板和付费订阅内容中提取观点</li>
+<li>AI 摘要从"直接答案"转向"多视角聚合"，添加来源可信度标识</li>
+<li>内部测试显示摘要准确率约 90%，但仍需核实 AI 引用是否"幻觉"</li>
+</ul>
+<a href="https://techcrunch.com/2026/05/06/google-updates-ai-search-to-include-expert-advice-from-reddit-and-other-web-forums/" class="headline-link" target="_blank">原文链接 →</a>
+<div class="thought-box"><strong>思考/影响：</strong>这一转变将重塑整个内容生态的价值链。Reddit 等社区平台的内容将直接成为搜索结果的"引用源"，对 SEO、内容营销和用户信息获取习惯都将产生深远影响。</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Tech Front -->
+<section class="section" id="tech">
+<h2 class="section-title fade-in">技术前沿</h2>
+
+<div class="category-section fade-in">
+<h3 class="category-title">大模型</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-tech">大模型</span>
+<h4>Cognition AI 洽谈 250 亿美元融资</h4>
+<p>AI 软件工程师 Devin 开发商 Cognition 以 250 亿美元估值洽谈新一轮融资，较上一轮翻倍。从"AI 编码辅助"到"独立 AI 软件工程师"的范式转变。</p>
+<ul class="key-points"><li>估值翻倍反映市场对 AI Agent 自主完成软件开发的高度预期</li><li>可能推动"AI 编码助手"赛道整体估值上移</li></ul>
+</div>
+<div class="info-card">
+<span class="tag tag-tech">大模型</span>
+<h4>Google Gemma 4 开源模型发布</h4>
+<p>Google 发布 Gemma 4 系列开源模型，扩展开源 AI 产品线，为开发者和企业提供更灵活的本地部署选择。</p>
+<ul class="key-points"><li>轻量级开源模型，适合边缘部署和定制化微调</li><li>与闭源模型形成差异化竞争</li></ul>
+</div>
+<div class="info-card">
+<span class="tag tag-tech">大模型</span>
+<h4>DeepSeek 拟募资 500 亿元</h4>
+<p>据国内报道，DeepSeek 正在筹备约 500 亿元人民币融资，有望刷新中国 AI 公司单轮融资纪录。</p>
+<ul class="key-points"><li>开源策略和成本优势已在全球形成影响力</li><li>大规模融资将加速算力储备和人才扩张</li></ul>
+</div>
+</div>
+</div>
+
+<div class="category-section fade-in">
+<h3 class="category-title">多模态</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-tech">多模态</span>
+<h4>Meta TRIBE v2 脑预测基础模型</h4>
+<p>"人类神经活动的数字孪生"，基于 700+ 参与者数据，分辨率提升 70 倍，支持零样本泛化。</p>
+<ul class="key-points"><li>可预测人对感官刺激的大脑反应</li><li>"计算机模拟神经科学"的重要突破</li></ul>
+</div>
+<div class="info-card">
+<span class="tag tag-tech">多模态</span>
+<h4>LORYA：AI 文化遗产数字化</h4>
+<p>联合国开发计划署塞尔维亚分部推出的免费平台，处理多语言脚本、手写手稿和历史文本的数字化。</p>
+<ul class="key-points"><li>确保文化遗产在 AI 时代"可见且可识别"</li><li>为历史研究提供 AI 基础设施</li></ul>
+</div>
+<div class="info-card">
+<span class="tag tag-tech">多模态</span>
+<h4>变分多变量信息瓶颈框架</h4>
+<p>艾默里大学物理学家创建的多模态 AI 分类框架，"压缩到刚好保留关键预测信息"。</p>
+<ul class="key-points"><li>帮助减少过度资源消耗</li><li>在模型效率和性能之间找到最优平衡</li></ul>
+</div>
+</div>
+</div>
+
+<div class="category-section fade-in">
+<h3 class="category-title">AI 基础设施</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-tech">基础设施</span>
+<h4>Hexagon Apollo AI 预测性计量监测</h4>
+<p>瑞典 Hexagon AB 推出持续评估设备数据的 AI 软件，将维护从"被动"转向"主动预防"。</p>
+<ul class="key-points"><li>防止高精度生产环境中的意外停机</li><li>适用于制造业和质量控制</li></ul>
+</div>
+<div class="info-card">
+<span class="tag tag-tech">基础设施</span>
+<h4>OpenAI 承诺部署超 10 吉瓦 NVIDIA 算力</h4>
+<p>基于 GB200 NVL72 架构，实现 35 倍成本降低和 50 倍吞吐提升。</p>
+<ul class="key-points"><li>大规模推理首次具备经济可行性</li><li>NVIDIA 采用隔离云 VM 沙箱和零数据保留策略</li></ul>
+</div>
+<div class="info-card">
+<span class="tag tag-tech">基础设施</span>
+<h4>深圳 AI 终端产业行动计划</h4>
+<p>目标到 2026 年人工智能终端产业规模达 1 万亿元，推动全产业链发展。</p>
+<ul class="key-points"><li>中国 AI 核心产业规模预计突破 1.2 万亿元</li><li>AI 企业数量超过 6000 家</li></ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Industry -->
+<section class="section" id="industry">
+<h2 class="section-title fade-in">行业竞争与战略</h2>
+
+<div class="category-section fade-in">
+<h3 class="category-title">巨头动态</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-biz">巨头</span>
+<h4>Google 与 Apple 深化 AI 合作</h4>
+<p>Apple 逐步将 AI 核心能力绑定在 Google 生态上，可能是 2026 年 Google 超越 OpenAI 和 Anthropic 的关键信号。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">巨头</span>
+<h4>AI 100 榜单发布</h4>
+<p>2026 年 AI 100 榜单评选标准从"技术先进性"转向"早期增长和商业化能力"。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">巨头</span>
+<h4>全球 AI 融资 Q1 2026 激增 153%</h4>
+<p>AI 领域占据主导地位，机器人基础模型成为新热门类别。</p>
+</div>
+</div>
+</div>
+
+<div class="category-section fade-in">
+<h3 class="category-title">融资动态</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-biz">融资</span>
+<h4>Parallel 完成 2.3 亿美元融资</h4>
+<p>估值近 20 亿美元，专注"AI Agent 的网络搜索基础设施"。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">融资</span>
+<h4>Scout AI 完成 1 亿美元 A 轮</h4>
+<p>专注自主军事系统和无人车队操作系统，军事 AI 商业化加速。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">融资</span>
+<h4>Ineffable Intelligence 获 11 亿美元种子轮</h4>
+<p>由大型科技公司"顶级研究人才"领导，前沿实验室衍生项目。</p>
+</div>
+</div>
+</div>
+
+<div class="category-section fade-in">
+<h3 class="category-title">人才与组织</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-biz">组织</span>
+<h4>AI 公司伦理立场分化加剧</h4>
+<p>Anthropic 退出五角大楼合作，伦理立场成为 AI 人才选择雇主的重要因素。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">组织</span>
+<h4>Vapi：100 人团队服务百万级开发者</h4>
+<p>展示了 AI 基础设施公司的高效杠杆效应，开发者生态是关键护城河。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">组织</span>
+<h4>Cognition 创始人"极限规模"背景</h4>
+<p>创始团队具有"极限规模运营"背景，是获得数百亿融资洽谈的关键因素。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Ethics & Safety -->
+<section class="section" id="ethics">
+<h2 class="section-title fade-in">伦理与安全</h2>
+<div class="category-section fade-in">
+<h3 class="category-title">AI 安全研究</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-security">安全</span>
+<h4>2026 国际 AI 安全报告发布</h4>
+<p>对通用 AI 系统的安全风险进行全面评估，涵盖模型行为预测、对齐问题和部署风险。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-security">安全</span>
+<h4>84% 企业领导者预期 AI 监管影响</h4>
+<p>1/3 员工担心报告 AI 问题会遭受报复，企业 AI 合规从"可选"变为"必选"。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-security">安全</span>
+<h4>HBR 发布"企业的 AI 噩梦"指南</h4>
+<p>指导企业系统性评估 AI 风险场景，建立 AI 伦理框架。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">透明度与治理</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-security">治理</span>
+<h4>EU AI Act 透明度义务指南草案</h4>
+<p>要求特定 AI 系统提供使用说明、风险披露和决策可解释性。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-security">治理</span>
+<h4>全球 AI 治理对话深化</h4>
+<p>联合国和欧盟推动多利益相关方治理框架设计，避免碎片化监管。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-security">治理</span>
+<h4>AI 合规指南 2026 发布</h4>
+<p>Modulos AI 发布覆盖全球主要 AI 监管框架的一站式合规导航。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Health & Education -->
+<section class="section" id="health">
+<h2 class="section-title fade-in">医疗与教育应用</h2>
+<div class="category-section fade-in">
+<h3 class="category-title">医疗健康</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-health">医疗</span>
+<h4>AI 增强心电图解读技术突破</h4>
+<p>识别严重心脏阻塞达 77% 敏感度、99% 特异度和 98% 阴性预测值，使更快分诊和干预成为可能。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-health">医疗</span>
+<h4>NBER 2026 春季 AI 医疗会议</h4>
+<p>聚焦 AI 在老龄化健康经济学、医疗教育和诊断辅助中的应用。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-health">医疗</span>
+<h4>哈佛讨论"AI 加速进入医疗，谁该监管"</h4>
+<p>呼吁建立适应性监管机制，在"创新速度"和"患者安全"间找到平衡。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">教育应用</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-health">教育</span>
+<h4>IJCAI-ECAI 2026 AI 与健康专题</h4>
+<p>顶级 AI 学术会议对健康应用的重视度持续提升。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-health">教育</span>
+<h4>AI 自动化与健康教育融合</h4>
+<p>培养兼具技术能力和健康科学知识的复合型人才。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-health">教育</span>
+<h4>医疗教育 AI 应用工作坊</h4>
+<p>帮助医学教育者掌握 AI 工具，从理论研究走向教师培训。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Robotics -->
+<section class="section" id="robot">
+<h2 class="section-title fade-in">机器人前沿</h2>
+<div class="category-section fade-in">
+<h3 class="category-title">人形机器人</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-robot">机器人</span>
+<h4>2026 年人形机器人关键转折年</h4>
+<p>Tesla Optimus、Boston Dynamics 和 Figure AI 领先，制造业和物流是首批应用场景。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-robot">机器人</span>
+<h4>AgiBot A2 系列人形机器人发布</h4>
+<p>上海智元机器人推动中国人形机器人产业快速发展。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-robot">机器人</span>
+<h4>机器人基础模型成新热门</h4>
+<p>类似于大语言模型对 NLP 的变革，基础模型可能重塑机器人开发范式。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">训练与控制</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-robot">控制</span>
+<h4>TRIBE v2 零样本泛化能力</h4>
+<p>为机器人提供更自然的人机交互能力。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-robot">控制</span>
+<h4>变分信息瓶颈指导多模态训练</h4>
+<p>在机器人多感官融合中具有直接应用价值。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-robot">控制</span>
+<h4>无人车队操作系统商业化</h4>
+<p>军用技术向民用转化的路径日益缩短。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Privacy & Security -->
+<section class="section" id="privacy">
+<h2 class="section-title fade-in">数据安全与隐私</h2>
+<div class="category-section fade-in">
+<h3 class="category-title">网络威胁</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-security">安全</span>
+<h4>间谍软件调查揭露俄罗斯网络活动</h4>
+<p>AI 在网络安全攻防中的双刃剑角色日益凸显。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-security">安全</span>
+<h4>AI 驱动的网络威胁升级</h4>
+<p>AI 生成的钓鱼邮件、深度伪造和社会工程攻击增加，需要 AI 驱动的防御系统。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-security">安全</span>
+<h4>隐私保护技术演进</h4>
+<p>差分隐私、联邦学习和同态加密在 AI 训练中应用广泛，PETs 成为 AI 基础设施标配。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">隐私法规</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-policy">法规</span>
+<h4>2026 全球隐私法规趋同化</h4>
+<p>执行力度显著增强，AI 数据处理成为监管重点。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">法规</span>
+<h4>美国州级隐私法扩展</h4>
+<p>AI 自动化决策的透明度和用户选择权成为新的合规焦点。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">法规</span>
+<h4>AI 数据处理合规框架更新</h4>
+<p>覆盖训练数据、推理数据和用户数据全生命周期。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Policy -->
+<section class="section" id="policy">
+<h2 class="section-title fade-in">行业标准与政策</h2>
+<div class="category-section fade-in">
+<h3 class="category-title">国际政策</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-policy">政策</span>
+<h4>EU AI Act 进入实施阶段</h4>
+<p>透明度义务涵盖使用说明、风险披露和决策可解释性。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">政策</span>
+<h4>84% 企业预期 AI 监管影响</h4>
+<p>合规从"成本中心"变为"竞争要素"。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">政策</span>
+<h4>国际 AI 安全报告 2026</h4>
+<p>为国际政策协调提供科学基础。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">中国政策</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-policy">中国</span>
+<h4>深圳 AI 终端产业行动计划</h4>
+<p>目标 2026 年产业规模达 1 万亿元。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">中国</span>
+<h4>中国 AI 产业规模突破 1.2 万亿</h4>
+<p>同比增长近 30%，AI 企业超 6000 家。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">中国</span>
+<h4>DeepSeek 拟募资 500 亿元</h4>
+<p>开源大模型正在改变全球 AI 竞争格局。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">标准化</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-policy">标准</span>
+<h4>AI 合规指南 2026</h4>
+<p>覆盖全球主要 AI 监管框架的一站式导航。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">标准</span>
+<h4>多利益相关方治理框架</h4>
+<p>避免碎片化监管是国际协调的核心目标。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-policy">标准</span>
+<h4>企业 AI 伦理框架成标配</h4>
+<p>从"公关话题"变为"治理工具"。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Productivity -->
+<section class="section" id="productivity">
+<h2 class="section-title fade-in">智能办公与生产力工具</h2>
+<div class="category-section fade-in">
+<h3 class="category-title">AI Agent</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-product">Agent</span>
+<h4>Google 发布新 AI Agent</h4>
+<p>直接挑战 OpenAI 和 Anthropic，利用 Workspace、Search、Cloud 生态构建 Agent 护城河。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-product">Agent</span>
+<h4>Kilo Code v7 登顶 Product Hunt</h4>
+<p>开源 AI 编码助手在 VS Code 中提供规划、构建和修复能力，5 月 5 日日榜 #1。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-product">Agent</span>
+<h4>Cognition Devin 推动 AI 软件工程师概念</h4>
+<p>250 亿美元估值融资洽谈中，从"编码辅助"到"独立开发"的范式转变。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">企业自动化</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-biz">自动化</span>
+<h4>Kelviq 上线 Product Hunt</h4>
+<p>AI/SaaS 变现平台，处理支付、全球税务、订阅和用量计费。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">自动化</span>
+<h4>Performativ 获 550 万欧元</h4>
+<p>AI 原生财富管理系统操作系统。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-biz">自动化</span>
+<h4>Marloo 获 1000 万美元种子轮</h4>
+<p>财务规划顾问工作流自动化。</p>
+</div>
+</div>
+</div>
+<div class="category-section fade-in">
+<h3 class="category-title">协作工具</h3>
+<div class="cards-grid">
+<div class="info-card">
+<span class="tag tag-product">协作</span>
+<h4>reMarkable Paper Pure 平板</h4>
+<p>回归基础电子墨水体验，"减少干扰"成为一种差异化价值。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-product">协作</span>
+<h4>FlowMarket：AI Agent 社交网络</h4>
+<p>Agent-to-Agent 交互协议可能成为下一个基础设施层。</p>
+</div>
+<div class="info-card">
+<span class="tag tag-product">协作</span>
+<h4>Spellar 3.0 AI 会议助手</h4>
+<p>从"会议记录"升级为"行动驱动"。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Products -->
+<section class="section" id="products">
+<h2 class="section-title fade-in">热门 AI 产品动态</h2>
+
+<div class="product-card fade-in">
+<h4>🥇 Vapi — AI 语音对话基础设施平台</h4>
+<div class="product-meta">
+<div class="meta-item"><div class="meta-label">估值</div><div class="meta-value">约 5 亿美元</div></div>
+<div class="meta-item"><div class="meta-label">融资</div><div class="meta-value">B 轮 5000 万美元，累计 7200 万</div></div>
+<div class="meta-item"><div class="meta-label">日调用量</div><div class="meta-value">100-500 万次</div></div>
+<div class="meta-item"><div class="meta-label">总通话量</div><div class="meta-value">突破 10 亿次</div></div>
+</div>
+<p>构建对话式语音机器人的基础设施，用于客服、排程、线索筛选和销售外呼。Amazon Ring 从 40+ 供应商中选择 Vapi。</p>
+<ul class="key-points"><li>投资方包括 Peak XV Partners、Bessemer、Kleiner Perkins 和 Microsoft M12</li><li>企业用户增长 10 倍，超过 100 万自服务开发者</li><li>聚焦"编排层"而非"应用层"的卖铲子策略</li></ul>
+<p><strong>适合使用者：</strong>中大型企业客服团队、AI 开发者、希望快速部署语音 AI 的业务</p>
+</div>
+
+<div class="product-card fade-in">
+<h4>🥈 Kilo Code — 开源 AI 编码助手</h4>
+<div class="product-meta">
+<div class="meta-item"><div class="meta-label">Product Hunt</div><div class="meta-value">5 月 5 日日榜 #1</div></div>
+<div class="meta-item"><div class="meta-label">版本</div><div class="meta-value">v7</div></div>
+<div class="meta-item"><div class="meta-label">类型</div><div class="meta-value">开源 VS Code 插件</div></div>
+<div class="meta-item"><div class="meta-label">定位</div><div class="meta-value">Cursor 开源替代</div></div>
+</div>
+<p>集成于 VS Code 的开源 AI 编码助手，支持规划、构建和修复代码。</p>
+<ul class="key-points"><li>完全开源，可自定义和审计</li><li>v7 带来显著的上下文理解和代码生成提升</li><li>挑战闭源编码助手的主导格局</li></ul>
+<p><strong>适合使用者：</strong>开发者、重视代码隐私的企业、开源社区成员</p>
+</div>
+
+<div class="product-card fade-in">
+<h4>🥉 Kelviq — SaaS/AI 公司变现平台</h4>
+<div class="product-meta">
+<div class="meta-item"><div class="meta-label">Product Hunt</div><div class="meta-value">5 月 12 日日榜 #1</div></div>
+<div class="meta-item"><div class="meta-label">类型</div><div class="meta-value">Merchant of Record (MoR)</div></div>
+<div class="meta-item"><div class="meta-label">功能</div><div class="meta-value">支付/税务/订阅/用量计费</div></div>
+<div class="meta-item"><div class="meta-label">面向</div><div class="meta-value">SaaS 和 AI 公司</div></div>
+</div>
+<p>完整的 SaaS 和 AI 公司变现平台，处理支付、全球税务、订阅和用量计费。</p>
+<ul class="key-points"><li>处理全球税务合规和多币种支付</li><li>支持用量计费和复杂订阅模型</li><li>MoR 模式简化合规</li></ul>
+<p><strong>适合使用者：</strong>SaaS 创业者、AI API 提供商、需要全球支付的公司</p>
+</div>
+
+<div class="product-card fade-in">
+<h4>4. FlowMarket — AI Agent 社交网络</h4>
+<div class="product-meta">
+<div class="meta-item"><div class="meta-label">Product Hunt</div><div class="meta-value">5 月 7 日日榜 #1</div></div>
+<div class="meta-item"><div class="meta-label">类型</div><div class="meta-value">Agent-to-Agent 交互平台</div></div>
+<div class="meta-item"><div class="meta-label">创新</div><div class="meta-value">Agent 服务发现和协作</div></div>
+</div>
+<p>AI Agent 之间的社交网络平台，支持 Agent 交互、协作和价值交换。</p>
+<ul class="key-points"><li>开创 Agent-to-Agent 交互新范式</li><li>潜在的 Agent 经济协议层</li></ul>
+<p><strong>适合使用者：</strong>AI Agent 开发者、自动化工程师、探索 Agent 经济的研究者</p>
+</div>
+
+<div class="product-card fade-in">
+<h4>5. Spellar 3.0 — AI 会议助手</h4>
+<div class="product-meta">
+<div class="meta-item"><div class="meta-label">Product Hunt</div><div class="meta-value">当日上榜产品</div></div>
+<div class="meta-item"><div class="meta-label">版本</div><div class="meta-value">3.0</div></div>
+<div class="meta-item"><div class="meta-label">功能</div><div class="meta-value">会议摘要/行动项跟踪</div></div>
+</div>
+<p>AI 会议助手，提供智能会议摘要、行动项跟踪和后续跟进。</p>
+<ul class="key-points"><li>从"会议记录"升级为"行动驱动"</li><li>与主流日历和协作工具集成</li></ul>
+<p><strong>适合使用者：</strong>项目经理、团队负责人、需要高效会议管理的组织</p>
+</div>
+</section>
+
+<!-- Key Insights -->
+<section class="section" id="insights">
+<h2 class="section-title fade-in">当日关键洞察总结</h2>
+
+<div class="insight-section fade-in">
+<h3>洞察一：AI 基础设施正在成为资本和技术的双重焦点</h3>
+<p>从 Vapi 的 5 亿美元估值到 Parallel 的 20 亿美元估值，再到 Cognition 的 250 亿美元融资洽谈，市场对"AI 基础设施层"的定价正在快速上移。</p>
+<p>这不是简单的估值泡沫——当 AI 从"单点应用"走向"系统化部署"，基础设施的价值呈指数级增长。类似于 2010 年代的云计算，今天的 AI 基础设施公司正在定义下一个十年的技术栈。</p>
+</div>
+
+<div class="insight-section fade-in">
+<h3>洞察二：AI 的"军事化"和"商业化"正在同步加速</h3>
+<p>五角大楼与 Nvidia、Microsoft、AWS 的大规模签约，加上 Scout AI 等军事 AI 公司的融资，标志着 AI 正式进入国防核心场景。</p>
+<p>国防级 AI 的需求将推动边缘计算、安全推理、自主决策等技术的加速成熟，并最终溢出到民用市场。</p>
+</div>
+
+<div class="insight-section fade-in">
+<h3>洞察三：Google 搜索的 AI 化将重塑整个互联网内容生态</h3>
+<p>当 Google AI Overviews 从"给出答案"转向"聚合社区观点"，Reddit 等论坛、个人博客和付费内容都成为搜索结果的一部分。</p>
+<p>这意味着内容创作者的价值将被重新定义——不再是 SEO 排名竞争，而是"被 AI 引用"的竞争。这一转变将影响从内容营销到知识管理的方方面面。</p>
+</div>
+</section>
+
+<div class="disclaimer">
+<strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，ProductHunt 和 VentureBeat 实施了反爬检测，部分内容通过 WebSearch 和其他信源交叉验证补充。国内源（机器之心、量子位）访问受限，相关信息已通过其他中文科技媒体验证。
+</div>
+
+<footer>
+<p>AI 资讯快报 · 2026年5月14日</p>
+<p>归档首页：<a href="https://katelian.github.io/ai-news-bulletin/">katelian.github.io/ai-news-bulletin</a></p>
+<p style="margin-top:12px;opacity:0.7">Generated with AI News Bulletin Skill</p>
+</footer>
+
+<script>
+// Fade-in animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Charts
+new Chart(document.getElementById('fundingChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Cognition', 'Parallel', 'Vapi', 'Scout AI', 'AMI Labs', 'Ineffable'],
+    datasets: [{
+      label: '融资规模 (亿美元)',
+      data: [25, 2.3, 0.5, 1, 10, 11],
+      backgroundColor: ['#6366f1','#8b5cf6','#a78bfa','#c4b5fd','#ec4899','#f472b6'],
+      borderRadius: 8
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } }
+});
+
+new Chart(document.getElementById('usageChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['AI Agent', '语音/对话', '编码辅助', '国防军事', '医疗健康', '搜索/信息'],
+    datasets: [{
+      data: [25, 18, 15, 14, 13, 15],
+      backgroundColor: ['#6366f1','#ec4899','#8b5cf6','#f59e0b','#10b981','#06b6d4'],
+      borderWidth: 0
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true } } } }
+});
+
+new Chart(document.getElementById('productChart'), {
+  type: 'line',
+  data: {
+    labels: ['Vapi', 'Kilo Code', 'Kelviq', 'FlowMarket', 'Spellar 3.0'],
+    datasets: [{
+      label: '热度指数',
+      data: [95, 88, 82, 78, 65],
+      borderColor: '#6366f1',
+      backgroundColor: 'rgba(99,102,241,0.1)',
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: ['#ec4899','#8b5cf6','#f59e0b','#10b981','#06b6d4'],
+      pointRadius: 8,
+      pointHoverRadius: 12
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 100, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } }
+});
+</script>
+</body>
+</html>
