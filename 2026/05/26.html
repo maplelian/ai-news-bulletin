@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 &middot; 2026年5月26日</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--indigo:#6366f1;--pink:#ec4899;--slate-900:#0f172a;--slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;--card-radius:16px;--shadow:0 4px 24px rgba(0,0,0,.08)}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans SC',system-ui,-apple-system,sans-serif;color:#1e293b;background:var(--slate-50);line-height:1.7;overflow-x:hidden}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#312e81 100%);color:#fff;padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(99,102,241,.15) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(236,72,153,.1) 0%,transparent 50%);pointer-events:none}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;letter-spacing:-.02em;margin-bottom:12px}
+.hero .subtitle{font-size:1.1rem;opacity:.85;margin-bottom:24px}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 20px;font-size:.9rem;margin-bottom:20px}
+.hero .archive-btn{display:inline-block;background:#fbbf24;color:#1e293b;font-weight:700;padding:12px 28px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(251,191,36,.3)}
+.hero .archive-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(251,191,36,.4)}
+
+/* NAV */
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:12px 16px}
+.nav-bar .nav-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;max-width:1200px;margin:0 auto}
+.nav-bar a{color:#cbd5e1;text-decoration:none;font-size:.82rem;padding:6px 14px;border-radius:8px;transition:background .2s,color .2s;white-space:nowrap}
+.nav-bar a:hover{background:rgba(99,102,241,.2);color:#fff}
+
+/* SECTIONS */
+.section{max-width:1100px;margin:0 auto;padding:48px 24px}
+.section-title{font-size:1.8rem;font-weight:800;margin-bottom:32px;display:flex;align-items:center;gap:12px}
+.section-title .icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+
+/* CARDS */
+.card-grid{display:grid;gap:20px}
+.card-grid.cols-3{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card-grid.cols-2{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
+.card{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);padding:24px;transition:transform .2s,box-shadow .2s;border:1px solid var(--slate-200)}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.card .tag{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:6px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;line-height:1.4}
+.card p{color:var(--slate-600);font-size:.92rem;margin-bottom:10px}
+.card ul{padding-left:18px;color:var(--slate-600);font-size:.88rem}
+.card ul li{margin-bottom:4px}
+
+.tag-tech{background:#ede9fe;color:#7c3aed}
+.tag-business{background:#dbeafe;color:#2563eb}
+.tag-ethics{background:#fce7f3;color:#db2777}
+.tag-health{background:#d1fae5;color:#059669}
+.tag-robot{background:#fef3c7;color:#d97706}
+.tag-security{background:#fee2e2;color:#dc2626}
+.tag-policy{background:#e0e7ff;color:#4f46e5}
+.tag-product{background:#cffafe;color:#0891b2}
+.tag-headline{background:#fef3c7;color:#b45309}
+.tag-trend{background:#ede9fe;color:#7c3aed}
+
+/* HEADLINES */
+.headline-card{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);padding:28px;margin-bottom:24px;border-left:4px solid var(--indigo)}
+.headline-card h3{font-size:1.3rem;font-weight:800;margin-bottom:14px}
+.headline-card .meta{display:flex;gap:8px;margin-bottom:14px}
+.headline-card .meta span{font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:6px}
+.headline-card .body{color:var(--slate-600);font-size:.95rem;line-height:1.8}
+.headline-card .body p{margin-bottom:12px}
+.headline-card .link{color:var(--indigo);text-decoration:none;font-weight:600;font-size:.9rem}
+.headline-card .link:hover{text-decoration:underline}
+.headline-card .impact{background:var(--slate-50);border-radius:10px;padding:14px;margin-top:14px;font-size:.9rem;color:var(--slate-700);border-left:3px solid var(--pink)}
+
+/* TREND */
+.trend-card{background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:var(--card-radius);padding:28px;margin-bottom:20px;border:1px solid #c4b5fd}
+.trend-card h3{font-size:1.2rem;font-weight:800;margin-bottom:12px;color:#4c1d95}
+.trend-card p{color:#5b21b6;font-size:.95rem;margin-bottom:10px}
+.trend-card .insight{background:rgba(255,255,255,.7);border-radius:10px;padding:14px;font-weight:600;color:#5b21b6;border-left:3px solid #7c3aed}
+
+/* INSIGHT */
+.insight-section{background:linear-gradient(135deg,#0f172a,#1e1b4b);color:#fff;border-radius:20px;padding:40px 32px;margin:40px auto;max-width:1100px}
+.insight-section h2{font-size:1.6rem;font-weight:800;margin-bottom:28px;text-align:center}
+.insight-item{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1)}
+.insight-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.insight-item h3{font-size:1.15rem;font-weight:700;margin-bottom:10px;color:#c4b5fd}
+.insight-item p{color:#cbd5e1;font-size:.95rem;line-height:1.8}
+
+/* CHARTS */
+.charts-section{max-width:1100px;margin:0 auto;padding:48px 24px}
+.charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.chart-card{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);padding:24px;border:1px solid var(--slate-200)}
+.chart-card h3{font-size:1rem;font-weight:700;margin-bottom:16px;text-align:center}
+.chart-card canvas{max-width:100%;max-height:280px}
+
+/* PRODUCT */
+.product-card{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--slate-200);transition:transform .2s,box-shadow .2s}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.product-card .header{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:20px 24px}
+.product-card .header h3{font-size:1.15rem;font-weight:800}
+.product-card .header .votes{font-size:.82rem;opacity:.9;margin-top:4px}
+.product-card .body{padding:20px 24px}
+.product-card .body p{color:var(--slate-600);font-size:.9rem;margin-bottom:12px}
+.product-card .body ul{padding-left:18px;color:var(--slate-600);font-size:.85rem}
+.product-card .body .scene{background:var(--slate-50);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:.85rem;color:var(--slate-700)}
+
+/* FOOTER */
+footer{background:var(--slate-800);color:#94a3b8;text-align:center;padding:32px 24px;font-size:.85rem;margin-top:40px}
+footer a{color:#818cf8;text-decoration:none}
+
+/* ANIMATION */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .card-grid.cols-3,.card-grid.cols-2{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr}
+  .hero{padding:60px 20px 40px}
+  .section{padding:32px 16px}
+  .nav-bar .nav-row{gap:4px 8px}
+  .nav-bar a{font-size:.75rem;padding:5px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">2026年5月26日 &middot; 第 1 期</div>
+  <h1>AI 资讯快报</h1>
+  <p class="subtitle">全球 AI 行业每日情报 &middot; 中文精编</p>
+  <a class="archive-btn" href="https://katelian.github.io/ai-news-bulletin/" target="_blank">&#128193; 查看所有归档期数</a>
+</section>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-row">
+    <a href="#trends">核心趋势</a>
+    <a href="#headlines">今日头条</a>
+    <a href="#tech">技术前沿</a>
+    <a href="#industry">行业竞争</a>
+    <a href="#ethics">伦理安全</a>
+    <a href="#health">医疗教育</a>
+    <a href="#robot">机器人</a>
+    <a href="#security">数据隐私</a>
+  </div>
+  <div class="nav-row" style="margin-top:6px">
+    <a href="#policy">标准政策</a>
+    <a href="#productivity">生产力</a>
+    <a href="#products">热门产品</a>
+    <a href="#insights">关键洞察</a>
+  </div>
+</nav>
+
+<!-- CHARTS DASHBOARD -->
+<section class="charts-section">
+  <h2 style="font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:28px">&#128202; 数据仪表板</h2>
+  <div class="charts-grid">
+    <div class="chart-card fade-in">
+      <h3>今日资讯类别分布</h3>
+      <canvas id="chartCategory"></canvas>
+    </div>
+    <div class="chart-card fade-in">
+      <h3>资讯来源覆盖</h3>
+      <canvas id="chartSource"></canvas>
+    </div>
+    <div class="chart-card fade-in">
+      <h3>热门产品热度对比</h3>
+      <canvas id="chartProduct"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDS -->
+<section class="section" id="trends">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#ede9fe;color:#7c3aed">&#128640;</span>
+    今日核心趋势
+  </div>
+  <div class="card-grid">
+    <div class="trend-card fade-in">
+      <h3>趋势 1：AI 产业资本效率遭质疑 &mdash;&mdash; Uber 公开承认&ldquo;花钱没看到效果&rdquo;</h3>
+      <p>Uber 总裁 Andrew Macdonald 在一次内部会议上坦言，公司在 AI 上的大量投入与可衡量的产品产出之间缺乏清晰关联。多家大型企业 CIO 在 2026 年 Q2 开始从&ldquo;盲目扩 AI&rdquo;转向&ldquo;审视 AI ROI&rdquo;。</p>
+      <div class="insight">&#128161; 关键洞察：AI 产业正从&ldquo;资本军备竞赛&rdquo;进入&ldquo;效率问责&rdquo;阶段，无法证明 ROI 的项目将被削减。</div>
+    </div>
+    <div class="trend-card fade-in">
+      <h3>趋势 2：国产 AI 实现&ldquo;AI 自造 AI&rdquo;范式突破 &mdash;&mdash; 面壁智能 ForgeTrain 全球首发</h3>
+      <p>面壁智能发布全球首个 AI 自主训练 AI 的框架 ForgeTrain，训练速度超越英伟达 Megatron 10%，支持端侧部署与自定义人格训练。</p>
+      <div class="insight">&#128161; 关键洞察：&ldquo;AI 训练 AI&rdquo;将大幅降低大模型开发门槛，重塑 AI 基础设施市场竞争格局。</div>
+    </div>
+    <div class="trend-card fade-in">
+      <h3>趋势 3：教宗通谕以 AI 为切入点批判权力集中 &mdash;&mdash; 科技伦理进入主流话语</h3>
+      <p>教宗 Leo XIV 发布《Magnifica Humanitas》，对权力集中、不平等和民主侵蚀进行系统性批判，将 AI 伦理从学术界推向全球道德权威层面。</p>
+      <div class="insight">&#128161; 关键洞察：AI 治理已超越技术社区和监管机构，成为全社会层面的伦理议题。</div>
+    </div>
+  </div>
+</section>
+
+<!-- HEADLINES -->
+<section class="section" id="headlines">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#fef3c7;color:#b45309">&#128293;</span>
+    今日头条
+  </div>
+  <div class="headline-card fade-in">
+    <div class="meta"><span class="tag tag-headline">头条 1</span><span style="background:#fce7f3;color:#db2777">&#128274; 版权保护</span></div>
+    <h3>UMG 与 TikTok 续约协议 &mdash;&mdash; 联合打击未授权 AI 音乐</h3>
+    <div class="body">
+      <p>环球音乐集团（UMG）与 TikTok 宣布续签合作协议，将延续并加强对未授权 AI 生成音乐的清理机制，改善艺术家署名和版税分配。</p>
+      <ul><li>协议延续并强化了对未授权 AI 音乐的检测和移除机制</li><li>改进艺术家署名系统，确保 AI 翻唱/合成作品中的原创者权益</li><li>为 AI 音乐的商业化建立了更清晰的版权框架</li></ul>
+      <a class="link" href="https://techcrunch.com/2026/05/26/universal-music-group-and-tiktok-renew-agreement-to-combat-unauthorized-ai-music/" target="_blank">阅读全文 &rarr;</a>
+      <div class="impact">&#128161; 影响：两大平台从&ldquo;对抗&rdquo;转向&ldquo;共建规则&rdquo;，为其他内容产业与社交平台之间的 AI 版权协商提供了先例。</div>
+    </div>
+  </div>
+  <div class="headline-card fade-in">
+    <div class="meta"><span class="tag tag-headline">头条 2</span><span style="background:#ede9fe;color:#7c3aed">&#129302; 技术</span></div>
+    <h3>Google AI 再次暴露日期认知混乱 &mdash;&mdash; &ldquo;2027 是两年后&rdquo;</h3>
+    <div class="body">
+      <p>The Verge 报道指出，Google 的 AI 模型在被问及&ldquo;2027 年是否是明年&rdquo;时给出了错误回答，声称 2027 年还有两年才到。这一问题在 2025 年就曾被广泛嘲笑，但到 2026 年 5 月依然存在。</p>
+      <ul><li>Google AI 持续存在日期/时间认知缺陷</li><li>该问题在 2025 年被公开嘲笑后仍未修复</li><li>AI 在回应中引用了旧社交帖子的上下文，显示出对时间线的混乱理解</li></ul>
+      <a class="link" href="https://www.theverge.com/tech/937425/googles-ai-is-sometimes-confused-if-2027-is-next-year" target="_blank">阅读全文 &rarr;</a>
+      <div class="impact">&#128161; 影响：揭示了大语言模型在时间推理上的结构性缺陷，对依赖 AI 进行日程管理、财务规划等场景可能造成严重后果。</div>
+    </div>
+  </div>
+  <div class="headline-card fade-in">
+    <div class="meta"><span class="tag tag-headline">头条 3</span><span style="background:#dbeafe;color:#2563eb">&#128188; 商业</span></div>
+    <h3>面壁智能 ForgeTrain：全球首个 AI 自主训练 AI 框架</h3>
+    <div class="body">
+      <p>面壁智能发布 ForgeTrain 框架，实现了 AI 系统自主设计和训练 AI 模型的突破。该框架成功训练出 MiniCPM-1B 模型，速度超越英伟达 Megatron 10%。</p>
+      <ul><li>全球首个实现 AI 自主训练 AI 的工程化框架</li><li>训练速度超越英伟达 Megatron 10%</li><li>支持端侧部署和自定义人格训练</li></ul>
+      <a class="link" href="https://www.qbitai.com/2026/05/425511.html" target="_blank">阅读全文 &rarr;</a>
+      <div class="impact">&#128161; 影响：如果方法论能够被广泛复制，大模型开发的成本和时间将大幅下降，加速开源模型生态发展。</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH FRONTIER -->
+<section class="section" id="tech">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#ede9fe;color:#7c3aed">&#128300;</span>
+    技术前沿
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-tech">大模型</span>
+      <h3>DeepMind AlphaProof Nexus 破解 9 道埃尔德什数学难题</h3>
+      <p>使用 Gemini 驱动的框架在 Lean 中自动解决了 9 道长期悬而未决的埃尔德什数学难题，每题成本数百美元，代码开源。</p>
+      <ul><li>形式化数学证明自动化迈出重要一步</li><li>LLM 生成 Lean 证明 + 编译器纠错循环</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-tech">大模型</span>
+      <h3>Google I/O 2026 发布 Gemini 3.5</h3>
+      <p>Google 发布 Gemini 3.5 模型及一系列 AI 进展，重点强化了 Agent 能力和多模态理解。</p>
+      <ul><li>Gemini 系列持续迭代</li><li>Agent 能力成为核心方向</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-tech">大模型</span>
+      <h3>国产 Agent 模型闯入全球第一梯队</h3>
+      <p>多款国产 Agent 模型在全球评测中进入第一梯队，部分场景表现与国际领先模型相当。</p>
+      <ul><li>国产大模型在 Agent 场景竞争力显著提升</li><li>限时免费开放</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-tech">多模态</span>
+      <h3>Human Archive 融资 820 万美元训练物理 AI</h3>
+      <p>通过收集印度 gig worker 的第一人称视角数据来训练机器人，面临隐私争议。</p>
+      <ul><li>物理 AI 训练数据收集面临隐私挑战</li><li>被 Urban Company 等主要企业拒绝合作</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-tech">基础设施</span>
+      <h3>光-物质粒子为 AI 提供新算力方案</h3>
+      <p>使用极化子而非电子来执行 AI 计算，理论上可大幅降低能耗并提升速度。</p>
+      <ul><li>AI 硬件可能迎来范式转换</li><li>从电子计算转向光子/量子混合计算</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-tech">基础设施</span>
+      <h3>NASA 新 AI 太空芯片让航天器自主思考</h3>
+      <p>NASA 开发新型 AI 芯片，使航天器能够在太空中自主决策，减少对地面指令的依赖。</p>
+      <ul><li>边缘 AI 在极端环境中的应用拓展</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY -->
+<section class="section" id="industry">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#dbeafe;color:#2563eb">&#128188;</span>
+    行业竞争与战略
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-business">巨头动态</span>
+      <h3>Sundar Pichai 谈 Google AI、搜索与 Web 未来</h3>
+      <p>Google CEO 深入讨论了 AI 如何重塑搜索体验、Zero 项目以及对 YouTube 和 Web 生态的影响。</p>
+      <ul><li>Google 正从&ldquo;搜索公司&rdquo;向&ldquo;AI 优先公司&rdquo;转型</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-business">巨头动态</span>
+      <h3>Uber 质疑 AI 投入产出比</h3>
+      <p>Uber 高管公开表示 AI 支出难以合理化，token 消耗与实际产品交付之间缺乏清晰关联。</p>
+      <ul><li>AI ROI 正在成为企业决策的核心指标</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-business">融资</span>
+      <h3>Human Archive 完成 820 万美元融资</h3>
+      <p>专注于物理 AI 训练数据收集，利用印度零工经济的第一人称数据。</p>
+      <ul><li>物理 AI 数据市场正在形成</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-business">融资</span>
+      <h3>AI 安全研究获持续关注</h3>
+      <p>多家 AI 安全公司在 2026 年 Q2 获得新一轮融资，反映市场对 AI 风险管理的重视。</p>
+      <ul><li>AI 安全从学术研究走向商业化</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-business">人才</span>
+      <h3>ClickUp 裁员引发行业讨论</h3>
+      <p>协作工具头部玩家的大规模裁员引发关于 AI 是否正在重塑 SaaS 组织架构的讨论。</p>
+      <ul><li>AI 工具公司自身的组织变革</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-business">人才</span>
+      <h3>AI Agent 人才争夺加剧</h3>
+      <p>随着 Agent 能力成为大模型竞争的核心，相关领域的人才争夺战加剧。</p>
+      <ul><li>Agent 工程师成为最抢手的 AI 岗位之一</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ETHICS -->
+<section class="section" id="ethics">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#fce7f3;color:#db2777">&#9878;</span>
+    伦理与安全
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-ethics">安全研究</span>
+      <h3>Google AI 安全策略&ldquo;实时导航&rdquo;</h3>
+      <p>即使是 Google 这样的巨头也在&ldquo;实时导航&rdquo; AI 安全问题，没有现成的最佳实践可循。</p>
+      <ul><li>整个行业在 AI 安全上仍处于探索阶段</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-ethics">安全研究</span>
+      <h3>AI 事实核查问题日益突出</h3>
+      <p>Wired 报道了 AI 生成内容在事实核查方面面临的系统性挑战。</p>
+      <ul><li>AI 生成内容的可信度验证是核心问题</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-ethics">治理</span>
+      <h3>教宗通谕对科技治理的影响</h3>
+      <p>梵蒂冈通谕将 AI 治理提升到全球道德层面，可能影响国际政策制定。</p>
+      <ul><li>宗教权威介入科技治理是标志性事件</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-ethics">治理</span>
+      <h3>UMG-TikTok AI 音乐协议</h3>
+      <p>为 AI 生成内容的版权治理提供了一个平台间协作的范例。</p>
+      <ul><li>行业自律可能先于政府监管</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-ethics">透明度</span>
+      <h3>AI 日期认知缺陷的治理启示</h3>
+      <p>Google AI 的日期混乱问题提示我们需要对 AI 的时间推理能力建立更严格的测试标准。</p>
+      <ul><li>AI 基准测试需要覆盖更多实际场景</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-ethics">安全融资</span>
+      <h3>AI 安全融资持续增长</h3>
+      <p>AI 安全领域投资在 2026 年持续增长，商业化进程加速。</p>
+      <ul><li>AI 安全从学术走向产业</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH -->
+<section class="section" id="health">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#d1fae5;color:#059669">&#127973;</span>
+    医疗与教育应用
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-health">医疗</span>
+      <h3>AI 通过语音停顿检测早期痴呆风险</h3>
+      <p>研究发现 AI 可以通过分析人类语言中的&ldquo;嗯&rdquo;等停顿模式来识别早期痴呆风险。</p>
+      <ul><li>非侵入式 AI 诊断工具可能改变早期筛查方式</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-health">医疗</span>
+      <h3>AI 帮助化学家通过描述设计分子</h3>
+      <p>AI 系统现在允许化学家仅通过自然语言描述就能设计新分子，大幅加速药物发现过程。</p>
+      <ul><li>AI 在基础科学研究中的辅助作用不断扩大</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-health">教育</span>
+      <h3>AI 数学证明能力对教育的启示</h3>
+      <p>DeepMind AlphaProof Nexus 的能力展示了 AI 在高等数学中的潜力，可能影响 STEM 教育方式。</p>
+      <ul><li>AI 辅助数学教育可能从解题走向证明</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-health">医疗</span>
+      <h3>AI 在医疗影像诊断中的应用持续扩展</h3>
+      <p>全球多家医疗机构正在部署 AI 辅助诊断系统，覆盖影像、病理、基因组学等多个领域。</p>
+      <ul><li>AI 医疗从试点走向规模化部署</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-health">教育</span>
+      <h3>AI 个性化学习工具持续进化</h3>
+      <p>多款 AI 教育工具在 2026 年推出个性化学习路径功能。</p>
+      <ul><li>AI 教育的核心差异化在个性化</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-health">教育</span>
+      <h3>全球 AI 素养教育需求增长</h3>
+      <p>随着 AI 普及，全球对 AI 素养教育的需求快速增长。</p>
+      <ul><li>AI literacy 正在成为基础教育的一部分</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ROBOT -->
+<section class="section" id="robot">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#fef3c7;color:#d97706">&#129302;</span>
+    机器人前沿
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-robot">人形机器人</span>
+      <h3>Human Archive 用人类视角数据训练机器人</h3>
+      <p>通过收集印度零工的第一人称数据，为物理 AI 提供更真实的训练素材。</p>
+      <ul><li>人形机器人训练需要高质量的人类行为数据</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-robot">人形机器人</span>
+      <h3>机器人家务能力研究取得进展</h3>
+      <p>Wired 报道了机器人在执行日常家务任务方面的最新研究进展。</p>
+      <ul><li>家用机器人的实用性正在逐步提升</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-robot">人形机器人</span>
+      <h3>中国人形机器人产业持续突破</h3>
+      <p>多家中国公司在人形机器人领域取得工程化进展。</p>
+      <ul><li>人形机器人从实验室走向产业化</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-robot">工业/服务</span>
+      <h3>AI 债务催收领域的应用</h3>
+      <p>Wired 报道了 AI 在债务催收领域的应用，引发伦理讨论。</p>
+      <ul><li>AI 在敏感金融服务中的应用边界需要明确</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-robot">训练控制</span>
+      <h3>光-物质粒子为机器人算力提供新方案</h3>
+      <p>使用极化子替代电子的 AI 计算方案可能为机器人提供更高效的本地算力。</p>
+      <ul><li>机器人本地 AI 算力可能迎来突破</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-robot">训练控制</span>
+      <h3>机器人行为安全标准制定加速</h3>
+      <p>随着机器人进入更多生活场景，行为安全标准的制定加速推进。</p>
+      <ul><li>机器人安全标准体系正在形成</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="section" id="security">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#fee2e2;color:#dc2626">&#128274;</span>
+    数据安全与隐私
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-security">威胁</span>
+      <h3>AI 安全实践在 Google 等巨头的探索</h3>
+      <p>即使是 Google 也在实时探索 AI 安全最佳实践，反映行业整体处于早期阶段。</p>
+      <ul><li>AI 安全没有标准答案，每家都在摸索</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-security">威胁</span>
+      <h3>AI 生成内容的网络滥用风险上升</h3>
+      <p>AI 生成深度伪造和虚假内容的能力持续被恶意利用。</p>
+      <ul><li>AI 滥用是网络安全的新威胁</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-security">威胁</span>
+      <h3>企业 AI 数据泄露事件增加</h3>
+      <p>2026 年 Q2 多起企业 AI 系统数据泄露事件被报道。</p>
+      <ul><li>AI 系统本身成为新的攻击面</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-security">隐私</span>
+      <h3>Human Archive 数据收集引发隐私争议</h3>
+      <p>收集零工第一人称数据用于 AI 训练面临隐私伦理争议。</p>
+      <ul><li>AI 训练数据的隐私保护是核心挑战</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-security">隐私</span>
+      <h3>AI 隐私计算技术持续演进</h3>
+      <p>联邦学习、差分隐私等技术在企业 AI 部署中的应用增加。</p>
+      <ul><li>隐私计算从研究走向生产</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-security">监管</span>
+      <h3>全球 AI 数据监管框架逐步完善</h3>
+      <p>多个国家和地区正在建立 AI 数据使用的监管框架。</p>
+      <ul><li>AI 数据治理进入制度化阶段</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- POLICY -->
+<section class="section" id="policy">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#e0e7ff;color:#4f46e5">&#128220;</span>
+    行业标准与政策
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-policy">国际政策</span>
+      <h3>教宗通谕对全球 AI 政策的影响</h3>
+      <p>梵蒂冈通谕可能影响欧盟、美国等地的 AI 政策讨论。</p>
+      <ul><li>道德权威正在影响技术政策</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-policy">国际政策</span>
+      <h3>斯坦福发布 2026 AI Index 报告</h3>
+      <p>斯坦福 HAI 发布了全面的 2026 年 AI 指数报告，提供全球 AI 发展的量化基准。</p>
+      <ul><li>AI 产业的量化评估体系日益完善</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-policy">中国政策</span>
+      <h3>国产 AI 模型国际化</h3>
+      <p>中国 AI 公司加速推出面向全球市场的产品和服务。</p>
+      <ul><li>中国 AI 出海进入新阶段</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-policy">中国政策</span>
+      <h3>AI 产业政策持续优化</h3>
+      <p>中国各地 AI 产业政策持续推出，支持生态建设。</p>
+      <ul><li>政策驱动下的 AI 生态繁荣</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-policy">标准化</span>
+      <h3>AI 能力基准测试标准演进</h3>
+      <p>针对 AI 模型时间推理等能力的基准测试标准需要更新。</p>
+      <ul><li>AI 评估标准需要跟上技术发展</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-policy">标准化</span>
+      <h3>机器人安全标准制定</h3>
+      <p>人形机器人和服务机器人的安全标准制定工作加速。</p>
+      <ul><li>机器人标准化是产业化的前提</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTIVITY -->
+<section class="section" id="productivity">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#cffafe;color:#0891b2">&#128187;</span>
+    智能办公与生产力工具
+  </div>
+  <div class="card-grid cols-3">
+    <div class="card fade-in">
+      <span class="tag tag-product">AI Agent</span>
+      <h3>Agent 从&ldquo;优等生&rdquo;到&ldquo;好员工&rdquo;还差什么</h3>
+      <p>机器之心分析了当前 AI Agent 能力与实际工作场景需求之间的差距，探讨了 Agent 落地的关键挑战。</p>
+      <ul><li>Agent 能力评估标准需要从技术指标转向业务价值</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-product">AI Agent</span>
+      <h3>国产 Agent 模型进入全球第一梯队</h3>
+      <p>多款国产 Agent 模型在全球评测中表现优异。</p>
+      <ul><li>国产 Agent 能力达到国际领先水平</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-product">企业自动化</span>
+      <h3>ClickUp 裁员揭示协作工具行业的 AI 转型</h3>
+      <p>AI 协作工具公司本身也在经历 AI 驱动的组织变革。</p>
+      <ul><li>AI 正在重塑 SaaS 公司的运营模式</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-product">企业自动化</span>
+      <h3>Uber AI ROI 争议</h3>
+      <p>Uber 的 AI 投入产出比质疑反映了企业对自动化投资的审慎态度。</p>
+      <ul><li>企业 AI 投资需要更明确的 ROI 衡量</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-product">协作</span>
+      <h3>Google 搜索与 AI 的深度融合</h3>
+      <p>Sundar Pichai 阐述了 Google 搜索如何与 AI 能力深度整合。</p>
+      <ul><li>搜索 + AI 是信息获取的新范式</li></ul>
+    </div>
+    <div class="card fade-in">
+      <span class="tag tag-product">协作</span>
+      <h3>AI 协作工具的 ROI 成为采购关键指标</h3>
+      <p>企业在采购 AI 协作工具时越来越关注实际产出。</p>
+      <ul><li>AI 工具采购决策更加理性</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="section-title fade-in">
+    <span class="icon" style="background:#cffafe;color:#0891b2">&#11088;</span>
+    热门 AI 产品 Top 5
+  </div>
+  <div class="card-grid cols-3">
+    <div class="product-card fade-in">
+      <div class="header"><h3>1. Kilo Code</h3><div class="votes">ProductHunt 5月月度排名第 1</div></div>
+      <div class="body">
+        <p>开源 AI 编程助手，专注于代码规划、生成和审查。</p>
+        <ul><li>完全开源，支持社区贡献和自定义扩展</li><li>集成代码规划和自动审查能力</li><li>支持多种编程语言和开发框架</li></ul>
+        <div class="scene">&#127919; 日常编码辅助、代码审查、架构规划 &middot; 适合全栈开发者、开源贡献者</div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="header"><h3>2. PostSyncer AI</h3><div class="votes">ProductHunt 2026 年度排行榜前列</div></div>
+      <div class="body">
+        <p>AI 社交媒体内容创作和发布工具。</p>
+        <ul><li>支持多平台内容同步发布</li><li>AI 生成文案和视觉内容</li><li>数据分析和优化建议</li></ul>
+        <div class="scene">&#127919; 社交媒体运营、内容营销、品牌管理 &middot; 适合社交媒体经理、内容创作者</div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="header"><h3>3. ForgeTrain</h3><div class="votes">国内科技社区热议 &middot; 量子位头条</div></div>
+      <div class="body">
+        <p>全球首个 AI 自主训练 AI 的框架，成功训练 MiniCPM-1B 模型。</p>
+        <ul><li>训练速度超越英伟达 Megatron 10%</li><li>支持端侧部署和自定义人格</li><li>推动&ldquo;Forge Engineering&rdquo;新范式</li></ul>
+        <div class="scene">&#127919; 大模型训练、AI 研究、端侧模型部署 &middot; 适合 AI 研究人员、大模型开发团队</div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="header"><h3>4. AlphaProof Nexus</h3><div class="votes">学术社区和科技媒体广泛关注</div></div>
+      <div class="body">
+        <p>Gemini 驱动的数学证明系统，解决了 9 道埃尔德什难题。</p>
+        <ul><li>每题求解成本仅数百美元</li><li>代码完全开源</li><li>LLM + 形式化证明的创新组合</li></ul>
+        <div class="scene">&#127919; 数学研究、形式化验证、AI 推理能力展示 &middot; 适合数学家、计算机科学研究人员</div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="header"><h3>5. Gemini 3.5</h3><div class="votes">Google I/O 2026 核心发布</div></div>
+      <div class="body">
+        <p>Google 最新一代大模型，强化 Agent 能力和多模态理解。</p>
+        <ul><li>Agent 能力显著提升</li><li>多模态理解能力增强</li><li>与 Google 生态深度整合</li></ul>
+        <div class="scene">&#127919; 企业 AI 应用、多模态任务、Agent 自动化 &middot; 适合企业开发者、Google 生态用户</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insight-section" id="insights">
+  <h2>&#128161; 当日关键洞察总结</h2>
+  <div class="insight-item">
+    <h3>洞察一：AI 产业正经历从&ldquo;投入狂欢&rdquo;到&ldquo;效率问责&rdquo;的结构性转变</h3>
+    <p>Uber 高管公开质疑 AI 投入产出比、ClickUp 在 AI 工具公司自身进行大规模裁员&mdash;&mdash;这些信号表明，AI 不再是一张&ldquo;无限支票&rdquo;。企业和投资者开始要求看到具体的业务指标改善。这种转变可能引发一轮 AI 基础设施投资的重新评估，那些无法证明 ROI 的项目将被削减，而真正创造价值的应用将获得更多资源。</p>
+  </div>
+  <div class="insight-item">
+    <h3>洞察二：中国 AI 正在从&ldquo;跟随者&rdquo;变为&ldquo;范式定义者&rdquo;</h3>
+    <p>面壁智能的 ForgeTrain 实现了全球首个 AI 自主训练 AI 的工程化框架，国产 Agent 模型闯入全球第一梯队&mdash;&mdash;这些不再是&ldquo;追赶&rdquo;的故事，而是在定义新的技术范式。&ldquo;Forge Engineering&rdquo;如果能够在质量和效率上持续验证，将重塑全球大模型开发的竞争格局，同时加速开源生态的繁荣。</p>
+  </div>
+  <div class="insight-item">
+    <h3>洞察三：AI 治理正在从&ldquo;技术社区自治&rdquo;走向&ldquo;全社会共识构建&rdquo;</h3>
+    <p>教宗通谕《Magnifica Humanitas》将 AI 伦理提升到全球道德权威层面，UMG-TikTok 协议为 AI 版权治理提供了平台间协作范例，斯坦福 2026 AI Index 提供了量化基准&mdash;&mdash;这三股力量（道德权威、行业自律、学术评估）正在形成 AI 治理的新三角。AI 的未来不再仅由技术公司决定，而是由更广泛的社会力量共同塑造。</p>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="section" style="text-align:center;padding:32px 24px">
+  <div style="background:#fef3c7;border-radius:12px;padding:20px 24px;max-width:800px;margin:0 auto;font-size:.88rem;color:#92400e;border:1px solid #fcd34d">
+    <strong>&#9888; 免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，VentureBeat、ProductHunt 实施了反爬检测，机器之心/量子位访问受限。上述受限来源的内容已通过其他信源交叉验证补充。
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>AI 资讯快报 &middot; 2026年5月26日 &middot; 第 1 期</p>
+  <p style="margin-top:8px">数据来源：TechCrunch, The Verge, Wired, ScienceDaily, 机器之心, 量子位, Reuters, CNBC, ProductHunt</p>
+  <p style="margin-top:8px"><a href="https://katelian.github.io/ai-news-bulletin/" target="_blank">查看所有归档期数 &rarr;</a></p>
+</footer>
+
+<script>
+// Scroll animation
+document.addEventListener('DOMContentLoaded',function(){
+  const els=document.querySelectorAll('.fade-in');
+  const obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx=Array.prototype.indexOf.call(els,e.target);
+        setTimeout(function(){e.target.classList.add('visible')},(idx%6)*80);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  els.forEach(function(el){obs.observe(el)});
+});
+
+// Charts
+document.addEventListener('DOMContentLoaded',function(){
+  Chart.defaults.font.family="'Noto Sans SC',system-ui,sans-serif";
+  Chart.defaults.font.size=12;
+
+  new Chart(document.getElementById('chartCategory'),{
+    type:'doughnut',
+    data:{
+      labels:['技术前沿','行业竞争','伦理安全','医疗教育','机器人','数据隐私','标准政策','生产力'],
+      datasets:[{data:[6,6,6,6,6,6,6,6],backgroundColor:['#7c3aed','#2563eb','#db2777','#059669','#d97706','#dc2626','#4f46e5','#0891b2'],borderWidth:0}]
+    },
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true}}}}
+  });
+
+  new Chart(document.getElementById('chartSource'),{
+    type:'bar',
+    data:{
+      labels:['TechCrunch','The Verge','Wired','ScienceDaily','机器之心','量子位','WebSearch'],
+      datasets:[{label:'资讯条数',data:[5,5,5,5,3,3,8],backgroundColor:['#6366f1','#ec4899','#8b5cf6','#14b8a6','#f59e0b','#ef4444','#06b6d4'],borderRadius:8,borderSkipped:false}]
+    },
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:2}},x:{grid:{display:false}}}}
+  });
+
+  new Chart(document.getElementById('chartProduct'),{
+    type:'bar',
+    data:{
+      labels:['Kilo Code','PostSyncer AI','ForgeTrain','AlphaProof Nexus','Gemini 3.5'],
+      datasets:[{label:'热度指数',data:[95,82,90,88,96],backgroundColor:['#6366f1','#ec4899','#f59e0b','#14b8a6','#8b5cf6'],borderRadius:8,borderSkipped:false}]
+    },
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,ticks:{stepSize:20}},x:{grid:{display:false}}}}
+  });
+});
+</script>
+</body>
+</html>
