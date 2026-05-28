@@ -81,7 +81,7 @@ footer{text-align:center;padding:40px 20px;color:#94a3b8;font-size:.85rem;border
 <div class="badge">DAILY BRIEFING</div>
 <h1>AI 资讯快报</h1>
 <p class="date">2026年5月27日 · 星期二</p>
-<a href="https://katelian.github.io/ai-news-bulletin/" class="archive-btn">📁 查看所有归档期数</a>
+<a href="https://maplelian.github.io/ai-news-bulletin/" class="archive-btn">📁 查看所有归档期数</a>
 <div class="stats">
 <div class="stat"><div class="stat-value">48h</div><div class="stat-label">覆盖周期</div></div>
 <div class="stat"><div class="stat-value">35+</div><div class="stat-label">资讯条目</div></div>
@@ -309,8 +309,7 @@ footer{text-align:center;padding:40px 20px;color:#94a3b8;font-size:.85rem;border
 
 <script>
 // Charts
-const font={family:"'Noto Sans SC',sans-serif",size:11};
-Chart.defaults.font=family="Noto Sans SC";
+Chart.defaults.font={family:"'Noto Sans SC',sans-serif",size:11};
 new Chart(document.getElementById('chart1'),{type:'bar',data:{labels:['Anthropic','OpenAI','Isomorphic\nLabs','xAI'],datasets:[{label:'融资规模 ($B)',data:[30,25,2.1,12],backgroundColor:['#6366f1','#ec4899','#10b981','#f59e0b'],borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#f1f5f9'}}}}});
 new Chart(document.getElementById('chart2'),{type:'bar',data:{labels:['DeepSeek\nFlash','GPT-5.5','Claude\nSonnet','Gemini\n3.5 Flash'],datasets:[{label:'价格 ($/M tokens)',data:[0.14,2.5,1.5,0.35],backgroundColor:['#10b981','#6366f1','#ec4899','#f59e0b'],borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#f1f5f9'}}}}});
 new Chart(document.getElementById('chart3'),{type:'doughnut',data:{labels:['成功访问','反爬受限','WebSearch 补充'],datasets:[{data:[5,3,4],backgroundColor:['#10b981','#ef4444','#f59e0b'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{padding:12}}}}});
