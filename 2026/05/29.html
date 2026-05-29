@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 · 2026年5月29日</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --indigo:#6366f1;--pink:#ec4899;--slate-900:#0f172a;--slate-50:#f8fafc;
+  --slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-600:#475569;--slate-700:#334155;
+  --slate-800:#1e293b;--amber:#f59e0b;--emerald:#10b981;--red:#ef4444;
+  --card-radius:16px;--shadow:0 4px 24px rgba(0,0,0,.08);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans SC',system-ui,-apple-system,sans-serif;background:var(--slate-50);color:var(--slate-800);line-height:1.7}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#312e81 100%);color:#fff;padding:80px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(99,102,241,.15),transparent 50%),radial-gradient(circle at 70% 30%,rgba(236,72,153,.1),transparent 50%);animation:heroBg 20s ease infinite}
+@keyframes heroBg{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,3%)}}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:12px;background:linear-gradient(135deg,#818cf8,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .date-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 24px;font-size:1rem;margin-bottom:20px}
+.hero .archive-btn{display:inline-block;margin-top:12px;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;padding:10px 28px;border-radius:10px;text-decoration:none;font-weight:600;transition:transform .2s,box-shadow .2s}
+.hero .archive-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,158,11,.4)}
+.hero-stats{display:flex;justify-content:center;gap:40px;margin-top:32px;flex-wrap:wrap}
+.hero-stats .stat{text-align:center}
+.hero-stats .stat-value{font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stats .stat-label{font-size:.85rem;opacity:.7;margin-top:4px}
+
+/* Nav */
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--slate-200);padding:0 20px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0}
+.nav-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.nav-link{padding:6px 14px;border-radius:8px;font-size:.82rem;font-weight:500;color:var(--slate-600);text-decoration:none;transition:all .2s}
+.nav-link:hover{background:var(--indigo);color:#fff}
+
+/* Sections */
+.section{max-width:1200px;margin:0 auto;padding:60px 20px}
+.section-title{font-size:1.8rem;font-weight:800;text-align:center;margin-bottom:40px;position:relative}
+.section-title::after{content:'';display:block;width:60px;height:4px;background:linear-gradient(90deg,var(--indigo),var(--pink));border-radius:2px;margin:12px auto 0}
+.subsection{margin-bottom:32px}
+.subsection-title{font-size:1.2rem;font-weight:700;margin-bottom:16px;padding-left:12px;border-left:4px solid var(--indigo)}
+
+/* Cards */
+.card{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.card-badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:.75rem;font-weight:600;margin-bottom:10px}
+.badge-trend{background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(236,72,153,.15));color:var(--indigo)}
+.badge-headline{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(245,158,11,.15));color:#dc2626}
+.badge-tech{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(6,182,212,.15));color:#059669}
+.badge-biz{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(249,115,22,.15));color:#d97706}
+.badge-ethics{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(168,85,247,.15));color:#7c3aed}
+.badge-med{background:linear-gradient(135deg,rgba(236,72,153,.15),rgba(244,63,94,.15));color:#e11d48}
+.badge-robot{background:linear-gradient(135deg,rgba(6,182,212,.15),rgba(59,130,246,.15));color:#0891b2}
+.badge-sec{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(168,85,247,.15));color:#be123c}
+.badge-policy{background:linear-gradient(135deg,rgba(107,114,128,.15),rgba(100,116,139,.15));color:#475569}
+.badge-prod{background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(16,185,129,.15));color:#4f46e5}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;line-height:1.4}
+.card p{color:var(--slate-600);font-size:.92rem;margin-bottom:8px}
+.card .key-points{list-style:none;padding:0}
+.card .key-points li{padding:4px 0 4px 20px;position:relative;font-size:.88rem;color:var(--slate-600)}
+.card .key-points li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--indigo)}
+.card .source-link{display:inline-block;margin-top:8px;color:var(--indigo);font-size:.85rem;text-decoration:none;font-weight:500}
+.card .source-link:hover{text-decoration:underline}
+.card .insight-text{background:var(--slate-100);padding:12px 16px;border-radius:10px;margin-top:12px;font-size:.9rem;color:var(--slate-700);border-left:3px solid var(--pink)}
+
+/* Grid */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:20px}
+
+/* Dashboard */
+.dashboard{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);padding:32px;margin-bottom:40px}
+.dashboard h2{text-align:center;margin-bottom:24px;font-size:1.4rem}
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.chart-box{background:var(--slate-50);border-radius:12px;padding:20px}
+.chart-box h4{text-align:center;margin-bottom:12px;font-size:.95rem;color:var(--slate-600)}
+.chart-box canvas{max-height:260px}
+
+/* Product cards */
+.product-card{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);padding:24px;border-top:4px solid var(--indigo);transition:transform .2s}
+.product-card:hover{transform:translateY(-3px)}
+.product-card .product-name{font-size:1.15rem;font-weight:800;margin-bottom:8px}
+.product-card .product-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.product-card .meta-tag{padding:4px 10px;background:var(--slate-100);border-radius:6px;font-size:.78rem;color:var(--slate-600)}
+.product-card .product-desc{font-size:.9rem;color:var(--slate-600);margin-bottom:10px}
+.product-card .product-keys{list-style:none;padding:0}
+.product-card .product-keys li{padding:3px 0 3px 16px;position:relative;font-size:.85rem;color:var(--slate-600)}
+.product-card .product-keys li::before{content:'\2022';position:absolute;left:0;color:var(--indigo);font-weight:700}
+
+/* Insight */
+.insight-section{background:linear-gradient(135deg,#1e1b4b,#312e81);color:#fff;border-radius:var(--card-radius);padding:40px 32px;margin:40px auto;max-width:1200px}
+.insight-section h2{text-align:center;font-size:1.6rem;margin-bottom:32px}
+.insight-item{margin-bottom:28px}
+.insight-item h3{font-size:1.15rem;font-weight:700;margin-bottom:10px;color:#c7d2fe}
+.insight-item p{font-size:.95rem;line-height:1.8;opacity:.9}
+
+/* Footer */
+footer{background:var(--slate-800);color:rgba(255,255,255,.6);text-align:center;padding:32px 20px;font-size:.85rem}
+footer a{color:#818cf8;text-decoration:none}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in:nth-child(2){transition-delay:.1s}.fade-in:nth-child(3){transition-delay:.2s}
+.fade-in:nth-child(4){transition-delay:.3s}.fade-in:nth-child(5){transition-delay:.4s}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero{padding:50px 16px 40px}
+  .hero-stats{gap:20px}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .chart-grid{grid-template-columns:1fr}
+  .nav-row{gap:2px}
+  .nav-link{padding:5px 10px;font-size:.75rem}
+  .section{padding:40px 16px}
+  .insight-section{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>AI 资讯快报</h1>
+    <div class="date-badge">&#x1F4C5; 2026年5月29日 &middot; 覆盖过去 48 小时</div>
+    <br>
+    <a href="https://katelian.github.io/ai-news-bulletin/" class="archive-btn">&#x1F4C1; 查看所有归档期数</a>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-value">50+</div><div class="stat-label">资讯条目</div></div>
+      <div class="stat"><div class="stat-value">12</div><div class="stat-label">资讯板块</div></div>
+      <div class="stat"><div class="stat-value">10+</div><div class="stat-label">信息来源</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Nav -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <div class="nav-row">
+      <a href="#trends" class="nav-link">&#x1F4C8; 核心趋势</a>
+      <a href="#headlines" class="nav-link">&#x1F525; 今日头条</a>
+      <a href="#tech" class="nav-link">&#x1F4A1; 技术前沿</a>
+      <a href="#industry" class="nav-link">&#x1F4BC; 行业竞争</a>
+      <a href="#ethics" class="nav-link">&#x1F6E1; 伦理安全</a>
+      <a href="#medical" class="nav-link">&#x1F3E5; 医疗教育</a>
+      <a href="#robot" class="nav-link">&#x1F916; 机器人</a>
+      <a href="#security" class="nav-link">&#x1F512; 数据隐私</a>
+    </div>
+    <div class="nav-row">
+      <a href="#policy" class="nav-link">&#x1F4CB; 标准政策</a>
+      <a href="#productivity" class="nav-link">&#x1F680; 生产力工具</a>
+      <a href="#products" class="nav-link">&#x2B50; 热门产品</a>
+      <a href="#insights" class="nav-link">&#x1F4A1; 关键洞察</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Dashboard -->
+<section class="section">
+  <div class="dashboard fade-in">
+    <h2>&#x1F4CA; 今日数据仪表板</h2>
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h4>AI 融资规模对比（亿美元）</h4>
+        <canvas id="chartFunding"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>资讯板块分布</h4>
+        <canvas id="chartDistribution"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>热门产品热度对比</h4>
+        <canvas id="chartProducts"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Trends -->
+<section class="section" id="trends">
+  <h2 class="section-title fade-in">&#x1F4C8; 今日核心趋势</h2>
+  <div class="grid-3">
+    <div class="card fade-in">
+      <span class="card-badge badge-trend">&#x1F4C8; 趋势 1</span>
+      <h3>Anthropic 以 650 亿美元融资登顶全球最值钱 AI 公司</h3>
+      <p>Anthropic 完成 650 亿美元融资，估值超越 OpenAI。Claude Opus 4.8 同步发布，编码与长程工作流全面升级。Microsoft 与 OpenAI 排他性合作结束，AI 产业进入多元竞争阶段。</p>
+      <p><strong>关键洞察：</strong> 当 Anthropic 估值逼近 9000 亿美元，云厂商同时作为投资方和算力供应商深度绑定，AI 实验室的独立性与资本结构之间的张力正成为行业核心议题。</p>
+    </div>
+    <div class="card fade-in">
+      <span class="card-badge badge-trend">&#x1F4C8; 趋势 2</span>
+      <h3>AI 推理的瓶颈从算力转向内存</h3>
+      <p>XCena 以 5.7 亿美元估值完成 1.35 亿美元 B 轮融资，MX1 芯片将计算集成到 DRAM 模块中，用数千个 RISC-V 核心在内存内部完成预处理。</p>
+      <p><strong>关键洞察：</strong> "内存墙"正在成为限制推理经济性的关键因素。AI 基础设施的下一个突破点可能不在训练端，而在推理端的数据移动优化。</p>
+    </div>
+    <div class="card fade-in">
+      <span class="card-badge badge-trend">&#x1F4C8; 趋势 3</span>
+      <h3>AI Agent 重塑企业软件生态，"人类定位"争论升温</h3>
+      <p>Cognition 融资 10 亿美元，Devin 提交 89% 代码。Asana 收购 StackAI，Glean 营收突破 3 亿。互联网正被"为机器而重建"。</p>
+      <p><strong>关键洞察：</strong> 2026 年的 AI 叙事已从"模型能力竞赛"转向"Agent 生态布局"。Agent 正从技术概念变为商业基础设施。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Headlines -->
+<section class="section" id="headlines">
+  <h2 class="section-title fade-in">&#x1F525; 今日头条</h2>
+  <div class="grid-3">
+    <div class="card fade-in">
+      <span class="card-badge badge-headline">&#x1F525; 头条 1</span>
+      <h3>Anthropic 发布 Claude Opus 4.8，编码与长程工作流全面升级</h3>
+      <p>引入动态工作流能力，模型可根据任务复杂度自主调整处理策略。新增系统消息控制，开发者可更精细化管理模型行为。</p>
+      <ul class="key-points">
+        <li>动态工作流 = 模型自主决策处理路径</li>
+        <li>系统消息控制 = 更精确的行为约束</li>
+        <li>与 650 亿美元融资同步发布，技术-资本双重推进</li>
+      </ul>
+      <div class="insight-text">Claude Opus 4.8 的发布传递的信号非常明确：Anthropic 正在以"最强模型 + 最深资本池"的组合拳追赶 OpenAI。</div>
+    </div>
+    <div class="card fade-in">
+      <span class="card-badge badge-headline">&#x1F525; 头条 2</span>
+      <h3>Microsoft 推出 Copilot Health AI，可直接分析医疗记录与可穿戴数据</h3>
+      <p>面向 M365 订阅用户开放，整合医疗记录分析与可穿戴设备数据解读，可帮助用户寻找合适的医疗服务提供者。</p>
+      <ul class="key-points">
+        <li>整合医疗记录 + 可穿戴设备数据</li>
+        <li>AI 健康助手正式进入消费级市场</li>
+        <li>数据隐私、诊断准确性、监管合规成三大挑战</li>
+      </ul>
+      <div class="insight-text">Copilot Health 意味着 Microsoft 正在将 AI 从办公场景延伸至个人健康管理，是 AI Agent 垂直化的重要信号。</div>
+    </div>
+    <div class="card fade-in">
+      <span class="card-badge badge-headline">&#x1F525; 头条 3</span>
+      <h3>互联网正在被"为机器而重建"</h3>
+      <p>一个全新的基础设施层正在形成，专门服务于机器到机器（M2M）的无缝通信，将重新定义 AI Agent 如何与数字服务和数据进行交互。</p>
+      <ul class="key-points">
+        <li>传统互联网是为人类浏览设计的，Agent 需要完全不同的接口层</li>
+        <li>新兴基础设施正在解决 Agent 发现、认证、调用数字服务的问题</li>
+        <li>催生"Agent 原生应用"新品类，绕过传统 UI 直接暴露 API 给 AI</li>
+      </ul>
+      <div class="insight-text">当 AI Agent 数量超过人类用户，为机器设计的互联网将成为比为人设计的互联网更"繁忙"的网络。</div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Frontier -->
+<section class="section" id="tech">
+  <h2 class="section-title fade-in">&#x1F4A1; 技术前沿</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">大模型</h3>
+    <div class="grid-3">
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F9E0; 模型</span>
+        <h3>Claude Opus 4.8 引入动态工作流与系统消息控制</h3>
+        <p>Anthropic 最新 Opus 模型升级，支持根据任务复杂度自主调整处理策略，开发者可精细化控制系统提示词行为。</p>
+        <ul class="key-points"><li>动态工作流 = 模型自主决策处理路径</li><li>系统消息控制 = 更精确的行为约束</li></ul>
+      </div>
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F9E0; 理论</span>
+        <h3>LeCun 团队证明世界模型可在高斯分布假设下精确学习</h3>
+        <p>Meta 首席 AI 科学家团队从理论上证明世界模型在高斯分布假设下可被精确学习，为 AI 理解物理世界提供数学基础。</p>
+        <ul class="key-points"><li>理论突破，为世界模型的可学习性提供形式化证明</li></ul>
+      </div>
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F9E0; 研究</span>
+        <h3>研究揭示 LLM 为何难以复现 AlphaGo 的树搜索成功</h3>
+        <p>新研究分析了大语言模型在复制 AlphaGo 级别树搜索能力方面面临的结构性障碍，指出 Transformer 架构在规划与推理方面的局限性。</p>
+        <ul class="key-points"><li>Transformer 架构在搜索/规划任务上的固有瓶颈仍需突破</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">多模态</h3>
+    <div class="grid-3">
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F3A8; 设计</span>
+        <h3>Adobe Firefly AI Assistant 评测："平庸的设计实习生"</h3>
+        <p>Adobe 的 Firefly AI 助手定位为对话式设计助手，能提供基础设计辅助但远未达到专业人类水平。</p>
+        <ul class="key-points"><li>AI 在设计领域的辅助价值明确，但替代专业人员仍遥远</li></ul>
+      </div>
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F3AC; 争议</span>
+        <h3>&#x300A;生命之书&#x300B;创作者退出 Amazon AI 制作项目</h3>
+        <p>Filmmaker Jorge Gutierrez 因在线强烈反对而退出 Amazon 的 AI 动画系列制作并公开道歉。</p>
+        <ul class="key-points"><li>创意领域对 AI 的抵制情绪仍在，AI 生成内容的接受度存在行业分化</li></ul>
+      </div>
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F3AE; 游戏</span>
+        <h3>腾讯推出 Miora AI 游戏创作平台</h3>
+        <p>腾讯发布 AI 游戏创作平台 Miora，支持零基础用户到高级开发者创作高质量游戏内容，降低游戏开发门槛。</p>
+        <ul class="key-points"><li>"下限零基础，上限肝大作"的包容性设计</li><li>AI 降低内容创作门槛，从"辅助工具"向"创作引擎"进化</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">基础设施</h3>
+    <div class="grid-3">
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F4BE; 芯片</span>
+        <h3>XCena 融资 1.35 亿美元，押注内存为 AI 真正瓶颈</h3>
+        <p>XCena 的 MX1 芯片将计算直接集成到 DRAM 模块中，用 RISC-V 核心在内存内部完成数据预处理，减少 CPU/GPU 与内存间的数据搬运开销。</p>
+        <ul class="key-points"><li>内存墙 = AI 推理经济性最大挑战</li><li>近内存计算 = 下一代基础设施方向</li></ul>
+      </div>
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F4BE; 分析</span>
+        <h3>前 TPU 架构师解释为何海量算力仍无法消除推理延迟</h3>
+        <p>分析指出，即使拥有超大规模计算资源，推理延迟的根本瓶颈在于数据移动而非计算本身。</p>
+        <ul class="key-points"><li>算力 &#x2260; 速度，数据移动效率才是推理性能的关键变量</li></ul>
+      </div>
+      <div class="card fade-in">
+        <span class="card-badge badge-tech">&#x1F4BE; 企业</span>
+        <h3>Glean 营收突破 3 亿美元，以"AI 预算优化"为核心卖点</h3>
+        <p>Glean 的 AI 企业搜索平台以帮助企业减少不必要的 AI 支出为核心价值主张，反映企业在 AI 投入增长后开始关注成本效率。</p>
+        <ul class="key-points"><li>AI 成本治理正成为企业级 AI 采购的核心考量因素</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Industry -->
+<section class="section" id="industry">
+  <h2 class="section-title fade-in">&#x1F4BC; 行业竞争与战略</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">巨头动态</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F3E2; 巨头</span><h3>Microsoft 与 OpenAI 结束排他性合作</h3><p>排他性合作关系正式终止，双方将进入更开放的合作模式。同时 Microsoft 正在洽谈为其定制 AI 芯片寻找外部客户。</p><ul class="key-points"><li>排他性结束 = OpenAI 获得更多自由度</li><li>Microsoft 寻求 AI 芯片商业化</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F3E2; 巨头</span><h3>Google、Microsoft、xAI 将向美国政府提交模型供评估</h3><p>三大 AI 厂商计划向美国政府提交其 AI 模型用于安全评估，响应日益增长的行业监管需求。</p><ul class="key-points"><li>行业自我监管与政府评估机制正在形成</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F3E2; 巨头</span><h3>NVIDIA CEO 黄仁勋受聘清华大学</h3><p>NVIDIA CEO 黄仁勋获聘清华大学，推动 AI 教育与产业融合，标志中美 AI 人才交流的新动态。</p><ul class="key-points"><li>产业领袖进入学术界，推动 AI 人才培养与产业对接</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">融资动态</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F4B0; 融资</span><h3>Cognition（Devin）融资 10 亿美元，估值 260 亿美元</h3><p>AI 编码 Agent 开发商 Cognition 完成巨额融资，Devin 已能独立提交 89% 的代码。</p><ul class="key-points"><li>AI 编码 Agent 赛道持续升温</li><li>估值反映市场对自主编码能力的信心</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F4B0; 收购</span><h3>Asana 收购无代码 Agent 构建平台 StackAI</h3><p>Asana 收购 StackAI，将无代码 AI Agent 创建能力集成到其工作流平台，赋能非技术用户。</p><ul class="key-points"><li>无代码 + AI Agent = 企业自动化的下一个爆发点</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F4B0; 市场</span><h3>2026 年 Q1 全球风投融资创纪录，AI 驱动增长</h3><p>根据 Crunchbase 数据，2026 年第一季度全球风险投资打破纪录，AI 领域融资持续领跑。</p><ul class="key-points"><li>投资重点正从"基础模型"向"应用层 + 基础设施"转移</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">人才与组织</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F465; 组织</span><h3>Amazon 取消内部 AI 使用排行榜</h3><p>Amazon 停用跟踪员工 AI 使用情况的内部排行榜，因员工开始将不必要任务交给 AI 以刷排名。</p><ul class="key-points"><li>AI 采用率指标的"游戏化"反效果</li><li>企业 AI 治理需要更成熟的衡量方式</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F465; 人才</span><h3>前 TPU 架构师深度分析推理延迟问题</h3><p>资深芯片架构师从系统设计角度解析 AI 推理延迟的根因，指出数据流优化比单纯增加算力更有效。</p><ul class="key-points"><li>AI 基础设施需要系统性优化思维</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-biz">&#x1F465; 分析</span><h3>AI Agent 为何难以成为可靠"员工"的深度分析</h3><p>行业分析指出当前顶级 AI Agent 在向稳定职场角色转变中面临的挑战，包括可靠性、可预测性和责任归属问题。</p><ul class="key-points"><li>Agent 从"工具"到"同事"的转变仍需跨越信任与可靠性鸿沟</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Ethics -->
+<section class="section" id="ethics">
+  <h2 class="section-title fade-in">&#x1F6E1; 伦理与安全</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">AI 安全研究</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-ethics">&#x1F6E1; 安全</span><h3>第二份《国际人工智能安全报告》发布</h3><p>报告指出通用 AI 能力已超出预期，但风险证据持续累积，治理手段明显滞后。</p><ul class="key-points"><li>能力 > 治理的剪刀差在扩大</li><li>核心问题不是"是否发展"而是"如何安全发展"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-ethics">&#x1F6E1; 伦理</span><h3>Pope Leo XIV 发布通谕：AI 必须服务人类</h3><p>教皇 Leo XIV 发布通谕 Magnifica humanitas，强调 AI 必须服务于人类尊严而非取代人类。</p><ul class="key-points"><li>AI 伦理讨论已超越技术/政策领域，进入人文与宗教维度</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-ethics">&#x1F6E1; 评估</span><h3>CAISI 将开发者与政府分享未发布 AI 模型列为常见做法</h3><p>AI 安全机构披露，开发者与政府之间分享未发布模型是行业通行做法，将对签约公司进行 40 多项安全评估。</p><ul class="key-points"><li>AI 安全评估正从"自愿"走向"制度化"</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">透明度与治理</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-ethics">&#x1F4DC; 法规</span><h3>中国《网络安全法》完成修改，AI 安全正式"入法"</h3><p>修改后的网络安全法将 AI 安全纳入法律框架，治理进入实质性落地阶段。</p><ul class="key-points"><li>AI 安全从"行业自律"升级为"法律约束"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-ethics">&#x1F4DC; 标准</span><h3>AIIA 安全治理委员会 2026 年第一次会议在武汉举行</h3><p>人工智能产业发展联盟持续推动 AI 安全标准的产学研协作。</p><ul class="key-points"><li>中国 AI 治理框架持续完善，行业协作机制常态化</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-ethics">&#x1F4DC; 动态</span><h3>复旦发展研究院发布全球 AI 治理新闻（第 27 期）</h3><p>梳理 2026 年 5 月全球 AI 治理动态，涵盖政策更新、行业标准、国际协作等维度。</p><ul class="key-points"><li>全球 AI 治理正在形成多层次、多主体的协作网络</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Medical & Education -->
+<section class="section" id="medical">
+  <h2 class="section-title fade-in">&#x1F3E5; 医疗与教育应用</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">医疗健康</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-med">&#x1F48A; 医疗</span><h3>Microsoft Copilot Health AI 开放预览</h3><p>面向 M365 用户开放，可分析医疗记录与可穿戴数据，提供就医建议和健康管理功能。</p><ul class="key-points"><li>AI 健康助手正式进入消费级市场</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-med">&#x1F48A; 教育</span><h3>BMJ Future Health 2026：AI 能否"教医学"？</h3><p>BMJ 未来健康大会探讨 AI 在医学教育中的角色，讨论 AI 是否能够承担医学知识传授与临床推理训练的任务。</p><ul class="key-points"><li>AI 在医学教育中的定位仍存争议</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-med">&#x1F48A; 制药</span><h3>BMS 部署 AI 驱动数字健康方案</h3><p>百时美施贵宝推进 AI 在数字健康领域的应用，体现制药行业对 AI 的持续投入。</p><ul class="key-points"><li>制药行业 AI 应用从研发延伸至患者健康管理</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">教育应用</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-med">&#x1F393; 教育</span><h3>NVIDIA CEO 黄仁勋受聘清华推动 AI 教育</h3><p>黄仁勋受聘清华大学，推动 AI 教育与产业融合，培养下一代 AI 人才。</p><ul class="key-points"><li>产业领袖进入教育体系，推动 AI 人才培养与产业需求对接</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-med">&#x1F393; 创新</span><h3>8 岁孩子用 AI 做操作系统，一人公司拿下千万订单</h3><p>AI 降低软件开发门槛，使非传统程序员也能完成复杂项目。</p><ul class="key-points"><li>AI 正在消除技术门槛，"一人公司"模式在 AI 加持下成为现实</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-med">&#x1F393; 讨论</span><h3>AI 在医学教育中的角色引发深度讨论</h3><p>学术界围绕 AI 在医学教学中的边界展开讨论，焦点在于临床思维培养能否被 AI 替代。</p><ul class="key-points"><li>AI 教育的"能力边界"讨论正在形成学术共识</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Robotics -->
+<section class="section" id="robot">
+  <h2 class="section-title fade-in">&#x1F916; 机器人前沿</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">人形机器人</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-robot">&#x1F916; 趋势</span><h3>2026 年或成"人形机器人元年"</h3><p>行业分析指出，2026 年人形机器人正从实验室走向量产，多款新品进入生产阶段。</p><ul class="key-points"><li>人形机器人从原型到量产的跨越正在发生</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-robot">&#x1F916; 产品</span><h3>OMNI 新一代人形机器人发布引发行业震动</h3><p>OMNI 发布最新人形机器人产品，展示 AI + 机器人融合的最新进展。</p><ul class="key-points"><li>AI 大模型与人形机器人的结合正在加速落地</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-robot">&#x1F916; 展会</span><h3>CES 2026 机器人趋势回顾：人形机器人展现强劲进展</h3><p>CES 2026 上的人形机器人展示了在运动控制、环境感知、任务执行方面的显著进步。</p><ul class="key-points"><li>硬件 + AI 软件的双重进步正在消除人形机器人的商业化障碍</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">工业与服务机器人</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-robot">&#x1F3ED; 工业</span><h3>IFR 发布 2026 年全球五大机器人趋势</h3><p>国际机器人联合会发布年度趋势报告，涵盖协作机器人、移动机器人、AI 驱动自主决策等方向。</p><ul class="key-points"><li>工业机器人正从"执行者"向"决策者"进化</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-robot">&#x1F3ED; 市场</span><h3>全球人形机器人市场价值预测持续上调</h3><p>多方机构上调 2026-2030 年人形机器人市场规模预测，反映行业信心的持续增强。</p><ul class="key-points"><li>资本市场对人形机器人的预期正在兑现为实际投资</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-robot">&#x1F3ED; 融合</span><h3>AI Agent 与机器人控制系统的融合趋势</h3><p>AI Agent 技术正在被应用于机器人控制系统，使机器人具备更高级的任务规划和自主决策能力。</p><ul class="key-points"><li>Agent = 机器人的"大脑"升级路径，从预设程序到自主决策</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section class="section" id="security">
+  <h2 class="section-title fade-in">&#x1F512; 数据安全与隐私</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">网络威胁</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-sec">&#x26A0; 威胁</span><h3>AI 驱动的网络攻击复杂度持续降低</h3><p>安全行业报告指出，AI 工具使网络攻击的门槛不断下降，自动化攻击工具的普及增加了企业安全防御压力。</p><ul class="key-points"><li>AI 双刃剑效应：防御者用 AI，攻击者也在用 AI</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-sec">&#x26A0; 风险</span><h3>企业 AI 部署带来的数据泄露风险上升</h3><p>随着企业大规模部署 AI 工具，数据输入 AI 系统引发的泄露风险成为 CISO 的首要关注点。</p><ul class="key-points"><li>AI 使用政策的制定和执行是企业 AI 治理的核心环节</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-sec">&#x26A0; 深度伪造</span><h3>AI 生成内容的深度伪造检测成为新挑战</h3><p>AI 生成文本、图像、音频的逼真度持续提升，深度伪造检测技术需要与之同步进化。</p><ul class="key-points"><li>内容真实性验证正在成为数字基础设施的必需品</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">隐私技术</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-sec">&#x1F510; 隐私</span><h3>企业 AI 隐私保护技术投资增长</h3><p>差分隐私、联邦学习等隐私保护技术在企业 AI 部署中的应用持续增长。</p><ul class="key-points"><li>隐私计算正在从"学术概念"变为"企业刚需"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-sec">&#x1F510; 合规</span><h3>AI 模型训练数据合规性审查趋严</h3><p>监管机构对 AI 训练数据来源的合规性审查力度加大，特别是在版权和个人信息保护方面。</p><ul class="key-points"><li>训练数据合规 = AI 公司的"新碳足迹"，需要系统化管理</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-sec">&#x1F510; 策略</span><h3>零数据保留策略成企业 AI 部署标配</h3><p>越来越多的企业要求 AI 供应商采用零数据保留策略，确保输入数据不被用于模型训练。</p><ul class="key-points"><li>企业对 AI 供应商的数据治理要求正在成为采购标准的一部分</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Policy -->
+<section class="section" id="policy">
+  <h2 class="section-title fade-in">&#x1F4CB; 行业标准与政策</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">国际政策</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F310; 政策</span><h3>Google、Microsoft、xAI 向美国政府提交模型评估</h3><p>三大厂商主动将 AI 模型提交政府安全评估，行业自我监管机制正在形成。</p><ul class="key-points"><li>AI 安全评估从"被动合规"转向"主动参与"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F310; 报告</span><h3>2026 国际 AI 安全报告：能力超预期，治理滞后</h3><p>第二份国际 AI 安全报告指出通用 AI 能力已超过预期增长曲线，但治理框架的建设速度明显跟不上。</p><ul class="key-points"><li>全球 AI 治理需要"加速追赶"能力发展速度</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F310; 伦理</span><h3>教皇通谕：AI 应服务人类尊严</h3><p>Pope Leo XIV 发布通谕 Magnifica humanitas，从宗教伦理角度强调 AI 的人文价值。</p><ul class="key-points"><li>AI 伦理讨论正在扩展到全球多元文化视角</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">中国政策</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F1E8;&#x1F1F3; 法规</span><h3>&#x300A;网络安全法&#x300B;修改后 AI 安全正式入法</h3><p>修改后的网络安全法将 AI 安全纳入法律框架，治理进入实质性落地阶段。</p><ul class="key-points"><li>中国 AI 治理从"指导文件"升级为"法律约束"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F1E8;&#x1F1F3; 标准</span><h3>AIIA 安全治理委员会持续推进标准制定</h3><p>人工智能产业发展联盟持续推动 AI 安全标准的产学研协作。</p><ul class="key-points"><li>行业组织在 AI 治理中发挥越来越重要的桥梁作用</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F1E8;&#x1F1F3; 基建</span><h3>工信部启动工业数据筑基行动</h3><p>工业和信息化部启动工业数据基础设施建设，为 AI 在工业领域的应用奠定数据基础。</p><ul class="key-points"><li>工业 AI 需要扎实的数据基础设施支撑</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">标准化</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F4CB; 评估</span><h3>CAISI 对签约公司进行 40 多项 AI 安全评估</h3><p>AI 安全机构建立系统化评估框架，覆盖模型安全性、数据隐私、透明度等维度。</p><ul class="key-points"><li>AI 安全评估正在走向标准化和量化</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F4CB; 协作</span><h3>全球 AI 治理多层次协作网络形成</h3><p>政府、行业组织、学术机构在 AI 治理方面的协作日益紧密。</p><ul class="key-points"><li>AI 治理不再是单一主体能解决的问题，需要生态级协作</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-policy">&#x1F4CB; 合规</span><h3>训练数据合规标准逐步明确</h3><p>各国监管机构对 AI 训练数据的版权和隐私要求逐步明确化。</p><ul class="key-points"><li>合规成本正在成为 AI 公司的重要运营变量</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Productivity -->
+<section class="section" id="productivity">
+  <h2 class="section-title fade-in">&#x1F680; 智能办公与生产力工具</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">AI Agent</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F916; Agent</span><h3>Cognition：Devin 提交 89% 代码，定位为"编程搭档"</h3><p>Devin AI 编码 Agent 已能独立提交公司 89% 的代码，但 CEO 强调其定位是增强而非替代人类。</p><ul class="key-points"><li>Agent 从"辅助工具"进化为"生产力主力"</li><li>人类监督仍不可或缺</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F916; Agent</span><h3>Asana 收购 StackAI，布局无代码 Agent 构建</h3><p>Asana 将无代码 AI Agent 创建能力集成到工作流平台，赋能非技术用户。</p><ul class="key-points"><li>无代码 Agent 构建 = 企业自动化的下一个爆发点</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F916; Agent</span><h3>互联网"为机器重建"：Agent 原生基础设施兴起</h3><p>新基础设施层正在形成，专门服务于 AI Agent 与数字服务的交互，催生"Agent 原生应用"新品类。</p><ul class="key-points"><li>Agent 生态的成熟需要专门的基础设施支持</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">企业自动化</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F3E2; 企业</span><h3>Glean 营收突破 3 亿，以"AI 预算优化"为卖点</h3><p>Glean 的 AI 企业搜索平台以帮助企业控制 AI 成本为核心价值。</p><ul class="key-points"><li>AI 成本治理成为企业采购 AI 工具的核心决策因素</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F3E2; 趋势</span><h3>AI Agent 将成"工作流引擎"</h3><p>行业分析预测，到 2026 年 AI Agent 将从独立工具演变为驱动企业工作流的核心引擎。</p><ul class="key-points"><li>Agent 的终局不是"聊天机器人"，而是"自动化的业务操作系统"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F3E2; 治理</span><h3>Amazon 停用 AI 使用排行榜，反思企业 AI 治理</h3><p>Amazon 因员工"刷 AI 使用率"而取消内部排行榜，警示企业 AI 采用指标需要更科学的设计。</p><ul class="key-points"><li>企业 AI 治理不能只看"使用率"，更要关注"使用质量"</li></ul></div>
+    </div>
+  </div>
+  <div class="subsection">
+    <h3 class="subsection-title">协作工具</h3>
+    <div class="grid-3">
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F91D; 协作</span><h3>Google Gemini 新增 Drive 分享功能</h3><p>Google Workspace 用户可通过 Google Drive 分享 Gemini 对话快照，接收方可继续对话而不影响原始线程。</p><ul class="key-points"><li>AI 协作功能正在融入现有办公套件</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F91D; 创意</span><h3>Adobe Firefly AI 助手：基础设计辅助能力</h3><p>Adobe 推出对话式设计助手，能提供基础设计建议和素材生成。</p><ul class="key-points"><li>AI 在创意工具中的定位是"增强"而非"替代"</li></ul></div>
+      <div class="card fade-in"><span class="card-badge badge-prod">&#x1F91D; 创作</span><h3>腾讯 Miora AI 游戏创作平台降低开发门槛</h3><p>腾讯发布 AI 游戏创作平台，支持从零基础到高级开发者的全栈内容创作。</p><ul class="key-points"><li>AI 正在降低专业内容创作的技术门槛</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section" id="products">
+  <h2 class="section-title fade-in">&#x2B50; 热门 AI 产品动态</h2>
+  <div class="grid-3">
+    <div class="product-card fade-in">
+      <div class="product-name">1. Powabase</div>
+      <div class="product-meta"><span class="meta-tag">301 upvotes</span><span class="meta-tag">2026年5月</span><span class="meta-tag">BaaS</span></div>
+      <p class="product-desc">基于 PostgreSQL、RAG 和 Agent 技术的 AI 应用构建平台，为 AI 原生应用提供后端即服务能力。</p>
+      <ul class="product-keys"><li>整合 Postgres + RAG + Agent 编排于一体</li><li>面向 AI 原生应用的一站式后端解决方案</li><li>降低 AI 应用的开发和部署复杂度</li></ul>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-name">2. Kilo Code</div>
+      <div class="product-meta"><span class="meta-tag">月度榜首</span><span class="meta-tag">2026年5月</span><span class="meta-tag">开源</span></div>
+      <p class="product-desc">开源 AI 编码助手，支持代码规划、生成和审查，定位为开发者的编程搭档。</p>
+      <ul class="product-keys"><li>完全开源，支持本地部署和数据隐私保护</li><li>覆盖代码全生命周期：规划 → 生成 → 审查 → 优化</li><li>与 Devin 等商业产品形成差异化竞争</li></ul>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-name">3. Unabyss</div>
+      <div class="product-meta"><span class="meta-tag">日榜前列</span><span class="meta-tag">2026年5月</span><span class="meta-tag">MCP</span></div>
+      <p class="product-desc">MCP 原生自更新上下文层，为 AI Agent 提供持久化和自我更新的上下文管理能力。</p>
+      <ul class="product-keys"><li>基于 MCP 协议构建</li><li>上下文层可自我更新，保持 Agent 状态一致性</li><li>解决 Agent 长程工作中的上下文丢失和漂移问题</li></ul>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-name">4. 腾讯 Miora</div>
+      <div class="product-meta"><span class="meta-tag">国内热门</span><span class="meta-tag">2026年5月</span><span class="meta-tag">游戏</span></div>
+      <p class="product-desc">腾讯推出的 AI 游戏创作平台，支持零基础用户到高级开发者创作高质量游戏。</p>
+      <ul class="product-keys"><li>"下限零基础，上限肝大作"的包容性设计</li><li>覆盖游戏创作全链路</li><li>AI 降低游戏开发门槛，推动 UGC 游戏生态</li></ul>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-name">5. 全球首个商用 AI 主机</div>
+      <div class="product-meta"><span class="meta-tag">5亿Tokens白送</span><span class="meta-tag">2026年5月</span><span class="meta-tag">硬件</span></div>
+      <p class="product-desc">全球首款商用 AI 主机产品，大幅降低 Token 使用成本，让开发者和企业用户"放开烧 Token"。</p>
+      <ul class="product-keys"><li>预赠 5 亿 Tokens，大幅降低 AI 使用门槛</li><li>一体化硬件 + 软件方案，开箱即用</li><li>面向个人开发者和中小企业的 AI 算力解决方案</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- Insights -->
+<section class="insight-section fade-in" id="insights">
+  <h2>&#x1F4A1; 当日关键洞察总结</h2>
+  <div class="insight-item">
+    <h3>洞察一：从"模型竞赛"到"Agent 生态"的结构性转变</h3>
+    <p>Anthropic 650 亿美元融资、Cognition 260 亿美元估值、Asana 收购 StackAI、Glean 以成本控制为卖点——这些事件共同揭示了一个趋势：AI 竞争的焦点已从"谁的模型更强"转向"谁的 Agent 生态更完善"。当 Devin 能提交 89% 的代码、无代码 Agent 平台被收购、互联网正在"为机器重建"时，Agent 正在成为 AI 价值的最终载体。</p>
+  </div>
+  <div class="insight-item">
+    <h3>洞察二：AI 基础设施的下一个突破点可能在"内存墙"而非算力</h3>
+    <p>XCena 的 5.7 亿美元估值和前 TPU 架构师的分析共同指向一个事实：AI 推理的真正瓶颈不是 GPU 不够快，而是数据在处理器和内存之间的搬运效率太低。当所有人都在堆算力时，近内存计算、数据流优化等方向可能孕育着更大的机会。这也解释了为什么 Glean 能以"AI 预算优化"为卖点实现 3 亿美元营收——企业开始关注 AI 的经济性而非单纯的能力。</p>
+  </div>
+  <div class="insight-item">
+    <h3>洞察三：AI 治理正在从"自愿框架"走向"制度化约束"</h3>
+    <p>中国《网络安全法》将 AI 安全入法、CAISI 对签约公司进行 40 多项评估、国际 AI 安全报告指出治理滞后、教皇通谕从伦理角度发声——AI 治理正在形成法律、行业标准、国际协作、人文伦理的多层框架。2026 年的 AI 行业不仅需要在技术上领先，更需要在治理上合规。</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>AI 资讯快报</strong> &middot; 2026年5月29日</p>
+  <p>免责声明：本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。<br>
+  资讯抓取过程中，ProductHunt、Wired、ScienceDaily 实施了反爬检测或数据更新受限。上述受限来源的内容已通过其他信源交叉验证补充。</p>
+  <p style="margin-top:12px">归档首页：<a href="https://katelian.github.io/ai-news-bulletin/">https://katelian.github.io/ai-news-bulletin/</a></p>
+</footer>
+
+<script>
+// Fade-in animation
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// Charts
+const chartFunding=new Chart(document.getElementById('chartFunding'),{type:'bar',data:{labels:['Anthropic','Cognition','XCena'],datasets:[{label:'融资规模（亿美元）',data:[650,10,1.35],backgroundColor:['#6366f1','#ec4899','#10b981'],borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>v+'亿'}}}}});
+
+const chartDistribution=new Chart(document.getElementById('chartDistribution'),{type:'doughnut',data:{labels:['技术前沿','行业竞争','伦理安全','医疗教育','机器人','数据隐私','标准政策','生产力','产品动态'],datasets:[{data:[9,9,6,6,6,6,9,9,5],backgroundColor:['#6366f1','#ec4899','#8b5cf6','#f43f5e','#06b6d4','#ef4444','#64748b','#10b981','#f59e0b'],borderWidth:0}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:12,font:{size:11}}}}}});
+
+const chartProducts=new Chart(document.getElementById('chartProducts'),{type:'bar',data:{labels:['Powabase','Kilo Code','Unabyss','腾讯Miora','AI主机'],datasets:[{label:'热度指标',data:[301,285,220,195,180],backgroundColor:['#6366f1','#818cf8','#a78bfa','#c084fc','#ec4899'],borderRadius:8}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+</script>
+</body>
+</html>
