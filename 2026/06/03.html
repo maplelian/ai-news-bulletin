@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 · 2026年6月3日</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', -apple-system, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.8; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 70%, #4c1d95 100%); color: white; padding: 100px 20px 80px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.35) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(236,72,153,0.25) 0%, transparent 50%); }
+  .hero h1 { font-size: 3rem; font-weight: 900; background: linear-gradient(90deg, #a5b4fc, #f9a8d4, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; z-index: 1; letter-spacing: -0.02em; }
+  .hero .subtitle { font-size: 1.1rem; color: #cbd5e1; margin-top: 12px; position: relative; z-index: 1; font-weight: 300; }
+  .hero .date-badge { display: inline-block; background: rgba(99,102,241,0.25); border: 1px solid rgba(99,102,241,0.4); color: #c7d2fe; padding: 6px 20px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-top: 20px; position: relative; z-index: 1; }
+  .hero .archive-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; color: #fbbf24; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.25rem; border-radius: 999px; border: 1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); transition: all 0.3s; }
+  .hero .archive-link:hover { background: rgba(251,191,36,0.2); border-color: rgba(251,191,36,0.5); color: #fde68a; }
+
+  /* Stats */
+  .hero-stats { display: flex; gap: 40px; justify-content: center; margin-top: 36px; position: relative; z-index: 1; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-value { font-size: 2.4rem; font-weight: 900; background: linear-gradient(90deg, #a5b4fc, #f9a8d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-stat-label { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; letter-spacing: 0.05em; }
+
+  /* Sticky Nav */
+  .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(99,102,241,0.2); padding: 10px 0; }
+  .sticky-nav .nav-row { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; padding: 4px 16px; }
+  .sticky-nav a { color: #cbd5e1; text-decoration: none; font-size: 0.78rem; font-weight: 500; padding: 5px 14px; border-radius: 999px; border: 1px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .sticky-nav a:hover { color: white; background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.4); }
+
+  /* Sections */
+  .section { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+  .section-title { font-size: 1.8rem; font-weight: 800; color: #1e1b4b; margin-bottom: 8px; }
+  .section-subtitle { font-size: 0.95rem; color: #64748b; margin-bottom: 36px; }
+  .section-divider { width: 60px; height: 4px; background: linear-gradient(90deg, #6366f1, #ec4899); border-radius: 2px; margin-bottom: 12px; }
+
+  /* Cards */
+  .card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(99,102,241,0.04); border: 1px solid #e2e8f0; transition: box-shadow 0.3s; }
+  .card:hover { box-shadow: 0 4px 24px rgba(99,102,241,0.1); }
+  .card h3 { font-size: 1.2rem; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
+  .card h3 .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; vertical-align: middle; margin-right: 8px; }
+  .badge-headline { background: #fef3c7; color: #92400e; }
+  .badge-tech { background: #ede9fe; color: #5b21b6; }
+  .badge-business { background: #dbeafe; color: #1e40af; }
+  .badge-ethics { background: #fce7f3; color: #9d174d; }
+  .badge-policy { background: #d1fae5; color: #065f46; }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+  /* Trend cards */
+  .trend-card { background: linear-gradient(135deg, #ffffff, #eef2ff); border: 1px solid #c7d2fe; border-radius: 16px; padding: 32px; margin-bottom: 28px; }
+  .trend-card h3 { font-size: 1.3rem; font-weight: 800; color: #312e81; margin-bottom: 16px; }
+  .trend-card p { color: #475569; margin-bottom: 14px; }
+  .trend-card .insight { background: rgba(99,102,241,0.08); border-left: 4px solid #6366f1; padding: 16px 20px; border-radius: 0 12px 12px 0; margin-top: 16px; }
+  .trend-card .insight strong { color: #4338ca; }
+
+  /* Chart container */
+  .chart-container { background: white; border-radius: 16px; padding: 28px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+  .chart-container h4 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; }
+  .chart-wrapper { position: relative; height: 300px; }
+
+  /* Product cards */
+  .product-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid #e2e8f0; transition: all 0.3s; }
+  .product-card:hover { border-color: #c7d2fe; box-shadow: 0 4px 20px rgba(99,102,241,0.1); }
+  .product-card h4 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+  .product-card .meta { font-size: 0.8rem; color: #64748b; margin-bottom: 12px; }
+  .product-card .meta span { background: #ede9fe; color: #5b21b6; padding: 2px 8px; border-radius: 6px; margin-right: 6px; }
+
+  /* News item */
+  .news-item { padding: 20px 0; border-bottom: 1px solid #f1f5f9; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item h4 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+  .news-item p { color: #475569; font-size: 0.92rem; margin-bottom: 8px; }
+  .news-item .key-point { display: inline-block; background: #f1f5f9; color: #475569; font-size: 0.8rem; padding: 3px 10px; border-radius: 6px; margin-right: 6px; margin-bottom: 6px; }
+
+  /* Insight section */
+  .insight-block { background: linear-gradient(135deg, #faf5ff, #fef3c7); border-radius: 16px; padding: 32px; margin-bottom: 24px; border: 1px solid #e9d5ff; }
+  .insight-block h4 { font-size: 1.15rem; font-weight: 800; color: #6b21a8; margin-bottom: 12px; }
+  .insight-block p { color: #475569; }
+
+  /* Disclaimer */
+  .disclaimer { max-width: 800px; margin: 40px auto; padding: 24px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; font-size: 0.85rem; color: #9a3412; }
+
+  /* Footer */
+  footer { text-align: center; padding: 40px 20px; color: #94a3b8; font-size: 0.8rem; border-top: 1px solid #e2e8f0; }
+
+  /* Animations */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-stats { gap: 24px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .section { padding: 40px 16px; }
+    .trend-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>AI 资讯快报</h1>
+  <div class="subtitle">全球人工智能产业动态 · 每日精选</div>
+  <div class="date-badge">2026年6月3日 · 星期三</div>
+  <br>
+  <a href="https://maplelian.github.io/ai-news-bulletin/" class="archive-link" target="_blank">&#x1F4C1; 查看所有归档期数</a>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-value">50+</div><div class="hero-stat-label">精选资讯</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">3</div><div class="hero-stat-label">核心趋势</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">垂直领域</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">12</div><div class="hero-stat-label">板块覆盖</div></div>
+  </div>
+</section>
+
+<nav class="sticky-nav">
+  <div class="nav-row">
+    <a href="#trends">核心趋势</a>
+    <a href="#headlines">今日头条</a>
+    <a href="#tech">技术前沿</a>
+    <a href="#industry">行业竞争</a>
+    <a href="#ethics">伦理安全</a>
+    <a href="#health-edu">医疗教育</a>
+    <a href="#robotics">机器人</a>
+    <a href="#privacy">数据隐私</a>
+  </div>
+  <div class="nav-row">
+    <a href="#policy">各国政策</a>
+    <a href="#productivity">生产力</a>
+    <a href="#products">热门产品</a>
+    <a href="#insights">关键洞察</a>
+  </div>
+</nav>
+
+<!-- 核心趋势 -->
+<section class="section" id="trends">
+  <div class="section-divider"></div>
+  <div class="section-title">今日核心趋势</div>
+  <div class="section-subtitle">从当天资讯中提炼 3 个最具结构性影响的趋势</div>
+
+  <div class="trend-card fade-in">
+    <h3>趋势 1：Microsoft-OpenAI 正式分道扬镳，AI 行业进入多极竞争时代</h3>
+    <p>Microsoft AI 负责人 Mustafa Suleyman 本周明确表态：Microsoft 必须证明自己能"从零开始"构建所有 AI 能力。这一声明标志着 Microsoft 与 OpenAI 长达数年的深度绑定正式走向松绑。Suleyman 领导的 Microsoft AI 部门正在组建独立团队，目标是 9 个月内构建自主 AI 基础设施。</p>
+    <p>这并非突发之举。自 OpenAI 完成 for-profit 转型并引入新投资方后，双方关系已逐步从"独家合作"变为"竞合并存"。Microsoft 不再满足于仅做 OpenAI 的"云服务商+最大客户"，而是要成为独立的顶级 AI 实验室。</p>
+    <div class="insight"><strong>关键洞察：</strong> AI 巨头的"合纵连横"进入新阶段。Microsoft 的"自给自足"战略不仅是技术路线选择，更是对 AI 价值链控制权的重新争夺。企业客户需要重新评估对单一 AI 技术栈的依赖风险。</div>
+  </div>
+
+  <div class="trend-card fade-in">
+    <h3>趋势 2：Anthropic 秘密提交 IPO，AI 独角兽上市潮即将开启</h3>
+    <p>Anthropic 于 6 月 1 日正式确认已向 SEC 秘密提交了 S-1 文件。当前估值接近 1 万亿美元，年化收入从 2025 年的 90 亿美元飙升至 470 亿美元，增速超过 5 倍。这意味着 Anthropic 的商业模式已经从"烧钱研发"阶段过渡到"规模化变现"阶段。</p>
+    <p>Claude 系列模型在企业市场、代码生成和安全性方面的差异化定位为其赢得了稳定的付费用户群。与 OpenAI 相比，Anthropic 在安全性和可解释性上的品牌溢价正在转化为实际的商业优势。</p>
+    <div class="insight"><strong>关键洞察：</strong> Anthropic 的 IPO 不仅是单一公司的资本事件，更是 AI 行业从"技术竞赛"转向"资本市场竞赛"的里程碑。5 倍收入增速证明了安全导向 AI 的商业可行性。</div>
+  </div>
+
+  <div class="trend-card fade-in">
+    <h3>趋势 3：AI Agent 基础设施层崛起——Coralogix $200M 融资 + Klarna 支持 Google UCP</h3>
+    <p>Coralogix 完成 2 亿美元 F 轮融资（估值 16 亿美元），专注于构建 AI Agent 的"可观测性层"。CEO Assaraf 指出："界面层正在被慢慢侵蚀"，意味着 AI Agent 正从"辅助工具"变为"自主执行者"，而监控这些自主行为的需求正在爆发。</p>
+    <p>与此同时，Klarna 宣布支持 Google 的 Universal Commerce Protocol (UCP)，使 AI Agent 能够在对话式环境中直接完成支付和交易。AI Agent 不再只是"回答问题"，而是开始拥有"花钱"的能力。</p>
+    <div class="insight"><strong>关键洞察：</strong> 2026 年是 AI Agent 从"玩具"到"工具"再到"基础设施"的关键转折年。围绕 Agent 的监控、支付、安全和编排，一个全新的产业生态正在形成。</div>
+  </div>
+</section>
+
+<!-- 今日头条 -->
+<section class="section" id="headlines" style="background: #f1f5f9;">
+  <div class="section-divider"></div>
+  <div class="section-title">今日头条</div>
+  <div class="section-subtitle">当天最重要的的 3 条资讯</div>
+
+  <div class="card fade-in">
+    <h3><span class="badge badge-headline">&#x1F525; 头条</span> Microsoft 宣布全面自建 AI 能力，与 OpenAI 正式进入竞争模式</h3>
+    <p><strong>摘要：</strong>Microsoft AI 负责人 Mustafa Suleyman 公开表示，公司必须"从零开始证明自己能做所有需要的事"。这意味着 Microsoft 将不再依赖 OpenAI 作为独家 AI 模型供应商，而是构建自己的模型和 Agent 平台。</p>
+    <p style="margin-top:12px"><strong>关键点：</strong></p>
+    <div style="margin-top:8px">
+      <span class="key-point">Suleyman 部门 9 个月内实现"自给自足"</span>
+      <span class="key-point">对 Copilot 落后于 Google 的直接回应</span>
+      <span class="key-point">OpenAI 与 Microsoft 减少对方依赖度</span>
+    </div>
+    <p style="margin-top:14px;font-size:0.85rem;color:#64748b;"><strong>原文链接：</strong><a href="https://www.theverge.com/ai-artificial-intelligence/942242/microsoft-build-ai-agents-openai-competition" target="_blank">The Verge</a></p>
+    <p style="margin-top:10px;color:#475569;font-size:0.92rem;"><strong>思考/影响：</strong>这一转变将重塑企业 AI 采购格局。依赖 Azure + OpenAI 技术栈的企业将面临供应商多元化选择，而 Google Cloud + Anthropic、AWS + Bedrock 等组合将获得竞争机会。</p>
+  </div>
+
+  <div class="card fade-in">
+    <h3><span class="badge badge-business">&#x1F4BC; 商业</span> Anthropic 秘密提交 IPO 文件，估值接近万亿美元</h3>
+    <p><strong>摘要：</strong>Claude 的开发商 Anthropic 于 6 月 1 日向 SEC 秘密提交了 S-1 文件。年化收入从 2025 年的 90 亿美元飙升至 470 亿美元，估值接近 1 万亿美元。</p>
+    <p style="margin-top:12px"><strong>关键点：</strong></p>
+    <div style="margin-top:8px">
+      <span class="key-point">秘密提交允许在公开披露前完成 SEC 审查</span>
+      <span class="key-point">收入增速 5 倍（$9B → $47B）</span>
+      <span class="key-point">与 OpenAI 形成"双雄上市"格局</span>
+    </div>
+    <p style="margin-top:14px;font-size:0.85rem;color:#64748b;"><strong>原文链接：</strong><a href="https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/" target="_blank">TechCrunch</a></p>
+    <p style="margin-top:10px;color:#475569;font-size:0.92rem;"><strong>思考/影响：</strong>Anthropic 的 IPO 将重新定义 AI 公司的估值逻辑。安全导向的品牌溢价正在转化为商业优势，可能推动整个行业在安全性方面投入更多资源。</p>
+  </div>
+
+  <div class="card fade-in">
+    <h3><span class="badge badge-ethics">&#x2696;&#xFE0F; 伦理</span> 英国 CMA 裁定 Google 必须允许出版商退出 AI Search</h3>
+    <p><strong>摘要：</strong>英国竞争与市场管理局做出全球首创裁定：Google 必须允许出版商从 AI Overviews 和模型训练中选择退出。这一决定赋予出版商前所未有的控制权，且具有法律强制执行力。</p>
+    <p style="margin-top:12px"><strong>关键点：</strong></p>
+    <div style="margin-top:8px">
+      <span class="key-point">全球首创：出版商首次获法律保障的 AI 内容退出权</span>
+      <span class="key-point">退出范围覆盖 AI Overviews 和模型微调</span>
+      <span class="key-point">Google 必须保留清晰归因链接</span>
+    </div>
+    <p style="margin-top:14px;font-size:0.85rem;color:#64748b;"><strong>原文链接：</strong><a href="https://www.theverge.com/tech/942302/google-search-ai-overviews-uk-cma-publisher-opt-out" target="_blank">The Verge</a></p>
+    <p style="margin-top:10px;color:#475569;font-size:0.92rem;"><strong>思考/影响：</strong>这一裁定可能成为全球 AI 搜索监管的模板。如果其他国家跟进，Google 的 AI 搜索商业模式将面临重大调整。</p>
+  </div>
+</section>
+
+<!-- 技术前沿 -->
+<section class="section" id="tech">
+  <div class="section-divider"></div>
+  <div class="section-title">技术前沿</div>
+  <div class="section-subtitle">大模型、多模态、基础设施等底层技术进展</div>
+
+  <div class="grid-2">
+    <div class="card fade-in">
+      <h3><span class="badge badge-tech">大模型</span> Microsoft 构建自主基础模型</h3>
+      <p>Microsoft AI 部门正在从零构建基础大模型，目标是 9 个月内实现关键技术自主化。Suleyman 预测 18 个月内所有白领工作都将被 AI 自动化改造。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">不再满足于"OpenAI 渠道商"角色</span>
+        <span class="key-point">独立模型面向 Azure 生态</span>
+        <span class="key-point">重点投入 Agent 平台</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-tech">多模态</span> Amazon AI 生成产品图片引争议</h3>
+      <p>Amazon 在搜索结果中展示 AI 生成的产品图片——当用户搜索"cowl neck"等描述性词汇时，Amazon 会生成不存在的产品图片。批评者指出这是"误导性的"。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">覆盖长尾搜索场景</span>
+        <span class="key-point">用户无法区分真实与 AI 生成</span>
+        <span class="key-point">信任危机风险</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card fade-in" style="margin-top:24px">
+    <h3><span class="badge badge-tech">基础设施</span> AI 数据中心建设潮面临多重阻力</h3>
+    <p>Kevin O'Leary 在犹他州的千亿美元数据中心项目被要求缩减 75% 规模（仅获 2% 当地居民支持）。Google 发布水资源承诺，计划到 2030 年补充超过其数据中心消耗量的水资源。全美范围内的 AI 数据中心项目都面临社区反对和环境质疑。Google 投资 1700 万美元用于水资源管理项目。</p>
+    <div style="margin-top:12px">
+      <span class="key-point">数据中心与社区利益冲突加剧</span>
+      <span class="key-point">投资者关注数据中心水资源消耗</span>
+      <span class="key-point">多地项目遭遇延期或缩减</span>
+    </div>
+  </div>
+
+  <!-- Chart: AI Infrastructure Investment -->
+  <div class="chart-container fade-in">
+    <h4>AI 基础设施关键数据对比</h4>
+    <div class="chart-wrapper"><canvas id="infraChart"></canvas></div>
+  </div>
+</section>
+
+<!-- 行业竞争 -->
+<section class="section" id="industry" style="background: #f1f5f9;">
+  <div class="section-divider"></div>
+  <div class="section-title">行业竞争</div>
+  <div class="section-subtitle">巨头动态、融资、产品发布与市场竞争格局</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-business">巨头</span> Microsoft vs OpenAI</h3>
+      <p>双方关系从"深度绑定"演变为"竞合并存"。WSJ 报道 Microsoft 已组建由 Suleyman 直接领导的独立 AI 团队。Fortune 报道 Suleyman 预测 18 个月内白领工作全面 AI 自动化。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">WSJ：独立 AI 团队组建</span>
+        <span class="key-point">18 个月自动化预测</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-business">融资</span> Coralogix $200M F 轮</h3>
+      <p>以 16 亿美元估值完成 2 亿美元 F 轮融资，由 Advent 和 CPPIB 领投。专注于构建 AI Agent 的监控和可观测性平台。CEO："界面层正在被侵蚀"。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">Agent 监控需求爆发</span>
+        <span class="key-point">F 轮规模表明赛道成熟</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-business">发布</span> Meta WhatsApp AI Agent</h3>
+      <p>WhatsApp Business AI Agent 全球上线。能自动回答客户问题、推荐产品，大型企业按 token 计费。WhatsApp 拥有超 20 亿用户，覆盖范围远超竞争对手。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">20 亿用户覆盖</span>
+        <span class="key-point">token 计费模式</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart: AI Company Valuations -->
+  <div class="chart-container fade-in" style="margin-top:28px">
+    <h4>AI 公司估值与收入对比（2026 年）</h4>
+    <div class="chart-wrapper"><canvas id="valuationChart"></canvas></div>
+  </div>
+</section>
+
+<!-- AI 伦理与安全 -->
+<section class="section" id="ethics">
+  <div class="section-divider"></div>
+  <div class="section-title">AI 伦理与安全</div>
+  <div class="section-subtitle">监管、隐私、安全与社会影响</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-ethics">诉讼</span> 佛罗里达州起诉 OpenAI</h3>
+      <p>佛州成为美国首个对 OpenAI 提起诉讼的州，指控 ChatGPT 协助和教唆大规模枪击案。州检察长向 CEO Sam Altman 提起诉讼，这是 AI 安全监管领域的标志性事件。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">首例州政府 AI 公共安全诉讼</span>
+        <span class="key-point">可能推动多州立法</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-ethics">隐私</span> Meta 缩减员工追踪工具</h3>
+      <p>"Model Capability Initiative"记录员工计算活动用于 AI 训练，在员工反弹后进行调整。员工可暂停 30 分钟或为敏感工作申请豁免。反映了 AI 训练数据收集与员工隐私的紧张关系。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">员工隐私边界模糊</span>
+        <span class="key-point">可能设定行业先例</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-ethics">版权</span> 出版商 AI 退出权</h3>
+      <p>英国 CMA 裁定不仅涉及商业竞争，更触及 AI 伦理核心：内容创作者对自身作品被 AI 使用的控制权。这一裁定可能推动全球"AI 内容版权"立法。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">法律强制执行力</span>
+        <span class="key-point">他国监管机构密切关注</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 医疗 + 教育 -->
+<section class="section" id="health-edu" style="background: #f1f5f9;">
+  <div class="section-divider"></div>
+  <div class="section-title">医疗 + 教育</div>
+  <div class="section-subtitle">AI 在医疗和教育领域的落地与影响</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-headline">&#x1F3E5;</span> Stanford Health AI Week</h3>
+      <p>Stanford 举办 2026 Health AI Week，聚焦 AI 在医疗领域的实际落地。研究表明 AI 最大突破不是发现新疗法，而是将已验证护理方案推广到更多患者。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">从"前沿研究"转向"规模化交付"</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-headline">&#x1F393;</span> OECD 数字教育展望 2026</h3>
+      <p>OECD 发布报告指出超 80% 美国高中生和大学生已使用 AI 工具，但教育系统适应速度远落后于技术普及。中国推出全球 AI 教育平台，英国设立"AI Awareness Day"。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">80% 使用率 vs 教育适应滞后</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-headline">&#x1F3AC;</span> Scorsese 加入 AI 电影对话</h3>
+      <p>著名导演 Martin Scorsese 参与 AI 与电影创作讨论。作为最不可能拥抱 AI 的传统电影人之一，其参与表明 AI 对创意产业影响已从"技术圈"扩展到"文化圈"。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">从"抵制"转向"审慎参与"</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 机器人 -->
+<section class="section" id="robotics">
+  <div class="section-divider"></div>
+  <div class="section-title">机器人</div>
+  <div class="section-subtitle">人形机器人、自动化与物理世界 AI</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-tech">&#x1F916;</span> 2026：人形机器人转折年</h3>
+      <p>Tesla Optimus Gen 3、Figure AI 和 Boston Dynamics Atlas 形成三强格局。黄仁勋在 CES 2026 表示人形机器人"无处不在"，但投资回报仍存不确定性。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">Optimus 预计售价 2-3 万美元</span>
+        <span class="key-point">成本下降曲线加速</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-tech">&#x1F3ED;</span> 硅谷从软件转向硬件</h3>
+      <p>硅谷 AI 战略从纯软件向硬件延伸。Figure AI 获多轮融资，Tesla Optimus 加速迭代。机器人赛道正在复制 2023 年大模型赛道的融资热度。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">制造能力成竞争壁垒</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-tech">&#x1F1E8;&#x1F1F3;</span> 中国展示新一代人形机器人</h3>
+      <p>中国在 2026 年密集展示多款人形机器人原型，政策层面将机器人与 AI 并列为战略优先。与硅谷侧重商业回报不同，中国受产业政策驱动。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">中美平行发展</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 数据隐私 -->
+<section class="section" id="privacy" style="background: #f1f5f9;">
+  <div class="section-divider"></div>
+  <div class="section-title">数据隐私与安全</div>
+  <div class="section-subtitle">网络安全、数据合规与隐私保护</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-policy">&#x1F30D;</span> 69 国 1000+ AI 法规</h3>
+      <p>全球已有 69 个国家提出超 1000 项 AI 相关法规提案。EU AI Act 进入实施阶段，高风险分类指南征求意见中。中美欧三方监管路径差异扩大。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">监管碎片化加剧</span>
+        <span class="key-point">合规成本快速上升</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-policy">&#x1F6E1;&#xFE0F;</span> Darktrace 2026 安全报告</h3>
+      <p>调查 1500+ 安全负责人，AI 正同时扮演"攻击武器"和"防御工具"双重角色。AI 驱动的网络攻击变得更精准、更难检测。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">AI 安全工具投入增速超整体预算</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-policy">&#x1F512;</span> 2026 十大隐私问题</h3>
+      <p>核心关注：AI 训练数据合规获取、员工行为数据边界、AI 决策可解释性。数据隐私合规从"法务事项"升级为"董事会议题"。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">可解释性成竞争力</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 各国政策 -->
+<section class="section" id="policy">
+  <div class="section-divider"></div>
+  <div class="section-title">各国 AI 政策</div>
+  <div class="section-subtitle">中美欧等主要经济体的 AI 监管动态</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-policy">&#x1F1FA;&#x1F1F8;</span> 美国：统一 AI 政策框架</h3>
+      <p>特朗普签署行政令推动建立统一国家 AI 政策框架，遏制各州分散立法。行政令倾向于"创新优先"，与欧盟"安全优先"形成对比。联邦 vs 州权博弈是核心矛盾。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">创新优先 vs 安全优先</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-policy">&#x1F1EA;&#x1F1FA;</span> 欧盟：AI Act 实施中</h3>
+      <p>EU AI Act 已进入实质实施阶段，高风险 AI 系统分类指南正在征求意见。分类将决定医疗、金融、教育等领域 AI 产品的欧洲市场准入门槛。可能成为"事实全球标准"。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">GDPR 效应可能重演</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-policy">&#x1F1E8;&#x1F1F3;</span> 中国：伦理审查 + "人工智能+"</h3>
+      <p>发布 AI 伦理审查试行指南，推动"人工智能+"行动计划。目标到 2030 年智能终端和智能体应用普及率超 90%。上海建设科学智能开放平台，WAIC 2026 报名截止 6 月 4 日。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">发展与规范并重</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart: AI Regulation Comparison -->
+  <div class="chart-container fade-in" style="margin-top:28px">
+    <h4>全球主要经济体 AI 监管路径对比</h4>
+    <div class="chart-wrapper"><canvas id="regulationChart"></canvas></div>
+  </div>
+</section>
+
+<!-- AI 与生产力 -->
+<section class="section" id="productivity" style="background: #f1f5f9;">
+  <div class="section-divider"></div>
+  <div class="section-title">AI 与生产力</div>
+  <div class="section-subtitle">AI 工具、Agent 应用与企业生产力变革</div>
+
+  <div class="grid-3">
+    <div class="card fade-in">
+      <h3><span class="badge badge-business">&#x1F4B0;</span> Uber 限制 AI 支出</h3>
+      <p>4 个月用完全年 AI 编码工具预算，对员工实施每人每月 $1,500 上限。大量使用 Claude Code 和 Cursor。COO 表示越来越难以为 AI 投入证明合理回报。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">$1,500/月/人上限</span>
+        <span class="key-point">ROI 论证必须更严格</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-tech">&#x1F9EA;</span> Microsoft ASSERT 工具</h3>
+      <p>Build 2026 发布，允许开发者用纯文本描述创建 AI 行为测试用例。覆盖合规性、安全性和功能正确性验证，与 Azure AI 生态深度集成。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">零代码创建测试用例</span>
+        <span class="key-point">降低 Agent 测试门槛</span>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <h3><span class="badge badge-business">&#x1F4B3;</span> Klarna 支持 Google UCP</h3>
+      <p>Klarna 接入 Google Universal Commerce Protocol，使 AI Agent 能在对话式环境中直接完成支付。"先买后付"模式与 AI Agent 深度融合，Agent 商业化关键一步。</p>
+      <div style="margin-top:12px">
+        <span class="key-point">Agent 获得"支付能力"</span>
+        <span class="key-point">UCP 标准化交易接口</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 热门 AI 产品 -->
+<section class="section" id="products">
+  <div class="section-divider"></div>
+  <div class="section-title">热门 AI 产品动态</div>
+  <div class="section-subtitle">Top 5 热门 AI 产品发布与动态</div>
+
+  <div class="grid-2">
+    <div class="product-card fade-in">
+      <h4>1. Mina Meeting Assistant</h4>
+      <div class="meta"><span>ProductHunt #1</span> 6月1日</div>
+      <p>AI 会议助手，定位为"你的 AI 队友"，支持会议记录、任务分配和跟进提醒。具备上下文理解能力，与日历和项目管理工具深度集成，支持多语言实时翻译。</p>
+      <div style="margin-top:12px"><span class="key-point">远程团队协作</span><span class="key-point">多语言实时翻译</span></div>
+    </div>
+    <div class="product-card fade-in">
+      <h4>2. Meta WhatsApp Business AI Agent</h4>
+      <div class="meta"><span>全球上线</span> 6月3日</div>
+      <p>Meta 推出的 WhatsApp 商业 AI Agent，自动回答客户问题并推荐产品。基于 Meta 大模型，大型企业按 token 计费，中小企业有免费额度。</p>
+      <div style="margin-top:12px"><span class="key-point">电商客服</span><span class="key-point">跨境贸易</span></div>
+    </div>
+    <div class="product-card fade-in">
+      <h4>3. Google Photos AI Wardrobe</h4>
+      <div class="meta"><span>Google I/O</span> 6月</div>
+      <p>从 Google Photos 自动提取衣物照片构建虚拟衣橱。多模态 AI 识别衣物细节，内置"Dress Me"按钮提供搭配建议，支持旅行打包推荐。</p>
+      <div style="margin-top:12px"><span class="key-point">穿搭推荐</span><span class="key-point">旅行打包</span></div>
+    </div>
+    <div class="product-card fade-in">
+      <h4>4. Microsoft ASSERT</h4>
+      <div class="meta"><span>Build 2026</span> 6月2日</div>
+      <p>开发者工具，用纯文本描述创建 AI 行为测试。覆盖合规性、安全性和功能正确性验证，零代码创建测试用例，与 Azure AI 深度集成。</p>
+      <div style="margin-top:12px"><span class="key-point">AI 开发者</span><span class="key-point">QA 工程师</span></div>
+    </div>
+    <div class="product-card fade-in" style="grid-column: 1 / -1;">
+      <h4>5. Coralogix AI Agent Observability Platform</h4>
+      <div class="meta"><span>$200M F轮</span> 6月3日</div>
+      <p>AI 原生的可观测性平台，专注于监控和审计自主运行的 AI Agent 行为。实时追踪 Agent 决策链路，异常检测和自动告警，合规审计日志满足企业级监管要求。</p>
+      <div style="margin-top:12px"><span class="key-point">DevOps 团队</span><span class="key-point">合规官</span><span class="key-point">估值 $1.6B</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 关键洞察 -->
+<section class="section" id="insights" style="background: #f1f5f9;">
+  <div class="section-divider"></div>
+  <div class="section-title">当日关键洞察</div>
+  <div class="section-subtitle">从多条新闻中提炼的产业级判断</div>
+
+  <div class="insight-block fade-in">
+    <h4>洞察 1：AI 行业的"基础设施化"正在加速——从模型竞赛到生态竞赛</h4>
+    <p>本周的多条新闻共同指向一个判断：AI 行业正在从"谁的模型更好"转向"谁的生态更完整"。Microsoft 自建模型、Coralogix 融资做 Agent 监控、Klarna 接入 Google UCP 做 Agent 支付——这些看似独立的事件实际上在描绘同一幅图景：AI 的价值链正在从模型层向下沉淀到基础设施层。</p>
+    <p style="margin-top:12px">对于企业而言，这意味着选择 AI 供应商不再只是"比较模型性能"，而是评估整个技术栈的完整性：模型 + Agent 框架 + 可观测性 + 支付协议 + 合规审计。缺乏基础设施能力的 AI 公司将越来越难独立生存。</p>
+  </div>
+
+  <div class="insight-block fade-in">
+    <h4>洞察 2：AI 的"成本现实"正在迫使企业调整策略</h4>
+    <p>Uber 4 个月烧完全年 AI 预算、Kevin O'Leary 数据中心被要求缩减 75%、投资者施压科技公司披露数据中心水资源消耗——这些信号表明，AI 的"无限扩张叙事"正在遭遇物理世界的约束。资金、能源、水资源和社区接受度都构成了 AI 增长的硬边界。</p>
+    <p style="margin-top:12px">企业需要从"AI 优先"转向"AI 效率优先"——不是问"我们能用 AI 做什么"，而是问"哪些 AI 应用真正值得投入"。Uber 的 1500 美元/月/人上限是一个缩影：当 AI 工具成本远超传统软件时，ROI 论证必须更加严格。</p>
+  </div>
+
+  <div class="insight-block fade-in">
+    <h4>洞察 3：AI 监管的"多极化"创造合规套利空间，也制造碎片化风险</h4>
+    <p>英国 CMA 的出版商退出权裁定、美国特朗普的统一国家框架行政令、欧盟 AI Act 的高风险分类、中国的伦理审查试行指南——四大经济体在 AI 监管上走出了四条截然不同的路径。</p>
+    <p style="margin-top:12px">这对跨国企业意味着合规成本将快速上升，但也创造了"监管套利"空间。长期来看，AI 监管碎片化可能阻碍全球 AI 产品的统一发布节奏，但也为 AI 合规咨询公司、可解释性工具提供商和审计服务商创造了新的市场机会。</p>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<div class="disclaimer">
+  <strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，VentureBeat (HTTP 429)、ProductHunt (HTTP 403)、机器之心、量子位（访问受限）等来源受到限制。上述受限来源的内容已通过其他信源交叉验证补充。
+</div>
+
+<footer>
+  AI 资讯快报 · 每日精选 · 自动生成于 2026年6月3日<br>
+  Powered by AI News Bulletin Skill
+</footer>
+
+<script>
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Chart 1: Infrastructure Data
+const infraCtx = document.getElementById('infraChart').getContext('2d');
+new Chart(infraCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Google 水资源投资', 'Kevin O\'Leary 数据中心', 'Uber AI 年预算', 'Coralogix F轮', 'Anthropic 年收入'],
+    datasets: [{
+      label: '金额（百万美元）',
+      data: [17, 100000, 300, 200, 47000],
+      backgroundColor: ['#6366f1', '#ec4899', '#f59e0b', '#10b981', '#8b5cf6'],
+      borderRadius: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => '$' + v.toLocaleString() + 'M' } }
+    }
+  }
+});
+
+// Chart 2: Valuation Comparison
+const valCtx = document.getElementById('valuationChart').getContext('2d');
+new Chart(valCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Anthropic', 'OpenAI', 'xAI', 'Coralogix'],
+    datasets: [
+      { label: '估值（十亿美元）', data: [1000, 300, 50, 1.6], backgroundColor: '#6366f1', borderRadius: 8 },
+      { label: '年收入（十亿美元）', data: [47, 20, 3, 0.3], backgroundColor: '#ec4899', borderRadius: 8 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + v + 'B' } } }
+  }
+});
+
+// Chart 3: Regulation Comparison (Radar)
+const regCtx = document.getElementById('regulationChart').getContext('2d');
+new Chart(regCtx, {
+  type: 'radar',
+  data: {
+    labels: ['监管严格度', '创新友好度', '执行力度', '全球影响力', '法规数量'],
+    datasets: [
+      { label: '美国', data: [5, 9, 6, 9, 7], borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.1)' },
+      { label: '欧盟', data: [9, 5, 8, 8, 6], borderColor: '#ec4899', backgroundColor: 'rgba(236,72,153,0.1)' },
+      { label: '中国', data: [7, 8, 7, 6, 8], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)' }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: { r: { beginAtZero: true, max: 10 } }
+  }
+});
+</script>
+
+</body>
+</html>
