@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯快报 · 2026年7月17日</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.8;overflow-x:hidden}
+a{color:#6366f1;text-decoration:none}a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#312e81 100%);color:#fff;padding:100px 20px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(99,102,241,.3) 0%,transparent 50%),radial-gradient(circle at 80% 50%,rgba(236,72,153,.2) 0%,transparent 50%)}
+.hero h1{font-size:2.8rem;font-weight:900;background:linear-gradient(90deg,#a5b4fc,#f9a8d4,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;z-index:1}
+.hero .date-badge{display:inline-block;background:rgba(99,102,241,.3);border:1px solid rgba(165,180,252,.4);border-radius:20px;padding:6px 20px;font-size:.95rem;color:#c7d2fe;margin-top:16px;position:relative;z-index:1}
+.hero .subtitle{font-size:1.05rem;color:#94a3b8;margin-top:12px;position:relative;z-index:1;font-weight:300}
+.archive-btn{display:inline-block;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;padding:12px 28px;border-radius:25px;font-weight:700;font-size:.95rem;margin-top:24px;position:relative;z-index:1;transition:opacity .2s}
+.archive-btn:hover{opacity:.9;text-decoration:none}
+
+/* Nav */
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(99,102,241,.2);padding:10px 0}
+.nav-row{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:3px 12px}
+.nav-bar a{color:#cbd5e1;font-size:.78rem;padding:5px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.nav-bar a:hover{background:rgba(99,102,241,.25);color:#fff;text-decoration:none}
+
+/* Sections */
+.section{max-width:1200px;margin:0 auto;padding:50px 20px}
+.section-title{font-size:1.6rem;font-weight:800;color:#1e1b4b;margin-bottom:28px;padding-left:14px;border-left:4px solid #6366f1;display:flex;align-items:center;gap:10px}
+.section-title .icon{font-size:1.4rem}
+
+/* Cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.card{background:#fff;border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05);border:1px solid #e2e8f0;transition:all .3s;opacity:0;transform:translateY(20px)}
+.card.visible{opacity:1;transform:translateY(0)}
+.card:hover{box-shadow:0 8px 24px rgba(99,102,241,.1);border-color:#c7d2fe;transform:translateY(-2px)}
+.card.visible:hover{transform:translateY(-2px)}
+.card .tag{display:inline-block;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.tag-tech{background:#ede9fe;color:#6d28d9}.tag-biz{background:#fce7f3;color:#be185d}.tag-ethics{background:#fef3c7;color:#92400e}
+.tag-robot{background:#d1fae5;color:#065f46}.tag-policy{background:#e0f2fe;color:#0369a1}.tag-product{background:#fee2e2;color:#991b1b}
+.tag-health{background:#f0fdf4;color:#166534}.tag-security{background:#fef9c3;color:#854d0e}.tag-trend{background:#f0f9ff;color:#0c4a6e}
+.card h3{font-size:1.05rem;font-weight:700;color:#1e1b4b;margin-bottom:8px;line-height:1.5}
+.card p{font-size:.88rem;color:#475569;line-height:1.7}
+.card .key-points{margin-top:10px;padding-left:18px}
+.card .key-points li{font-size:.82rem;color:#64748b;margin-bottom:4px;line-height:1.6}
+.card .source{font-size:.75rem;color:#94a3b8;margin-top:10px}
+.card .source a{color:#6366f1}
+
+/* Trend cards */
+.trend-card{background:linear-gradient(135deg,#fff,#eef2ff);border:1px solid #c7d2fe;border-radius:16px;padding:28px;margin-bottom:20px;opacity:0;transform:translateY(20px);transition:all .4s}
+.trend-card.visible{opacity:1;transform:translateY(0)}
+.trend-card h3{font-size:1.15rem;font-weight:800;color:#312e81;margin-bottom:12px}
+.trend-card p{font-size:.9rem;color:#374151;line-height:1.8}
+.trend-card .insight{background:#f5f3ff;border-left:3px solid #6366f1;padding:12px 16px;margin-top:14px;border-radius:0 8px 8px 0;font-size:.85rem;color:#4338ca}
+
+/* Headline cards */
+.headline-card{background:#fff;border-radius:16px;padding:28px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid #e2e8f0;opacity:0;transform:translateY(20px);transition:all .4s}
+.headline-card.visible{opacity:1;transform:translateY(0)}
+.headline-card .headline-badge{display:inline-block;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:12px;margin-bottom:12px}
+.headline-card h3{font-size:1.2rem;font-weight:800;color:#1e1b4b;margin-bottom:10px}
+.headline-card .summary{font-size:.92rem;color:#374151;line-height:1.8;margin-bottom:14px}
+.headline-card .impact{background:linear-gradient(135deg,#fef3c7,#fff7ed);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.85rem;color:#92400e;line-height:1.7}
+
+/* Charts */
+.chart-section{background:linear-gradient(135deg,#0f172a,#1e1b4b);padding:60px 20px;margin:40px 0}
+.chart-container{max-width:1200px;margin:0 auto}
+.chart-container h2{color:#fff;font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:30px;background:linear-gradient(90deg,#a5b4fc,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.chart-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.chart-card h4{color:#c7d2fe;font-size:.95rem;font-weight:600;margin-bottom:16px;text-align:center}
+.chart-card canvas{max-height:280px}
+
+/* Products */
+.product-card{background:linear-gradient(135deg,#fff,#f0f9ff);border:1px solid #bae6fd;border-radius:14px;padding:24px;opacity:0;transform:translateY(20px);transition:all .4s}
+.product-card.visible{opacity:1;transform:translateY(0)}
+.product-card h3{font-size:1.05rem;font-weight:700;color:#0c4a6e;margin-bottom:6px}
+.product-card .meta{font-size:.78rem;color:#64748b;margin-bottom:8px}
+.product-card p{font-size:.88rem;color:#475569;line-height:1.7}
+
+/* Insights */
+.insight-section{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#4c1d95 100%);padding:60px 20px;color:#fff}
+.insight-section .section-title{color:#fff;border-left-color:#f9a8d4}
+.insight-block{max-width:900px;margin:0 auto 28px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px;opacity:0;transform:translateY(20px);transition:all .4s}
+.insight-block.visible{opacity:1;transform:translateY(0)}
+.insight-block h3{font-size:1.1rem;font-weight:700;color:#f9a8d4;margin-bottom:10px}
+.insight-block p{font-size:.9rem;color:#e2e8f0;line-height:1.9}
+
+/* Footer */
+footer{text-align:center;padding:40px 20px;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0;background:#f8fafc}
+.disclaimer{max-width:800px;margin:0 auto 16px;font-size:.78rem;color:#94a3b8;line-height:1.7;background:#f1f5f9;border-radius:10px;padding:16px 20px}
+
+@media(max-width:768px){
+.hero h1{font-size:1.8rem}
+.card-grid,.chart-grid{grid-template-columns:1fr}
+.section-title{font-size:1.3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+<h1>AI 资讯快报</h1>
+<div class="date-badge">2026 年 7 月 17 日 · 星期四</div>
+<p class="subtitle">每日精选全球 AI 行业最新动态 · 覆盖技术前沿、产业竞争、伦理安全、政策监管</p>
+<a href="https://katelian.github.io/ai-news-bulletin/" class="archive-btn">📁 查看所有归档期数</a>
+</section>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+<div class="nav-row">
+<a href="#trends">核心趋势</a><a href="#headlines">今日头条</a><a href="#tech">技术前沿</a><a href="#industry">行业竞争</a><a href="#ethics">伦理安全</a><a href="#health">医疗教育</a><a href="#robotics">机器人</a><a href="#privacy">数据隐私</a>
+</div>
+<div class="nav-row">
+<a href="#policy">标准政策</a><a href="#productivity">生产力工具</a><a href="#products">热门产品</a><a href="#insights">关键洞察</a>
+</div>
+</nav>
+
+<!-- Charts -->
+<section class="chart-section">
+<div class="chart-container">
+<h2>📊 AI 行业数据仪表板</h2>
+<div class="chart-grid">
+<div class="chart-card">
+<h4>2026 Q1 全球 VC 融资结构（亿美元）</h4>
+<canvas id="fundingChart"></canvas>
+</div>
+<div class="chart-card">
+<h4>2026 年 7 月主要模型上下文窗口对比（万 tokens）</h4>
+<canvas id="contextChart"></canvas>
+</div>
+<div class="chart-card">
+<h4>Big Tech 2026 年 AI 资本支出预估（亿美元）</h4>
+<canvas id="capexChart"></canvas>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 核心趋势 -->
+<section class="section" id="trends">
+<h2 class="section-title"><span class="icon">🔮</span>今日核心趋势</h2>
+
+<div class="trend-card">
+<h3>趋势 1：WAIC 2026 开幕——中国 AI 产业从"追赶者"转向"定义者"</h3>
+<p>2026 世界人工智能大会于 7 月 17 日在上海开幕，展览面积首次突破 10 万平方米，超 1100 家企业展示 3000 余件展品，300+ AI 新品全球首发。国家发改委透露 2025 年国内 AI 市场突破万亿元，2026 年增速预计超 30%。从上海 AI Lab 的 397B 科研模型到商汤的算电协同 Agent，中国 AI 正从技术追随转向生态定义。</p>
+<div class="insight"><strong>关键洞察：</strong>中国 AI 产业正从"模型竞赛"全面转向"基础设施+应用生态"的双轮驱动，央国企的深度参与意味着 AI 已进入规模化落地的产业基础设施阶段。</div>
+</div>
+
+<div class="trend-card">
+<h3>趋势 2：7 月模型大战白热化——开源与闭源"多极化"格局加速</h3>
+<p>OpenAI 推出 GPT-5.6（105 万 token），xAI 发布 Grok 4.5（50 万 token），腾讯开源 Hy3，美团开源 LongCat-2.0，月之暗面发布 Kimi K3。Anthropic 的 Gemini 3.5 Pro 因编程能力不足推迟发布。开源模型已占 AI 网关流量的 29%，但仅占收入不到 4%。</p>
+<div class="insight"><strong>关键洞察：</strong>AI 模型正从通用大模型走向垂直细分的"多极化"时代——科研专用、编程专用、数学验证模型涌现，"谁更专更精"取代"谁更大更强"。</div>
+</div>
+
+<div class="trend-card">
+<h3>趋势 3：具身 AI 进入"基建化"阶段——从实验室到工厂车间</h3>
+<p>逐际动力 Oli 人形机器人自主完成复杂家务，银河通用 WAM-TTT 仅凭人类视频即可部署机器人，原力灵机 DW0.5 将 RL 搬进虚拟世界（真机数据需求降 60%）。KraneShares 报告指出人形机器人正从试点走向平台化，预计 2030 年单台降至 $17,000。</p>
+<div class="insight"><strong>关键洞察：</strong>具身 AI 正复刻自动驾驶的发展路径——精铄科技等"基建商"的出现和世界模型的成熟，意味着人形机器人即将从实验室走向规模化产业部署。</div>
+</div>
+</section>
+
+<!-- 今日头条 -->
+<section class="section" id="headlines">
+<h2 class="section-title"><span class="icon">🔥</span>今日头条</h2>
+
+<div class="headline-card">
+<span class="headline-badge tag-biz">💼 商业</span>
+<h3>DeepSeek 以 4800 亿元估值开启新一轮融资，最快明年 IPO</h3>
+<p class="summary">DeepSeek 以约 710 亿美元估值开启第二轮融资（较上轮+37%），积极筹备 2027 年 IPO。资金重点用于自建数据中心、采购 AI 芯片和 Agent 技术研发，正秘密研发自研 AI 推理芯片。</p>
+<ul class="key-points"><li>创始人梁文锋个人财富达 360 亿美元</li><li>从模型公司转向平台公司的战略转型</li><li>自建芯片+数据中心，降低对英伟达依赖</li></ul>
+<div class="impact"><strong>思考/影响：</strong>开源 AI 公司正从"技术理想主义"走向"商业现实主义"，前沿 AI 公司的竞争已从模型层延伸至基础设施层。</div>
+</div>
+
+<div class="headline-card">
+<span class="headline-badge tag-tech">💡 技术</span>
+<h3>上海 AI Lab 发布 397B 参数科研智能体基座 Intern-S2</h3>
+<p class="summary">采用非 Transformer 架构"Mobius"，以 397B 参数在分子设计、材料结构生成等核心科学任务上追平万亿参数模型。双引擎框架：Memory Decoder + Mobius 结构，发布"书生-端砚"多 Agent 科研平台。</p>
+<ul class="key-points"><li>397B 追平万亿参数——"专用模型可以以小博大"</li><li>六大科学领域端到端工作流</li><li>视觉预训练反哺语言模型</li></ul>
+<div class="impact"><strong>思考/影响：</strong>AI for Science 正从"通用大模型+微调"转向"专用架构+领域知识注入"的新范式，将深刻影响药物发现和材料科学。</div>
+</div>
+
+<div class="headline-card">
+<span class="headline-badge tag-ethics">⚖️ 法律</span>
+<h3>Apple 向 OpenAI 约 40 名前员工发送法律警告函</h3>
+<p class="summary">约 40 名从 Apple 跳槽至 OpenAI 的前员工收到法律通知，要求会面并保存所有相关文件和通讯。此举源于 Apple 对 OpenAI 的诉讼，指控其窃取硬件商业秘密。</p>
+<ul class="key-points"><li>40 名前员工被要求保存全部通讯记录</li><li>涉及硬件层面的商业秘密争议</li><li>可能影响科技行业人才流动的法律实践</li></ul>
+<div class="impact"><strong>思考/影响：</strong>在 AI 军备竞赛中，人才就是战略资源。围绕核心人才的法律纠纷将愈发激烈，科技公司的竞业限制策略正在升级。</div>
+</div>
+</section>
+
+<!-- 技术前沿 -->
+<section class="section" id="tech">
+<h2 class="section-title"><span class="icon">🧬</span>技术前沿</h2>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:20px 0 16px">大模型</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-tech">大模型</span><h3>GPT-5.6 系列（Sol/Terra/Luna）正式发布</h3><p>OpenAI 发布 GPT-5.6，支持 105 万 token 上下文、Ultra 多 Agent 协同和 Programmatic Tool Calling。被评为"AI 的新日常工作马"。</p><ul class="key-points"><li>105 万上下文窗口</li><li>最小化虚假信息</li><li>原生"计算机操作"功能</li></ul></div>
+<div class="card"><span class="tag tag-tech">大模型</span><h3>腾讯开源 Hy3（295B/21B MoE）</h3><p>Apache 2.0 协议开源，支持 256K 上下文和多 token 预测，MoE 架构高效推理。</p><ul class="key-points"><li>Apache 2.0 开源</li><li>256K 上下文</li><li>多 token 预测提升效率</li></ul></div>
+<div class="card"><span class="tag tag-tech">大模型</span><h3>美团开源 LongCat-2.0（1.6T/48B MoE）</h3><p>MIT 协议开源，100 万 token 上下文训练，专注长文本编程场景。</p><ul class="key-points"><li>1.6T 总参数</li><li>100 万上下文窗口</li><li>MIT 开源协议</li></ul></div>
+</div>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:28px 0 16px">多模态与视觉</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-tech">多模态</span><h3>DeepMind "GenCeption"：视频生成器变通用视觉模型</h3><p>Google DeepMind 将视频生成模型改造为通用视觉模型，替代多个专用模型的堆叠。</p><ul class="key-points"><li>通用架构替代窄领域模型</li><li>视频生成到视觉理解的跨域迁移</li></ul></div>
+<div class="card"><span class="tag tag-tech">多模态</span><h3>文远知行发布物理 AI 大模型 WITT</h3><p>首创"最小物理事实单元"，将道路视频转化为结构化信息，数据处理效率提升 200 倍。</p><ul class="key-points"><li>物理事实单元结构化</li><li>200 倍效率提升</li><li>事实错误率仅通用模型 1/3</li></ul></div>
+<div class="card"><span class="tag tag-tech">多模态</span><h3>Meta 发布 Muse Spark 1.1</h3><p>100 万上下文、并行子 Agent、计算机操作和零样本工具调用的 Agentic 多模态模型。</p><ul class="key-points"><li>100 万上下文</li><li>并行子 Agent 架构</li><li>Agentic 媒体生成</li></ul></div>
+</div>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:28px 0 16px">基础设施</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-tech">基础设施</span><h3>商汤"算电协同 Agent"：TPW 新指标</h3><p>提出 Token Per Watt 概念，临港 AIDC 实现单位电力成本 Token 产出提升 80%。</p><ul class="key-points"><li>TPW 新概念</li><li>80% 产出提升</li><li>"源-网-荷-储-算"一体化</li></ul></div>
+<div class="card"><span class="tag tag-tech">基础设施</span><h3>SpaceX 计划建设太空 AI 数据中心</h3><p>利用太阳能供电的太空数据中心方案，规避地面电力和环境约束。</p><ul class="key-points"><li>太阳能供电</li><li>规避地面电力瓶颈</li></ul></div>
+<div class="card"><span class="tag tag-tech">基础设施</span><h3>浪潮信息：单柜支持 4 万+ Agent</h3><p>CPU 原生液冷机柜，元脑 SD200 将 token 生成优化至 4.77ms——"国内首个跑进 5 毫秒"。</p><ul class="key-points"><li>单柜 4 万+ Agent</li><li>4.77ms token 生成</li><li>多模型协作审查</li></ul></div>
+</div>
+</section>
+
+<!-- 行业竞争 -->
+<section class="section" id="industry">
+<h2 class="section-title"><span class="icon">⚔️</span>行业竞争与战略</h2>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:20px 0 16px">巨头动态</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-biz">巨头</span><h3>Google Gemini 3.5 Pro 推迟发布</h3><p>原定 6 月发布的 Gemini 3.5 Pro 至今未上线，编程能力短板导致延期，目前仅内部使用。</p><ul class="key-points"><li>编程能力不足</li><li>夏季发布承诺未兑现</li></ul></div>
+<div class="card"><span class="tag tag-biz">巨头</span><h3>Anthropic 年化收入破 300 亿美元</h3><p>从 2025 年末 90 亿增长至 300 亿+，1000+ 企业客户年消费超百万美元，秘密提交 IPO（估值 $965B）。</p><ul class="key-points"><li>收入 3 倍增长</li><li>9650 亿估值</li><li>秘密 IPO</li></ul></div>
+<div class="card"><span class="tag tag-biz">巨头</span><h3>Big Tech AI 投资 7250 亿美元</h3><p>四大巨头 2026 年合计 AI 资本支出 7250 亿美元。BIS 警告融资结构类似历史泡沫。</p><ul class="key-points"><li>7250 亿总额</li><li>BIS 泡沫警告</li><li>算力军备竞赛</li></ul></div>
+</div>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:28px 0 16px">融资动态</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-biz">融资</span><h3>DeepSeek 710 亿美元估值新融资</h3><p>较上轮涨 37%，筹备 2027 IPO，自建数据中心和芯片。</p><ul class="key-points"><li>梁文锋个人 360 亿</li><li>秘密研发推理芯片</li></ul></div>
+<div class="card"><span class="tag tag-biz">融资</span><h3>7 月机器人赛道密集获投</h3><p>Zeroth 获蚂蚁领投 $73.6M，Even Realities 获美团领投 $150M（$1B 估值），Tripo AI 获 $150M（3D 模型）。</p><ul class="key-points"><li>具身 AI 成投资主线</li><li>中国资本活跃</li></ul></div>
+<div class="card"><span class="tag tag-biz">融资</span><h3>Q1 2026 全球 VC 创纪录：AI 占 80%</h3><p>3000 亿美元总额中 AI 专项 2420 亿，前 4 家公司占 65%。超级集中度前所未有。</p><ul class="key-points"><li>3000 亿总额</li><li>Top 4 占 65%</li></ul></div>
+</div>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:28px 0 16px">人才与并购</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-biz">人才</span><h3>Monzo 联创加入 Anthropic 算力团队</h3><p>Tom Blomfield 离开 YC 加入 Anthropic 计算基础设施，反映 AI 瓶颈从研究转向硬件后勤。</p><ul class="key-points"><li>金融科技→AI 基础设施</li><li>算力后勤成关键瓶颈</li></ul></div>
+<div class="card"><span class="tag tag-biz">并购</span><h3>SpaceX 600 亿美元收购 Cursor</h3><p>2026 年最大 AI 并购。Salesforce 同期 36 亿收购 AI 客服公司 Fin。</p><ul class="key-points"><li>Cursor 天价收购</li><li>AI 编程工具赛道爆发</li></ul></div>
+<div class="card"><span class="tag tag-biz">并购</span><h3>Meta 密集人才收购</h3><p>收购 Scale AI 领导层、机器人公司等多起 acqui-hire，加速补齐 AI 能力矩阵。</p><ul class="key-points"><li>收购性招聘策略</li><li>机器人+数据标注双线布局</li></ul></div>
+</div>
+</section>
+
+<!-- 伦理安全 -->
+<section class="section" id="ethics">
+<h2 class="section-title"><span class="icon">🛡️</span>伦理与安全</h2>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:20px 0 16px">AI 安全研究</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-ethics">安全</span><h3>旧金山要求下架 AI"脱衣"应用</h3><p>13 款生成非自愿亲密图像的应用被发停止函，Google 已暂停相关 Android 应用。</p><ul class="key-points"><li>13 款应用被点名</li><li>加州法律先行</li><li>平台审核责任加重</li></ul></div>
+<div class="card"><span class="tag tag-ethics">安全</span><h3>国际 AI 安全报告 2026</h3><p>100+ 专家、30+ 国支持。自主 Agent 引入新可靠性挑战，人类干预变得更困难。</p><ul class="key-points"><li>Agent 可控性下降</li><li>开源安全过滤器可移除</li></ul></div>
+<div class="card"><span class="tag tag-ethics">安全</span><h3>经典心理学测试暴露 AI 弱点</h3><p>顶级模型在注意力测试中随任务复杂度增加，准确率急剧下降，暴露架构根本局限。</p><ul class="key-points"><li>注意力测试失败</li><li>复杂度敏感</li></ul></div>
+</div>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:28px 0 16px">透明度与治理</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-ethics">治理</span><h3>主流 LLM 回避批评威权政权</h3><p>Oversight Board 评估 Anthropic、DeepSeek、Google、Meta、OpenAI 五大厂商，发现普遍回避倾向。</p><ul class="key-points"><li>五大厂商均存在问题</li><li>政治中立性存疑</li></ul></div>
+<div class="card"><span class="tag tag-ethics">治理</span><h3>Grok Build CLI 上传完整代码库</h3><p>xAI 编程工具被发现传输未脱敏密钥和完整代码库后被紧急禁用。</p><ul class="key-points"><li>密钥泄露风险</li><li>AI 编码工具安全审计缺失</li></ul></div>
+<div class="card"><span class="tag tag-ethics">治理</span><h3>Turing 最大 AI 假设可能被推翻</h3><p>AI 无法掌握"隐性知识"，文本生成器"只能操作词语，无法理解含义"。</p><ul class="key-points"><li>隐性知识缺失</li><li>AI 安全哲学基础挑战</li></ul></div>
+</div>
+</section>
+
+<!-- 医疗教育 -->
+<section class="section" id="health">
+<h2 class="section-title"><span class="icon">🏥</span>医疗与教育应用</h2>
+<div class="card-grid">
+<div class="card"><span class="tag tag-health">医疗</span><h3>AI 标记 25 万+可疑癌症论文</h3><p>BERT 审查 260 万篇肿瘤学文献，91% 准确率识别问题论文，2022 年问题投稿占比超 16%。</p><ul class="key-points"><li>260 万篇审查</li><li>91% 准确率</li></ul></div>
+<div class="card"><span class="tag tag-health">医疗</span><h3>MyLabcorp × OpenAI 健康数据解读</h3><p>HIPAA 合规应用，对话式健康数据分析和纵向趋势追踪。4000 万人日用 ChatGPT 查健康。</p><ul class="key-points"><li>HIPAA 合规</li><li>4000 万日活健康查询</li></ul></div>
+<div class="card"><span class="tag tag-health">教育</span><h3>OpenAI 教育平台 The Edu Prompt</h3><p>双月刊+教育平台，Education for Countries 覆盖约旦 100 万+学生、爱沙尼亚 2 万+学生。</p><ul class="key-points"><li>全球教育覆盖</li><li>AI 素养计划</li></ul></div>
+<div class="card"><span class="tag tag-health">教育</span><h3>百度 AI 助手获 WAIC"镇馆之宝"</h3><p>日均交互增长 20 倍，DAA 预估 7940 万（2030 年超 22 亿），无代码应用生成。</p><ul class="key-points"><li>20 倍交互增长</li><li>7940 万活跃 Agent</li></ul></div>
+<div class="card"><span class="tag tag-health">教育</span><h3>北电数智 AI 民生应用</h3><p>社区医疗、智能教育、AIGC 创作平台，"Agent MBTI"测评发现理想 AI 伙伴。</p><ul class="key-points"><li>社区医疗高效管理</li><li>学生理解力追踪</li></ul></div>
+<div class="card"><span class="tag tag-health">教育</span><h3>"AI 上课"全球首发</h3><p>WAIC 青年论坛推广"用 AI 学 AI"方法论，结合航天创新进行跨学科教学。</p><ul class="key-points"><li>跨学科教育</li><li>航天+AI 融合</li></ul></div>
+</div>
+</section>
+
+<!-- 机器人 -->
+<section class="section" id="robotics">
+<h2 class="section-title"><span class="icon">🤖</span>机器人前沿</h2>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:20px 0 16px">人形机器人</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-robot">人形</span><h3>逐际动力 Oli：自主完成复杂家务</h3><p>3 分钟无剪辑视频，COSA 三层架构（1Hz/50Hz/1000Hz），"系统才是大脑"。</p><ul class="key-points"><li>中国首个全自主长程家庭任务</li><li>三层认知架构</li></ul></div>
+<div class="card"><span class="tag tag-robot">人形</span><h3>银河通用 WAM-TTT：人类视频即部署</h3><p>零标注数据，手机拍摄级成本，"fast-weight memory"自监督学习，主模型权重冻结。</p><ul class="key-points"><li>具身 TTT 范式</li><li>零标注→专业级效果</li></ul></div>
+<div class="card"><span class="tag tag-robot">人形</span><h3>WAIC 人形机器人首当志愿者</h3><p>2026 世界人工智能大会上人形机器人首次以志愿者身份参与大会服务。</p><ul class="key-points"><li>从展品到实用</li><li>公众接触体验</li></ul></div>
+</div>
+
+<h3 style="font-size:1.1rem;font-weight:700;color:#4338ca;margin:28px 0 16px">工业应用 & 训练控制</h3>
+<div class="card-grid">
+<div class="card"><span class="tag tag-robot">工业</span><h3>上海"AI+制造"：质检"iPhone 时刻"</h3><p>识渊科技换线调机缩短至 55 秒，振华重工大模型识别焊接缺陷，羚数智能服务港机造船。</p><ul class="key-points"><li>55 秒换线</li><li>央国企深度采用</li></ul></div>
+<div class="card"><span class="tag tag-robot">训练</span><h3>原力灵机 DW0.5 世界模型</h3><p>虚拟环境 RL，真机数据需求降 60%，训练成本降 40%，EWMBench 全球 SOTA。</p><ul class="key-points"><li>60% 数据需求降低</li><li>全球 SOTA</li></ul></div>
+<div class="card"><span class="tag tag-robot">训练</span><h3>RLinf v0.3 + 精铄科技"基建商"</h3><p>清华联合无问芯穹升级开源框架；精铄科技提供物理世界数据和仿真环境。</p><ul class="key-points"><li>多模型多环境支持</li><li>合成数据生成</li></ul></div>
+</div>
+</section>
+
+<!-- 数据安全 -->
+<section class="section" id="privacy">
+<h2 class="section-title"><span class="icon">🔒</span>数据安全与隐私</h2>
+<div class="card-grid">
+<div class="card"><span class="tag tag-security">威胁</span><h3>Grok Build CLI 上传代码库事件</h3><p>xAI 编程工具被发现传输完整代码库和密钥至外部云后紧急禁用。</p><ul class="key-points"><li>密钥泄露风险</li><li>安全审计缺失</li></ul></div>
+<div class="card"><span class="tag tag-security">防御</span><h3>Google 开源 Mantis 漏洞猎手</h3><p>15 阶段 AI 管线识别修补安全漏洞，多阶段分析，人类签字仍必需。</p><ul class="key-points"><li>15 阶段分析</li><li>开源工具</li></ul></div>
+<div class="card"><span class="tag tag-security">威胁</span><h3>BIS 警告 AI 投资泡沫风险</h3><p>国际清算银行指出 AI 投资债务融资结构与历史泡沫相似，提醒系统性风险。</p><ul class="key-points"><li>债务融资结构</li><li>系统性风险</li></ul></div>
+<div class="card"><span class="tag tag-security">隐私</span><h3>Google SynthID 集成 Chrome</h3><p>不可见数字水印检测 AI 生成内容，OpenAI 也已采用，右键即可验证。</p><ul class="key-points"><li>隐形水印</li><li>浏览器级集成</li></ul></div>
+<div class="card"><span class="tag tag-security">隐私</span><h3>FTC 扩大青年数据保护</h3><p>保护范围扩至生物特征，19 州全面隐私法规，新增"神经数据"类别。</p><ul class="key-points"><li>生物特征保护</li><li>19 州立法</li></ul></div>
+<div class="card"><span class="tag tag-security">隐私</span><h3>DOJ 限制敏感数据跨境传输</h3><p>限制向中俄等国批量传输敏感数据，NIST 发布 AI 漏洞管理框架。</p><ul class="key-points"><li>数据传输限制</li><li>国家安全导向</li></ul></div>
+</div>
+</section>
+
+<!-- 政策 -->
+<section class="section" id="policy">
+<h2 class="section-title"><span class="icon">📜</span>行业标准与政策</h2>
+<div class="card-grid">
+<div class="card"><span class="tag tag-policy">国际</span><h3>欧盟 AI 法案正式生效</h3><p>禁止"不可接受风险"系统，合规期限至 2027 年，巨额罚款。英国推进私人议员 AI 法案。</p><ul class="key-points"><li>欧盟率先执法</li><li>英国跟进</li></ul></div>
+<div class="card"><span class="tag tag-policy">国际</span><h3>美国：联邦去监管 vs 州级拼凑</h3><p>联邦层面去监管，各州拼凑式法律覆盖算法偏见、深度伪造。科罗拉多和加州最严格。</p><ul class="key-points"><li>联邦vs州级分裂</li><li>高风险部署监管</li></ul></div>
+<div class="card"><span class="tag tag-policy">中国</span><h3>国家发改委：增速超 30%</h3><p>2025 年 AI 市场破万亿，央国企释放 1000+ 场景，关键行业采用率超 80%。</p><ul class="key-points"><li>万亿市场</li><li>1000+ 场景</li></ul></div>
+<div class="card"><span class="tag tag-policy">中国</span><h3>深圳"AI+先进制造"计划</h3><p>2027 年目标：百场景多应用，工业 Agent 创新中心，覆盖半导体、机器人等五大领域。</p><ul class="key-points"><li>百场景生态</li><li>工业 Agent 中心</li></ul></div>
+<div class="card"><span class="tag tag-policy">标准</span><h3>Qoder 47.6% 断层领先 AI Coding</h3><p>IDC 报告：阿里 Qoder 超二至五名总和，国内 AI 辅助开发市场营收近 4 亿元。</p><ul class="key-points"><li>47.6% 市场份额</li><li>从辅助到自主工作台</li></ul></div>
+<div class="card"><span class="tag tag-policy">标准</span><h3>开源模型流量 29%，收入 < 4%</h3><p>Vercel 数据：高流量低收入的"剪刀差"，开源商业模式仍在探索期。</p><ul class="key-points"><li>流量vs收入剪刀差</li><li>企业采用加速</li></ul></div>
+</div>
+</section>
+
+<!-- 生产力工具 -->
+<section class="section" id="productivity">
+<h2 class="section-title"><span class="icon">⚡</span>智能办公与生产力工具</h2>
+<div class="card-grid">
+<div class="card"><span class="tag tag-product">Agent</span><h3>StaffDeck：给 AI 发工号、定岗位</h3><p>面壁智能开源平台，AI 从工具变为遵循 SOP 的虚拟职员，状态机工作流+OKF 知识库。</p><ul class="key-points"><li>角色化 AI 职员</li><li>状态机工作流</li></ul></div>
+<div class="card"><span class="tag tag-product">Agent</span><h3>百度 DAA 将达 7940 万</h3><p>2030 年超 22 亿 Daily Active Agents，升级办公、无代码、零售管理场景。</p><ul class="key-points"><li>DAA 概念兴起</li><li>零售管理新场景</li></ul></div>
+<div class="card"><span class="tag tag-product">Agent</span><h3>Microsoft Agent 身份化</h3><p>为 AI Agent 分配身份标识、重试循环和绩效评分体系。</p><ul class="key-points"><li>Agent 身份化</li><li>绩效评估体系</li></ul></div>
+<div class="card"><span class="tag tag-product">自动化</span><h3>Alteryx Agent Studio + MCP</h3><p>无代码生成自主 Agent，MCP Server 集成 Slack/Teams，企业级治理控制。</p><ul class="key-points"><li>无代码 Agent</li><li>MCP 协议集成</li></ul></div>
+<div class="card"><span class="tag tag-product">自动化</span><h3>Zapier AI Agents 全面公开</h3><p>7000+ 应用连接，对话式多步骤工作流构建，非程序员友好。</p><ul class="key-points"><li>7000+ 应用</li><li>对话式构建</li></ul></div>
+<div class="card"><span class="tag tag-product">协作</span><h3>Notion AI 2.5 Workspace Mode</h3><p>跨项目调查，带引用来源回答，跨日历、数据库和附件的知识管理。</p><ul class="key-points"><li>跨项目调查</li><li>团队知识管理</li></ul></div>
+</div>
+</section>
+
+<!-- 热门产品 -->
+<section class="section" id="products">
+<h2 class="section-title"><span class="icon">🚀</span>热门 AI 产品动态</h2>
+<div class="card-grid">
+<div class="product-card">
+<h3>1. Context.dev</h3>
+<div class="meta">🔥 729 票 · PH 日榜第一 · 2026.07.03</div>
+<p>一个 API 即可抓取、丰富和提取互联网内容的开发者工具（YC 支持）。单一 API 实现网页抓取、Markdown 转换和结构化信息提取。</p>
+<p style="margin-top:6px;font-size:.82rem;color:#6366f1"><strong>适用：</strong>AI 开发者、Web 数据工程师</p>
+</div>
+<div class="product-card">
+<h3>2. Claude Sonnet 5</h3>
+<div class="meta">⭐ 369 票 · Anthropic 旗舰 · 2026.06.30</div>
+<p>Agent 式编程、多步骤工作流、持久调试不丢上下文。$2/百万输入 token（限时）。</p>
+<p style="margin-top:6px;font-size:.82rem;color:#6366f1"><strong>适用：</strong>企业团队、软件开发者</p>
+</div>
+<div class="product-card">
+<h3>3. Flexprice</h3>
+<div class="meta">🏆 488 票 · 开源计费 · 2026 年持续热门</div>
+<p>AI 时代开源计量和计费平台，支持使用量、信用和混合定价模式。</p>
+<p style="margin-top:6px;font-size:.82rem;color:#6366f1"><strong>适用：</strong>AI 创业公司、SaaS 开发者</p>
+</div>
+<div class="product-card">
+<h3>4. Humalike</h3>
+<div class="meta">🤝 454 票 · AI 行为基准 · 2026.07.01</div>
+<p>为 AI Agent 在人类场景中提供适当行为的模型和基准测试框架。</p>
+<p style="margin-top:6px;font-size:.82rem;color:#6366f1"><strong>适用：</strong>AI 开发者、机器人工程师</p>
+</div>
+<div class="product-card">
+<h3>5. Adam CAD Copilot</h3>
+<div class="meta">🔧 314 票 · 工程设计 AI · 2026.07.01</div>
+<p>嵌入 CAD 软件的 AI 助手，文本提示驱动零部件生成，Copilot 模式辅助工程设计。</p>
+<p style="margin-top:6px;font-size:.82rem;color:#6366f1"><strong>适用：</strong>机械工程师、CAD 用户</p>
+</div>
+</div>
+</section>
+
+<!-- 关键洞察 -->
+<section class="insight-section" id="insights">
+<h2 class="section-title"><span class="icon">💎</span>当日关键洞察</h2>
+
+<div class="insight-block">
+<h3>洞察一：AI 产业从"模型军备竞赛"全面转向"基础设施生态战"</h3>
+<p>DeepSeek 自建数据中心和芯片、商汤 TPW 新指标、浪潮单柜 4 万+ Agent、达卯科技算电协同 2.0——前沿 AI 公司的竞争维度已从"谁的模型更好"扩展至"谁的基础设施更强"。数据中心、芯片、能源管理、Agent 编排平台构成了新的"四层蛋糕"。BIS 对 AI 投资泡沫的警告值得警惕，但 7250 亿美元的巨头投资也说明这场基建竞赛远未见顶。</p>
+</div>
+
+<div class="insight-block">
+<h3>洞察二：具身 AI 的"基础设施化"加速，2026 可能是人形机器人的"iPhone 前夜"</h3>
+<p>逐际动力 COSA 三层架构、银河通用"零标注数据"训练、原力灵机虚拟世界 RL、精铄科技"基建商"定位——人形机器人正在复刻自动驾驶的产业化路径。训练成本从"遥操作级"降至"手机拍摄级"，真机数据需求骤降 60%，规模化部署的经济模型正在快速逼近可行阈值。KraneShares 预测 2030 年单台价格降至 $17,000。</p>
+</div>
+
+<div class="insight-block">
+<h3>洞察三：中国 AI 的"WAIC 时刻"——从开源追赶到生态定义</h3>
+<p>WAIC 2026 的 300+ 全球首发、上海 AI Lab 非 Transformer 科研模型、阿里 Qoder 47.6% 断层领先、深圳"AI+制造"计划——中国 AI 正从"模型开源追赶"走向"生态自主定义"。特别值得注意的是科研 AI 方向的布局：397B 追平万亿参数、六大科学领域平台、物理 AI 大模型——中国正在垂直科学领域建立专用 AI 基础设施的先发优势。</p>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="disclaimer">
+<strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，TechCrunch、VentureBeat、Wired、机器之心等来源出现内容受限（页面截断或反爬拦截），相关内容已通过 WebSearch 和其他信源交叉验证补充。
+</div>
+<p>AI 资讯快报 · 每日自动生成 · 数据来源覆盖全球 20+ 主流媒体</p>
+<p style="margin-top:8px">Powered by QoderWork</p>
+</footer>
+
+<script>
+// Charts
+new Chart(document.getElementById('fundingChart'),{type:'doughnut',data:{labels:['AI 专项融资','非 AI VC'],datasets:[{data:[2420,580],backgroundColor:['#6366f1','#334155'],borderWidth:0}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:'#cbd5e1',font:{size:12}}}}}});
+
+new Chart(document.getElementById('contextChart'),{type:'bar',data:{labels:['LongCat-2.0','GPT-5.6','Grok 4.5','Hy3','Muse Spark'],datasets:[{label:'万 tokens',data:[100,105,50,25.6,100],backgroundColor:['#ec4899','#6366f1','#f59e0b','#10b981','#8b5cf6']}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#94a3b8'},grid:{color:'rgba(255,255,255,.1)'}},y:{ticks:{color:'#cbd5e1'},grid:{display:false}}}}});
+
+new Chart(document.getElementById('capexChart'),{type:'bar',data:{labels:['Alphabet','Microsoft','Meta','Amazon'],datasets:[{label:'亿美元',data:[2200,2000,1650,1400],backgroundColor:['#6366f1','#8b5cf6','#ec4899','#f59e0b']}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#cbd5e1'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:v=>v+'亿'},grid:{color:'rgba(255,255,255,.1)'}}}}});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.card,.trend-card,.headline-card,.product-card,.insight-block').forEach((el,i)=>{el.style.transitionDelay=`${Math.min(i%6,3)*80}ms`;observer.observe(el)});
+
+// Smooth scroll
+document.querySelectorAll('.nav-bar a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
