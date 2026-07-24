@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 资讯快报 · 2026年7月24日</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --accent: #ec4899;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+      color: white;
+      padding: 100px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      background: linear-gradient(90deg, #fff, #c7d2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle { font-size: 1.2rem; color: #cbd5e1; margin-bottom: 24px; }
+    .hero .date-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .archive-btn {
+      display: inline-block;
+      background: #fbbf24;
+      color: #0f172a;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .archive-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(251,191,36,0.3); }
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 12px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .nav-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: 100%; }
+    .nav-brand { font-weight: 700; color: var(--primary); margin-right: 12px; }
+    .nav-bar a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-bar a:hover { background: var(--primary); color: white; }
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+    .trend-card, .headline-card, .category-card, .product-card, .insight-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeInUp 0.6s forwards;
+    }
+    .trend-card:hover, .headline-card:hover, .category-card:hover, .product-card:hover, .insight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .trend-card:nth-child(1) { animation-delay: 0.1s; }
+    .trend-card:nth-child(2) { animation-delay: 0.2s; }
+    .trend-card:nth-child(3) { animation-delay: 0.3s; }
+    .card-label {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .label-trend { background: #ede9fe; color: #6d28d9; }
+    .label-headline { background: #fee2e2; color: #991b1b; }
+    .label-tech { background: #dbeafe; color: #1e40af; }
+    .label-industry { background: #dcfce7; color: #166534; }
+    .label-ethics { background: #fef3c7; color: #92400e; }
+    .label-medical { background: #fce7f3; color: #9d174d; }
+    .label-robot { background: #e0f2fe; color: #075985; }
+    .label-security { background: #f3f4f6; color: #374151; }
+    .label-policy { background: #ffedd5; color: #9a3412; }
+    .label-productivity { background: #d1fae5; color: #065f46; }
+    .label-product { background: linear-gradient(135deg, #6366f1, #ec4899); color: white; }
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: var(--dark);
+    }
+    .card-title a { color: inherit; text-decoration: none; }
+    .card-title a:hover { color: var(--primary); }
+    .card-meta { font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px; }
+    .key-points {
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 16px 0;
+    }
+    .key-points ul { margin: 0; padding-left: 18px; }
+    .key-points li { margin-bottom: 6px; }
+    .insight-label {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .chart-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .chart-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 20px;
+    }
+    .category-card { margin-bottom: 0; }
+    .subcategory-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 24px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e0e7ff;
+    }
+    .disclaimer {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 40px;
+      color: #92400e;
+      font-size: 0.9rem;
+    }
+    footer {
+      background: var(--dark);
+      color: #94a3b8;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--primary-light); }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .section { padding: 40px 16px; }
+      .section-title { font-size: 1.5rem; }
+      .category-grid { grid-template-columns: 1fr; }
+      .chart-grid { grid-template-columns: 1fr; }
+      .nav-bar a { font-size: 0.8rem; padding: 5px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="date-badge">2026年7月24日 · 第 1 期</div>
+      <h1>AI 资讯快报</h1>
+      <p class="subtitle">覆盖全球人工智能领域最新动态、技术突破与产业趋势</p>
+      <a href="https://maplelian.github.io/ai-news-bulletin/" class="archive-btn">📁 查看所有归档期数</a>
+    </div>
+  </section>
+
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <div class="nav-row">
+        <span class="nav-brand">AI 快报</span>
+        <a href="#trends">核心趋势</a>
+        <a href="#headlines">今日头条</a>
+        <a href="#tech">技术前沿</a>
+        <a href="#industry">行业竞争</a>
+        <a href="#ethics">伦理安全</a>
+        <a href="#medical">医疗教育</a>
+        <a href="#robots">机器人</a>
+        <a href="#security">数据隐私</a>
+      </div>
+      <div class="nav-row">
+        <a href="#policy">标准政策</a>
+        <a href="#productivity">生产力</a>
+        <a href="#products">热门产品</a>
+        <a href="#insights">关键洞察</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="chart-grid">
+      <div class="chart-card">
+        <div class="chart-title">今日重磅融资规模对比</div>
+        <canvas id="fundingChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">主流企业级模型定价对比（每百万 token）</div>
+        <canvas id="pricingChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">今日新闻来源覆盖率</div>
+        <canvas id="sourceChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trends">
+    <h2 class="section-title">今日核心趋势</h2>
+    <div class="trend-card">
+      <span class="card-label label-trend">趋势 1</span>
+      <h3 class="card-title">消费级 AI 助手进入「主动服务」时代</h3>
+      <p>Meta 于今日正式发布 AI 聊天机器人的生产力升级版本，使其能够读取用户日历、生成每日简报、规划事件并自动执行重复性任务。这一升级搭载全新 Muse Spark 1.1 模型，标志着 Meta 的 AI 战略从社交娱乐向实用生产力明显倾斜。过去半年，OpenAI、Google 和 Anthropic 都在强化 Agent 能力，而 Meta 凭借其 30 亿级别的应用生态拥有最广泛的触达渠道。</p>
+      <div class="insight-label">关键洞察</div>
+      <p>当 AI 助手开始主动管理用户日程并执行循环任务时，产品竞争的核心将从「模型能力」转向「上下文权限」与「工作流嵌入深度」。谁能获得用户日历、邮件和待办事项的访问权，谁就可能成为下一代操作系统入口。</p>
+    </div>
+    <div class="trend-card">
+      <span class="card-label label-trend">趋势 2</span>
+      <h3 class="card-title">中美 AI 竞赛从模型层加速渗透到底层算力主权</h3>
+      <p>今日两条重量级新闻同时指向算力自主化：Anthropic 发布 Opus 5 时强调政府合作伙伴可对其模型进行独立安全测试；与此同时，中国最高层 reportedly 要求国内企业优先使用国产 AI 芯片。美国通过 Genesis Mission 向 278 个 AI 科学项目注入 50 亿美元，而中国则在合肥等地持续押注多模态独角兽智象未来，后者三个月内累计融资超 21 亿元人民币。</p>
+      <div class="insight-label">关键洞察</div>
+      <p>AI 竞争已不仅是模型参数和 benchmark 的比拼，而是演变为「资本 + 算力 + 政策」三位一体的国家基础设施竞赛。未来的技术领先优势将越来越取决于一个国家能否在芯片、能源、数据三大底层要素上实现闭环。</p>
+    </div>
+    <div class="trend-card">
+      <span class="card-label label-trend">趋势 3</span>
+      <h3 class="card-title">多模态与世界模型成为下一代 AI 的「空间智能」突破口</h3>
+      <p>国产世界模型 UniWorld-View 登顶李飞飞团队 WorldScore 榜单，成为今日技术领域的亮点。该模型由北京大学、鹏城实验室与兔展智能联合开发，支持单图或单目视频生成沿指定相机路径的新视角视频，并且代码与权重完全开源、已适配国产昇腾算力。这一进展与智象未来在无限时长视频生成智能体 vivago R1 上的突破形成呼应。</p>
+      <div class="insight-label">关键洞察</div>
+      <p>世界模型和空间智能是通向具身智能和自动驾驶的关键桥梁。中国团队在这一方向的快速突破，结合本土算力适配，可能改变全球多模态 AI 的产业格局。</p>
+    </div>
+  </section>
+
+  <section class="section" id="headlines">
+    <h2 class="section-title">今日头条</h2>
+    <div class="headline-card">
+      <span class="card-label label-headline">头条 1</span>
+      <h3 class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/970105/claude-opus-5-announced-anthropic-ai-model-release" target="_blank">Anthropic 发布 Opus 5，企业级模型逼近 Fable 5 能力</a></h3>
+      <div class="card-meta">The Verge · 2026-07-24</div>
+      <p>Anthropic 于 7 月 24 日发布 Claude Opus 5，官方称其「在多个领域已接近 Fable 5 的能力」，同时在复杂编码任务上表现更优。定价维持前代水平，约为 Fable 5 的一半，略低于 OpenAI GPT-5.6。</p>
+      <div class="key-points">
+        <ul>
+          <li>性能与安全的平衡：Opus 5 被称为「最 aligned 的 Opus 模型」，网络安全防护更强</li>
+          <li>定价策略明确：保持上一代价格，以性价比争夺企业知识工作市场</li>
+          <li>新功能选项：推出 Fast mode 和自动降级选项</li>
+          <li>监管背景：发布紧随 Anthropic 与特朗普政府谈判之后</li>
+        </ul>
+      </div>
+      <p><strong>思考/影响：</strong>Opus 5 凸显了 Anthropic 的产品矩阵策略——用 Fable 5 守住院线最前沿，用 Opus 5 攻打企业日常知识工作。在政府监管日益收紧的背景下，「可审计、可测试、更安全」正在成为企业采购大模型时的核心考量。</p>
+    </div>
+    <div class="headline-card">
+      <span class="card-label label-headline">头条 2</span>
+      <h3 class="card-title"><a href="https://www.theverge.com/tech/970570/meta-ai-chatbot-productivity-update" target="_blank">Meta AI 聊天机器人升级为个人助理，向生产力场景战略转向</a></h3>
+      <div class="card-meta">The Verge · 2026-07-24</div>
+      <p>Meta 宣布为其 AI 聊天机器人加入生产力功能，使其能够读取日历、生成每日简报、规划事件、运行持续研究并自动执行重复性任务。此次升级基于 Muse Spark 1.1 模型，率先在 Meta AI App 和网页版上线。</p>
+      <div class="key-points">
+        <ul>
+          <li>功能跃迁：可一次性设置后自动完成食谱规划、日历简报、补货提醒等循环任务</li>
+          <li>在线研究能力：可联网研究并将结果整理成报告或演示文稿</li>
+          <li>战略转向：此前 Meta 强调娱乐和社交连接，此次明显调整方向</li>
+          <li>分发优势：通过 Instagram、WhatsApp、Messenger 触达数十亿用户</li>
+        </ul>
+      </div>
+      <p><strong>思考/影响：</strong>Meta 的转向说明，即便是拥有最强社交分发的公司，也无法忽视 AI 作为生产力入口的潜力。如果 Meta 能成功将 AI 助手嵌入 WhatsApp 等高频通讯场景，它可能成为最普及的「平民版 AI Agent」。</p>
+    </div>
+    <div class="headline-card">
+      <span class="card-label label-headline">头条 3</span>
+      <h3 class="card-title"><a href="https://www.theverge.com/science/970534/genesis-mission-ai-science-funding-trump-grants" target="_blank">特朗普政府启动 Genesis Mission，50 亿美元重塑美国科学研究方向</a></h3>
+      <div class="card-meta">The Verge · 2026-07-24</div>
+      <p>特朗普政府宣布首批 Genesis Mission 科研资助，向 278 个 AI 驱动的科学项目拨款 50 亿美元，从逾 5000 份申请中脱颖而出。能源部主导本轮资助，Google、Microsoft 和 OpenAI 也贡献算力与 AI 额度。</p>
+      <div class="key-points">
+        <ul>
+          <li>规模宏大：白宫将该计划形容为「堪比曼哈顿计划的紧迫性与雄心」</li>
+          <li>方向集中：优先支持 AI、机器人、核能，相对削弱生命科学</li>
+          <li>治理结构变化：提议将资金从大学转向个人研究者</li>
+          <li>争议巨大：批评者认为此举将科学「VC 化」，可能损害基础研究</li>
+        </ul>
+      </div>
+      <p><strong>思考/影响：</strong>Genesis Mission 不仅是科研资助计划，更是一场关于「谁来定义科学优先级」的政治经济实验。如果大学体系持续失血，美国可能面临基础研究人才流失的长期风险。</p>
+    </div>
+  </section>
+
+  <section class="section" id="tech">
+    <h2 class="section-title">技术前沿</h2>
+    <div class="subcategory-title">大模型</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-tech">大模型</span>
+        <h3 class="card-title">Anthropic Opus 5 定位企业知识工作</h3>
+        <p>Anthropic 发布 Opus 5，在编码和复杂推理上较前代提升，定价不变并新增 Fast mode。该模型被明确区隔于面向长周期 Agent 任务的 Fable 5。</p>
+        <div class="key-points">
+          <ul>
+            <li>价格约为 Fable 5 的一半</li>
+            <li>新增自动降级选项</li>
+            <li>政府可独立安全测试</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-tech">大模型</span>
+        <h3 class="card-title">Meta Muse Spark 1.1 驱动个人助理升级</h3>
+        <p>Meta 最新 AI 助手基于 Muse Spark 1.1 模型，新增日历读取、循环任务自动化和在线研究功能，显示 Meta 正在将其 AI 战略从娱乐向生产力延伸。</p>
+        <div class="key-points">
+          <ul>
+            <li>支持一次性设置长期自动化任务</li>
+            <li>可生成报告和演示文稿</li>
+            <li>WhatsApp 支持即将上线</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-tech">大模型</span>
+        <h3 class="card-title">OpenAI GPT-5.6 系列持续分阶段推出</h3>
+        <p>OpenAI 的 GPT-5.6 系列（含 Sol、Terra、Luna）正在分批推出，此前已获得美国政府广泛部署批准。</p>
+        <div class="key-points">
+          <ul>
+            <li>分阶段发布降低系统性风险</li>
+            <li>政府审批成为前沿模型上线关键门槛</li>
+            <li>与 Anthropic Fable 5/Opus 5 直接竞争</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="subcategory-title">多模态</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-tech">多模态</span>
+        <h3 class="card-title">UniWorld-View 登顶 WorldScore 榜单</h3>
+        <p>由北京大学、鹏城实验室与兔展智能联合开发的 UniWorld-View 在世界模型 benchmark 上登顶，代码与权重完全开源，已适配国产昇腾算力。</p>
+        <div class="key-points">
+          <ul>
+            <li>单图/单目视频生成新视角视频</li>
+            <li>采用双分支架构分离几何与外观</li>
+            <li>已适配华为昇腾芯片</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-tech">多模态</span>
+        <h3 class="card-title">智象未来 vivago R1 商业化进展</h3>
+        <p>智象未来三个月内完成三轮融资累计超 21 亿元，vivago R1 号称全球首款支持无限时长视频自主生成与编辑的多模态创作智能体。</p>
+        <div class="key-points">
+          <ul>
+            <li>UiT 架构统一图像、文本、视频、音频</li>
+            <li>海外版覆盖 100 多个国家和地区</li>
+            <li>服务超 5000 万用户</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-tech">多模态</span>
+        <h3 class="card-title">MIT 新型芯片级激光雷达</h3>
+        <p>MIT 研究团队开发出芯片级激光雷达，通过紧密排列天线扩大视野，无需机械运动部件即可实现更清晰、更广角的成像。</p>
+        <div class="key-points">
+          <ul>
+            <li>无移动部件提升可靠性</li>
+            <li>有望降低自动驾驶传感器成本</li>
+            <li>为机器人导航提供新方案</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="subcategory-title">基础设施</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-tech">基础设施</span>
+        <h3 class="card-title">中国推动国产 AI 芯片替代 Nvidia</h3>
+        <p>据华尔街日报报道，中国领导人亲信 reportedly 向国内企业施压，要求优先采用国产 AI 芯片，希望复制在电动车、太阳能等领域的成功路径。</p>
+        <div class="key-points">
+          <ul>
+            <li>目标是打破 Nvidia 在高端 AI 芯片的垄断</li>
+            <li>被视为国家技术自立问题</li>
+            <li>可能加速国产 AI 芯片生态成熟</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-tech">基础设施</span>
+        <h3 class="card-title">可编程光子芯片实现光速按需调控</h3>
+        <p>研究人员开发出可编程光学芯片，能够按需减慢光速，改善光信号传输的时序和缓冲能力。</p>
+        <div class="key-points">
+          <ul>
+            <li>提升光通信系统的可控性</li>
+            <li>可能应用于 AI 数据中心互连</li>
+            <li>为光子计算奠定基础</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-tech">基础设施</span>
+        <h3 class="card-title">科技巨头为 Genesis Mission 提供算力支持</h3>
+        <p>特朗普政府的 Genesis Mission 获得 Google、Microsoft、OpenAI 算力与 AI 额度支持，显示政企合作正在成为美国 AI 研发的主流模式。</p>
+        <div class="key-points">
+          <ul>
+            <li>能源部主导资金分配</li>
+            <li>私营企业提供基础设施</li>
+            <li>可能重塑学术研究的算力获取方式</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="industry">
+    <h2 class="section-title">行业竞争与战略</h2>
+    <div class="subcategory-title">巨头动态</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-industry">巨头动态</span>
+        <h3 class="card-title">Meta 战略重心向 AI 生产力转移</h3>
+        <p>Meta 在裁员 8000 人并投入数十亿美元于 AI 之后，正式将 AI 聊天机器人推向生产力场景，与 ChatGPT、Gemini 展开正面竞争。</p>
+        <div class="key-points">
+          <ul>
+            <li>CPO 此前强调娱乐与社交连接，现已转向生产力</li>
+            <li>AI 被视为 Meta 下一阶段增长核心</li>
+            <li>大规模裁员为 AI 投资腾挪资源</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-industry">巨头动态</span>
+        <h3 class="card-title">Anthropic 强化政府关系与安全测试透明度</h3>
+        <p>Opus 5 发布同时，Anthropic 强调将继续与政府合作伙伴开展独立测试，并推出自动降级等安全选项。</p>
+        <div class="key-points">
+          <ul>
+            <li>政府合作成为前沿模型发布的标配</li>
+            <li>安全测试透明度成为差异化卖点</li>
+            <li>C 端与 B 端产品矩阵更清晰</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-industry">巨头动态</span>
+        <h3 class="card-title">OpenAI 与政府审批绑定的发布策略</h3>
+        <p>OpenAI 的 GPT-5.6 系列采取分批、受政府审批约束的发布方式，显示美国前沿 AI 治理正从自愿框架向审批制过渡。</p>
+        <div class="key-points">
+          <ul>
+            <li>政府批准成为大规模部署前提</li>
+            <li>Sol/Terra/Luna 分阶段降低风险</li>
+            <li>与 Anthropic 在监管合规上展开竞争</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="subcategory-title">融资</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-industry">融资</span>
+        <h3 class="card-title">智象未来三个月融资超 21 亿元</h3>
+        <p>智象未来完成 15 亿元 C 轮融资，近三个月三轮融资累计超 21 亿元，估值超过 10 亿美元。</p>
+        <div class="key-points">
+          <ul>
+            <li>多模态/原生全模态赛道受资本热捧</li>
+            <li>国资与影视产业资本联合下注</li>
+            <li>vivago R1 已服务 5000 万海外用户</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-industry">融资</span>
+        <h3 class="card-title">NEURA Robotics 14 亿美元 C 轮融资</h3>
+        <p>德国 NEURA Robotics 宣布完成最高 14 亿美元 C 轮融资，投资方包括 Tether、Qualcomm、Amazon、NVIDIA、Bosch 等。</p>
+        <div class="key-points">
+          <ul>
+            <li>资金用于扩展 Neuraverse 机器人生态</li>
+            <li>计划 2030 年实现数百万台机器人量产</li>
+            <li>订单与部署管道超 10 亿美元</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-industry">融资</span>
+        <h3 class="card-title">CUHK 获资助开发 AI 手术机器人</h3>
+        <p>香港中文大学在产学研合作计划中获得资助，推进 AI 手术机器人、癌症纳米医学和 3D 纳米制造等前沿项目。</p>
+        <div class="key-points">
+          <ul>
+            <li>学术机构仍是医疗 AI 创新的重要来源</li>
+            <li>手术机器人领域竞争加剧</li>
+            <li>纳米医学与 AI 结合有望改善精准治疗</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="subcategory-title">人才</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-industry">人才</span>
+        <h3 class="card-title">Meta 裁员 8000 人聚焦 AI 重组</h3>
+        <p>Meta 近期宣布裁员约 8000 人，作为其向 AI 转型的一部分，将资源集中到 AI 产品和基础设施上。</p>
+        <div class="key-points">
+          <ul>
+            <li>大规模裁员与 AI 投资并行</li>
+            <li>非 AI 业务线承压</li>
+            <li>可能引发硅谷新一轮人才再分配</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-industry">人才</span>
+        <h3 class="card-title">AI 安全与政策人才需求上升</h3>
+        <p>随着各国监管框架趋严，Anthropic、OpenAI 等公司加大对 AI 安全研究和政府关系人才的招聘力度。</p>
+        <div class="key-points">
+          <ul>
+            <li>安全研究成为高薪岗位</li>
+            <li>政府关系能力影响产品发布节奏</li>
+            <li>模型可解释性与红队测试需求增长</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-industry">人才</span>
+        <h3 class="card-title">顶尖学者跨界进入产业</h3>
+        <p>菲尔兹奖得主王虹等顶级数学和计算机科学人才持续参与 NeurIPS 等 AI 顶会，显示基础研究人才与 AI 产业边界日益模糊。</p>
+        <div class="key-points">
+          <ul>
+            <li>数学人才对模型理论理解至关重要</li>
+            <li>学术界与产业界合作加深</li>
+            <li>可能推动下一代模型架构创新</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ethics">
+    <h2 class="section-title">伦理与安全</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-ethics">伦理安全</span>
+        <h3 class="card-title">Anthropic 增强 Opus 5 网络安全防护</h3>
+        <p>Opus 5 被设计为「最 aligned 的 Opus 模型」，加入比 Opus 4.8 更多的网络安全保障，并支持政府独立测试。</p>
+        <div class="key-points">
+          <ul>
+            <li>政府红队测试成为发布前标准流程</li>
+            <li>自动降级选项减少滥用风险</li>
+            <li>企业客户对安全合规要求提高</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-ethics">伦理安全</span>
+        <h3 class="card-title">FLI AI 安全指数评级引发关注</h3>
+        <p>FLI 发布的 AI 安全指数给 Anthropic C+、OpenAI 和 Google C 评级，反映主流 AI 实验室在安全实践上仍有显著改进空间。</p>
+        <div class="key-points">
+          <ul>
+            <li>安全评估从学术讨论进入公共政策领域</li>
+            <li>评级可能影响企业采购决策</li>
+            <li>透明度和问责制成为焦点</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-ethics">伦理安全</span>
+        <h3 class="card-title">AI 生成科学研究质量引发学界争议</h3>
+        <p>特朗普 Genesis Mission 受到批评的部分原因是，部分研究者认为当前 AI 生成的科学内容质量堪忧，需要专家人工把关。</p>
+        <div class="key-points">
+          <ul>
+            <li>AI 辅助科研存在「幻觉」风险</li>
+            <li>同行评审和人工验证不可替代</li>
+            <li>科研诚信面临新挑战</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="medical">
+    <h2 class="section-title">医疗与教育应用</h2>
+    <div class="subcategory-title">医疗</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-medical">医疗</span>
+        <h3 class="card-title">AI 手术机器人获香港中文大学重点资助</h3>
+        <p>CUHK 获政府资助推进 AI 手术机器人研发，目标提升手术精度并减少并发症。</p>
+        <div class="key-points">
+          <ul>
+            <li>学术-临床-产业协同加速医疗机器人落地</li>
+            <li>精准手术需求推动 AI 视觉与控制技术发展</li>
+            <li>监管审批仍是商业化关键</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-medical">医疗</span>
+        <h3 class="card-title">AI 辅助诊断进入验证标准化阶段</h3>
+        <p>2026 年诊断 AI 行业正从概念验证转向严格临床验证，标准化成为主流趋势。</p>
+        <div class="key-points">
+          <ul>
+            <li>监管机构要求更高质量临床证据</li>
+            <li>数据多样性与偏见控制成为核心议题</li>
+            <li>AI 诊断工具逐步纳入医疗工作流</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-medical">医疗</span>
+        <h3 class="card-title">医疗 AI 与纳米医学结合改善癌症治疗</h3>
+        <p>香港中文大学等机构正在探索 AI 与纳米医学结合，用于癌症精准诊断和个性化治疗。</p>
+        <div class="key-points">
+          <ul>
+            <li>AI 可加速纳米药物设计</li>
+            <li>多模态数据融合提升诊疗效果</li>
+            <li>长期安全性研究仍需跟进</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="subcategory-title">教育</div>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-medical">教育</span>
+        <h3 class="card-title">AI 个性化学习平台持续普及</h3>
+        <p>2026 年教育科技领域趋势显示，AI 驱动的个性化学习路径和自适应评估正在成为主流。</p>
+        <div class="key-points">
+          <ul>
+            <li>学生可获得实时反馈</li>
+            <li>教师角色从知识传授转向学习设计</li>
+            <li>数据隐私和学生权益保护需同步加强</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-medical">教育</span>
+        <h3 class="card-title">Google 扩大教育工作者 AI 培训计划</h3>
+        <p>Google 继续扩展面向 K-12 教育工作者的 AI 技能培训，帮助教师将生成式 AI 融入课堂。</p>
+        <div class="key-points">
+          <ul>
+            <li>教师 AI 素养成为教育数字化关键</li>
+            <li>大科技公司积极布局教育生态</li>
+            <li>需要防范过度依赖 AI 工具</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-medical">教育</span>
+        <h3 class="card-title">国际 AI 教育竞赛推动负责任实践</h3>
+        <p>AI for Good 与联合国国际电信联盟等机构举办全球 AI 教育奖项，鼓励负责任的 AI 教育应用。</p>
+        <div class="key-points">
+          <ul>
+            <li>负责任 AI 成为教育应用评估标准</li>
+            <li>跨学科合作受到鼓励</li>
+            <li>发展中国家教育公平成为关注重点</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="robots">
+    <h2 class="section-title">机器人前沿</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-robot">人形机器人</span>
+        <h3 class="card-title">NEURA Robotics 融资加速人形机器人量产</h3>
+        <p>NEURA Robotics 获得 14 亿美元 C 轮融资，计划通过 NEURA Gyms 真实世界训练环境加速认知机器人和人形机器人能力进化。</p>
+        <div class="key-points">
+          <ul>
+            <li>真实世界数据是 Physical AI 核心壁垒</li>
+            <li>目标 2030 年数百万台量产</li>
+            <li>欧洲在全栈机器人领域展现竞争力</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-robot">感知</span>
+        <h3 class="card-title">芯片级激光雷达助力机器人环境感知</h3>
+        <p>MIT 芯片级激光雷达技术可为机器人和自动驾驶车辆提供更广视角、更高可靠性的环境感知能力。</p>
+        <div class="key-points">
+          <ul>
+            <li>无机械结构降低故障率</li>
+            <li>紧凑设计适合人形机器人集成</li>
+            <li>成本下降有助于规模化应用</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-robot">训练</span>
+        <h3 class="card-title">NEURA Gyms 构建真实世界机器人训练场</h3>
+        <p>NEURA 计划建设全球性的真实世界训练设施，让机器人在真实环境中学习物理交互。</p>
+        <div class="key-points">
+          <ul>
+            <li>仿真到现实的鸿沟仍是机器人学习瓶颈</li>
+            <li>真实数据可显著提升泛化能力</li>
+            <li>规模化训练设施成为竞争焦点</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="security">
+    <h2 class="section-title">数据安全与隐私</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-security">网络威胁</span>
+        <h3 class="card-title">Deepfake 攻击在 2026 年持续升级</h3>
+        <p>企业安全报告显示，AI 生成的深度伪造视频和音频被广泛用于欺诈、钓鱼和社会工程攻击。</p>
+        <div class="key-points">
+          <ul>
+            <li>深度伪造检测成为企业安全预算重点</li>
+            <li>金融、政务、媒体行业风险最高</li>
+            <li>攻防技术同步演进</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-security">网络威胁</span>
+        <h3 class="card-title">AI 生成钓鱼邮件规模化传播</h3>
+        <p>攻击者利用大模型生成高度定制化的钓鱼内容，绕过传统邮件安全过滤机制。</p>
+        <div class="key-points">
+          <ul>
+            <li>个性化钓鱼邮件成功率显著上升</li>
+            <li>传统关键词过滤效果下降</li>
+            <li>需要行为分析和多因素认证配合</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-security">隐私技术</span>
+        <h3 class="card-title">零数据保留策略成为企业 AI 部署标配</h3>
+        <p>Anthropic、OpenAI 等面向企业客户推出零数据保留和隔离云 VM 沙箱选项，以降低隐私风险。</p>
+        <div class="key-points">
+          <ul>
+            <li>数据不出域成为大型企业采购前提</li>
+            <li>私有化与混合部署需求增长</li>
+            <li>合规要求推动隐私增强技术发展</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="policy">
+    <h2 class="section-title">行业标准与政策</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-policy">国际政策</span>
+        <h3 class="card-title">欧盟 AI 法案持续影响全球监管框架</h3>
+        <p>欧盟 AI 法案在 2026 年继续成为全球 AI 监管的重要参照，高风险 AI 系统面临更严格合规要求。</p>
+        <div class="key-points">
+          <ul>
+            <li>透明度、问责制、人类监督为核心原则</li>
+            <li>跨国企业需调整全球产品策略</li>
+            <li>合规成本成为中小企业挑战</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-policy">国际政策</span>
+        <h3 class="card-title">国际 AI 安全报告 2026 发布</h3>
+        <p>国际 AI 安全报告 2026 汇总全球专家观点，为各国政策制定提供科学依据。</p>
+        <div class="key-points">
+          <ul>
+            <li>通用人工智能风险进入政策议程</li>
+            <li>能力评估与治理机制成为重点</li>
+            <li>国际协调仍面临地缘政治障碍</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-policy">中国政策</span>
+        <h3 class="card-title">中国要求企业优先采用国产 AI 芯片</h3>
+        <p>据华尔街日报报道，中国高层 reportedly 向企业施压，要求使用国产 AI 芯片，以减少对 Nvidia 的依赖。</p>
+        <div class="key-points">
+          <ul>
+            <li>技术自立成为国家战略</li>
+            <li>国产芯片生态获得政策和订单双重驱动</li>
+            <li>可能影响全球半导体供应链格局</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="productivity">
+    <h2 class="section-title">智能办公与生产力工具</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <span class="card-label label-productivity">AI Agent</span>
+        <h3 class="card-title">Meta AI 聊天机器人升级为个人助理</h3>
+        <p>Meta AI 新增日历读取、循环任务自动化和在线研究功能，向 Agent 形态演进。</p>
+        <div class="key-points">
+          <ul>
+            <li>Agent 能力从单一对话扩展到多步骤任务执行</li>
+            <li>个人日历和待办成为关键上下文</li>
+            <li>多平台分发是规模化优势</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-productivity">企业自动化</span>
+        <h3 class="card-title">Agentic Automation 成为 RPA 下一代方向</h3>
+        <p>传统 RPA 正与 AI Agent 融合，形成能够理解上下文、自主决策的新一代自动化平台。</p>
+        <div class="key-points">
+          <ul>
+            <li>从规则驱动转向意图驱动</li>
+            <li>非结构化数据处理能力增强</li>
+            <li>业务流程自动化进入新阶段</li>
+          </ul>
+        </div>
+      </div>
+      <div class="category-card">
+        <span class="card-label label-productivity">协作</span>
+        <h3 class="card-title">Meta 计划将 AI 助手引入 WhatsApp 协作场景</h3>
+        <p>Meta 表示 WhatsApp 支持即将推出，意味着 AI 助手将嵌入全球最大即时通讯网络之一的群聊和商务沟通中。</p>
+        <div class="key-points">
+          <ul>
+            <li>通讯场景是 AI 协作的天然入口</li>
+            <li>群聊摘要、日程协调、任务分配是高频需求</li>
+            <li>隐私保护面临挑战</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <h2 class="section-title">热门 AI 产品动态（Top 5）</h2>
+    <p style="color: var(--text-light); margin-bottom: 24px;">注：ProductHunt 今日访问受反爬限制（HTTP 403），以下产品基于今日主流科技媒体报道和公开信息整理。</p>
+    <div class="product-card">
+      <span class="card-label label-product">Top 1</span>
+      <h3 class="card-title">Claude Opus 5</h3>
+      <div class="card-meta">Anthropic 官方发布 · 2026-07-24</div>
+      <p>Anthropic 最新企业级大模型，被称为「最 aligned 的 Opus 模型」，在复杂编码任务上接近 Fable 5 能力。</p>
+      <div class="key-points">
+        <ul>
+          <li>输入 5 美元 / 百万 token、输出 25 美元 / 百万 token</li>
+          <li>新增 Fast mode 和自动降级选项</li>
+          <li>网络安全防护强于 Opus 4.8，支持政府独立测试</li>
+        </ul>
+      </div>
+      <p><strong>场景：</strong>企业知识工作、复杂编码、安全敏感型 AI 应用<br><strong>适合使用者：</strong>企业开发者、安全合规团队、知识工作者</p>
+    </div>
+    <div class="product-card">
+      <span class="card-label label-product">Top 2</span>
+      <h3 class="card-title">Meta AI 聊天机器人（生产力版）</h3>
+      <div class="card-meta">Meta 官方发布 · 2026-07-24</div>
+      <p>Meta AI 聊天机器人升级，新增日历读取、每日简报、循环任务自动化和在线研究功能。</p>
+      <div class="key-points">
+        <ul>
+          <li>基于 Muse Spark 1.1 模型</li>
+          <li>支持食谱规划、补货提醒等重复任务自动化</li>
+          <li>将率先在 WhatsApp 上线，触达数十亿用户</li>
+        </ul>
+      </div>
+      <p><strong>场景：</strong>个人日程管理、日常研究、生活自动化<br><strong>适合使用者：</strong>Meta 生态用户、普通消费者、小型团队</p>
+    </div>
+    <div class="product-card">
+      <span class="card-label label-product">Top 3</span>
+      <h3 class="card-title">UniWorld-View</h3>
+      <div class="card-meta">北京大学 / 鹏城实验室 / 兔展智能 · 2026-07-24</div>
+      <p>登顶李飞飞团队 WorldScore 榜单的世界模型，支持从单图或单目视频生成新视角视频。</p>
+      <div class="key-points">
+        <ul>
+          <li>代码与权重完全开源（PKU-YuanGroup/UniWorld-View）</li>
+          <li>已适配国产昇腾算力</li>
+          <li>采用双分支架构分离几何与外观生成</li>
+        </ul>
+      </div>
+      <p><strong>场景：</strong>3D/4D 内容生成、具身智能感知、自动驾驶仿真、影视制作<br><strong>适合使用者：</strong>计算机视觉研究者、自动驾驶团队、内容创作者</p>
+    </div>
+    <div class="product-card">
+      <span class="card-label label-product">Top 4</span>
+      <h3 class="card-title">vivago R1（智象未来）</h3>
+      <div class="card-meta">HiDream.ai · 2026-07-24</div>
+      <p>号称全球首款支持无限时长视频自主生成与编辑的多模态创作智能体。</p>
+      <div class="key-points">
+        <ul>
+          <li>基于 UiT 统一多模态架构</li>
+          <li>海外版覆盖 100 多个国家和地区</li>
+          <li>累计服务超 5000 万用户</li>
+        </ul>
+      </div>
+      <p><strong>场景：</strong>短视频创作、广告制作、长视频编辑、多模态内容生产<br><strong>适合使用者：</strong>内容创作者、营销团队、影视制作公司</p>
+    </div>
+    <div class="product-card">
+      <span class="card-label label-product">Top 5</span>
+      <h3 class="card-title">NEURA Gyms / NEURA Robotics 平台</h3>
+      <div class="card-meta">NEURA Robotics · 2026-06-10</div>
+      <p>NEURA Robotics 的真实世界机器人训练环境，用于加速认知机器人和 Physical AI 能力进化。</p>
+      <div class="key-points">
+        <ul>
+          <li>计划建设全球 NEURA Gyms 训练网络</li>
+          <li>支持机器人在真实环境中学习物理交互</li>
+          <li>目标 2030 年实现数百万台机器人量产</li>
+        </ul>
+      </div>
+      <p><strong>场景：</strong>工业机器人训练、人形机器人技能学习、具身智能研究<br><strong>适合使用者：</strong>机器人公司、制造业、AI 研究机构</p>
+    </div>
+  </section>
+
+  <section class="section" id="insights">
+    <h2 class="section-title">当日关键洞察总结</h2>
+    <div class="insight-card">
+      <div class="insight-label">洞察一：AI 助手正在从「回答问题」进化为「管理生活」。</div>
+      <p>Meta AI 的新升级和 Anthropic Opus 5 的发布，分别从消费端和企业端展示了同一趋势：大模型的价值不再仅仅是生成内容，而是能够接入用户上下文、执行多步骤任务并持续运行。这意味着竞争焦点正在从模型参数转向产品形态——谁能让 AI 真正融入用户的工作流和生活流，谁就能占据下一代入口。WhatsApp 的数十亿用户、企业邮箱与日历系统、开发者的 IDE，都在成为 Agent 的「宿主环境」。</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">洞察二：AI 产业的地缘政治化已进入算力主权阶段。</div>
+      <p>今天的中美两条新闻形成鲜明对照：中国 reportedly 以「爱国」叙事推动国产 AI 芯片替代 Nvidia，美国则通过 Genesis Mission 将 50 亿美元科研资金与 Google、Microsoft、OpenAI 的算力绑定。这预示着 AI 竞争已从模型 benchmark 的较量，下沉为芯片、能源、数据基础设施的全方位博弈。未来几年的技术领先，将越来越取决于一个国家能否在这些底层要素上形成自主可控的闭环。</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">洞察三：世界模型与多模态正在打开「空间智能」的新战场。</div>
+      <p>UniWorld-View 登顶 WorldScore 和智象未来 vivago R1 的进展，表明中国团队在多模态和空间智能领域正快速追赶甚至局部领先。世界模型不仅是生成 3D/4D 内容的工具，更是通向具身智能和自动驾驶的关键桥梁。随着国产算力适配和开源生态的完善，这一领域可能重塑全球 AI 产业格局。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="disclaimer">
+      <strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。资讯抓取过程中，TechCrunch（页面内容无法提取）、VentureBeat（HTTP 429）、Wired（页面为脚本/CSS 无法提取文章）、机器之心（返回数据服务落地页）、ProductHunt（HTTP 403 反爬限制）等来源受限。上述受限来源的内容已通过 The Verge、ScienceDaily、量子位、WebSearch 等其他信源交叉验证补充。
+    </div>
+  </section>
+
+  <footer>
+    <p>AI 资讯快报 · 2026年7月24日</p>
+    <p>由 QoderWork 自动生成 · <a href="https://maplelian.github.io/ai-news-bulletin/">查看归档首页</a></p>
+  </footer>
+
+  <script>
+    Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+    Chart.defaults.color = '#64748b';
+
+    new Chart(document.getElementById('fundingChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Genesis Mission', 'NEURA Robotics', '智象未来'],
+        datasets: [{
+          label: '融资/资助规模（亿美元）',
+          data: [50, 14, 3],
+          backgroundColor: ['#6366f1', '#ec4899', '#f59e0b'],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }
+      }
+    });
+
+    new Chart(document.getElementById('pricingChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Opus 5 输入', 'Opus 5 输出', 'Fable 5 输入（估算）', 'Fable 5 输出（估算）', 'GPT-5.6 输出（估算）'],
+        datasets: [{
+          label: '每百万 token 价格（美元）',
+          data: [5, 25, 10, 50, 30],
+          backgroundColor: ['#6366f1', '#6366f1', '#94a3b8', '#94a3b8', '#cbd5e1'],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }
+      }
+    });
+
+    new Chart(document.getElementById('sourceChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['成功抓取', '受限/补充来源'],
+        datasets: [{
+          data: [4, 5],
+          backgroundColor: ['#10b981', '#f59e0b'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        cutout: '60%',
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const labels = ['The Verge, ScienceDaily, 量子位, WebSearch', 'TechCrunch, VentureBeat, Wired, 机器之心, ProductHunt'];
+                return labels[context.dataIndex];
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.category-card, .product-card, .insight-card, .headline-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.category-card, .product-card, .insight-card, .headline-card').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
