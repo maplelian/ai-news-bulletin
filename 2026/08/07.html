@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 资讯快报 · 2026年8月7日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #ec4899;
+      --hero-bg: #0f172a;
+      --content-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --trend: #8b5cf6;
+      --headline: #ef4444;
+      --tech: #06b6d4;
+      --industry: #f59e0b;
+      --ethics: #10b981;
+      --medical: #14b8a6;
+      --robot: #f97316;
+      --security: #dc2626;
+      --policy: #3b82f6;
+      --productivity: #8b5cf6;
+      --product: #ec4899;
+      --insight: #1e293b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--content-bg);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+      color: white;
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+      animation: pulse 15s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .subtitle {
+      font-size: 1.125rem;
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .date-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      margin-bottom: 1rem;
+    }
+
+    .hero .archive-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      color: #fbbf24;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(251,191,36,0.3);
+      background: rgba(251,191,36,0.1);
+      transition: all 0.3s;
+    }
+
+    .hero .archive-link:hover {
+      background: rgba(251,191,36,0.2);
+      border-color: rgba(251,191,36,0.5);
+      color: #fde68a;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fbbf24;
+    }
+
+    .hero-stat .label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* Navigation */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1rem;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      margin-right: 1rem;
+      font-size: 1rem;
+    }
+
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Sections */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-desc {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-trend { background: var(--trend); }
+    .badge-headline { background: var(--headline); }
+    .badge-tech { background: var(--tech); }
+    .badge-industry { background: var(--industry); }
+    .badge-ethics { background: var(--ethics); }
+    .badge-medical { background: var(--medical); }
+    .badge-robot { background: var(--robot); }
+    .badge-security { background: var(--security); }
+    .badge-policy { background: var(--policy); }
+    .badge-productivity { background: var(--productivity); }
+    .badge-product { background: var(--product); }
+    .badge-insight { background: var(--insight); }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .card-body {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-keypoints {
+      list-style: none;
+    }
+
+    .card-keypoints li {
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    .card-keypoints li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .card-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Trend cards */
+    .trend-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%);
+      border-left: 4px solid var(--trend);
+    }
+
+    .trend-card .insight {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* Headline cards */
+    .headline-card {
+      background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%);
+      border-left: 4px solid var(--headline);
+    }
+
+    .headline-card .summary {
+      font-size: 1rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .headline-card .impact {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(239, 68, 68, 0.05);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    /* Subcategory */
+    .subcategory {
+      margin-bottom: 2.5rem;
+    }
+
+    .subcategory-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      display: inline-block;
+    }
+
+    /* Dashboard */
+    .dashboard {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .chart-container {
+      position: relative;
+      height: 260px;
+    }
+
+    .chart-title {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Product cards */
+    .product-card {
+      background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 100%);
+      border-left: 4px solid var(--product);
+    }
+
+    .product-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .product-meta span {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      background: rgba(236, 72, 153, 0.08);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .product-card .scenario {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+    }
+
+    /* Insights */
+    .insight-section {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+      padding: 4rem 1.5rem;
+    }
+
+    .insight-section .section-title {
+      color: white;
+    }
+
+    .insight-section .section-desc {
+      color: #94a3b8;
+    }
+
+    .insight-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .insight-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #fbbf24;
+    }
+
+    .insight-card p {
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--hero-bg);
+      color: #94a3b8;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    footer .disclaimer {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 3.5rem 1rem 3rem;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .nav-row {
+        gap: 0.35rem;
+      }
+
+      .nav-link {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.55rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard {
+        padding: 1.25rem;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* Stagger animation delays */
+    .card:nth-child(1) { transition-delay: 0.05s; }
+    .card:nth-child(2) { transition-delay: 0.1s; }
+    .card:nth-child(3) { transition-delay: 0.15s; }
+    .card:nth-child(4) { transition-delay: 0.2s; }
+    .card:nth-child(5) { transition-delay: 0.25s; }
+    .card:nth-child(6) { transition-delay: 0.3s; }
+    .card:nth-child(7) { transition-delay: 0.35s; }
+    .card:nth-child(8) { transition-delay: 0.4s; }
+    .card:nth-child(9) { transition-delay: 0.45s; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="date-badge">2026年8月7日 · 星期五</div>
+      <h1>AI 资讯快报</h1>
+      <p class="subtitle">覆盖全球 AI 行业最新动态 · 50+ 条精选资讯 · 3 大核心趋势</p>
+      <a href="https://maplelian.github.io/ai-news-bulletin/" class="archive-link" target="_blank">&#128193; 查看所有归档期数</a>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="value">50+</div>
+          <div class="label">精选资讯</div>
+        </div>
+        <div class="hero-stat">
+          <div class="value">12</div>
+          <div class="label">资讯板块</div>
+        </div>
+        <div class="hero-stat">
+          <div class="value">5</div>
+          <div class="label">热门产品</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="nav-row">
+      <a href="#" class="nav-brand">AI 资讯快报</a>
+      <a href="#trends" class="nav-link">核心趋势</a>
+      <a href="#headlines" class="nav-link">今日头条</a>
+      <a href="#tech" class="nav-link">技术前沿</a>
+      <a href="#industry" class="nav-link">行业竞争</a>
+      <a href="#ethics" class="nav-link">伦理安全</a>
+      <a href="#medical" class="nav-link">医疗教育</a>
+      <a href="#robots" class="nav-link">机器人</a>
+      <a href="#security" class="nav-link">数据隐私</a>
+    </div>
+    <div class="nav-row">
+      <a href="#policy" class="nav-link">标准政策</a>
+      <a href="#productivity" class="nav-link">生产力</a>
+      <a href="#products" class="nav-link">热门产品</a>
+      <a href="#insights" class="nav-link">关键洞察</a>
+    </div>
+  </nav>
+
+  <!-- Data Dashboard -->
+  <section class="section">
+    <h2 class="section-title"><span class="badge badge-tech">数据</span>今日数据仪表板</h2>
+    <p class="section-desc">从投融资、市场分布到资讯覆盖，快速把握 AI 产业量化图景。</p>
+    <div class="dashboard">
+      <div class="dashboard-grid">
+        <div>
+          <div class="chart-title">H1 2026 全球 AI 投资集中度</div>
+          <div class="chart-container">
+            <canvas id="investmentChart"></canvas>
+          </div>
+        </div>
+        <div>
+          <div class="chart-title">Q2 2026 融资阶段分布（亿美元）</div>
+          <div class="chart-container">
+            <canvas id="stageChart"></canvas>
+          </div>
+        </div>
+        <div>
+          <div class="chart-title">本期资讯覆盖板块分布</div>
+          <div class="chart-container">
+            <canvas id="coverageChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Trends -->
+  <section class="section" id="trends">
+    <h2 class="section-title"><span class="badge badge-trend">核心趋势</span>今日核心趋势</h2>
+    <p class="section-desc">从当日资讯中提炼的 3 个最具结构性影响的产业趋势。</p>
+    <div class="card-grid">
+      <article class="card trend-card">
+        <div class="card-header">
+          <h3 class="card-title">趋势 1：Google 开启 AI 领导层换届，研究型文化让位于产品化压力</h3>
+          <span class="badge badge-trend">组织</span>
+        </div>
+        <div class="card-body">
+          <p>Google 本周宣布近年以来最重大的 AI 高层调整：Demis Hassabis 卸任 Google DeepMind 日常负责人，转任主席及 Alphabet 首席科学家；原 DeepMind CTO Koray Kavukcuoglu 升任高级副总裁并直接向 Sundar Pichai 汇报；而 Google 第 30 号员工 Jeff Dean 与 Fellow Sanjay Ghemawat 则离职创办公共利益公司 Discovery Loop。</p>
+        </div>
+        <div class="insight">
+          <strong>关键洞察：</strong>当 OpenAI、Anthropic 以前沿模型和对话产品持续抢占用户心智时，Google 的应对不是简单追加算力，而是从组织架构上压缩研究到产品的传导链条。
+        </div>
+      </article>
+
+      <article class="card trend-card">
+        <div class="card-header">
+          <h3 class="card-title">趋势 2：AI 开始介入生物设计，能力边界与生物安全风险同步扩大</h3>
+          <span class="badge badge-trend">生物</span>
+        </div>
+        <div class="card-body">
+          <p>Stanford 研究团队利用开源基因组语言模型 Evo 2 设计出自然界从未出现过的噬菌体，并化学合成出近 300 种候选，其中 16 种对大肠杆菌表现出强效杀灭活性。几乎同时，《Science》期刊也发表了同类研究，展示 AI 设计全新生物病毒的能力。</p>
+        </div>
+        <div class="insight">
+          <strong>关键洞察：</strong>生物设计正在成为继代码、图像、文本之后，生成式 AI 的下一个高影响前沿。与数字内容不同，生物设计的“产物”可以直接在物理世界复制和扩散。
+        </div>
+      </article>
+
+      <article class="card trend-card">
+        <div class="card-header">
+          <h3 class="card-title">趋势 3：开源模型的商业模式从“免费换生态”转向“收入分成”</h3>
+          <span class="badge badge-trend">商业</span>
+        </div>
+        <div class="card-body">
+          <p>阿里巴巴据报道将为其下一版 Qwen 开放权重模型引入 revenue-sharing 条款：若大型企业将模型作为服务变现，需与阿里签署商业协议。这与 Moonshot 的 Kimi K3 策略类似，标志着中国头部模型厂商开始从 Apache 2.0 式的完全开放，转向“开放权重 + 商业分成”的混合模式。</p>
+        </div>
+        <div class="insight">
+          <strong>关键洞察：</strong>当模型部署成本依然高昂、推理消耗难以预测时，纯粹的开源难以覆盖研发与算力投入。阿里的尝试如果成功，可能为开源大模型生态建立新的商业契约。
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Headlines -->
+  <section class="section" id="headlines">
+    <h2 class="section-title"><span class="badge badge-headline">头条</span>今日头条</h2>
+    <p class="section-desc">当日最重要的 3 条重磅资讯及其战略影响。</p>
+    <div class="card-grid">
+      <article class="card headline-card">
+        <div class="card-header">
+          <h3 class="card-title">Google 重大 AI 领导层洗牌，Hassabis 卸任 DeepMind 日常负责人</h3>
+          <span class="badge badge-headline">头条</span>
+        </div>
+        <div class="summary">
+          2026年8月5日，Google 宣布高层 AI 领导调整。Demis Hassabis 卸任 Google DeepMind 负责人，转任主席及 Alphabet 首席科学家；原 DeepMind CTO Koray Kavukcuoglu 升任高级副总裁，直接向 Sundar Pichai 汇报；Jeff Dean 与 Sanjay Ghemawat 离职创办公共利益公司 Discovery Loop，Google 为其创始投资方。
+        </div>
+        <ul class="card-keypoints">
+          <li>Hassabis 继续领导 Isomorphic Labs，聚焦 AI 药物研发，并在内部信中强调 AI 应“prove its unequivocal value to the world”。</li>
+          <li>Kavukcuoglu 保留 Google 首席 AI 架构师职位，意味着研究与工程架构权进一步集中。</li>
+          <li>Jeff Dean 作为 Google 技术图腾离职，标志着一代 Google Brain 研究文化的阶段性退场。</li>
+        </ul>
+        <a href="https://www.theverge.com/tech/975677/google-deepmind-ai-demis-hassabis-shakeup" class="card-link" target="_blank">阅读原文 →</a>
+        <div class="impact">
+          <strong>思考/影响：</strong>这次调整可视为 Google 对 OpenAI、Anthropic 产品化压力的结构性回应。Hassabis 的转向让 DeepMind 更聚焦可商业化的科学应用，而 Pichai 对 Kavukcuoglu 的直接汇报线则压缩了决策层级。
+        </div>
+      </article>
+
+      <article class="card headline-card">
+        <div class="card-header">
+          <h3 class="card-title">Stanford Evo 2 模型设计出全新噬菌体，AI 生物设计进入合成验证阶段</h3>
+          <span class="badge badge-headline">头条</span>
+        </div>
+        <div class="summary">
+          Stanford 研究人员利用开源生成式 AI 模型 Evo 2 设计 DNA 序列，化学合成出近 300 种噬菌体，经实验筛选后确认 16 种对大肠杆菌具有强效杀灭活性，并验证混合使用可克服细菌耐药性。
+        </div>
+        <ul class="card-keypoints">
+          <li>研究以噬菌体 ΦX174 为对象，其基因组不到 6000 个碱基对，模型“端到端、单次从左到右”生成数千个候选基因组。</li>
+          <li>单一噬菌体易被细菌克服，但 16 种噬菌体混合可显著降低耐药性产生的概率。</li>
+          <li>Evo 2 已开源发布，研究团队承认存在滥用可能，但认为现有病原体的获取和生产风险更高。</li>
+        </ul>
+        <a href="https://www.artificialintelligence-news.com/news/stanford-evo-2-ai-model-generates-phages-against-e-coli/" class="card-link" target="_blank">阅读原文 →</a>
+        <div class="impact">
+          <strong>思考/影响：</strong>这是生成式 AI 从数字内容生成走向物理生物设计的里程碑。与蛋白质结构预测不同，Evo 2 直接生成可合成的完整基因组，意味着 AI 现在可以创造自然界不存在的生命形式。
+        </div>
+      </article>
+
+      <article class="card headline-card">
+        <div class="card-header">
+          <h3 class="card-title">Canva 因 AI 成本失控下调 2026 年收入预期约三分之一</h3>
+          <span class="badge badge-headline">头条</span>
+        </div>
+        <div class="summary">
+          据 The Verge 援引 Startup Daily 报道，设计平台 Canva 因过度依赖外部前沿模型驱动平台 AI 功能，自研模型尚未就绪，定价与用量管控未能跟上需求，已将 2026 年收入预期下调约三分之一。
+        </div>
+        <ul class="card-keypoints">
+          <li>Canva 大量功能依赖第三方 frontier models，推理成本快速膨胀。</li>
+          <li>自研模型发布时间表落后，无法在短期内替代外部依赖。</li>
+          <li>事件反映出 AI 功能从“增值服务”变为“成本中心”的风险，尤其在设计、写作等高消耗场景。</li>
+        </ul>
+        <a href="https://www.theverge.com/tech/976563/canva-set-its-ai-ambitions-too-high" class="card-link" target="_blank">阅读原文 →</a>
+        <div class="impact">
+          <strong>思考/影响：</strong>Canva 的案例是对所有 SaaS 公司的警示：简单把前沿模型嵌入产品并不自动带来增长，若单位经济模型未跑通，AI 功能反而侵蚀利润。
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Tech Frontier -->
+  <section class="section" id="tech">
+    <h2 class="section-title"><span class="badge badge-tech">技术</span>技术前沿</h2>
+    <p class="section-desc">大模型、多模态与基础设施领域的最新进展。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">大模型</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Alibaba 为 Qwen 开源模型试水收入分成模式</h3>
+            <span class="badge badge-tech">大模型</span>
+          </div>
+          <div class="card-body">
+            阿里巴巴据报道计划为下一版 Qwen 开放权重模型引入 revenue-sharing 条款，要求将模型作为服务获利的大型企业与之签署商业协议。模式与 Moonshot 的 Kimi K3 类似。
+          </div>
+          <ul class="card-keypoints">
+            <li>新条款预计随下一版开源 Qwen 模型推出，区别于现行 Qwen3 的 Apache 2.0 许可。</li>
+            <li>阿里 Qwen3.8-Max 约有 2.4 万亿参数、每次请求激活约 950 亿参数。</li>
+            <li>大规模自托管仍面临硬件与成本挑战。</li>
+          </ul>
+          <a href="https://www.artificialintelligence-news.com/news/alibaba-qwen-open-source-ai-revenue-sharing/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">OpenAI 与 Jony Ive 合作的首款硬件或为无屏智能音箱</h3>
+            <span class="badge badge-tech">大模型</span>
+          </div>
+          <div class="card-body">
+            据 Bloomberg 记者 Mark Gurman 报道，OpenAI 正与前苹果设计师 Jony Ive 合作开发一款 AI 硬件，外形呈甜甜圈状、尺寸接近冰球，内置电池，预计 2027 年发售，售价超过 300 美元。
+          </div>
+          <ul class="card-keypoints">
+            <li> reportedly 配备移动部件、灯光和摄像头系统以显示“正在回应”。</li>
+            <li>工作方式类似 ChatGPT 语音模式，但采用更先进的模型以实现更像人类的互动。</li>
+            <li>可能成为 OpenAI 计划中的“family of devices”首款产品。</li>
+          </ul>
+          <a href="https://www.theverge.com/ai-artificial-intelligence/976431/openai-chatgpt-battery-smart-speaker-rumor" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 生成生物病毒的基因组语言模型登上《Science》</h3>
+            <span class="badge badge-tech">大模型</span>
+          </div>
+          <div class="card-body">
+            一项发表于《Science》的研究利用基因组语言模型设计出自然界未曾出现的噬菌体，既为医学进步带来希望，也引发生物安全担忧。
+          </div>
+          <ul class="card-keypoints">
+            <li>生成的是噬菌体，不感染人类。</li>
+            <li>研究兼具医学潜力与生物安全风险的双重意义。</li>
+            <li>DOI: https://www.science.org/doi/10.1126/science.aec2657</li>
+          </ul>
+          <a href="https://www.theverge.com/ai-artificial-intelligence/976553/ai-is-now-designing-brand-new-biological-viruses" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">多模态</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">PRISM2 结合病理切片与临床对话生成诊断文本</h3>
+            <span class="badge badge-tech">多模态</span>
+          </div>
+          <div class="card-body">
+            Paige 与 Microsoft 联合推出的 PRISM2 利用基于 perceiver 的切片编码器，将病理全切片图像中的 tile 特征聚合为单一表示，并结合从病理报告中提取的临床对话进行训练。
+          </div>
+          <ul class="card-keypoints">
+            <li>训练规模达 230 万张全切片图像和 68.5 万份 MSK 病理报告。</li>
+            <li>在泛癌检测中 diagnostic 嵌入 AUC 达 0.967。</li>
+            <li>权重已发布在 Hugging Face。</li>
+          </ul>
+          <a href="https://www.artificialintelligence-news.com/news/prism2-model-clinical-dialogue-interpret-pathology-slides/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Android 测试 AI 生成锁屏时钟</h3>
+            <span class="badge badge-tech">多模态</span>
+          </div>
+          <div class="card-body">
+            Android Canary 2608 正在测试一项功能，允许用户通过 AI 提示生成自定义锁屏时钟，将多模态生成能力下沉到系统 UI 层。
+          </div>
+          <ul class="card-keypoints">
+            <li>功能目前处于 Canary 渠道测试。</li>
+            <li>表明 Google 正把生成式 AI 从应用层向操作系统层渗透。</li>
+          </ul>
+          <a href="https://www.theverge.com/tech/976766/android-might-get-ai-generated-lockscreen-clocks" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 可解释性工具在医疗场景中的效果因用户专业水平而异</h3>
+            <span class="badge badge-tech">多模态</span>
+          </div>
+          <div class="card-body">
+            MIT 等机构研究人员在《Nature Medicine》发表研究，发现医疗 AI 可解释性工具对皮肤诊断的效果因用户专业水平而异：非专家易被 LLM 解释误导，而经验丰富的医生在仅获得 AI 预测时表现最佳。
+          </div>
+          <ul class="card-keypoints">
+            <li>非专家过度依赖 LLM 解释，模型错误时对其伤害大于正确时的帮助。</li>
+            <li>初级保健医生在仅获得 AI 预测、不附解释时表现最佳。</li>
+          </ul>
+          <a href="https://www.artificialintelligence-news.com/news/why-health-ai-interfaces-must-adapt-to-user-expertise/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">基础设施</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">2026 上半年全球初创投资达 5100 亿美元</h3>
+            <span class="badge badge-tech">基础设施</span>
+          </div>
+          <div class="card-body">
+            Crunchbase 数据显示，2026 年上半年全球初创企业投资创下 5100 亿美元新高，超过 2025 年全年水平；AI 公司占据绝大部分后期融资。
+          </div>
+          <ul class="card-keypoints">
+            <li>OpenAI 与 Anthropic 合计占上半年 43%。</li>
+            <li>Q2 投资约 2050 亿美元，超 70% 资金流向 AI 公司，美国占约三分之二。</li>
+            <li>Q2 共有 16 家公司完成十亿美元级融资，总额 1086 亿美元。</li>
+          </ul>
+          <a href="https://news.crunchbase.com/venture/global-startup-exits-ipo-ma-soar-ai-q2-h1-2026/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AMD 与 NVIDIA 在 AI 基础设施上采取不同路径</h3>
+            <span class="badge badge-tech">基础设施</span>
+          </div>
+          <div class="card-body">
+            Digitimes 报道称，AMD 与 NVIDIA 正采取相反路径争夺下一波 AI 基础设施市场，AMD 强调开放生态与性价比，NVIDIA 则继续围绕 CUDA 和完整软件栈构建护城河。
+          </div>
+          <ul class="card-keypoints">
+            <li>AMD MI350X 与 NVIDIA B200 是 2026 年数据中心 GPU 竞争焦点。</li>
+            <li>市场分化将加速云厂商的多供应商策略。</li>
+          </ul>
+          <a href="https://www.digitimes.com/news/a20260805VL210/amd-nvidia-ai-infrastructure-earnings-revenue.html" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">SpaceX 计划在太空建设 AI 数据中心</h3>
+            <span class="badge badge-tech">基础设施</span>
+          </div>
+          <div class="card-body">
+            随着 AI 对算力需求激增，在太空建设数据中心的可能性受到关注，轨道设施可利用丰富太阳能并规避地球环境限制。
+          </div>
+          <ul class="card-keypoints">
+            <li>太空数据中心可利用持续太阳能供电。</li>
+            <li>可能解决地球数据中心散热和土地限制问题。</li>
+            <li>目前仍处于概念和早期验证阶段。</li>
+          </ul>
+          <a href="https://www.sciencedaily.com/releases/2026/06/260618041501.htm" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Competition -->
+  <section class="section" id="industry">
+    <h2 class="section-title"><span class="badge badge-industry">行业</span>行业竞争与战略</h2>
+    <p class="section-desc">巨头动态、融资趋势与人才流动。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">巨头动态</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Google 领导层洗牌加速 AI 产品化转型</h3>
+            <span class="badge badge-industry">巨头</span>
+          </div>
+          <div class="card-body">
+            Google 本周宣布 Hassabis 卸任 DeepMind 日常负责人、Jeff Dean 离职创办 Discovery Loop，Pichai 对 AI 业务直接掌控增强。
+          </div>
+          <ul class="card-keypoints">
+            <li>Kavukcuoglu 升任 Google DeepMind 高级副总裁并直接向 Pichai 汇报。</li>
+            <li>Hassabis 继续领导 Isomorphic Labs，聚焦 AI 药物研发。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">OpenAI 持续押注 AI 硬件生态</h3>
+            <span class="badge badge-industry">巨头</span>
+          </div>
+          <div class="card-body">
+            OpenAI 与 Jony Ive 合作的传闻进一步升温，首款设备或为无屏智能音箱，售价超 300 美元，计划 2027 年发布。
+          </div>
+          <ul class="card-keypoints">
+            <li>设备可能成为 OpenAI 计划中的“family of devices”首款产品。</li>
+            <li> reportedly 外观和操作方式与苹果产品截然不同。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">白宫召集 OpenAI、Anthropic、Google 讨论 AI 安全规范</h3>
+            <span class="badge badge-industry">巨头</span>
+          </div>
+          <div class="card-body">
+            Meta、Anthropic、Google、OpenAI 将于本周与特朗普政府 officials 会面，讨论自愿性 AI 安全测试框架。美国已最终确定自愿性 AI 安全测试方案。
+          </div>
+          <ul class="card-keypoints">
+            <li>测试方案为自愿性质，不具强制法律效力。</li>
+            <li>反映了美国政府在鼓励创新与防范风险之间的平衡策略。</li>
+          </ul>
+          <a href="https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">融资</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">全球初创投资 H1 2026 创历史新高</h3>
+            <span class="badge badge-industry">融资</span>
+          </div>
+          <div class="card-body">
+            Crunchbase 报告显示，2026 年上半年全球风险投资达 5100 亿美元，超过 2025 年全年；AI 公司占据绝大部分后期融资。
+          </div>
+          <ul class="card-keypoints">
+            <li>OpenAI 与 Anthropic 合计融资 2170 亿美元，占 H1 总额 43%。</li>
+            <li>Q2 有 32 家公司以超 10 亿美元估值 IPO，24 起超 10 亿美元并购。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 基础设施初创公司持续获得大额融资</h3>
+            <span class="badge badge-industry">融资</span>
+          </div>
+          <div class="card-body">
+            随着 AI 训练和推理需求激增，数据中心、芯片和能源相关初创公司在 2026 年 Q2 获得大量资本投入。
+          </div>
+          <ul class="card-keypoints">
+            <li>算力基础设施成为资本追逐热点。</li>
+            <li>能源供给和散热技术成为新的瓶颈和投资方向。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">设计平台因 AI 成本压力重新评估增长预期</h3>
+            <span class="badge badge-industry">融资</span>
+          </div>
+          <div class="card-body">
+            Canva 将 2026 年收入预期下调三分之一，直接原因是 AI 推理成本超出预期，说明资本对 AI 驱动增长的估值正在回归理性。
+          </div>
+          <ul class="card-keypoints">
+            <li>投资者开始关注 AI 功能的单位经济模型。</li>
+            <li>自研模型能力成为长期盈利的关键变量。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">人才</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Jeff Dean 与 Sanjay Ghemawat 离职创办 Discovery Loop</h3>
+            <span class="badge badge-industry">人才</span>
+          </div>
+          <div class="card-body">
+            两位 Google 元老级技术领袖创办公共利益公司，目标是“building AI solutions that can automatically solve important problems in machine learning, science, and engineering”。
+          </div>
+          <ul class="card-keypoints">
+            <li>Google 为 Discovery Loop 创始投资方。</li>
+            <li>公司定位为公共利益公司（PBC），兼顾社会使命与商业可持续性。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Anthropic 招聘“内部风险调查员”</h3>
+            <span class="badge badge-industry">人才</span>
+          </div>
+          <div class="card-body">
+            Anthropic 正在招聘 Insider Risk Investigator，负责内部风险调查、监控针对员工的外部威胁以及进行敏感访谈。
+          </div>
+          <ul class="card-keypoints">
+            <li>岗位显示顶尖 AI 实验室对知识产权泄露和内部威胁的高度重视。</li>
+            <li>反映了 AI 安全人才需求的多样化。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Google DeepMind 研究领导权交接至 Koray Kavukcuoglu</h3>
+            <span class="badge badge-industry">人才</span>
+          </div>
+          <div class="card-body">
+            Kavukcuoglu 从 CTO 升任 Google DeepMind 高级副总裁，意味着 Google 希望用更工程化的领导力推动研究落地。
+          </div>
+          <ul class="card-keypoints">
+            <li>Kavukcuoglu 保留首席 AI 架构师职位。</li>
+            <li>人事变动或影响 Gemini 系列模型的研发节奏。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ethics & Safety -->
+  <section class="section" id="ethics">
+    <h2 class="section-title"><span class="badge badge-ethics">伦理</span>伦理与安全</h2>
+    <p class="section-desc">AI 安全研究与透明度机制的最新动态。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">AI 安全研究</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">美国最终确定自愿性 AI 安全测试方案</h3>
+            <span class="badge badge-ethics">安全</span>
+          </div>
+          <div class="card-body">
+            白宫 officials 确认，美国已最终确定自愿性 AI 安全测试框架，OpenAI、Anthropic、Google 等将参与讨论。
+          </div>
+          <ul class="card-keypoints">
+            <li>测试方案为自愿性质，不具强制法律效力。</li>
+            <li>政府希望在鼓励创新与防范风险之间取得平衡。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Anthropic 加强内部风险管控</h3>
+            <span class="badge badge-ethics">安全</span>
+          </div>
+          <div class="card-body">
+            Anthropic 招聘 Insider Risk Investigator，职责包括监控外部威胁、开展内部调查和敏感访谈。
+          </div>
+          <ul class="card-keypoints">
+            <li>岗位反映 AI 实验室对模型权重、研究数据和人才流失风险的高度警惕。</li>
+            <li>内部安全正成为 AI 安全治理的重要一环。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 设计生物病毒引发双重用途研究争议</h3>
+            <span class="badge badge-ethics">安全</span>
+          </div>
+          <div class="card-body">
+            Stanford Evo 2 和《Science》研究显示 AI 可设计全新噬菌体，带来医学希望的同时也引发对生物武器化的担忧。
+          </div>
+          <ul class="card-keypoints">
+            <li>研究团队承认开源模型存在被滥用可能。</li>
+            <li>监管空白亟需填补。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">透明度</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">EU AI Act Article 50 透明度规则正式生效</h3>
+            <span class="badge badge-ethics">透明</span>
+          </div>
+          <div class="card-body">
+            2026年8月3日，欧盟 AI Act 第 50 条正式生效，对 AI 提供者和部署者设定透明度义务。
+          </div>
+          <ul class="card-keypoints">
+            <li>用户与 AI 直接互动时必须知情。</li>
+            <li>生成合成音频、图像、视频或文本须嵌入可识别机器可读标记。</li>
+            <li>deepfakes 内容须披露其人工生成或篡改。</li>
+          </ul>
+          <a href="https://www.artificialintelligence-news.com/news/eu-ai-act-article-50-transparency-rules-enter-force/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Suno 接入 Sentinel 版权扫描服务</h3>
+            <span class="badge badge-ethics">透明</span>
+          </div>
+          <div class="card-body">
+            AI 音乐平台 Suno 将采用 Musixmatch 的 Sentinel 服务，检测提示词和生成作品中是否包含受版权保护的内容。
+          </div>
+          <ul class="card-keypoints">
+            <li>Suno 是首家采用 Sentinel 的生成式 AI 音乐平台。</li>
+            <li>数据覆盖超 20 万家出版商，包括三大唱片公司。</li>
+          </ul>
+          <a href="https://www.theverge.com/ai-artificial-intelligence/976636/suno-will-start-scanning-outputs-for-copyright-infringment" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Red Hat 发起 asago 项目将 AI 治理政策转化为代码</h3>
+            <span class="badge badge-ethics">透明</span>
+          </div>
+          <div class="card-body">
+            Red Hat、NVIDIA、IBM 等支持 asago 开源项目，目标是通过自动化、可审计的工作流把 AI 治理政策转换为生产就绪的部署代码。
+          </div>
+          <ul class="card-keypoints">
+            <li>工作流程包括风险映射、风险评估、风险缓解和部署就绪控制。</li>
+            <li>声称能将部署周期从数月缩短至数天。</li>
+          </ul>
+          <a href="https://www.artificialintelligence-news.com/news/red-hat-nvidia-ibm-back-project-turning-ai-policy-into-code/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Medical & Education -->
+  <section class="section" id="medical">
+    <h2 class="section-title"><span class="badge badge-medical">应用</span>医疗与教育应用</h2>
+    <p class="section-desc">AI 在医疗健康和教育学习场景中的落地进展。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">医疗</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Stanford Evo 2 生成噬菌体对抗大肠杆菌</h3>
+            <span class="badge badge-medical">医疗</span>
+          </div>
+          <div class="card-body">
+            Stanford 团队利用 Evo 2 设计并合成近 300 种噬菌体，其中 16 种对大肠杆菌具有强效杀灭活性，为抗生素耐药菌感染提供新疗法。
+          </div>
+          <ul class="card-keypoints">
+            <li>混合使用多种噬菌体可降低耐药性。</li>
+            <li>类似方法或可针对 MRSA 和铜绿假单胞菌。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">PRISM2 结合病理图像与临床对话辅助癌症诊断</h3>
+            <span class="badge badge-medical">医疗</span>
+          </div>
+          <div class="card-body">
+            Paige 与 Microsoft 推出的 PRISM2 在 230 万张全切片图像和 68.5 万份病理报告上训练，可问答式生成诊断文本。
+          </div>
+          <ul class="card-keypoints">
+            <li>泛癌检测 AUC 达 0.967。</li>
+            <li>MSK 结直肠癌无复发生存预测 C-index 为 0.809。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">MIT 研究揭示医疗 AI 可解释性的“双刃剑”效应</h3>
+            <span class="badge badge-medical">医疗</span>
+          </div>
+          <div class="card-body">
+            《Nature Medicine》研究显示，非专家易被 LLM 解释误导，而经验丰富的医生在仅获得 AI 预测时表现最佳。
+          </div>
+          <ul class="card-keypoints">
+            <li>AI 解释的时机和内容需根据用户专业水平定制。</li>
+            <li>设计界面时应先让用户给出初步判断，再提供 AI 建议。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">教育</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Google 发布面向教育工作者的最新 AI 工具</h3>
+            <span class="badge badge-medical">教育</span>
+          </div>
+          <div class="card-body">
+            Google 近期在教育博客中介绍了一系列 AI 工具与项目，帮助教师从备课到毕业全程支持学生。
+          </div>
+          <ul class="card-keypoints">
+            <li>工具覆盖学习、技能和培训场景。</li>
+            <li>体现 Google 把 AI 能力向教育垂直场景渗透的战略。</li>
+          </ul>
+          <a href="https://blog.google/products-and-platforms/products/education/ai-tools-programs-educators/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 学习平台持续获得教育市场关注</h3>
+            <span class="badge badge-medical">教育</span>
+          </div>
+          <div class="card-body">
+            2026 年，多种 AI 学习平台被推荐给教育工作者，用于个性化学习路径、自动评估和教学内容生成。
+          </div>
+          <ul class="card-keypoints">
+            <li>AI 教育工具正从辅助工具向核心教学基础设施演进。</li>
+            <li>隐私和学生数据保护成为关键考量。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 在医学教育中的应用引发讨论</h3>
+            <span class="badge badge-medical">教育</span>
+          </div>
+          <div class="card-body">
+            Rare Disease Advisor 探讨 AI 如何重塑医学教育，包括模拟诊断、个性化学习材料和临床决策支持。
+          </div>
+          <ul class="card-keypoints">
+            <li>AI 可帮助医学生接触罕见病例。</li>
+            <li>需警惕过度依赖 AI 导致的临床思维能力退化。</li>
+          </ul>
+          <a href="https://www.rarediseaseadvisor.com/features/artificial-intelligence-medical-education-ats-2026/" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Robotics -->
+  <section class="section" id="robots">
+    <h2 class="section-title"><span class="badge badge-robot">机器人</span>机器人前沿</h2>
+    <p class="section-desc">人形机器人、工业机器人与训练控制领域的最新动态。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">人形机器人</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">伦敦机器人初创公司训练 AI“大脑”驱动人形机器人</h3>
+            <span class="badge badge-robot">人形</span>
+          </div>
+          <div class="card-body">
+            路透社报道了一家伦敦机器人初创公司正在训练 AI“大脑”，以提升人形机器人的自主决策和环境适应能力。
+          </div>
+          <ul class="card-keypoints">
+            <li>AI 大脑方法强调通用控制策略，而非针对每项任务单独编程。</li>
+            <li>可能降低人形机器人部署成本。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">2026 年 IEEE-RAS 人形机器人大会征稿中</h3>
+            <span class="badge badge-robot">人形</span>
+          </div>
+          <div class="card-body">
+            第 25 届 IEEE-RAS 国际人形机器人会议（Humanoids 2026）已发布征稿通知，聚焦人形机器人运动控制、感知和人机交互。
+          </div>
+          <ul class="card-keypoints">
+            <li>学术界对人形机器人从实验室走向实际应用的关注度持续上升。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Tau Robotics 在旧金山发布人形机器人产品</h3>
+            <span class="badge badge-robot">人形</span>
+          </div>
+          <div class="card-body">
+            社交媒体信息显示，Tau Robotics 在旧金山发布了其人形机器人产品，加入日益拥挤的人形机器人赛道。
+          </div>
+          <ul class="card-keypoints">
+            <li>更多初创公司进入人形机器人市场。</li>
+            <li>竞争焦点从硬件本体转向 AI 控制和场景落地。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">工业机器人</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">工业自动化向 AI 驱动的柔性制造演进</h3>
+            <span class="badge badge-robot">工业</span>
+          </div>
+          <div class="card-body">
+            随着大模型和视觉模型进步，工业机器人正从预设程序向基于自然语言指令的柔性控制转变。
+          </div>
+          <ul class="card-keypoints">
+            <li>AI 使机器人能够处理更复杂的装配和质检任务。</li>
+            <li>部署周期有望从数月缩短至数周。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">协作机器人搭载视觉-语言模型提升交互能力</h3>
+            <span class="badge badge-robot">工业</span>
+          </div>
+          <div class="card-body">
+            新一代协作机器人开始集成多模态大模型，使工人可以通过自然语言与机器人协作完成任务。
+          </div>
+          <ul class="card-keypoints">
+            <li>降低编程门槛，提升中小企业采用率。</li>
+            <li>安全护栏和实时响应仍是关键挑战。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">制造业 AI 机器人投资在 2026 年持续增长</h3>
+            <span class="badge badge-robot">工业</span>
+          </div>
+          <div class="card-body">
+            全球制造业对 AI 驱动的机器人系统投资保持增长，尤其在汽车、电子和物流领域。
+          </div>
+          <ul class="card-keypoints">
+            <li>ROI 数据逐渐清晰，推动从试点到规模化部署。</li>
+            <li>中国和美国是主要投资市场。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">训练控制</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">MIT 新型芯片级激光雷达拓宽自动驾驶视野</h3>
+            <span class="badge badge-robot">控制</span>
+          </div>
+          <div class="card-body">
+            MIT 工程师设计出无需机械活动部件即可扩大视野的芯片级激光雷达方案，采用不同形状的天线避免信号互相干扰。
+          </div>
+          <ul class="card-keypoints">
+            <li>有望降低自动驾驶传感器成本和体积。</li>
+            <li>提升机器人在复杂环境中的感知能力。</li>
+          </ul>
+          <a href="https://www.sciencedaily.com/releases/2026/07/260722032127.htm" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">新型可编程光子芯片可控制光速</h3>
+            <span class="badge badge-robot">控制</span>
+          </div>
+          <div class="card-body">
+            科学家开发出可编程光学芯片，可按需减缓光速，从而更精准地控制光信号在电路中的传播方式。
+          </div>
+          <ul class="card-keypoints">
+            <li>技术可应用于 AI 计算基础设施和机器人传感系统。</li>
+            <li>为低延迟高性能计算提供新路径。</li>
+          </ul>
+          <a href="https://www.sciencedaily.com/releases/2026/07/260718010149.htm" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">经典心理学测试暴露 AI 注意力缺陷</h3>
+            <span class="badge badge-robot">控制</span>
+          </div>
+          <div class="card-body">
+            ScienceDaily 报道，研究人员用经典注意力测试检验顶尖 AI 模型，发现其在短列表中表现良好，但任务变长变复杂后性能急剧下降。
+          </div>
+          <ul class="card-keypoints">
+            <li>该发现对依赖长上下文推理的机器人控制任务具有警示意义。</li>
+            <li>提示需要新的架构改进。</li>
+          </ul>
+          <a href="https://www.sciencedaily.com/releases/2026/06/260610003049.htm" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Security & Privacy -->
+  <section class="section" id="security">
+    <h2 class="section-title"><span class="badge badge-security">安全</span>数据安全与隐私</h2>
+    <p class="section-desc">网络威胁与隐私保护技术的最新趋势。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">网络威胁</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 生成的深度伪造内容成为企业安全新威胁</h3>
+            <span class="badge badge-security">威胁</span>
+          </div>
+          <div class="card-body">
+            随着生成式 AI 工具普及，深度伪造被用于钓鱼、身份欺诈和商业诈骗的案例持续增加。
+          </div>
+          <ul class="card-keypoints">
+            <li>企业需加强多因素身份验证和内容验证流程。</li>
+            <li>AI 检测工具与生成技术之间的军备竞赛加剧。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">模型权重和训练数据泄露风险上升</h3>
+            <span class="badge badge-security">威胁</span>
+          </div>
+          <div class="card-body">
+            Anthropic 招聘 Insider Risk Investigator 反映了 AI 实验室对模型权重、研究数据和专有算法泄露的高度警惕。
+          </div>
+          <ul class="card-keypoints">
+            <li>内部威胁可能比外部攻击更具破坏性。</li>
+            <li>需要建立更严格的访问控制和审计机制。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 驱动供应链攻击复杂度提升</h3>
+            <span class="badge badge-security">威胁</span>
+          </div>
+          <div class="card-body">
+            攻击者开始利用 AI 自动生成针对性恶意代码和社会工程内容，使供应链攻击更难检测。
+          </div>
+          <ul class="card-keypoints">
+            <li>软件开发流程需要集成 AI 辅助的安全审查。</li>
+            <li>SBOM（软件物料清单）和持续监控成为必需品。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">隐私技术</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">EU AI Act Article 50 强化透明度义务</h3>
+            <span class="badge badge-security">隐私</span>
+          </div>
+          <div class="card-body">
+            欧盟 AI Act 第 50 条要求 AI 提供者和部署者在用户与 AI 互动时履行知情义务，并对合成内容嵌入机器可读标记。
+          </div>
+          <ul class="card-keypoints">
+            <li>透明度规则是隐私保护的前置条件。</li>
+            <li>企业需要更新用户协议和产品界面。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">隐私增强技术在 AI 训练中的应用受关注</h3>
+            <span class="badge badge-security">隐私</span>
+          </div>
+          <div class="card-body">
+            差分隐私、联邦学习和同态加密等隐私增强技术正被更多 AI 系统采用，以平衡模型性能与数据保护。
+          </div>
+          <ul class="card-keypoints">
+            <li>监管要求推动隐私技术创新。</li>
+            <li>医疗和金融等敏感领域应用最为积极。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">GDPR 执法趋势显示罚款金额持续上升</h3>
+            <span class="badge badge-security">隐私</span>
+          </div>
+          <div class="card-body">
+            2026 年 GDPR 累计罚款已达 71 亿欧元，数据隐私执法力度不断加强，AI 数据处理成为监管重点。
+          </div>
+          <ul class="card-keypoints">
+            <li>企业需要在 AI 系统设计和部署阶段就将隐私合规纳入考量。</li>
+            <li>跨境数据传输规则仍是合规难点。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Standards & Policy -->
+  <section class="section" id="policy">
+    <h2 class="section-title"><span class="badge badge-policy">政策</span>行业标准与政策</h2>
+    <p class="section-desc">国际政策、中国政策与标准化进程的最新动态。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">国际政策</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">美国最终确定自愿性 AI 安全测试方案</h3>
+            <span class="badge badge-policy">国际</span>
+          </div>
+          <div class="card-body">
+            白宫 officials 确认，美国已最终确定自愿性 AI 安全测试框架，OpenAI、Anthropic、Google 等将参与讨论。
+          </div>
+          <ul class="card-keypoints">
+            <li>测试方案为自愿性质，不具强制法律效力。</li>
+            <li>政府希望在鼓励创新与防范风险之间取得平衡。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">EU AI Act Article 50 透明度规则生效</h3>
+            <span class="badge badge-policy">国际</span>
+          </div>
+          <div class="card-body">
+            2026年8月3日，欧盟 AI Act 第 50 条正式生效，设定 AI 提供者和部署者的透明度义务。
+          </div>
+          <ul class="card-keypoints">
+            <li>适用范围涵盖聊天机器人、生成式 AI 系统、情绪识别和生物特征分类系统。</li>
+            <li>违规行为将面临罚款。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">国际社会持续关注 AI 安全报告</h3>
+            <span class="badge badge-policy">国际</span>
+          </div>
+          <div class="card-body">
+            International AI Safety Report 2026 发布，汇聚多国专家观点，评估通用 AI 的风险与治理路径。
+          </div>
+          <ul class="card-keypoints">
+            <li>报告为各国政策制定提供参考。</li>
+            <li>强调国际合作在 AI 安全治理中的重要性。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">中国政策</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">中国在 AI 创新方面处于全球前沿</h3>
+            <span class="badge badge-policy">中国</span>
+          </div>
+          <div class="card-body">
+            塞尔维亚官员在接受采访中表示，中国在 AI 创新方面处于前沿地位，国际社会期待与中国在 AI 领域合作。
+          </div>
+          <ul class="card-keypoints">
+            <li>中国 AI 发展模式受到新兴市场关注。</li>
+            <li>国际合作与竞争并存。</li>
+          </ul>
+          <a href="https://www.kunming.cn/en/c/2026-08-07/14064697.shtml" class="card-link" target="_blank">阅读原文 →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">中国 AI 模型竞争向低成本方向发展</h3>
+            <span class="badge badge-policy">中国</span>
+          </div>
+          <div class="card-body">
+            阿里巴巴与 DeepSeek 推动中国 AI 模型竞争向更低成本和更开放方向发展。
+          </div>
+          <ul class="card-keypoints">
+            <li>低成本模型有助于中小企业和开发者采用。</li>
+            <li>可能对全球模型定价产生压力。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">国内 AI 治理框架持续完善</h3>
+            <span class="badge badge-policy">中国</span>
+          </div>
+          <div class="card-body">
+            中国在算法推荐、深度合成和生成式 AI 等领域的监管框架持续完善，强调技术创新与规范发展并重。
+          </div>
+          <ul class="card-keypoints">
+            <li>监管重点包括内容安全、数据合规和算法透明度。</li>
+            <li>企业合规成本上升但生态更趋规范。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">标准化</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Red Hat 发起 asago 项目推动 AI 治理政策代码化</h3>
+            <span class="badge badge-policy">标准</span>
+          </div>
+          <div class="card-body">
+            asago 项目通过自动化工作流把 AI 治理政策映射到 NIST AI RMF、OWASP LLM Top 10 等框架，并生成 Kubernetes、Terraform、Ansible 配置。
+          </div>
+          <ul class="card-keypoints">
+            <li>创始贡献方包括 Red Hat、NVIDIA、IBM、Microsoft、MIT Lincoln Laboratory 等。</li>
+            <li>采用 Apache License 2.0。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">欧盟 AI Act 合规指南持续更新</h3>
+            <span class="badge badge-policy">标准</span>
+          </div>
+          <div class="card-body">
+            多家合规咨询机构发布 EU AI Act 2026 更新指南，帮助企业理解 Article 50 等条款的具体要求。
+          </div>
+          <ul class="card-keypoints">
+            <li>合规服务市场快速增长。</li>
+            <li>标准化工具和认证机制正在形成。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 生成内容透明度行为准则受关注</h3>
+            <span class="badge badge-policy">标准</span>
+          </div>
+          <div class="card-body">
+            欧盟鼓励组织通过《AI 生成内容透明度行为准则》或被认为充分的替代方式证明其符合 Article 50 要求。
+          </div>
+          <ul class="card-keypoints">
+            <li>行为准则为企业提供了灵活的合规路径。</li>
+            <li>需要与技术和法律团队密切协作。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productivity Tools -->
+  <section class="section" id="productivity">
+    <h2 class="section-title"><span class="badge badge-productivity">办公</span>智能办公与生产力工具</h2>
+    <p class="section-desc">AI Agent、企业自动化与协作工具的演进。</p>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">AI Agent</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Gartner 预测 2028 年 AI Agent 数量将超过销售人员 10:1</h3>
+            <span class="badge badge-productivity">Agent</span>
+          </div>
+          <div class="card-body">
+            Gartner 预测，到 2028 年 AI Agent 数量将达到销售人员的 10 倍，但少于 40% 的销售人员认为 Agent 提升了生产力。
+          </div>
+          <ul class="card-keypoints">
+            <li>Agent 规模化部署面临集成复杂性和用户接受度挑战。</li>
+            <li>企业需要关注 Agent 与实际工作流的匹配度。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">企业 AI Agent 平台竞争加剧</h3>
+            <span class="badge badge-productivity">Agent</span>
+          </div>
+          <div class="card-body">
+            2026 年，多家企业级 AI Agent 平台推出，用于自动化销售、客服、营销和运营流程。
+          </div>
+          <ul class="card-keypoints">
+            <li>平台差异化从模型能力转向场景理解、安全控制和可观测性。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI Agent 从自动化向自主执行演进</h3>
+            <span class="badge badge-productivity">Agent</span>
+          </div>
+          <div class="card-body">
+            新一代 AI Agent 能够跨系统执行多步骤任务，从简单的问答助手进化为可自主完成业务流程的代理。
+          </div>
+          <ul class="card-keypoints">
+            <li>自主 Agent 需要更强的推理能力、记忆机制和安全护栏。</li>
+            <li>企业 IT 架构需要相应升级。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">企业自动化</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Canva 因 AI 成本压力重新评估增长预期</h3>
+            <span class="badge badge-productivity">自动化</span>
+          </div>
+          <div class="card-body">
+            Canva 下调 2026 年收入预期约三分之一，暴露出企业在嵌入前沿 AI 功能时面临的成本失控风险。
+          </div>
+          <ul class="card-keypoints">
+            <li>企业自动化工具需要平衡 AI 能力增强与单位经济模型。</li>
+            <li>自研模型和精细定价成为关键。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">asago 项目将 AI 治理政策转化为部署代码</h3>
+            <span class="badge badge-productivity">自动化</span>
+          </div>
+          <div class="card-body">
+            Red Hat 牵头的 asago 项目帮助企业把合规要求自动化地嵌入到 AI 系统部署流程中。
+          </div>
+          <ul class="card-keypoints">
+            <li>将政策转化为代码可缩短部署周期并提升审计可追溯性。</li>
+            <li>对企业自动化合规具有重要意义。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 驱动的低代码/无代码平台持续演进</h3>
+            <span class="badge badge-productivity">自动化</span>
+          </div>
+          <div class="card-body">
+            低代码平台集成生成式 AI，使非技术人员可以通过自然语言创建应用和工作流。
+          </div>
+          <ul class="card-keypoints">
+            <li>降低开发门槛，加速业务创新。</li>
+            <li>需要治理机制防止影子 IT 和数据泄露。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subcategory">
+      <h3 class="subcategory-title">协作</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Android 测试 AI 生成锁屏时钟</h3>
+            <span class="badge badge-productivity">协作</span>
+          </div>
+          <div class="card-body">
+            Google 在 Android Canary 渠道测试 AI 生成的锁屏时钟，把手机系统的个性化体验交给生成模型。
+          </div>
+          <ul class="card-keypoints">
+            <li>操作系统层面的 AI 生成能力将成为手机厂商竞争的新维度。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">AI 协作工具向多模态和上下文感知方向发展</h3>
+            <span class="badge badge-productivity">协作</span>
+          </div>
+          <div class="card-body">
+            团队协作工具开始集成语音、图像和文档理解能力，使会议摘要、任务分配和知识检索更加智能。
+          </div>
+          <ul class="card-keypoints">
+            <li>上下文感知能力决定协作工具的差异化。</li>
+            <li>数据隐私是企业采用的核心顾虑。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">设计协作平台拥抱 AI 生成工作流</h3>
+            <span class="badge badge-productivity">协作</span>
+          </div>
+          <div class="card-body">
+            Canva、Figma 等设计协作平台持续整合 AI 生成能力，改变创意团队的工作方式。
+          </div>
+          <ul class="card-keypoints">
+            <li>AI 生成加速创意迭代。</li>
+            <li>版权、品牌一致性和成本控制仍是挑战。</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hot Products -->
+  <section class="section" id="products">
+    <h2 class="section-title"><span class="badge badge-product">产品</span>热门 AI 产品动态</h2>
+    <p class="section-desc">值得关注的热门 AI 产品发布与更新。</p>
+    <div class="card-grid">
+      <article class="card product-card">
+        <div class="card-header">
+          <h3 class="card-title">1. OpenAI × Jony Ive 智能音箱（传闻）</h3>
+          <span class="badge badge-product">产品</span>
+        </div>
+        <div class="product-meta">
+          <span>热度：高</span>
+          <span>预计 2027 年发售</span>
+        </div>
+        <div class="card-body">
+          一款无屏幕、电池供电、冰球大小的 AI 智能音箱，由 Jony Ive 设计，搭载 OpenAI 先进语音模型。
+        </div>
+        <ul class="card-keypoints">
+          <li>甜甜圈造型，内置电池，可单手在家中携带。</li>
+          <li> reportedly 配备移动部件、灯光和摄像头系统以显示“正在回应”。</li>
+          <li>可能成为 OpenAI 计划中的“family of devices”首款产品。</li>
+        </ul>
+        <div class="scenario">
+          <strong>场景：</strong>家庭 AI 助手、语音交互中心、智能家居控制<br>
+          <strong>适合使用者：</strong>早期科技爱好者、OpenAI 生态用户、追求设计感的消费者
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="card-header">
+          <h3 class="card-title">2. Suno + Sentinel 版权检测</h3>
+          <span class="badge badge-product">产品</span>
+        </div>
+        <div class="product-meta">
+          <span>热度：高</span>
+          <span>2026-08-07 宣布</span>
+        </div>
+        <div class="card-body">
+          Suno 接入 Musixmatch Sentinel 服务，对用户提示词和生成作品进行版权扫描。
+        </div>
+        <ul class="card-keypoints">
+          <li>首家采用 Sentinel 的生成式 AI 音乐平台。</li>
+          <li>数据覆盖超 20 万家出版商，包括三大唱片公司。</li>
+          <li>同时扫描输入提示词和最终输出。</li>
+        </ul>
+        <div class="scenario">
+          <strong>场景：</strong>AI 音乐生成平台合规、版权风险防控<br>
+          <strong>适合使用者：</strong>音乐创作者、AI 音乐平台、版权方
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="card-header">
+          <h3 class="card-title">3. PRISM2 病理诊断模型</h3>
+          <span class="badge badge-product">产品</span>
+        </div>
+        <div class="product-meta">
+          <span>热度：中高</span>
+          <span>2026-08-05 发布</span>
+        </div>
+        <div class="card-body">
+          Paige 与 Microsoft 联合推出的多模态病理诊断模型，结合全切片图像与临床对话文本生成诊断。
+        </div>
+        <ul class="card-keypoints">
+          <li>训练数据达 230 万张全切片图像 + 68.5 万份病理报告。</li>
+          <li>泛癌检测 AUC 达 0.967。</li>
+          <li>权重已发布在 Hugging Face。</li>
+        </ul>
+        <div class="scenario">
+          <strong>场景：</strong>病理诊断辅助、癌症筛查、临床研究<br>
+          <strong>适合使用者：</strong>病理医生、肿瘤医院、医学研究机构
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="card-header">
+          <h3 class="card-title">4. Evo 2 生物设计模型</h3>
+          <span class="badge badge-product">产品</span>
+        </div>
+        <div class="product-meta">
+          <span>热度：高</span>
+          <span>2026-08-07 报道</span>
+        </div>
+        <div class="card-body">
+          斯坦福团队开源的基因组语言模型，可设计并合成自然界不存在的噬菌体。
+        </div>
+        <ul class="card-keypoints">
+          <li>设计并合成近 300 种噬菌体，16 种对大肠杆菌有效。</li>
+          <li>已开源发布。</li>
+          <li>为抗生素耐药菌治疗提供新思路。</li>
+        </ul>
+        <div class="scenario">
+          <strong>场景：</strong>生物设计、抗生素耐药性研究、合成生物学<br>
+          <strong>适合使用者：</strong>生物研究人员、制药公司、合成生物学初创公司
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="card-header">
+          <h3 class="card-title">5. asago AI 治理代码化项目</h3>
+          <span class="badge badge-product">产品</span>
+        </div>
+        <div class="product-meta">
+          <span>热度：中高</span>
+          <span>2026-08-04 宣布</span>
+        </div>
+        <div class="card-body">
+          Red Hat 发起的开源项目，目标是把 AI 治理政策自动转换为生产就绪的部署代码。
+        </div>
+        <ul class="card-keypoints">
+          <li>创始贡献方包括 Red Hat、NVIDIA、IBM、Microsoft、MIT Lincoln Laboratory。</li>
+          <li>采用 Apache License 2.0。</li>
+          <li>声称能将部署周期从数月缩短至数天。</li>
+        </ul>
+        <div class="scenario">
+          <strong>场景：</strong>AI 治理合规、企业 AI 部署、自动化审计<br>
+          <strong>适合使用者：</strong>企业合规团队、MLOps 工程师、AI 平台架构师
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Key Insights -->
+  <section class="insight-section" id="insights">
+    <div class="section">
+      <h2 class="section-title"><span class="badge badge-insight">洞察</span>当日关键洞察总结</h2>
+      <p class="section-desc">超越新闻表面的结构性产业判断。</p>
+
+      <div class="insight-card">
+        <h3>洞察一：AI 产业正在经历从“模型能力竞赛”到“组织与商业模型重构”的深层转变。</h3>
+        <p>Google 的领导层洗牌、Canva 因 AI 成本下调收入预期、阿里巴巴为 Qwen 引入收入分成条款——这三件事表面无关，实则指向同一个趋势：当大模型能力逐渐趋同，决定胜负的不再是单一模型的 benchmark 分数，而是组织能否把 AI 能力高效地转化为可持续的商业结构。Google 选择压缩研究到产品的决策链条，Canva 被迫重新校准 AI 功能的成本收益，阿里则试图在开源生态中建立新的价值捕获机制。2026 年下半年，类似的故事会在更多公司重演。</p>
+      </div>
+
+      <div class="insight-card">
+        <h3>洞察二：AI 与生物学的交叉正在突破“预测”进入“创造”，治理框架严重滞后。</h3>
+        <p>Evo 2 设计并合成全新噬菌体，是生成式 AI 从数字世界进入物理生物世界的重要标志。与 AlphaFold 预测蛋白质结构不同，这类模型直接生成可合成的生命体。尽管当前研究对象是安全的噬菌体，但其方法论本身具有通用性。开源社区、学术机构和监管部门需要尽快建立“设计-合成-验证-发布”的全链条治理，否则技术红利与滥用风险之间的窗口期将迅速收窄。</p>
+      </div>
+
+      <div class="insight-card">
+        <h3>洞察三：透明度与合规正从“公关议题”变成“工程基础设施”。</h3>
+        <p>EU AI Act Article 50 生效、Suno 接入版权扫描、Red Hat 发起 asago 项目——这些事件共同说明，AI 治理不再只是法律团队的工作，而是需要嵌入产品架构和部署流程的工程问题。未来一年，能够把合规要求转化为代码、把透明度义务转化为用户界面设计、把安全测试转化为 CI/CD 环节的公司，将在监管趋严的环境中获得显著优势。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="disclaimer">
+      <strong>免责声明：</strong>本期资讯基于公开报道整理，部分内容为编辑观点，不构成投资建议。<br>
+      资讯抓取过程中，TechCrunch、VentureBeat、Wired、Reuters、纽约时报、Medium、Gartner、机器之心、量子位、ProductHunt 等来源受反爬或访问限制未能完整提取；上述受限来源的内容已通过 The Verge、ScienceDaily、artificialintelligence-news.com、WebSearch 等其他信源交叉验证补充。<br><br>
+      AI 资讯快报 · 2026年8月7日 · 归档于 <a href="https://maplelian.github.io/ai-news-bulletin/" target="_blank" style="color:#fbbf24;">GitHub Pages</a>
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Charts
+    Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+    Chart.defaults.color = '#64748b';
+
+    // Investment concentration chart
+    const ctx1 = document.getElementById('investmentChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'doughnut',
+      data: {
+        labels: ['OpenAI + Anthropic', '其他 AI 公司', '非 AI 公司'],
+        datasets: [{
+          data: [43, 32, 25],
+          backgroundColor: ['#6366f1', '#ec4899', '#94a3b8'],
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.parsed + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Funding stage chart
+    const ctx2 = document.getElementById('stageChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['种子轮', '早期', '后期', '十亿美元级'],
+        datasets: [{
+          label: 'Q2 2026 融资额（亿美元）',
+          data: [120, 589, 1340, 1086],
+          backgroundColor: ['#10b981', '#3b82f6', '#8b5cf6', '#f59e0b'],
+          borderRadius: 8,
+          barThickness: 36
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: '#e2e8f0' }
+          },
+          x: {
+            grid: { display: false }
+          }
+        }
+      }
+    });
+
+    // Coverage chart
+    const ctx3 = document.getElementById('coverageChart').getContext('2d');
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: ['技术前沿', '行业竞争', '伦理安全', '医疗教育', '机器人', '数据隐私', '标准政策', '生产力'],
+        datasets: [{
+          label: '本期资讯数量',
+          data: [9, 9, 6, 6, 9, 6, 9, 9],
+          backgroundColor: ['#06b6d4', '#f59e0b', '#10b981', '#14b8a6', '#f97316', '#dc2626', '#3b82f6', '#8b5cf6'],
+          borderRadius: 6,
+          barThickness: 22
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            grid: { color: '#e2e8f0' }
+          },
+          y: {
+            grid: { display: false }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
